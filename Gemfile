@@ -29,6 +29,7 @@ gem "sidekiq", "~> 6.2"
 gem "sitemap_generator", "~> 6.1"
 gem "whenever", require: false
 gem "responders", github: "heartcombo/responders", branch: "main"
+gem "selenium-webdriver"
 
 # Use Sass to process CSS
 # gem "sassc-rails"
@@ -45,7 +46,6 @@ end
 group :test do
   gem "rspec-rails"
   gem "capybara"
-  gem "selenium-webdriver"
   gem "webdrivers"
 end
 
