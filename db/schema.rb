@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_12_043531) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_12_222032) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -62,6 +62,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_12_043531) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "members", force: :cascade do |t|
+    t.string "name"
+    t.integer "gender"
+    t.date "birthdate"
+    t.string "phone"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.string "recipient_type", null: false
     t.bigint "recipient_id", null: false
@@ -88,6 +98,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_12_043531) do
     t.index ["user_id"], name: "index_services_on_user_id"
   end
 
+  create_table "talks", force: :cascade do |t|
+    t.bigint "member_id", null: false
+    t.date "date"
+    t.string "purpose"
+    t.string "topic"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_talks_on_member_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -107,4 +127,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_12_043531) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "services", "users"
+  add_foreign_key "talks", "members"
 end

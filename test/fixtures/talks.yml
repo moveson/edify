@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  member: one
+  date: 2022-03-12
+  purpose: MyString
+  topic: MyString
+
+two:
+  member: two
+  date: 2022-03-12
+  purpose: MyString
+  topic: MyString

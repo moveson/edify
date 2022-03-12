@@ -1,0 +1,49 @@
+
+
+
+<div class="row">
+  <div class="col-sm-6">
+    <h1>Talks</h1>
+  </div>
+
+  <div class="col-sm-6 text-end">
+  <%= link_to new_talk_path, class: 'btn btn-primary' do %>
+    Add New Talk
+  <% end %>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+    
+
+            <th>Member</th>
+            <th>Date</th>
+            <th>Purpose</th>
+            <th>Topic</th>
+            
+          <th></th>
+        
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @talks.each do |talk| %>
+        <%= content_tag :tr, id: dom_id(talk), class: dom_class(talk) do %>
+          
+
+                      <td><%= talk.member %></td>
+                      <td><%= talk.date %></td>
+                      <td><%= talk.purpose %></td>
+                      <td><%= talk.topic %></td>
+          
+          
+            <td><%= link_to 'Show', talk %></td>
+          
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

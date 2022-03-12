@@ -1,0 +1,49 @@
+<%= form_with(model: talk) do |form| %>
+  <% if talk.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(talk.errors.count, "error") %> prohibited this talk from being saved:</h2>
+
+      <ul>
+      <% talk.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :member_id, class: 'form-label' %>
+      <%= form.text_field :member_id, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <%= form.label :date, class: 'form-label' %>
+      <%= form.date_field :date, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <%= form.label :purpose, class: 'form-label' %>
+      <%= form.text_field :purpose, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <%= form.label :topic, class: 'form-label' %>
+      <%= form.text_field :topic, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <% if talk.persisted? %>
+      <div class="float-end">
+        <%= link_to 'Destroy', talk, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if talk.persisted? %>
+      <%= link_to "Cancel", talk, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", talks_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

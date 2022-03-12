@@ -1,0 +1,20 @@
+<div class="page-header">
+  <%= link_to talks_path, class: 'btn btn-default' do %>
+    All Talks
+  <% end %>
+  <%= link_to edit_talk_path(@talk), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show talk</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Member:</dt>
+  <dd><%= @talk.member %></dd>
+  <dt>Date:</dt>
+  <dd><%= @talk.date %></dd>
+  <dt>Purpose:</dt>
+  <dd><%= @talk.purpose %></dd>
+  <dt>Topic:</dt>
+  <dd><%= @talk.topic %></dd>
+</dl>
