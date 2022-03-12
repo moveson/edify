@@ -107,6 +107,7 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    diff-lcs (1.5.0)
     digest (3.1.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
@@ -141,9 +142,6 @@ GEM
     io-wait (0.2.1)
     irb (1.4.1)
       reline (>= 0.3.0)
-    jbuilder (2.11.5)
-      actionview (>= 5.0.0)
-      activesupport (>= 5.0.0)
     jsbundling-rails (1.0.2)
       railties (>= 6.0.0)
     jwt (2.3.0)
@@ -265,6 +263,23 @@ GEM
     reline (0.3.1)
       io-console (~> 0.5)
     rexml (3.2.5)
+    rspec-core (3.11.0)
+      rspec-support (~> 3.11.0)
+    rspec-expectations (3.11.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.11.0)
+    rspec-mocks (3.11.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.11.0)
+    rspec-rails (5.1.1)
+      actionpack (>= 5.2)
+      activesupport (>= 5.2)
+      railties (>= 5.2)
+      rspec-core (~> 3.10)
+      rspec-expectations (~> 3.10)
+      rspec-mocks (~> 3.10)
+      rspec-support (~> 3.10)
+    rspec-support (3.11.0)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     selenium-webdriver (4.1.0)
@@ -329,7 +344,6 @@ DEPENDENCIES
   devise (~> 4.8, >= 4.8.0)
   friendly_id (~> 5.4)
   importmap-rails
-  jbuilder
   jsbundling-rails
   madmin
   name_of_person (~> 1.1)
@@ -344,6 +358,7 @@ DEPENDENCIES
   rails (~> 7.0.2, >= 7.0.2.3)
   redis (~> 4.0)
   responders!
+  rspec-rails
   selenium-webdriver
   sidekiq (~> 6.2)
   sitemap_generator (~> 6.1)
@@ -356,7 +371,7 @@ DEPENDENCIES
   whenever
 
 RUBY VERSION
-   ruby 2.7.5p203
+   ruby 3.1.1p18
 
 BUNDLED WITH
    2.3.5
