@@ -9,8 +9,10 @@
 </div>
 
 <dl class="dl-horizontal">
+  <dt>Speaker Name:</dt>
+  <dd><%= @talk.speaker_name %></dd>
   <dt>Member:</dt>
-  <dd><%= @talk.member %></dd>
+  <dd><%= @talk.member_name.present? ? link_to(@talk.member_name, member_path(@talk.member)) : "" %></dd>
   <dt>Date:</dt>
   <dd><%= @talk.date %></dd>
   <dt>Purpose:</dt>

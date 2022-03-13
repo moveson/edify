@@ -4,32 +4,32 @@
       <h2><%= pluralize(talk.errors.count, "error") %> prohibited this talk from being saved:</h2>
 
       <ul>
-      <% talk.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% talk.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
   <div class="mb-3">
-    <%= form.label :member_id, class: 'form-label' %>
-      <%= form.text_field :member_id, class: 'form-control' %>
-    </div>
+    <%= form.label :speaker_name, class: 'form-label' %>
+    <%= form.text_field :speaker_name, class: 'form-control' %>
+  </div>
 
   <div class="mb-3">
     <%= form.label :date, class: 'form-label' %>
-      <%= form.date_field :date, class: 'form-control' %>
-    </div>
+    <%= form.date_field :date, class: 'form-control' %>
+  </div>
 
   <div class="mb-3">
     <%= form.label :purpose, class: 'form-label' %>
-      <%= form.text_field :purpose, class: 'form-control' %>
-    </div>
+    <%= form.text_field :purpose, class: 'form-control' %>
+  </div>
 
   <div class="mb-3">
     <%= form.label :topic, class: 'form-label' %>
-      <%= form.text_field :topic, class: 'form-control' %>
-    </div>
+    <%= form.text_field :topic, class: 'form-control' %>
+  </div>
 
   <div class="mb-3">
     <% if talk.persisted? %>

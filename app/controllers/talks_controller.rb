@@ -3,7 +3,8 @@ class TalksController < ApplicationController
 
   # GET /talks
   def index
-    @talks = Talk.all.includes(:member)
+    @q = Talk.ransack(params[:q])
+    @talks = @q.result.includes(:member)
   end
 
   # GET /talks/1

@@ -10,6 +10,23 @@
   </div>
 </div>
 
+<hr/>
+
+<%= search_form_for @q do |f| %>
+  <div class="row">
+    <div class="input-group">
+      <%= f.search_field :speaker_name_cont, placeholder: "Find someone", autofocus: true, class: "form-control" %>
+      <span class="input-group-append">
+        <%= button_tag(type: :submit, class: 'btn btn-primary') do %>
+            <i class='fas fa-search'></i>
+        <% end %>
+      </span>
+    </div>
+  </div>
+<% end %>
+
+<br/>
+
 <div class="table-responsive">
   <table class="table table-striped table-bordered table-hover">
     <thead>
@@ -25,9 +42,9 @@
     <% @talks.each do |talk| %>
       <%= content_tag :tr, id: dom_id(talk), class: dom_class(talk) do %>
         <td><%= talk.member_id? ? link_to(talk.member_name, member_path(talk.member_id)) : talk.speaker_name %></td>
-        <td><%= talk.date %></td>
+        <td><%= l(talk.date, format: :long) %></td>
         <td><%= talk.purpose %></td>
-        <td><%= talk.topic %></td>
+        <td><%= talk.topic_truncated %></td>
       <% end %>
     <% end %>
     </tbody>
