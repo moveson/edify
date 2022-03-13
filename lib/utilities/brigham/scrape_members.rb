@@ -2,7 +2,7 @@
 
 module Brigham
   class ScrapeMembers
-    def self.perform(username, password)
+    def self.perform(username, password, import_job)
       options = Selenium::WebDriver::Chrome::Options.new(args: ["headless"])
       driver = Selenium::WebDriver.for(:chrome, capabilities: options)
 

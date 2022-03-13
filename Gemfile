@@ -30,6 +30,7 @@ gem "sitemap_generator", "~> 6.1"
 gem "whenever", require: false
 gem "responders", github: "heartcombo/responders", branch: "main"
 gem "selenium-webdriver"
+gem "font_awesome5_rails"
 
 # Use Sass to process CSS
 # gem "sassc-rails"

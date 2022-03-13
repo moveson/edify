@@ -45,18 +45,6 @@ class MembersController < ApplicationController
     redirect_to members_url, notice: "Member was successfully destroyed."
   end
 
-  def import
-    username = params[:username]
-    password = params[:password]
-
-    if username.present? && password.present?
-      ::FetchMembersJob.perform_later(username, password)
-      redirect_to members_url, notice: "Import in progress"
-    else
-      redirect_to members_url, notice: "Username and password must be provided"
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_member

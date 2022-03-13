@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_12_222032) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_12_231216) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,6 +60,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_12_222032) do
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
+  create_table "import_jobs", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "status"
+    t.string "error_message"
+    t.integer "row_count"
+    t.integer "success_count"
+    t.integer "failure_count"
+    t.datetime "started_at"
+    t.integer "elapsed_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_import_jobs_on_user_id"
   end
 
   create_table "members", force: :cascade do |t|
@@ -126,6 +140,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_12_222032) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "import_jobs", "users"
   add_foreign_key "services", "users"
   add_foreign_key "talks", "members"
 end

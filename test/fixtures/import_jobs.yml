@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  status: 1
+  error_message: MyString
+  row_count: 1
+  success_count: 1
+  failure_count: 1
+  started_at: 2022-03-12 16:12:16
+  elapsed_time: 1
+
+two:
+  user: two
+  status: 1
+  error_message: MyString
+  row_count: 1
+  success_count: 1
+  failure_count: 1
+  started_at: 2022-03-12 16:12:16
+  elapsed_time: 1
