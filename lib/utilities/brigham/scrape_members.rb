@@ -97,7 +97,15 @@ module Brigham
 
     def driver
       @driver ||=
-        Selenium::WebDriver.for(:chrome, capabilities: Selenium::WebDriver::Chrome::Options.new(args: ["headless"]))
+        Selenium::WebDriver.for(:chrome, capabilities: driver_options)
+    end
+
+    def driver_options
+      chrome_bin = ENV.fetch('GOOGLE_CHROME_SHIM', nil)
+
+      chrome_options = chrome_bin ? { "chromeOptions" => { "binary" => chrome_bin } } : {}
+      options = { args: ["headless"] }.merge(chrome_options)
+      Selenium::WebDriver::Chrome::Options.new(**options)
     end
 
     def check_for_okta_push
