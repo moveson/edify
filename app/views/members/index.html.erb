@@ -14,10 +14,10 @@
   <table class="table table-striped table-bordered table-hover">
     <thead>
     <tr>
-      <th>Name</th>
-      <th>Gender</th>
-      <th>Age</th>
-      <th>Phone</th>
+      <th><%= sort_link(@q, :name) %></th>
+      <th><%= sort_link(@q, :gender, [:gender, 'name asc']) %></th>
+      <th><%= sort_link(@q, :birthdate, "Age", default_order: :desc) %></th>
+      <th><%= sort_link(@q, :last_talk_date) %></th>
     </tr>
     </thead>
 

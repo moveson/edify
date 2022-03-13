@@ -3,7 +3,7 @@ class TalksController < ApplicationController
 
   # GET /talks
   def index
-    @talks = Talk.all
+    @talks = Talk.all.includes(:member)
   end
 
   # GET /talks/1

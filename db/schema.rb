@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_13_044948) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_13_080942) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -114,12 +114,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_13_044948) do
   end
 
   create_table "talks", force: :cascade do |t|
-    t.bigint "member_id", null: false
+    t.bigint "member_id"
     t.date "date"
     t.string "purpose"
     t.string "topic"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "speaker_name"
     t.index ["member_id"], name: "index_talks_on_member_id"
   end
 

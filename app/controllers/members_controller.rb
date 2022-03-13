@@ -3,7 +3,8 @@ class MembersController < ApplicationController
 
   # GET /members
   def index
-    @members = Member.all
+    @q = Member.with_last_talk_date.ransack(params[:q])
+    @members = @q.result
   end
 
   # GET /members/1
