@@ -6,10 +6,9 @@ module ProgressMonitorablesHelper
 
     status_colors = {
       waiting: "black",
+      authorizing: "yellow",
       extracting: "pink",
-      transforming: "yellow",
       loading: "cyan",
-      processing: "blue",
       finished: "green",
       failed: "red"
     }.with_indifferent_access

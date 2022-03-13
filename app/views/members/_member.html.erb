@@ -1,27 +1,6 @@
-<div id="<%= dom_id member %>">
-  <p>
-    <strong>Name:</strong>
-    <%= member.name %>
-  </p>
-
-  <p>
-    <strong>Gender:</strong>
-    <%= member.gender %>
-  </p>
-
-  <p>
-    <strong>Birthdate:</strong>
-    <%= member.birthdate %>
-  </p>
-
-  <p>
-    <strong>Phone:</strong>
-    <%= member.phone %>
-  </p>
-
-  <p>
-    <strong>Email:</strong>
-    <%= member.email %>
-  </p>
-
-</div>
+<%= content_tag :tr, id: dom_id(member), class: dom_class(member) do %>
+  <td><%= link_to member.name, member %></td>
+  <td><%= member.gender.titleize %></td>
+  <td><%= member.age %></td>
+  <td><%= member.phone %></td>
+<% end %>

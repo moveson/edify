@@ -16,22 +16,13 @@
     <tr>
       <th>Name</th>
       <th>Gender</th>
-      <th>Birthdate</th>
+      <th>Age</th>
       <th>Phone</th>
-      <th>Email</th>
     </tr>
     </thead>
 
-    <tbody>
-    <% @members.each do |member| %>
-      <%= content_tag :tr, id: dom_id(member), class: dom_class(member) do %>
-        <td><%= link_to member.name, member %></td>
-        <td><%= member.gender %></td>
-        <td><%= member.birthdate %></td>
-        <td><%= member.phone %></td>
-        <td><%= member.email %></td>
-      <% end %>
-    <% end %>
+    <tbody id="members">
+    <%= render partial: "member", collection: @members %>
     </tbody>
   </table>
 </div>

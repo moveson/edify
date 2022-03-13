@@ -13,8 +13,8 @@ class ImportJob < ApplicationRecord
 
   enum status: {
     waiting: 0,
-    extracting: 1,
-    transforming: 2,
+    authorizing: 1,
+    extracting: 2,
     loading: 3,
     finished: 4,
     failed: 5
@@ -29,7 +29,7 @@ class ImportJob < ApplicationRecord
   def set_elapsed_time!
     return unless persisted? && started_at.present?
 
-    update_column(:elapsed_time, Time.current - started_at)
+    update(elapsed_time: Time.current - started_at)
   end
 
   def start!

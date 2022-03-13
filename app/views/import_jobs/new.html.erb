@@ -7,17 +7,17 @@
 
 <%= form_with(url: import_jobs_path) do |form| %>
   <div class="mb-3">
-    <%= form.label :username, class: 'form-label' %>
-    <%= form.text_field :username, class: 'form-control' %>
+    <%= form.label :username, class: "form-label" %>
+    <%= form.text_field :username, class: "form-control", autofocus: true %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :password, class: 'form-label' %>
-    <%= form.password_field :password, class: 'form-control' %>
+    <%= form.label :password, class: "form-label" %>
+    <%= form.password_field :password, class: "form-control" %>
   </div>
 
   <div class="mb-3">
-    <%= form.submit "Fetch", class: 'btn btn-primary' %>
+    <%= form.submit "Fetch", class: "btn btn-primary" %>
 
     <%= link_to "Cancel", import_jobs_path, class: "btn btn-link" %>
   </div>

@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require "utilities/brigham"
+
 class ImportJobsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user
@@ -26,9 +30,16 @@ class ImportJobsController < ApplicationController
     password = params[:password]
 
     if username.present? && password.present?
+      credentials = ::Brigham::Credentials.new(username: username, password: password)
+
       if @import_job.save
-        ::FetchMembersJob.perform_later(username, password, @import_job.id)
-        redirect_to members_url, notice: "Import in progress"
+        ::Brigham::FetchMembersJob.perform_later(
+          username: credentials.encrypted_username,
+          password: credentials.encrypted_password,
+          import_job_id: @import_job.id
+        )
+
+        redirect_to import_jobs_url, notice: "Import in progress"
       else
         flash[:danger] = "Unable to create import job: #{@import_job.errors.full_messages.join(', ')}"
         render "new"
