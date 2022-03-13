@@ -84,10 +84,6 @@ module Brigham
         member_attributes = row.find_elements(css: "td")
         attr_array = member_attributes.map(&:text)
 
-        pp attr_array
-        pp attr_array.size
-        pp attr_array[8]
-
         raw_member_row = RawMemberRow.new(attr_array[1], attr_array[3], attr_array[5], attr_array[7])
         raw_member_rows << raw_member_row
         import_job.increment!(:success_count)
