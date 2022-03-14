@@ -61,7 +61,7 @@ module Brigham
 
       check_for_okta_push
 
-      sleep 5
+      sleep 3
 
       import_job.set_elapsed_time!
       unless driver.current_url.include?("member-list")
@@ -104,8 +104,7 @@ module Brigham
       chrome_bin = ENV.fetch('GOOGLE_CHROME_SHIM', nil)
 
       chrome_options = chrome_bin ? { binary: chrome_bin } : {}
-      # headless_options = { args: ["headless"] }
-      headless_options = {}
+      headless_options = { args: ["headless"] }
       options = headless_options.merge(chrome_options)
       Selenium::WebDriver::Chrome::Options.new(**options)
     end
