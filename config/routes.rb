@@ -13,13 +13,13 @@ Rails.application.routes.draw do
         post :stop_impersonating, on: :collection
       end
     end
-
-    resources :announcements, only: [:index]
-    resources :import_jobs, only: [:index, :show, :new, :create, :destroy]
-    resources :members
-    resources :notifications, only: [:index]
-    resources :talks
   end
+
+  resources :announcements, only: [:index]
+  resources :import_jobs, only: [:index, :show, :new, :create, :destroy]
+  resources :members
+  resources :notifications, only: [:index]
+  resources :talks
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
   root to: "home#index"
