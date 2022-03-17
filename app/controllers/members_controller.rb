@@ -22,12 +22,23 @@ class MembersController < ApplicationController
 
   # POST /members
   def create
-    @member = Member.new(member_params)
+    @member = Member.find_or_initialize_by(name: member_params[:name], birthdate: member_params[:birthdate])
+    existing_member = @member.persisted?
+    @member.assign_attributes(member_params)
 
     if @member.save
-      redirect_to @member, notice: "Member was successfully created."
+      respond_to do |format|
+        format.html { redirect_to @member, notice: "Member was successfully created." }
+        format.json do
+          status = existing_member ? :ok : :created
+          render json: @member.to_json, status: status
+        end
+      end
     else
-      render :new, status: :unprocessable_entity
+      respond_to do |format|
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render @member.errors.full_messages.to_json, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -47,13 +58,12 @@ class MembersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_member
-      @member = Member.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def member_params
-      params.require(:member).permit(:name, :gender, :birthdate, :phone, :email)
-    end
+  def set_member
+    @member = Member.find(params[:id])
+  end
+
+  def member_params
+    params.require(:member).permit(:name, :gender, :birthdate, :phone, :email)
+  end
 end
