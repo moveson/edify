@@ -1,15 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  gender: 1
-  birthdate: 2022-03-12
-  phone: MyString
-  email: MyString
+  name: Dyches, George
+  gender: 0
+  birthdate: 2002-03-04
+  phone: 801-888-3333
+  email: george@dyches.com
 
 two:
-  name: MyString
+  name: Harris, Jill
   gender: 1
-  birthdate: 2022-03-12
-  phone: MyString
-  email: MyString
+  birthdate: 1999-04-05
+  phone: 405-555-4444
+  email: jill@harris.com

@@ -3,11 +3,11 @@
 one:
   member: one
   date: 2022-03-12
-  purpose: MyString
-  topic: MyString
+  purpose: Youth Speaker
+  topic:
 
 two:
   member: two
   date: 2022-03-12
-  purpose: MyString
-  topic: MyString
+  purpose:
+  topic:
