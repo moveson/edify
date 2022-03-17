@@ -1,8 +1,6 @@
 require "sidekiq/web"
 
 Rails.application.routes.draw do
-  resources :import_jobs
-
   draw :madmin
   authenticate :user, lambda { |u| u.admin? } do
     mount Sidekiq::Web => "/sidekiq"
@@ -16,7 +14,6 @@ Rails.application.routes.draw do
   end
 
   resources :announcements, only: [:index]
-  resources :import_jobs, only: [:index, :show, :new, :create, :destroy]
   resources :members
   resources :notifications, only: [:index]
   resources :talks
