@@ -13,15 +13,15 @@ Rails.application.routes.draw do
         post :stop_impersonating, on: :collection
       end
     end
-
-    resources :announcements, only: [:index]
-    resources :import_jobs, only: [:index, :show, :new, :create, :destroy]
-    resources :members
-    resources :notifications, only: [:index]
-    resources :talks
   end
 
-  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
+  resources :announcements, only: [:index]
+  resources :import_jobs, only: [:index, :show, :new, :create, :destroy]
+  resources :members
+  resources :notifications, only: [:index]
+  resources :talks
+
+  devise_for :users, controllers: { sessions: "users/sessions" }
   root to: "home#index"
   get "/privacy", to: "home#privacy"
   get "/terms", to: "home#terms"
