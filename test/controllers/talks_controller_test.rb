@@ -1,8 +1,14 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 class TalksControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   setup do
     @talk = talks(:one)
+    @member = members(:one)
+    sign_in users(:one)
   end
 
   test "should get index" do
@@ -16,8 +22,8 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create talk" do
-    assert_difference("Talk.count") do
-      post talks_url, params: { talk: { date: @talk.date, member_id: @talk.member_id, purpose: @talk.purpose, topic: @talk.topic } }
+    assert_difference("Talk.count", 1) do
+      post talks_url, params: { talk: { date: "2022-03-31", member_id: @member.id, purpose: "Stake Representative", topic: "Goodness" } }
     end
 
     assert_redirected_to talk_url(Talk.last)
