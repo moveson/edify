@@ -4,6 +4,7 @@ one:
  first_name: Admin
  last_name: User
  admin: true
+ confirmed_at: "2022-03-01 06:00:00"
 
 two:
  email: user@example.com
@@ -11,3 +12,4 @@ two:
  first_name: Normal
  last_name: User
  admin: false
+ confirmed_at: "2022-03-01 06:00:00"
