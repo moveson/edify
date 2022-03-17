@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   resources :notifications, only: [:index]
   resources :talks
 
-  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
+  devise_for :users, controllers: { sessions: "users/sessions" }
   root to: "home#index"
   get "/privacy", to: "home#privacy"
   get "/terms", to: "home#terms"

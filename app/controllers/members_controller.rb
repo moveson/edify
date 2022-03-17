@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class MembersController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: :create
   before_action :authenticate_user!
   before_action :set_member, only: %i[ show edit update destroy ]
 
