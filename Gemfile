@@ -30,7 +30,6 @@ gem "sidekiq", "~> 6.2"
 gem "sitemap_generator", "~> 6.1"
 gem "whenever", require: false
 gem "responders", github: "heartcombo/responders", branch: "main"
-gem "selenium-webdriver"
 gem "font_awesome5_rails"
 gem "american_date"
 gem "ransack"
@@ -52,6 +51,7 @@ group :test do
   gem "rspec-rails"
   gem "capybara"
   gem "webdrivers"
+  gem "selenium-webdriver"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
