@@ -11,7 +11,6 @@ class User < ApplicationRecord
   has_person_name
   has_noticed_notifications
 
-  has_many :import_jobs
   has_many :notifications, as: :recipient, dependent: :destroy
   has_many :services
 end
