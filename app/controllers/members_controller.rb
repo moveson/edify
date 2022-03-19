@@ -25,6 +25,7 @@ class MembersController < ApplicationController
   end
 
   # POST /members
+  # This is an upsert using name and birthdate as a composite unique key
   def create
     @member = Member.find_or_initialize_by(name: member_params[:name], birthdate: member_params[:birthdate])
     existing_member = @member.persisted?
