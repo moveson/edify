@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class TalksController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: :create
   before_action :authenticate_user!
   before_action :set_talk, only: %i[ show edit update destroy ]
 
@@ -68,6 +69,6 @@ class TalksController < ApplicationController
   end
 
   def talk_params
-    params.require(:talk).permit(:member_id, :date, :purpose, :topic)
+    params.require(:talk).permit(:member_id, :speaker_name, :date, :purpose, :topic)
   end
 end
