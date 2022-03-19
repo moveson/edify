@@ -24,13 +24,25 @@ class TalksController < ApplicationController
   end
 
   # POST /talks
+  # This is an upsert using speaker_name and date as a composite unique key
   def create
-    @talk = Talk.new(talk_params)
+    @talk = Talk.find_or_initialize_by(speaker_name: talk_params[:speaker_name], date: talk_params[:date])
+    existing_talk = @talk.persisted?
+    @talk.assign_attributes(talk_params)
 
     if @talk.save
-      redirect_to @talk, notice: "Talk was successfully created."
+      respond_to do |format|
+        format.html { redirect_to @talk, notice: "Talk was successfully created." }
+        format.json do
+          status = existing_talk ? :ok : :created
+          render json: @talk.to_json, status: status
+        end
+      end
     else
-      render :new, status: :unprocessable_entity
+      respond_to do |format|
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render @talk.errors.full_messages.to_json, status: :unprocessable_entity }
+      end
     end
   end
 
