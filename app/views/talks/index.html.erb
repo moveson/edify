@@ -31,6 +31,7 @@
   <table class="table table-striped table-bordered table-hover">
     <thead>
     <tr>
+      <th></th>
       <th>Speaker Name</th>
       <th>Date</th>
       <th>Purpose</th>
@@ -41,7 +42,8 @@
     <tbody>
     <% @talks.each do |talk| %>
       <%= content_tag :tr, id: dom_id(talk), class: dom_class(talk) do %>
-        <td><%= talk.member_id? ? link_to(talk.member_name, member_path(talk.member_id)) : talk.speaker_name %></td>
+        <td><%= link_to(fa_icon("person"), member_path(talk.member_id)) if talk.member_id? %></td>
+        <td><%= talk.speaker_name %></td>
         <td><%= l(talk.date, format: :long) %></td>
         <td><%= talk.purpose %></td>
         <td><%= talk.topic_truncated %></td>
