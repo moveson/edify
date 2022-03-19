@@ -10,9 +10,7 @@ namespace :temp do
 
     table.each do |row|
       row_hash = row.to_hash
-      row_hash.transform_keys! { |key| key.underscore.to_sym }
-      name = row_hash[:speaker_name]
-      row_hash[:member_id] = Member.where("name ilike ?", "#{name}%").first&.id
+      row_hash.transform_keys!(&:underscore)
       Talk.create(row_hash)
     end
 
