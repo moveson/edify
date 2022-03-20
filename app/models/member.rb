@@ -16,4 +16,8 @@ class Member < ApplicationRecord
   def age
     (Date.current - birthdate).to_i / 365
   end
+
+  def bio
+    "#{gender.titleize}, #{age}"
+  end
 end

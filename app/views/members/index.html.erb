@@ -37,9 +37,6 @@
       <th><%= sort_link(@q, :last_talk_date) %></th>
     </tr>
     </thead>
-
-    <tbody id="members">
-    <%= render partial: "member", collection: @members %>
-    </tbody>
   </table>
+    <%= render partial: "member", collection: @members %>
 </div>
