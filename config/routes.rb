@@ -15,10 +15,12 @@ Rails.application.routes.draw do
 
   resources :announcements, only: [:index]
   resources :members do
-    post :sync, on: :collection
+    post :upsert, on: :collection
   end
   resources :notifications, only: [:index]
-  resources :talks
+  resources :talks do
+    post :upsert, on: :collection
+  end
 
   devise_for :users, controllers: { sessions: "users/sessions" }
   root to: "home#index"

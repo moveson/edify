@@ -53,19 +53,19 @@ class MembersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to members_url
   end
 
-  test "should create member using sync when birthdate and name are unique" do
+  test "should create member using upsert when birthdate and name are unique" do
     assert_difference("Member.count", 1) do
-      post sync_members_url, params: { format: :json,
-                                       member: { birthdate: "2002-02-02", email: "test@test.com", gender: :male, name: "Richardson, Jeffrey", phone: "303-333-3333" } }
+      post upsert_members_url, params: { format: :json,
+                                         member: { birthdate: "2002-02-02", email: "test@test.com", gender: :male, name: "Richardson, Jeffrey", phone: "303-333-3333" } }
     end
 
     assert_response :created
   end
 
-  test "should update member using sync when birthdate and name exist" do
+  test "should update member using upsert when birthdate and name exist" do
     assert_no_difference("Member.count") do
-      post sync_members_url, params: { format: :json,
-                                       member: { birthdate: @member.birthdate, email: "test@test.com", gender: :male, name: @member.name, phone: "303-333-3333" } }
+      post upsert_members_url, params: { format: :json,
+                                         member: { birthdate: @member.birthdate, email: "test@test.com", gender: :male, name: @member.name, phone: "303-333-3333" } }
     end
 
     assert_response :ok
