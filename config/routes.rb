@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   end
 
   resources :announcements, only: [:index]
-  resources :members
+  resources :members do
+    post :sync, on: :collection
+  end
   resources :notifications, only: [:index]
   resources :talks
 

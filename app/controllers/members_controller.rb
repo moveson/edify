@@ -35,6 +35,7 @@ class MembersController < ApplicationController
       respond_to do |format|
         format.html { redirect_to @member, notice: "Member was successfully created." }
         format.json do
+          @member.update_column(synced_at, Time.current)
           status = existing_member ? :ok : :created
           render json: @member.to_json, status: status
         end
