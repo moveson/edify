@@ -60,8 +60,15 @@ class MembersController < ApplicationController
     if @member.save
       respond_to do |format|
         format.json do
-          @member.update_column(:synced_at, Time.current)
-          status = existing_member ? :ok : :created
+          if existing_member
+            status = :ok
+            synced_at = Time.current
+          else
+            status = :created
+            synced_at = @member.created_at
+          end
+
+          @member.update_column(:synced_at, synced_at)
           render json: @member.to_json, status: status
         end
       end
