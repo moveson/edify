@@ -31,9 +31,9 @@
         Sort by
       </button>
       <ul class="dropdown-menu" aria-labelledby="sort_by">
-        <li><%= link_to "Name", request.params.deep_merge(q: { s: "name asc" }), class: "dropdown-item" %></li>
-        <li><%= link_to "Age", request.params.deep_merge(q: { s: "birthdate desc" }), class: "dropdown-item" %></li>
-        <li><%= link_to "Last talk", request.params.deep_merge(q: { s: "last_talk_date asc" }), class: "dropdown-item" %></li>
+        <li><%= dropdown_sort_link("Name", "name asc", request.params, @q) %></li>
+        <li><%= dropdown_sort_link("Age", "birthdate desc", request.params, @q) %></li>
+        <li><%= dropdown_sort_link("Last talk", "last_talk_date asc", request.params, @q) %></li>
       </ul>
     </div>
 
