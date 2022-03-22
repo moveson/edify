@@ -334,6 +334,8 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.0.4)
       railties (>= 6.0.0)
+    strip_attributes (1.12.0)
+      activemodel (>= 3.0, < 8.0)
     strscan (3.0.1)
     thor (1.2.1)
     tilt (2.0.10)
@@ -409,6 +411,7 @@ DEPENDENCIES
   sitemap_generator (~> 6.1)
   sprockets-rails
   stimulus-rails
+  strip_attributes
   turbo-rails
   tzinfo-data
   web-console

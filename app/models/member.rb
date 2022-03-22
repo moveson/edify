@@ -6,6 +6,8 @@ class Member < ApplicationRecord
   validates_uniqueness_of :name, scope: :birthdate
   validate :validate_age
 
+  strip_attributes
+
   scope :with_last_talk_date, -> do
     from(left_joins(:talks).select("distinct on (members.id) members.*, talks.date as last_talk_date").order("members.id, date desc"), :members)
   end

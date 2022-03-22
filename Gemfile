@@ -33,6 +33,7 @@ gem "responders", github: "heartcombo/responders", branch: "main"
 gem "font_awesome5_rails"
 gem "american_date"
 gem "ransack"
+gem "strip_attributes"
 
 # Use Sass to process CSS
 gem "sassc-rails"

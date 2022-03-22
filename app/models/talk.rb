@@ -1,6 +1,8 @@
 class Talk < ApplicationRecord
   belongs_to :member, optional: true
 
+  strip_attributes
+
   before_save :match_member
 
   def member_name
