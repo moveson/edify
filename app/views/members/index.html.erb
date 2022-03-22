@@ -1,12 +1,9 @@
 <div class="row">
-  <div class="col-sm-6">
-    <h1>Members</h1>
+  <div class="col">
+    <h3 class="mt-5"><strong>Member List</strong></h3>
   </div>
-
-  <div class="col-sm-6 text-end">
-    <%= link_to new_member_path, class: 'btn btn-primary' do %>
-      Add New Member
-    <% end %>
+  <div class="col">
+    <h3 class="mt-5 text-end text-muted"><small><%= filtered_and_total_count(@members.count, Member.count, "member") %></small></h3>
   </div>
 </div>
 
@@ -45,9 +42,9 @@
         Show
       </button>
       <ul class="dropdown-menu" aria-labelledby="sort_by">
-        <li><%= link_to "All", request.params.deep_merge(q: { birthdate_gt: nil, birthdate_lt: nil }), class: "dropdown-item" %></li>
-        <li><%= link_to "Adults", request.params.deep_merge(q: { birthdate_lt: 18.years.ago.beginning_of_year.to_date }), class: "dropdown-item" %></li>
-        <li><%= link_to "Youth", request.params.deep_merge(q: { birthdate_gteq: 18.years.ago.beginning_of_year.to_date }), class: "dropdown-item" %></li>
+        <li><%= link_to "All", request.params.deep_merge(q: { birthdate_gteq: nil, birthdate_lt: nil }), class: "dropdown-item" %></li>
+        <li><%= link_to "Adults", request.params.deep_merge(q: { birthdate_gteq: nil, birthdate_lt: 18.years.ago.beginning_of_year.to_date }), class: "dropdown-item" %></li>
+        <li><%= link_to "Youth", request.params.deep_merge(q: { birthdate_gteq: 18.years.ago.beginning_of_year.to_date, birthdate_lt: nil }), class: "dropdown-item" %></li>
       </ul>
     </div>
   </div>
