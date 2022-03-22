@@ -21,38 +21,12 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should create talk when date and speaker_name are unique (html)" do
+  test "should create talk" do
     assert_difference("Talk.count", 1) do
       post talks_url, params: { talk: { date: "2022-02-02", speaker_name: "Richardson, Jeffrey" } }
     end
 
     assert_redirected_to talk_url(Talk.last)
-  end
-
-  test "should create talk when date and speaker_name are unique (json)" do
-    assert_difference("Talk.count", 1) do
-      post talks_url, params: { format: :json,
-                                  talk: { date: "2002-02-02", speaker_name: "Richardson, Jeffrey" } }
-    end
-
-    assert_response :created
-  end
-
-  test "should update talk when date and speaker_name exist (html)" do
-    assert_no_difference("Talk.count") do
-      post talks_url, params: { talk: { date: @talk.date, speaker_name: @talk.speaker_name } }
-    end
-
-    assert_redirected_to talk_url(Talk.last)
-  end
-
-  test "should update talk when date and speaker_name exist (json)" do
-    assert_no_difference("Talk.count") do
-      post talks_url, params: { format: :json,
-                                  talk: { date: @talk.date, speaker_name: @talk.speaker_name } }
-    end
-
-    assert_response :ok
   end
 
   test "should show talk" do
@@ -76,5 +50,23 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to talks_url
+  end
+
+  test "should create talk using upsert when date and speaker_name are unique" do
+    assert_difference("Talk.count", 1) do
+      post upsert_talks_url, params: { format: :json,
+                                       talk: { date: "2002-02-02", speaker_name: "Richardson, Jeffrey" } }
+    end
+
+    assert_response :created
+  end
+
+  test "should update talk using upsert when date and speaker_name exist" do
+    assert_no_difference("Talk.count") do
+      post upsert_talks_url, params: { format: :json,
+                                       talk: { date: @talk.date, speaker_name: @talk.speaker_name } }
+    end
+
+    assert_response :ok
   end
 end

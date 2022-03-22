@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
 class MembersController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: :create
+  skip_before_action :verify_authenticity_token, only: :upsert
   before_action :authenticate_user!
   before_action :set_member, only: %i[ show edit update destroy ]
 
   # GET /members
   def index
     @q = Member.with_last_talk_date.ransack(params[:q])
+    @q.sorts = ["name asc"] if @q.sorts.empty?
     @members = @q.result
   end
 
@@ -25,25 +26,13 @@ class MembersController < ApplicationController
   end
 
   # POST /members
-  # This is an upsert using name and birthdate as a composite unique key
   def create
-    @member = Member.find_or_initialize_by(name: member_params[:name], birthdate: member_params[:birthdate])
-    existing_member = @member.persisted?
-    @member.assign_attributes(member_params)
+    @member = Member.new(member_params)
 
     if @member.save
-      respond_to do |format|
-        format.html { redirect_to @member, notice: "Member was successfully created." }
-        format.json do
-          status = existing_member ? :ok : :created
-          render json: @member.to_json, status: status
-        end
-      end
+      redirect_to @member, notice: "Member was successfully created."
     else
-      respond_to do |format|
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render @member.errors.full_messages.to_json, status: :unprocessable_entity }
-      end
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -60,6 +49,35 @@ class MembersController < ApplicationController
   def destroy
     @member.destroy
     redirect_to members_url, notice: "Member was successfully destroyed."
+  end
+
+  # POST /members/upsert
+  # This is an upsert using name and birthdate as a composite unique key
+  def upsert
+    @member = Member.find_or_initialize_by(name: member_params[:name], birthdate: member_params[:birthdate])
+    existing_member = @member.persisted?
+    @member.assign_attributes(member_params)
+
+    if @member.save
+      respond_to do |format|
+        format.json do
+          if existing_member
+            status = :ok
+            synced_at = Time.current
+          else
+            status = :created
+            synced_at = @member.created_at
+          end
+
+          @member.update_column(:synced_at, synced_at)
+          render json: @member.to_json, status: status
+        end
+      end
+    else
+      respond_to do |format|
+        format.json { render json: @member.errors.full_messages.to_json, status: :unprocessable_entity }
+      end
+    end
   end
 
   private

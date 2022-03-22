@@ -14,9 +14,13 @@ Rails.application.routes.draw do
   end
 
   resources :announcements, only: [:index]
-  resources :members
+  resources :members do
+    post :upsert, on: :collection
+  end
   resources :notifications, only: [:index]
-  resources :talks
+  resources :talks do
+    post :upsert, on: :collection
+  end
 
   devise_for :users, controllers: { sessions: "users/sessions" }
   root to: "home#index"

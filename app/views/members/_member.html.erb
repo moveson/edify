@@ -1,6 +1,19 @@
-<%= content_tag :tr, id: dom_id(member), class: dom_class(member) do %>
-  <td><%= link_to member.name, member %></td>
-  <td><%= member.gender.titleize %></td>
-  <td><%= member.age %></td>
-  <td><%= member.last_talk_date %></td>
+<%= turbo_frame_tag dom_id(member) do %>
+  <div class="card bg-light mt-2">
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+          <h5 class="font-weight-bold"><%= member.name %></h5>
+        </div>
+        <div class="col">
+          <h6 class="text-end"><%= member.bio %></h6>
+          <% if member.last_talk_date %>
+            <h6 class="text-end"><span class="badge bg-secondary"><%= member.last_talk_date %></span></h6>
+          <% else %>
+            <h6 class="text-end"><span class="badge bg-warning">Not Found</span></h6>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>

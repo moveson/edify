@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
 class TalksController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: :create
+  skip_before_action :verify_authenticity_token, only: :upsert
   before_action :authenticate_user!
   before_action :set_talk, only: %i[ show edit update destroy ]
 
   # GET /talks
   def index
     @q = Talk.ransack(params[:q])
+    @q.sorts = ["date desc", "speaker_name asc"] if @q.sorts.empty?
     @talks = @q.result.includes(:member)
   end
 
@@ -25,25 +26,13 @@ class TalksController < ApplicationController
   end
 
   # POST /talks
-  # This is an upsert using speaker_name and date as a composite unique key
   def create
-    @talk = Talk.find_or_initialize_by(speaker_name: talk_params[:speaker_name], date: talk_params[:date])
-    existing_talk = @talk.persisted?
-    @talk.assign_attributes(talk_params)
+    @talk = Talk.new(talk_params)
 
     if @talk.save
-      respond_to do |format|
-        format.html { redirect_to @talk, notice: "Talk was successfully created." }
-        format.json do
-          status = existing_talk ? :ok : :created
-          render json: @talk.to_json, status: status
-        end
-      end
+      redirect_to @talk, notice: "Talk was successfully created."
     else
-      respond_to do |format|
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render @talk.errors.full_messages.to_json, status: :unprocessable_entity }
-      end
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -60,6 +49,27 @@ class TalksController < ApplicationController
   def destroy
     @talk.destroy
     redirect_to talks_url, notice: "Talk was successfully destroyed."
+  end
+
+  # POST /talks/upsert
+  # This is an upsert using speaker_name and date as a composite unique key
+  def upsert
+    @talk = Talk.find_or_initialize_by(speaker_name: talk_params[:speaker_name], date: talk_params[:date])
+    existing_talk = @talk.persisted?
+    @talk.assign_attributes(talk_params)
+
+    if @talk.save
+      respond_to do |format|
+        format.json do
+          status = existing_talk ? :ok : :created
+          render json: @talk.to_json, status: status
+        end
+      end
+    else
+      respond_to do |format|
+        format.json { render json: @talk.errors.full_messages.to_json, status: :unprocessable_entity }
+      end
+    end
   end
 
   private
