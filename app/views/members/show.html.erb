@@ -1,20 +1,21 @@
 <div class="page-header">
-  <%= link_to members_path, class: 'btn btn-default' do %>
-    All Members
-  <% end %>
   <%= link_to edit_member_path(@member), class: 'btn btn-primary' do %>
     Edit
   <% end %>
-  <h1>Show member</h1>
+  <h1><%= @member.name %></h1>
 </div>
 
 <dl class="dl-horizontal">
-  <dt>Name:</dt>
-  <dd><%= @member.name %></dd>
   <dt>Gender:</dt>
   <dd><%= @member.gender %></dd>
   <dt>Birthdate:</dt>
   <dd><%= @member.birthdate %></dd>
   <dt>Phone:</dt>
   <dd><%= @member.phone %></dd>
+  <dt>Talks:</dt>
+  <dd>
+    <% @member.talks.each do |talk| %>
+    <p><%= [talk.date, talk.purpose, talk.topic].compact.join(" / ") %></p>
+    <% end %>
+  </dd>
 </dl>

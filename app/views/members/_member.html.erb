@@ -7,7 +7,11 @@
         </div>
         <div class="col">
           <h6 class="text-end"><%= member.bio %></h6>
-          <h6 class="text-end"><span class="badge bg-secondary"><%= member.last_talk_date %></span></h6>
+          <% if member.last_talk_date %>
+            <h6 class="text-end"><span class="badge bg-secondary"><%= member.last_talk_date %></span></h6>
+          <% else %>
+            <h6 class="text-end"><span class="badge bg-warning">Not Found</span></h6>
+          <% end %>
         </div>
       </div>
     </div>
