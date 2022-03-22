@@ -75,7 +75,7 @@ class MembersController < ApplicationController
       end
     else
       respond_to do |format|
-        format.json { render @member.errors.full_messages.to_json, status: :unprocessable_entity }
+        format.json { render json: @member.errors.full_messages.to_json, status: :unprocessable_entity }
       end
     end
   end

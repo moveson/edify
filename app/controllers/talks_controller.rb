@@ -67,7 +67,7 @@ class TalksController < ApplicationController
       end
     else
       respond_to do |format|
-        format.json { render @talk.errors.full_messages.to_json, status: :unprocessable_entity }
+        format.json { render json: @talk.errors.full_messages.to_json, status: :unprocessable_entity }
       end
     end
   end
