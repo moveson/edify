@@ -8,6 +8,7 @@ class TalksController < ApplicationController
   # GET /talks
   def index
     @q = Talk.ransack(params[:q])
+    @q.sorts = ["date desc", "speaker_name asc"] if @q.sorts.empty?
     @talks = @q.result.includes(:member)
   end
 

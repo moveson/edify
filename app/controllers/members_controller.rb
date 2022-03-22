@@ -8,6 +8,7 @@ class MembersController < ApplicationController
   # GET /members
   def index
     @q = Member.with_last_talk_date.ransack(params[:q])
+    @q.sorts = ["name asc"] if @q.sorts.empty?
     @members = @q.result
   end
 
