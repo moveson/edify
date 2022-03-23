@@ -26,6 +26,12 @@ class Member < ApplicationRecord
     "#{gender.titleize}, #{age}"
   end
 
+  def last_talk_date
+    return attributes["last_talk_date"] if attributes.key?("last_talk_date")
+
+    talks.maximum(:date)
+  end
+
   private
 
   def match_talks

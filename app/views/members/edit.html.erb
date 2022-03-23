@@ -1,3 +1,5 @@
 <h1>Edit Member</h1>
 
-<%= render 'form', member: @member %>
+<%= turbo_frame_tag dom_id(@member) do %>
+  <%= render 'form', member: @member %>
+<% end %>
