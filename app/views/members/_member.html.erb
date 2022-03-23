@@ -3,14 +3,16 @@
     <div class="card-body">
       <div class="row">
         <div class="col">
-          <h5 class="font-weight-bold"><%= member.name %></h5>
+          <h5 class="font-weight-bold">
+            <%= link_to fa_icon("person"), member_path(member), target: "_top" %> <%= member.name %>
+          </h5>
         </div>
         <div class="col">
           <h6 class="text-end"><%= member.bio %></h6>
           <% if member.last_talk_date %>
-            <h6 class="text-end"><span class="badge bg-secondary"><%= member.last_talk_date %></span></h6>
+            <h6 class="text-end"><span class="badge bg-secondary"><%= l(member.last_talk_date, format: :rfc822) %></span></h6>
           <% else %>
-            <h6 class="text-end"><span class="badge bg-warning">Not Found</span></h6>
+            <h6 class="text-end"><span class="badge bg-primary">Not Found</span></h6>
           <% end %>
         </div>
         <div class="col-2 col-md-1 text-center">

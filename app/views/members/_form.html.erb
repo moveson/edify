@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <div class="row">
+  <div class="row my-4">
     <div class="col-12 col-md">
       <%= form.label :name, class: "required" %>
       <%= form.text_field :name, class: "form-control", placeholder: "Last, First", autofocus: true %>
@@ -39,9 +39,9 @@
       <% end %>
 
       <% if member.persisted? %>
-        <%= link_to fa_icon("times-circle"), member, class: "btn btn-outline-danger" %>
+        <%= link_to fa_icon("times-circle"), member, class: "btn btn-outline-secondary" %>
       <% else %>
-        <%= link_to "Cancel", members_path, class: "btn btn-link" %>
+        <%= link_to fa_icon("times-circle"), members_path, target: "_top", class: "btn btn-outline-secondary" %>
       <% end %>
     </div>
   </div>
