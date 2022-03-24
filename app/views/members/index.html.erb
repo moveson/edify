@@ -9,44 +9,26 @@
 
 <hr/>
 
-<%= search_form_for @q do |f| %>
-  <div class="row">
-    <div class="input-group">
-      <%= f.search_field :name_cont, placeholder: "Find someone", autofocus: true, class: "form-control" %>
-      <span class="input-group-append">
+<br/>
+
+<div class="row">
+  <div class="col-12 col-md-6 col-inline mt-1">
+    <%= sort_members_dropdown(request.params, @q) %>
+    <%= filter_members_age_dropdown(request.params) %>
+    <%= filter_members_gender_dropdown(request.params) %>
+  </div>
+
+  <div class="col-12 col-md-6 mt-1">
+    <%= search_form_for @q do |f| %>
+      <div class="input-group">
+        <%= f.search_field :name_cont, placeholder: "Find someone", autofocus: true, class: "form-control" %>
+        <span class="input-group-append">
         <%= button_tag(type: :submit, class: 'btn btn-primary') do %>
             <i class='fas fa-search'></i>
         <% end %>
       </span>
-    </div>
-  </div>
-<% end %>
-
-<br/>
-
-<div class="row">
-  <div class="col col-inline">
-    <div class="btn-group">
-      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Sort by
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="sort_by">
-        <li><%= dropdown_sort_link("Name", "name asc", request.params, @q) %></li>
-        <li><%= dropdown_sort_link("Age", "birthdate desc", request.params, @q) %></li>
-        <li><%= dropdown_sort_link("Last talk", "last_talk_date asc", request.params, @q) %></li>
-      </ul>
-    </div>
-
-    <div class="btn-group">
-      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Show
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="sort_by">
-        <li><%= link_to "All", request.params.deep_merge(q: { birthdate_gteq: nil, birthdate_lt: nil }), class: "dropdown-item" %></li>
-        <li><%= link_to "Adults", request.params.deep_merge(q: { birthdate_gteq: nil, birthdate_lt: 18.years.ago.beginning_of_year.to_date }), class: "dropdown-item" %></li>
-        <li><%= link_to "Youth", request.params.deep_merge(q: { birthdate_gteq: 18.years.ago.beginning_of_year.to_date, birthdate_lt: nil }), class: "dropdown-item" %></li>
-      </ul>
-    </div>
+      </div>
+    <% end %>
   </div>
 </div>
 
