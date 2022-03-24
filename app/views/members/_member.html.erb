@@ -1,23 +1,28 @@
 <%= turbo_frame_tag dom_id(member) do %>
-  <div class="card bg-light mt-2">
-    <div class="card-body">
-      <div class="row">
-        <div class="col">
-          <h5 class="font-weight-bold">
-            <%= link_to fa_icon("person"), member_path(member), target: "_top" %> <%= member.name %>
+  <div class="d-flex justify-content-center">
+    <div class="card bg-light mt-2 w-100" style="max-width: 700px;">
+      <div class="card-header mt-2">
+        <div class="row">
+          <h5 class="col font-weight-bold">
+            <%= link_to fa_icon("person"), member_path(member), target: "_top" %>&nbsp<%= member.name %>
           </h5>
+          <h6 class="col-3 text-end"><%= member.bio %></h6>
         </div>
-        <div class="col">
-          <h6 class="text-end"><%= member.bio %></h6>
-          <% if member.last_talk_date %>
-            <h6 class="text-end"><span class="badge bg-secondary"><%= l(member.last_talk_date, format: :rfc822) %></span></h6>
-          <% else %>
-            <h6 class="text-end"><span class="badge bg-primary">Not Found</span></h6>
-          <% end %>
-        </div>
-        <div class="col-2 col-md-1 text-center">
-          <%= link_to_member_edit(member, class: "mt-1 mt-md-3") %>
-          <%= link_to_member_delete(member, class: "mt-1 mt-md-3") %>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
+            <% if member.last_talk_date %>
+              <h6><%= "Last talk date: #{l(member.last_talk_date, format: :rfc822)}" %></h6>
+            <% else %>
+              <h6><%= "Last talk date: Not found" %></h6>
+            <% end %>
+            <h6><%= "Phone: #{member.phone}" %></h6>
+          </div>
+          <div class="col-3 col-md-2 text-center">
+            <%= link_to_member_edit(member, class: "mt-1 mt-md-2") %>
+            <%= link_to_member_delete(member, class: "mt-1 mt-md-2") %>
+          </div>
         </div>
       </div>
     </div>
