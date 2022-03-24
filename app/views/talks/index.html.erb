@@ -9,32 +9,25 @@
 
 <hr/>
 
-<%= search_form_for @q do |f| %>
-  <div class="row">
-    <div class="input-group">
-      <%= f.search_field :speaker_name_cont, placeholder: "Find someone", autofocus: true, class: "form-control" %>
-      <span class="input-group-append">
-        <%= button_tag(type: :submit, class: 'btn btn-primary') do %>
-            <i class='fas fa-search'></i>
-        <% end %>
-      </span>
-    </div>
-  </div>
-<% end %>
 
 <br/>
 
 <div class="row">
-  <div class="col col-inline">
-    <div class="btn-group">
-      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Sort by
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="sort_by">
-        <li><%= dropdown_sort_link("Date", "date desc", request.params, @q) %></li>
-        <li><%= dropdown_sort_link("Name", "speaker_name asc", request.params, @q) %></li>
-      </ul>
-    </div>
+  <div class="col-12 col-md-6 col-inline mt-1">
+    <%= sort_talks_dropdown(request.params, @q) %>
+  </div>
+
+  <div class="col-12 col-md-6 mt-1">
+    <%= search_form_for @q do |f| %>
+      <div class="input-group">
+        <%= f.search_field :speaker_name_cont, placeholder: "Find someone", autofocus: true, class: "form-control" %>
+        <span class="input-group-append">
+        <%= button_tag(type: :submit, class: 'btn btn-primary') do %>
+            <i class='fas fa-search'></i>
+        <% end %>
+      </span>
+      </div>
+    <% end %>
   </div>
 </div>
 

@@ -117,4 +117,27 @@ module DropdownHelper
 
     build_dropdown_menu(title, dropdown_items)
   end
+
+  def sort_talks_dropdown(request_params, ransack_query)
+    existing_sort_attribute = ransack_query.sorts.first.name
+    title = case existing_sort_attribute
+            when "speaker_name"
+              "By name"
+            when "date"
+              "By date"
+            else
+              "By custom sort"
+            end
+
+    dropdown_items = [
+      { name: "Name",
+        link: request_params.deep_merge(q: { s: "speaker_name asc" }),
+        active: existing_sort_attribute == "speaker_name" },
+      { name: "Date",
+        link: request_params.deep_merge(q: { s: "date desc" }),
+        active: existing_sort_attribute == "date" },
+    ]
+
+    build_dropdown_menu(title, dropdown_items)
+  end
 end
