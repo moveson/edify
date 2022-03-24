@@ -24,6 +24,10 @@
             <%= link_to_member_delete(member, class: "mt-1 mt-md-2") %>
           </div>
         </div>
+        <% if member.notes? %>
+          <hr/>
+          <h6><%= "Notes: #{member.notes}" %></h6>
+        <% end %>
       </div>
     </div>
   </div>
