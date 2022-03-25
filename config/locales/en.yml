@@ -34,3 +34,4 @@ en:
   date:
     formats:
       rfc822: "%d %b %Y"
+      american: "%-m/%-d/%Y"

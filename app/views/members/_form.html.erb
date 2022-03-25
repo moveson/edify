@@ -1,48 +1,56 @@
-<%= form_with(model: member) do |form| %>
-  <% if member.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(member.errors.count, "error") %> prohibited this member from being saved:</h2>
+<div class="d-flex justify-content-center ">
+  <div class="card bg-light mt-2 w-100" style="max-width: 700px;">
+    <div class="card-body">
+      <%= form_with(model: member) do |form| %>
+        <% if member.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(member.errors.count, "error") %> prohibited this member from being saved:</h2>
 
-      <ul>
-        <% member.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+            <ul>
+              <% member.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="row my-4">
-    <div class="col-12 col-md">
-      <%= form.label :name, class: "required" %>
-      <%= form.text_field :name, class: "form-control", placeholder: "Last, First", autofocus: true %>
-    </div>
+        <div class="row mb-2">
+          <div class="col-12 col-md">
+            <%= form.label :name, class: "required" %>
+            <%= form.text_field :name, class: "form-control", placeholder: "Last, First", autofocus: true %>
+          </div>
 
-    <div class="col-12 col-md-2">
-      <%= form.label :gender, class: "required" %>
-      <%= form.select :gender, options_for_select(Member.genders.keys.map { |key| [key.titleize, key] }, member.gender), {}, class: "form-select h-50" %>
-    </div>
+          <div class="col-12 col-md-2">
+            <%= form.label :gender, class: "required" %>
+            <%= form.select :gender, options_for_select(Member.genders.keys.map { |key| [key.titleize, key] }, member.gender), {}, class: "form-select h-50" %>
+          </div>
 
-    <div class="col-12 col-md">
-      <%= form.label "Birthdate", class: "required" %>
-      <%= form.text_field :birthdate, class: "form-control", placeholder: "2/24/1992" %>
-    </div>
+          <div class="col-12 col-md">
+            <%= form.label "Birthdate", class: "required" %>
+            <%= form.text_field :birthdate, class: "form-control", placeholder: "2/24/1992", value: l(form.object.birthdate, format: :american) %>
+          </div>
+        </div>
 
-    <div class="col-12 col-md">
-      <%= form.label "Phone" %>
-      <%= form.text_field :phone, class: "form-control", placeholder: "XXX-XXX-XXXX" %>
-    </div>
+        <div class="row mb-2">
+          <div class="col-12 col-md">
+            <%= form.label "Phone" %>
+            <%= form.text_field :phone, class: "form-control", placeholder: "XXX-XXX-XXXX" %>
+          </div>
 
-    <div class="col-12 col-md">
-      <br/>
-      <%= button_tag type: "submit", class: "btn btn-outline-primary" do %>
-        <%= fa_icon("check-circle") %>
-      <% end %>
+          <div class="col-12 col-md">
+            <br/>
+            <%= button_tag type: "submit", class: "btn btn-outline-primary" do %>
+              <%= fa_icon("check-circle") %>
+            <% end %>
 
-      <% if member.persisted? %>
-        <%= link_to fa_icon("times-circle"), member, class: "btn btn-outline-secondary" %>
-      <% else %>
-        <%= link_to fa_icon("times-circle"), members_path, target: "_top", class: "btn btn-outline-secondary" %>
+            <% if member.persisted? %>
+              <%= link_to fa_icon("times-circle"), member, class: "btn btn-outline-secondary" %>
+            <% else %>
+              <%= link_to fa_icon("times-circle"), members_path, target: "_top", class: "btn btn-outline-secondary" %>
+            <% end %>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
-<% end %>
+</div>

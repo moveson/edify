@@ -1,0 +1,15 @@
+.form-group.required label:after, .form-row.required label:after {
+    content: " *";
+    color: $danger;
+}
+
+label.required:after {
+	content: ' *';
+	color: $blue;
+}
+
+label {
+  text-transform: uppercase;
+  font-size: smaller;
+  color: $gray-600;
+}
