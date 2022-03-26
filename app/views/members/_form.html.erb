@@ -22,12 +22,12 @@
 
           <div class="col-12 col-md-2">
             <%= form.label :gender, class: "required" %>
-            <%= form.select :gender, options_for_select(Member.genders.keys.map { |key| [key.titleize, key] }, member.gender), {}, class: "form-select h-50" %>
+            <%= form.select :gender, options_for_select(Member.genders.keys.map { |key| [key.titleize, key] }, member.gender), {}, class: "form-select form-control" %>
           </div>
 
           <div class="col-12 col-md">
             <%= form.label "Birthdate", class: "required" %>
-            <%= form.text_field :birthdate, class: "form-control", placeholder: "2/24/1992", value: l(form.object.birthdate, format: :american) %>
+            <%= form.text_field :birthdate, class: "form-control", placeholder: "1/1/1900", value: form.object.birthdate.present? ? l(form.object.birthdate, format: :american) : nil %>
           </div>
         </div>
 
