@@ -26,6 +26,31 @@ module LinkHelper
     link_to fa_icon("pencil-alt"), url, options
   end
 
+  def link_to_note_delete(note, options = {})
+    html_class = options[:class]
+    url = member_note_path(note.member, note)
+    tooltip = "Delete this note"
+    options = { method: :delete,
+                data: { confirm: "This will delete the note and cannot be undone. Are you sure you want to proceed?",
+                        turbo: false,
+                        toggle: :tooltip,
+                        placement: :bottom,
+                        "original-title" => tooltip },
+                class: ["btn btn-danger btn-sm has-tooltip", html_class].compact.join(" ") }
+    link_to fa_icon("trash"), url, options
+  end
+
+  def link_to_note_edit(note, options = {})
+    html_class = options[:class]
+    url = edit_member_note_path(note.member, note)
+    tooltip = "Edit this note"
+    options = { data: { toggle: :tooltip,
+                        placement: :bottom,
+                        "original-title" => tooltip },
+                class: ["btn btn-primary btn-sm has-tooltip", html_class].compact.join(" ") }
+    link_to fa_icon("pencil-alt"), url, options
+  end
+
   def link_to_talk_delete(talk, options = {})
     html_class = options[:class]
     url = talk_path(talk)

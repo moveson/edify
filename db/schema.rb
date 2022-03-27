@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_27_054048) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_27_054650) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -73,6 +73,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_27_054048) do
     t.datetime "synced_at"
   end
 
+  create_table "notes", force: :cascade do |t|
+    t.bigint "member_id", null: false
+    t.date "date"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_notes_on_member_id"
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.string "recipient_type", null: false
     t.bigint "recipient_id", null: false
@@ -131,5 +140,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_27_054048) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "notes", "members"
   add_foreign_key "services", "users"
 end

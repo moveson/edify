@@ -1,0 +1,32 @@
+<%= form_with(model: [note.member, note], data: { controller: :form, action: "turbo:submit-end->form#clear" }) do |form| %>
+  <% if note.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% note.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row m-2">
+    <div class="col-12 col-md-3">
+      <%= form.label "Date", class: "required" %>
+      <%= form.text_field :date, class: "form-control", placeholder: "mm/dd/yyyy", value: form.object.date.present? ? l(form.object.date, format: :american) : l(Date.today, format: :american) %>
+    </div>
+
+    <div class="col-12 col-md">
+      <%= form.label :note, class: "required" %>
+      <%= form.text_field :content, class: "form-control", autofocus: true, data: { "form-target" => "autofocusInput" } %>
+    </div>
+
+    <div class="col-12 col-md-3 text-end">
+      <br/>
+      <%= button_tag type: "submit", class: "btn btn-outline-primary" do %>
+        <%= fa_icon("check-circle") %>
+      <% end %>
+
+      <%= link_to fa_icon("times-circle"), note.member, class: "btn btn-outline-secondary" %>
+    </div>
+  </div>
+<% end %>

@@ -1,5 +1,6 @@
 class Member < ApplicationRecord
   has_many :talks, dependent: :nullify
+  has_many :notes, dependent: :destroy
   enum gender: [:male, :female]
 
   validates_presence_of :name, :gender, :birthdate

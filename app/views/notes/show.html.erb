@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-md">
+    <h2 class="mt-md-4 mt-2"><strong><%= "#{@note.member.name} Note" %></strong></h2>
+  </div>
+</div>
+
+<hr/>
+
+<%= turbo_frame_tag dom_id(@note) do %>
+  <%= render "note", note: @note %>
+<% end %>

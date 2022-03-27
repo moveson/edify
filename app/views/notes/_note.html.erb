@@ -1,0 +1,17 @@
+<%= turbo_frame_tag dom_id(note) do %>
+  <div class="row m-2">
+    <div class="col-12 col-md-3">
+      <%= l(note.date, format: :rfc822) %>
+    </div>
+
+    <div class="col-12 col-md">
+      <%= note.content %>
+    </div>
+
+    <div class="col-12 col-md-3 text-end">
+      <%= link_to_note_edit(note) %>
+      <%= link_to_note_delete(note) %>
+    </div>
+  </div>
+  <hr/>
+<% end %>

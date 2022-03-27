@@ -20,7 +20,7 @@
                                 class: "form-control",
                                 placeholder: "Last, First",
                                 autofocus: true,
-                                data: { "form-target" => "speakerNameInput" } %>
+                                data: { "form-target" => "autofocusInput" } %>
             <datalist id="speaker_names_autocomplete">
               <% ::Member.all.each do |member| %>
                 <option value="<%= member.name %>">
