@@ -23,6 +23,6 @@ class Talk < ApplicationRecord
   private
 
   def match_member
-    self.member_id = ::Member.where("name ilike ?", "#{speaker_name}%").first&.id
+    self.member_id = ::Member.where(name: speaker_name).first&.id
   end
 end
