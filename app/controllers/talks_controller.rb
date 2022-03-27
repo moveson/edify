@@ -47,7 +47,15 @@ class TalksController < ApplicationController
   # PATCH/PUT /talks/1
   def update
     if @talk.update(talk_params)
-      redirect_to @talk, notice: "Talk was successfully updated."
+      respond_to do |format|
+        format.html do
+          redirect_to @talk, notice: "Talk was successfully updated."
+        end
+
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace(@talk, partial: "talks/talk", locals: { talk: @talk })
+        end
+      end
     else
       render :edit, status: :unprocessable_entity
     end

@@ -15,7 +15,17 @@
         <div class="row mb-2">
           <div class="col-12 col-md">
             <%= form.label :speaker_name, class: "required" %>
-            <%= form.text_field :speaker_name, class: "form-control", placeholder: "Last, First", autofocus: true, data: { "form-target" => "speakerNameInput" } %>
+            <%= form.text_field :speaker_name,
+                                list: "speaker_names_autocomplete",
+                                class: "form-control",
+                                placeholder: "Last, First",
+                                autofocus: true,
+                                data: { "form-target" => "speakerNameInput" } %>
+            <datalist id="speaker_names_autocomplete">
+              <% ::Member.all.each do |member| %>
+                <option value="<%= member.name %>">
+              <% end %>
+            </datalist>
           </div>
 
           <div class="col-12 col-md">
