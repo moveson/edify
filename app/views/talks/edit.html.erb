@@ -1,3 +1,5 @@
 <h1>Edit Talk</h1>
 
-<%= render 'form', talk: @talk %>
+<%= turbo_frame_tag dom_id(@talk) do %>
+  <%= render 'form', talk: @talk %>
+<% end %>

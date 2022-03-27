@@ -3,6 +3,8 @@ class Talk < ApplicationRecord
 
   strip_attributes
 
+  scope :most_recent_first, -> { order(date: :desc) }
+
   before_save :match_member
 
   def member_name

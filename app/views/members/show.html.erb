@@ -19,10 +19,28 @@
       <h4>Talks</h4>
     </div>
     <div class="card-body">
-      <% @member.talks.each do |talk| %>
-        <p><%= [talk.date, talk.purpose, talk.topic].compact.join(" / ") %></p>
-        <hr/>
-      <% end %>
+      <table class="table">
+        <thead>
+        <tr>
+          <th></th>
+          <th>Date</th>
+          <th>Purpose</th>
+          <th>Topic</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @member.talks.most_recent_first.each do |talk| %>
+          <tr>
+            <td>
+              <%= link_to fa_icon("scroll"), talk_path(talk) %>
+            </td>
+            <td><%= l(talk.date, format: :rfc822) %></td>
+            <td><%= talk.purpose %></td>
+            <td><%= talk.topic_truncated %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

@@ -30,7 +30,15 @@ class TalksController < ApplicationController
     @talk = Talk.new(talk_params)
 
     if @talk.save
-      redirect_to @talk, notice: "Talk was successfully created."
+      respond_to do |format|
+        format.html do
+          redirect_to @talk, notice: "Talk was successfully created."
+        end
+
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.prepend(:talks, partial: "talks/talk", locals: { talk: @talk })
+        end
+      end
     else
       render :new, status: :unprocessable_entity
     end

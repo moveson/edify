@@ -1,22 +1,11 @@
-<div class="page-header">
-  <%= link_to talks_path, class: 'btn btn-default' do %>
-    All Talks
-  <% end %>
-  <%= link_to edit_talk_path(@talk), class: 'btn btn-primary' do %>
-    Edit
-  <% end %>
-  <h1>Show talk</h1>
+<div class="row">
+  <div class="col-md">
+    <h2 class="mt-md-4 mt-2"><strong><%= "#{@talk.speaker_name} on #{l(@talk.date, format: :rfc822)}" %></strong></h2>
+  </div>
 </div>
 
-<dl class="dl-horizontal">
-  <dt>Speaker Name:</dt>
-  <dd><%= @talk.speaker_name %></dd>
-  <dt>Member:</dt>
-  <dd><%= @talk.member_name.present? ? link_to(@talk.member_name, member_path(@talk.member)) : "" %></dd>
-  <dt>Date:</dt>
-  <dd><%= @talk.date %></dd>
-  <dt>Purpose:</dt>
-  <dd><%= @talk.purpose %></dd>
-  <dt>Topic:</dt>
-  <dd><%= @talk.topic %></dd>
-</dl>
+<hr/>
+
+<%= turbo_frame_tag dom_id(@talk) do %>
+  <%= render "talk", talk: @talk %>
+<% end %>

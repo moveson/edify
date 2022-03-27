@@ -130,12 +130,12 @@ module DropdownHelper
             end
 
     dropdown_items = [
-      { name: "Name",
-        link: request_params.deep_merge(q: { s: "speaker_name asc" }),
-        active: existing_sort_attribute == "speaker_name" },
       { name: "Date",
         link: request_params.deep_merge(q: { s: "date desc" }),
         active: existing_sort_attribute == "date" },
+      { name: "Name",
+        link: request_params.deep_merge(q: { s: "speaker_name asc" }),
+        active: existing_sort_attribute == "speaker_name" },
     ]
 
     build_dropdown_menu(title, dropdown_items)

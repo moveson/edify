@@ -1,49 +1,54 @@
-<%= form_with(model: talk) do |form| %>
-  <% if talk.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(talk.errors.count, "error") %> prohibited this talk from being saved:</h2>
-
-      <ul>
-        <% talk.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+<div class="d-flex justify-content-center ">
+  <div class="card bg-light mt-2 w-100" style="max-width: 700px;">
+    <div class="card-body">
+      <%= form_with(model: talk, data: { controller: :form, action: "turbo:submit-end->form#clear" }) do |form| %>
+        <% if talk.errors.any? %>
+          <div id="error_explanation">
+            <ul>
+              <% talk.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-      </ul>
+
+        <div class="row mb-2">
+          <div class="col-12 col-md">
+            <%= form.label :speaker_name, class: "required" %>
+            <%= form.text_field :speaker_name, class: "form-control", placeholder: "Last, First", autofocus: true, data: { "form-target" => "speakerNameInput" } %>
+          </div>
+
+          <div class="col-12 col-md">
+            <%= form.label "Date", class: "required" %>
+            <%= form.text_field :date, class: "form-control", placeholder: "mm/dd/yyyy", value: form.object.date.present? ? l(form.object.date, format: :american) : nil %>
+          </div>
+        </div>
+
+        <div class="row mb-2">
+          <div class="col-12 col-md">
+            <%= form.label :purpose %>
+            <%= form.text_field :purpose, class: "form-control" %>
+          </div>
+
+          <div class="col-12 col-md">
+            <%= form.label :topic %>
+            <%= form.text_field :topic, class: "form-control" %>
+          </div>
+
+          <div class="col-12 col-md">
+            <br/>
+            <%= button_tag type: "submit", class: "btn btn-outline-primary" do %>
+              <%= fa_icon("check-circle") %>
+            <% end %>
+
+            <% if talk.persisted? %>
+              <%= link_to fa_icon("times-circle"), talk, class: "btn btn-outline-secondary" %>
+            <% else %>
+              <%= link_to fa_icon("times-circle"), talks_path, target: "_top", class: "btn btn-outline-secondary" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-
-  <div class="mb-3">
-    <%= form.label :speaker_name, class: 'form-label' %>
-    <%= form.text_field :speaker_name, class: 'form-control' %>
   </div>
-
-  <div class="mb-3">
-    <%= form.label :date, class: 'form-label' %>
-    <%= form.date_field :date, class: 'form-control' %>
-  </div>
-
-  <div class="mb-3">
-    <%= form.label :purpose, class: 'form-label' %>
-    <%= form.text_field :purpose, class: 'form-control' %>
-  </div>
-
-  <div class="mb-3">
-    <%= form.label :topic, class: 'form-label' %>
-    <%= form.text_field :topic, class: 'form-control' %>
-  </div>
-
-  <div class="mb-3">
-    <% if talk.persisted? %>
-      <div class="float-end">
-        <%= link_to 'Destroy', talk, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
-      </div>
-    <% end %>
-
-    <%= form.submit class: 'btn btn-primary' %>
-
-    <% if talk.persisted? %>
-      <%= link_to "Cancel", talk, class: "btn btn-link" %>
-    <% else %>
-      <%= link_to "Cancel", talks_path, class: "btn btn-link" %>
-    <% end %>
-  </div>
-<% end %>
+</div>

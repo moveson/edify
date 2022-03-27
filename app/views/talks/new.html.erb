@@ -1,3 +1,5 @@
-<h1>New talk</h1>
+<h1>New Talk</h1>
 
-<%= render 'form', talk: @talk %>
+<%= turbo_frame_tag @talk do %>
+  <%= render 'form', talk: @talk %>
+<% end %>
