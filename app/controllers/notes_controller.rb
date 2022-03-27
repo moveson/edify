@@ -62,7 +62,16 @@ class NotesController < ApplicationController
   # DELETE /notes/1
   def destroy
     @note.destroy
-    redirect_to member_url(@member), notice: "Note was successfully destroyed."
+
+    respond_to do |format|
+      format.html do
+        redirect_to member_url(@member)
+      end
+
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.remove(@note)
+      end
+    end
   end
 
   private
