@@ -23,7 +23,7 @@
             <%= form.select :gender, options_for_select(Member.genders.keys.map { |key| [key.titleize, key] }, member.gender), {}, class: "form-select form-control" %>
           </div>
 
-          <div class="col-12 col-md">
+          <div class="col-12 col-md-3">
             <%= form.label "Birthdate", class: "required" %>
             <%= form.text_field :birthdate, class: "form-control", placeholder: "mm/dd/yyyy", value: form.object.birthdate.present? ? l(form.object.birthdate, format: :american) : nil %>
           </div>
@@ -31,11 +31,16 @@
 
         <div class="row mb-2">
           <div class="col-12 col-md">
-            <%= form.label "Phone" %>
+            <%= form.label :phone %>
             <%= form.text_field :phone, class: "form-control", placeholder: "XXX-XXX-XXXX" %>
           </div>
 
           <div class="col-12 col-md">
+            <%= form.label :email %>
+            <%= form.text_field :email, class: "form-control", placeholder: "member@example.com" %>
+          </div>
+
+          <div class="col-12 col-md-2 text-md-end">
             <br/>
             <%= button_tag type: "submit", class: "btn btn-outline-primary" do %>
               <%= fa_icon("check-circle") %>
