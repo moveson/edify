@@ -64,7 +64,16 @@ class TalksController < ApplicationController
   # DELETE /talks/1
   def destroy
     @talk.destroy
-    redirect_to talks_url, notice: "Talk was successfully destroyed."
+
+    respond_to do |format|
+      format.html do
+        redirect_to talks_url, notice: "Talk was successfully destroyed."
+      end
+
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.remove(@talk)
+      end
+    end
   end
 
   # POST /talks/upsert
