@@ -22,7 +22,7 @@
                                 autofocus: true,
                                 data: { "form-target" => "autofocusInput" } %>
             <datalist id="speaker_names_autocomplete">
-              <% ::Member.all.each do |member| %>
+              <% ::Member.alphabetized.each do |member| %>
                 <option value="<%= member.name %>">
               <% end %>
             </datalist>

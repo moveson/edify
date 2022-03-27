@@ -9,6 +9,7 @@ class Member < ApplicationRecord
 
   strip_attributes
 
+  scope :alphabetized, -> { order(:name) }
   scope :with_last_talk_date, -> do
     from(left_joins(:talks).select("distinct on (members.id) members.*, talks.date as last_talk_date").order("members.id, date desc"), :members)
   end
