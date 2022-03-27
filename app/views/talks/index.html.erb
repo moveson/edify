@@ -14,6 +14,7 @@
 <div class="row">
   <div class="col-12 col-md-6 col-inline mt-1">
     <%= sort_talks_dropdown(request.params, @q) %>
+    <%= filter_talks_matched_dropdown(request.params) %>
   </div>
 
   <div class="col-12 col-md-6 mt-1">

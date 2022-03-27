@@ -90,6 +90,35 @@ module DropdownHelper
     build_dropdown_menu(title, dropdown_items)
   end
 
+  def filter_talks_matched_dropdown(request_params)
+    existing_matched_filter = request_params.dig(:q, :member_id_null).presence
+
+    title = case existing_matched_filter
+            when nil
+              "All talks"
+            when "false"
+              "Matched"
+            when "true"
+              "Unmatched"
+            else
+              "Custom filter"
+            end
+
+    dropdown_items = [
+      { name: "All",
+        link: request_params.deep_merge(q: { member_id_null: nil }),
+        active: existing_matched_filter == nil },
+      { name: "Matched",
+        link: request_params.deep_merge(q: { member_id_null: false }),
+        active: existing_matched_filter == "false" },
+      { name: "Unmatched",
+        link: request_params.deep_merge(q: { member_id_null: true}),
+        active: existing_matched_filter == "true" },
+    ]
+
+    build_dropdown_menu(title, dropdown_items)
+  end
+
   def sort_members_dropdown(request_params, ransack_query)
     existing_sort_attribute = ransack_query.sorts.first.name
     title = case existing_sort_attribute
