@@ -40,7 +40,7 @@ class Member < ApplicationRecord
   end
 
   def validate_age
-    if birthdate >= 11.years.ago.beginning_of_year.to_date
+    if birthdate.present? && birthdate >= 11.years.ago.beginning_of_year.to_date
       errors.add(:birthdate, "member is not old enough")
     end
   end
