@@ -56,7 +56,16 @@ class MembersController < ApplicationController
   # DELETE /members/1
   def destroy
     @member.destroy
-    redirect_to members_url, notice: "Member was successfully destroyed."
+
+    respond_to do |format|
+      format.html do
+        redirect_to members_url, notice: "Member was successfully destroyed."
+      end
+
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.remove(@member)
+      end
+    end
   end
 
   # POST /members/upsert
