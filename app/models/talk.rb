@@ -1,6 +1,8 @@
 class Talk < ApplicationRecord
   belongs_to :member, optional: true
 
+  validates_presence_of :speaker_name, :date
+
   strip_attributes
 
   scope :most_recent_first, -> { order(date: :desc) }
