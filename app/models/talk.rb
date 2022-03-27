@@ -16,6 +16,7 @@ class Talk < ApplicationRecord
   def topic_truncated
     return unless topic.present?
     return topic if topic.length <= 50
+
     "#{topic.first(50)}..."
   end
 

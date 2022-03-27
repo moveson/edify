@@ -39,7 +39,15 @@ class MembersController < ApplicationController
   # PATCH/PUT /members/1
   def update
     if @member.update(member_params)
-      redirect_to @member, notice: "Member was successfully updated."
+      respond_to do |format|
+        format.html do
+          redirect_to @member, notice: "Member was successfully updated."
+        end
+
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace(@member, partial: "members/member", locals: { member: @member })
+        end
+      end
     else
       render :edit, status: :unprocessable_entity
     end

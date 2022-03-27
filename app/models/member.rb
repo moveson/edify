@@ -12,7 +12,7 @@ class Member < ApplicationRecord
     from(left_joins(:talks).select("distinct on (members.id) members.*, talks.date as last_talk_date").order("members.id, date desc"), :members)
   end
 
-  after_commit :match_talks
+  after_save_commit :match_talks
 
   def self.ransackable_attributes(auth_object = nil)
     super | %w(last_talk_date)
