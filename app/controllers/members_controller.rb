@@ -30,7 +30,15 @@ class MembersController < ApplicationController
     @member = Member.new(member_params)
 
     if @member.save
-      redirect_to members_url, notice: "Member was successfully created."
+      respond_to do |format|
+        format.html do
+          redirect_to @member, notice: "Member was successfully created."
+        end
+
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.prepend(:members, partial: "members/member", locals: { member: @member })
+        end
+      end
     else
       render :new, status: :unprocessable_entity
     end
