@@ -5,38 +5,32 @@ ruby "3.1.1"
 
 gem "rails", "~> 7.0.2", ">= 7.0.2.3"
 gem "sprockets-rails"
-gem "pg", "~> 1.1"
-gem "puma", "~> 5.0"
+gem "pg"
+gem "puma"
 gem "importmap-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
-gem "redis", "~> 4.0"
+gem "redis"
 gem "bootsnap", require: false
 
+gem "american_date"
 gem "cssbundling-rails"
-gem "devise", "~> 4.8", ">= 4.8.0"
+gem "devise"
 gem "devise-jwt"
-gem "friendly_id", "~> 5.4"
+gem "font_awesome5_rails"
+gem "friendly_id"
 gem "jsbundling-rails"
 gem "madmin"
-gem "name_of_person", "~> 1.1"
-gem "noticed", "~> 1.4"
-gem "omniauth-facebook", "~> 8.0"
-gem "omniauth-github", "~> 2.0"
-gem "omniauth-twitter", "~> 1.4"
-gem "pretender", "~> 0.3.4"
-gem "pundit", "~> 2.1"
-gem "sidekiq", "~> 6.2"
-gem "sitemap_generator", "~> 6.1"
-gem "whenever", require: false
-gem "responders", github: "heartcombo/responders", branch: "main"
-gem "font_awesome5_rails"
-gem "american_date"
+gem "name_of_person"
+gem "noticed"
+gem "pretender"
+gem "pundit"
 gem "ransack"
-gem "strip_attributes"
-
-# Use Sass to process CSS
+gem "responders"
 gem "sassc-rails"
+gem "sidekiq"
+gem "strip_attributes"
+gem "whenever", require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
