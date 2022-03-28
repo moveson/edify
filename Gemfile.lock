@@ -350,6 +350,7 @@ DEPENDENCIES
   madmin
   name_of_person
   noticed
+  pagy
   pg
   pretender
   puma
