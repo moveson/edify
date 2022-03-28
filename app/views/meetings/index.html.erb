@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md">
+    <h2 class="mt-md-4 mt-2"><strong>Meetings</strong></h2>
+  </div>
+  <div class="col-md">
+    <h5 class="mt-md-4 pt-md-3 text-md-end text-muted"><%= filtered_and_total_count(@pagy.count, Meeting.count, "meeting") %></h5>
+  </div>
+</div>
+
+<hr/>
+
+<br/>
+
+<div class="row">
+  <div class="col-12 col-md-6 col-inline mt-1">
+    <%= filter_meetings_type_dropdown(request.params) %>
+  </div>
+</div>
+
+<hr/>
+
+<%= turbo_frame_tag :new_meeting, target: "_top" do %>
+  <%= render partial: "meetings/form", locals: { meeting: Meeting.new } %>
+<% end %>
+
+<article>
+  <%= turbo_frame_tag "page_handler" %>
+  <div id="meetings">
+    <%= render partial: "meeting", collection: @meetings %>
+  </div>
+  <%= render "shared/pager", pagy: @pagy %>
+</article>

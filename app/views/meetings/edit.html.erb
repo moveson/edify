@@ -1,0 +1,5 @@
+<h1>Edit Meeting</h1>
+
+<%= turbo_frame_tag dom_id(@meeting) do %>
+  <%= render 'form', meeting: @meeting %>
+<% end %>

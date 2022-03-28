@@ -27,6 +27,34 @@ module DropdownHelper
     end
   end
 
+  def filter_meetings_type_dropdown(request_params)
+    existing_meeting_type_filter = request_params.dig(:q, :meeting_type_eq).presence&.to_i
+
+    title = if existing_meeting_type_filter.nil?
+              "All"
+            elsif existing_meeting_type_filter.in?(Meeting.meeting_types.values)
+              Meeting.meeting_types.invert[existing_meeting_type_filter].humanize
+            else
+              "Unknown filter"
+            end
+
+    dropdown_items = [
+      { name: "Show all",
+        link: request_params.deep_merge(q: { meeting_type_eq: nil }),
+        active: existing_meeting_type_filter == nil },
+    ]
+
+    Meeting.meeting_types.each do |name, value|
+      dropdown_items << {
+        name: name.humanize,
+        link: request_params.deep_merge(q: { meeting_type_eq: value }),
+        active: existing_meeting_type_filter == value
+      }
+    end
+
+    build_dropdown_menu(title, dropdown_items)
+  end
+
   def filter_members_gender_dropdown(request_params)
     existing_gender_filter = request_params.dig(:q, :gender_eq).presence
 
@@ -112,7 +140,7 @@ module DropdownHelper
         link: request_params.deep_merge(q: { member_id_null: false }),
         active: existing_matched_filter == "false" },
       { name: "Unmatched",
-        link: request_params.deep_merge(q: { member_id_null: true}),
+        link: request_params.deep_merge(q: { member_id_null: true }),
         active: existing_matched_filter == "true" },
     ]
 
