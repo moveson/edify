@@ -1,4 +1,5 @@
 class Talk < ApplicationRecord
+  belongs_to :meeting, optional: true
   belongs_to :member, optional: true
 
   validates_presence_of :speaker_name, :date
