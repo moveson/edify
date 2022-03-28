@@ -1,0 +1,14 @@
+<div id="pager" class="row mt-2">
+  <div class="col text-center">
+    <% if pagy.next %>
+      <%= link_to "Show More",
+                  request.params.merge(page: pagy.next),
+                  data: {
+                    turbo_frame: :page_handler,
+                    controller: "autoclick",
+                  } %>
+    <% else %>
+      <p>End of List</p>
+    <% end %>
+  </div>
+</div>

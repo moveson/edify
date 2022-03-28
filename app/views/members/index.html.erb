@@ -3,7 +3,7 @@
     <h2 class="mt-md-4 mt-2"><strong>Member List</strong></h2>
   </div>
   <div class="col-md">
-    <h5 class="mt-md-4 pt-md-3 text-md-end text-muted"><%= filtered_and_total_count(@members.count, Member.count, "member") %></h5>
+    <h5 class="mt-md-4 pt-md-3 text-md-end text-muted"><%= filtered_and_total_count(@pagy.count, Member.count, "member") %></h5>
   </div>
 </div>
 
@@ -38,6 +38,10 @@
   <%= link_to fa_icon("plus", text: " Add"), new_member_path, data: { turbo_frame: "new_member" }, class: "btn btn-primary" %>
 <% end %>
 
-<article id="members">
-  <%= render partial: "member", collection: @members %>
+<article>
+  <%= turbo_frame_tag "page_handler" %>
+  <div id="members">
+    <%= render partial: "member", collection: @members %>
+  </div>
+  <%= render "shared/pager", pagy: @pagy %>
 </article>

@@ -3,7 +3,7 @@
     <h2 class="mt-md-4 mt-2"><strong>Talks</strong></h2>
   </div>
   <div class="col-md">
-    <h5 class="mt-md-4 pt-md-3 text-md-end text-muted"><%= filtered_and_total_count(@talks.count, Talk.count, "talk") %></h5>
+    <h5 class="mt-md-4 pt-md-3 text-md-end text-muted"><%= filtered_and_total_count(@pagy.count, Talk.count, "talk") %></h5>
   </div>
 </div>
 
@@ -37,6 +37,10 @@
   <%= render partial: "talks/form", locals: { talk: Talk.new } %>
 <% end %>
 
-<article id="talks">
-  <%= render partial: "talk", collection: @talks %>
+<article>
+  <%= turbo_frame_tag "page_handler" %>
+  <div id="talks">
+    <%= render partial: "talk", collection: @talks %>
+  </div>
+  <%= render "shared/pager", pagy: @pagy %>
 </article>
