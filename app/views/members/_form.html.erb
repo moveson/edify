@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center ">
   <div class="card bg-light mt-2 w-100" style="max-width: 700px;">
     <div class="card-body">
-      <%= form_with(model: member, data: { controller: :form, action: "turbo:submit-end->form#clear" }) do |form| %>
+      <%= form_with(model: member, data: { controller: "form escape-cancel", action: "turbo:submit-end->form#clear" }) do |form| %>
         <% if member.errors.any? %>
           <div id="error_explanation">
             <ul>
@@ -51,9 +51,9 @@
             <% end %>
 
             <% if member.persisted? %>
-              <%= link_to fa_icon("times-circle"), member, class: "btn btn-outline-secondary" %>
+              <%= link_to fa_icon("times-circle"), member, class: "btn btn-outline-secondary", data: { "escape-cancel-target" => "link" } %>
             <% else %>
-              <%= link_to fa_icon("times-circle"), members_path, target: "_top", class: "btn btn-outline-secondary" %>
+              <%= link_to fa_icon("times-circle"), members_path, target: "_top", class: "btn btn-outline-secondary", data: { "escape-cancel-target" => "link" } %>
             <% end %>
           </div>
         </div>
