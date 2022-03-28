@@ -1,0 +1,13 @@
+<%= turbo_frame_tag "page_handler" do %>
+  <%= turbo_stream_action_tag(
+        "append",
+        target: "talks",
+        template: %(#{render @talks})
+      ) %>
+
+  <%= turbo_stream_action_tag(
+        "replace",
+        target: "pager",
+        template: %(#{render "pager", pagy: @pagy})
+      ) %>
+<% end %>
