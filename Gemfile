@@ -13,9 +13,11 @@ gem "stimulus-rails"
 gem "redis", "~> 4.0"
 gem "bootsnap", require: false
 
+gem "american_date"
 gem "cssbundling-rails"
 gem "devise", "~> 4.8", ">= 4.8.0"
 gem "devise-jwt"
+gem "font_awesome5_rails"
 gem "friendly_id", "~> 5.4"
 gem "jsbundling-rails"
 gem "madmin"
@@ -23,16 +25,12 @@ gem "name_of_person", "~> 1.1"
 gem "noticed", "~> 1.4"
 gem "pretender", "~> 0.3.4"
 gem "pundit", "~> 2.1"
-gem "sidekiq", "~> 6.2"
-gem "whenever", require: false
-gem "responders", github: "heartcombo/responders", branch: "main"
-gem "font_awesome5_rails"
-gem "american_date"
 gem "ransack"
-gem "strip_attributes"
-
-# Use Sass to process CSS
+gem "responders"
 gem "sassc-rails"
+gem "sidekiq", "~> 6.2"
+gem "strip_attributes"
+gem "whenever", require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
