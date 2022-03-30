@@ -5,10 +5,13 @@
         <div class="row pt-2">
           <div class="col-12 col-md font-weight-bold">
             <div>
-              <h5><%= l(meeting.date, format: :rfc822) %></h5>
+              <h5>
+                <%= status_icon(meeting.status) %>
+                <%= l(meeting.date, format: :rfc822) %>
+              </h5>
             </div>
             <div>
-              <%= link_to fa_icon("calendar-alt"), meeting_path(meeting), target: "_top" %>&nbsp<%= meeting.meeting_type.humanize %> <%= status_icon(meeting.status) %>
+              <%= meeting.meeting_type.humanize %>
             </div>
           </div>
           <div class="col-12 col-md-2 text-md-end">
