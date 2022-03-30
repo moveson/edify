@@ -3,17 +3,24 @@
     <div class="card bg-light mt-2 w-100" style="max-width: 700px;">
       <div class="card-header">
         <div class="row pt-2">
-          <h5 class="col font-weight-bold">
-            <%= link_to fa_icon("calendar-alt"), meeting_path(meeting), target: "_top" %>&nbsp<%= meeting.meeting_type.humanize %>
-          </h5>
-          <h6 class="col-3 text-end"><%= l(meeting.date, format: :rfc822) %></h6>
+          <div class="col-12 col-md font-weight-bold">
+            <div>
+              <h5><%= l(meeting.date, format: :rfc822) %></h5>
+            </div>
+            <div>
+              <%= link_to fa_icon("calendar-alt"), meeting_path(meeting), target: "_top" %>&nbsp<%= meeting.meeting_type.humanize %> <%= status_icon(meeting.status) %>
+            </div>
+          </div>
+          <div class="col-12 col-md-2 text-md-end">
+            <%= link_to_meeting_edit(meeting, class: "mt-2 mt-md-2") %>
+            <%= link_to_meeting_delete(meeting, class: "mt-2 mt-md-2") %>
+          </div>
         </div>
       </div>
       <div class="card-body">
         <div class="row">
-          <div class="col-3 col-md-2 text-end">
-            <%= link_to_meeting_edit(meeting, class: "mt-1 mt-md-2") %>
-            <%= link_to_meeting_delete(meeting, class: "mt-1 mt-md-2") %>
+          <div class="col-12 col-md-10">
+            <%= render partial: "talks/talk_mini", collection: meeting.talks, as: :talk %>
           </div>
         </div>
       </div>

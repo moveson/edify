@@ -14,4 +14,30 @@ class Meeting < ApplicationRecord
   validates_uniqueness_of :date
 
   scope :most_recent_first, -> { order(date: :desc) }
+
+  def status
+    case meeting_type.to_sym
+    when :sacrament
+      sacrament_status
+    when :ward_conference
+      sacrament_status
+    else
+      :ok
+    end
+  end
+
+  def sacrament_status
+    case
+    when talk_count == 0
+      :empty
+    when talk_count < 3
+      :questionable
+    else
+      :ok
+    end
+  end
+
+  def talk_count
+    @talk_count ||= talks.count
+  end
 end

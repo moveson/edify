@@ -1,0 +1,15 @@
+<%= turbo_frame_tag dom_id(talk) do %>
+    <div class="row">
+      <div class="col mx-3">
+        <p>
+          <% if talk.member_id? %>
+            <%= link_to fa_icon("person"), member_path(talk.member_id), target: "_top" %>&nbsp
+          <% end %>
+          <%= talk.speaker_name %>
+        </p>
+      </div>
+      <div class="col text-end">
+        <p><%= talk.purpose %></p>
+      </div>
+    </div>
+<% end %>
