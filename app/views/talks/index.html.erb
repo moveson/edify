@@ -33,10 +33,6 @@
 
 <hr/>
 
-<%= turbo_frame_tag :new_talk, target: "_top" do %>
-  <%= render partial: "talks/form", locals: { talk: Talk.new } %>
-<% end %>
-
 <article>
   <%= turbo_frame_tag "page_handler" %>
   <div id="talks">

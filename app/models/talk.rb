@@ -10,7 +10,7 @@ class Talk < ApplicationRecord
 
   before_save :match_member
 
-  delegate :date, to: :meeting, allow_nil: true
+  delegate :date, :date?, to: :meeting, allow_nil: true
 
   def member_name
     member&.name
