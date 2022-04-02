@@ -1,7 +1,6 @@
 class TalkResource < Madmin::Resource
   # Attributes
   attribute :id, form: false
-  attribute :date
   attribute :purpose
   attribute :topic
   attribute :created_at, form: false
@@ -10,6 +9,7 @@ class TalkResource < Madmin::Resource
 
   # Associations
   attribute :member
+  attribute :meeting
 
   # Uncomment this to customize the display name of records in the admin area.
   # def self.display_name(record)
