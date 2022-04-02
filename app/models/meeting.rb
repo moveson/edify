@@ -1,5 +1,9 @@
+# frozen_string_literal: true
+
 class Meeting < ApplicationRecord
   has_many :talks, dependent: :nullify
+  belongs_to :unit
+
   enum meeting_type: {
     sacrament: 0,
     testimony: 1,
