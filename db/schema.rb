@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_28_071320) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_02_211241) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,6 +67,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_28_071320) do
     t.date "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "units_id"
+    t.index ["units_id"], name: "index_meetings_on_units_id"
   end
 
   create_table "members", force: :cascade do |t|
@@ -78,6 +80,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_28_071320) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "synced_at"
+    t.bigint "units_id"
+    t.index ["units_id"], name: "index_members_on_units_id"
   end
 
   create_table "notes", force: :cascade do |t|
@@ -116,7 +120,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_28_071320) do
   end
 
   create_table "talks", force: :cascade do |t|
-    t.date "date"
     t.string "purpose"
     t.string "topic"
     t.datetime "created_at", null: false
@@ -126,6 +129,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_28_071320) do
     t.bigint "meeting_id"
     t.index ["meeting_id"], name: "index_talks_on_meeting_id"
     t.index ["member_id"], name: "index_talks_on_member_id"
+  end
+
+  create_table "units", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -143,8 +152,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_28_071320) do
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.bigint "units_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["units_id"], name: "index_users_on_units_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

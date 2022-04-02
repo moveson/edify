@@ -3,31 +3,32 @@
 class TalksController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :upsert
   before_action :authenticate_user!
-  before_action :set_talk, only: %i[ show edit update destroy ]
+  before_action :set_meeting
+  before_action :set_talk, only: %i[show edit update destroy]
 
-  # GET /talks
+  # GET /meetings/1/talks
   def index
-    @q = Talk.ransack(params[:q])
+    @q = @meeting.talks.ransack(params[:q])
     @q.sorts = ["date desc", "speaker_name asc"] if @q.sorts.empty?
     @pagy, @talks = pagy(@q.result.includes(:member))
   end
 
-  # GET /talks/1
+  # GET /meetings/1/talks/1
   def show
   end
 
-  # GET /talks/new
+  # GET /meetings/1/talks/new
   def new
-    @talk = Talk.new
+    @talk = @meeting.talks.new
   end
 
-  # GET /talks/1/edit
+  # GET /meetings/1/talks/1/edit
   def edit
   end
 
-  # POST /talks
+  # POST /meetings/1/talks
   def create
-    @talk = Talk.new(talk_params)
+    @talk = @meeting.talks.new(talk_params)
 
     if @talk.save
       respond_to do |format|
@@ -44,7 +45,7 @@ class TalksController < ApplicationController
     end
   end
 
-  # PATCH/PUT /talks/1
+  # PATCH/PUT /meetings/1/talks/1
   def update
     if @talk.update(talk_params)
       respond_to do |format|
@@ -61,7 +62,7 @@ class TalksController < ApplicationController
     end
   end
 
-  # DELETE /talks/1
+  # DELETE /meetings/1/talks/1
   def destroy
     @talk.destroy
 
@@ -99,11 +100,15 @@ class TalksController < ApplicationController
 
   private
 
+  def set_meeting
+    @meeting = Meeting.find(params[:meeting_id])
+  end
+
   def set_talk
-    @talk = Talk.find(params[:id])
+    @talk = @meeting.talks.find(params[:id])
   end
 
   def talk_params
-    params.require(:talk).permit(:member_id, :speaker_name, :date, :purpose, :topic)
+    params.require(:talk).permit(:speaker_name, :purpose, :topic)
   end
 end

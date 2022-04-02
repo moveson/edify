@@ -1,14 +1,16 @@
 class Talk < ApplicationRecord
-  belongs_to :meeting, optional: true
+  belongs_to :meeting
   belongs_to :member, optional: true
 
-  validates_presence_of :speaker_name, :date
+  validates_presence_of :meeting, :speaker_name
 
   strip_attributes
 
   scope :most_recent_first, -> { order(date: :desc) }
 
   before_save :match_member
+
+  delegate :date, to: :meeting, allow_nil: true
 
   def member_name
     member&.name

@@ -1,0 +1,9 @@
+one:
+  date: 2022-03-12
+  meeting_type: :sacrament
+  unit: one
+
+two:
+  date: 2022-03-05
+  meeting_type: :testimony
+  unit: one

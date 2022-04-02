@@ -27,11 +27,6 @@
               <% end %>
             </datalist>
           </div>
-
-          <div class="col-12 col-md">
-            <%= form.label "Date", class: "required" %>
-            <%= form.text_field :date, class: "form-control", placeholder: "mm/dd/yyyy", value: form.object.date.present? ? l(form.object.date, format: :american) : nil %>
-          </div>
         </div>
 
         <div class="row mb-2">

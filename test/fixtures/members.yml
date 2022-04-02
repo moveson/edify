@@ -1,11 +1,10 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
   name: Dyches, George
   gender: 0
   birthdate: 2002-03-04
   phone: 801-888-3333
   email: george@dyches.com
+  unit: one
 
 two:
   name: Harris, Jill
@@ -13,3 +12,4 @@ two:
   birthdate: 1999-04-05
   phone: 405-555-4444
   email: jill@harris.com
+  unit: one
