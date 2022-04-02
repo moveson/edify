@@ -5,7 +5,6 @@ class MeetingResource < Madmin::Resource
   attribute :date
   attribute :created_at, form: false
   attribute :updated_at, form: false
-  attribute :units_id
 
   # Associations
   attribute :talks
