@@ -29,7 +29,11 @@
           </div>
           <div class="col-12">
             <%= turbo_frame_tag "new_meeting_#{meeting.id}_talk" do %>
-              <%= link_to fa_icon("plus", text: " Add talk"), new_meeting_talk_path(meeting), data: { turbo_frame: "new_meeting_#{meeting.id}_talk" }, class: "btn btn-primary" %>
+              <%= link_to fa_icon("plus", text: " Add talk"),
+                          new_meeting_talk_path(meeting),
+                          data: { turbo_frame: "new_meeting_#{meeting.id}_talk" },
+                          class: "btn btn-primary btn-sm"
+              %>
             <% end %>
           </div>
         </div>
