@@ -1,4 +1,4 @@
-<%= turbo_frame_tag dom_id(talk) do %>
+<%= turbo_frame_tag "meeting_#{talk.meeting.id}_talk_#{talk.id}" do %>
   <div class="d-flex justify-content-center">
     <div class="card bg-light mt-2 w-100" style="max-width: 700px;">
       <div class="card-header">

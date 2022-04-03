@@ -23,7 +23,9 @@
       <div class="card-body">
         <div class="row">
           <div class="col-12 col-md-10">
-            <%= render partial: "talks/talk_mini", collection: meeting.talks, as: :talk %>
+            <%= turbo_frame_tag "meeting_#{meeting.id}_talks" do %>
+              <%= render partial: "talks/talk_mini", collection: meeting.talks, as: :talk %>
+            <% end %>
           </div>
           <div class="col-12">
             <%= turbo_frame_tag "new_meeting_#{meeting.id}_talk", target: "_top" do %>
