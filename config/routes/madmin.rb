@@ -1,5 +1,7 @@
 # Below are the routes for madmin
 namespace :madmin do
+  resources :units
+  resources :meetings
   resources :talks
   resources :members
   resources :announcements

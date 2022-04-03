@@ -1,6 +1,10 @@
+# frozen_string_literal: true
+
 class Member < ApplicationRecord
   has_many :talks, dependent: :nullify
   has_many :notes, dependent: :destroy
+  belongs_to :unit
+
   enum gender: [:male, :female]
 
   validates_presence_of :name, :gender, :birthdate
@@ -11,7 +15,7 @@ class Member < ApplicationRecord
 
   scope :alphabetized, -> { order(:name) }
   scope :with_last_talk_date, -> do
-    from(left_joins(:talks).select("distinct on (members.id) members.*, talks.date as last_talk_date").order("members.id, date desc"), :members)
+    from(left_joins(talks: :meeting).select("distinct on (members.id) members.*, meetings.date as last_talk_date").order("members.id, meetings.date desc"), :members)
   end
 
   after_save_commit :match_talks
