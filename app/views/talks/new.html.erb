@@ -1,5 +1,5 @@
 <h1>New Talk</h1>
 
-<%= turbo_frame_tag @talk do %>
+<%= turbo_frame_tag "new_meeting_#{@talk.meeting.id}_talk" do %>
   <%= render 'form', talk: @talk %>
 <% end %>

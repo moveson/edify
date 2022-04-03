@@ -12,7 +12,7 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get talks_url
+    get meeting_talks_url(@meeting)
     assert_response :success
   end
 

@@ -54,7 +54,7 @@ module LinkHelper
 
   def link_to_talk_delete(talk, options = {})
     html_class = options[:class]
-    url = talk_path(talk)
+    url = meeting_talk_path(talk.meeting, talk)
     options = { method: :delete,
                 data: { confirm: "This will delete the talk and cannot be undone. Are you sure you want to proceed?",
                         turbo: false },
@@ -64,7 +64,7 @@ module LinkHelper
 
   def link_to_talk_edit(talk, options = {})
     html_class = options[:class]
-    url = edit_talk_path(talk)
+    url = edit_meeting_talk_path(talk.member, talk)
     options = { class: ["btn btn-primary btn-sm", html_class].compact.join(" ") }
     link_to fa_icon("pencil-alt"), url, options
   end
