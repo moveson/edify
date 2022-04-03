@@ -22,7 +22,6 @@
       <table class="table">
         <thead>
         <tr>
-          <th></th>
           <th>Date</th>
           <th>Purpose</th>
           <th>Topic</th>
@@ -32,9 +31,8 @@
         <% @member.talks.most_recent_first.each do |talk| %>
           <tr>
             <td>
-              <%= link_to fa_icon("scroll"), talk_path(talk) %>
-            </td>
-            <td><%= l(talk.date, format: :rfc822) %></td>
+              <%= link_to fa_icon("calendar-alt"), meeting_path(talk.meeting) %>&nbsp
+              <%= l(talk.date, format: :rfc822) %></td>
             <td><%= talk.purpose %></td>
             <td><%= talk.topic_truncated %></td>
           </tr>
