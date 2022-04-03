@@ -35,7 +35,7 @@ class Member < ApplicationRecord
   def last_talk_date
     return attributes["last_talk_date"] if attributes.key?("last_talk_date")
 
-    talks.maximum(:date)
+    talks.joins(:meeting).maximum("meetings.date")
   end
 
   private
