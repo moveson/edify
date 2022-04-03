@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "meeting_#{talk.meeting.id}_talk_#{talk.id}" do %>
   <div class="row">
-    <div class="col mx-3">
+    <div class="col-12 col-md mx-md-3">
       <p>
         <% if talk.member_id? %>
           <%= link_to fa_icon("person"), member_path(talk.member_id), target: "_top" %>&nbsp
@@ -10,8 +10,13 @@
         <%= talk.speaker_name %>
       </p>
     </div>
-    <div class="col text-end">
+    <div class="col-12 col-md text-md-end">
       <p><%= talk.purpose %></p>
     </div>
+    <div class="col-12 col-md text-md-end">
+      <%= link_to_talk_edit(talk) %>
+      <%= link_to_talk_delete(talk) %>
+    </div>
+    <hr/>
   </div>
 <% end %>

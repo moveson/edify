@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center ">
   <div class="card bg-light mt-2 w-100" style="max-width: 700px;">
     <div class="card-body">
-      <%= form_with(model: [talk.meeting, talk], data: { controller: "form escape-cancel", action: "turbo:submit-end->form#clear" }) do |form| %>
+      <%= form_with(model: [talk.meeting, talk], data: { "turbo-frame" => dom_id(talk.meeting) }) do |form| %>
         <% if talk.errors.any? %>
           <div id="error_explanation">
             <ul>
@@ -47,9 +47,9 @@
             <% end %>
 
             <% if talk.persisted? %>
-              <%= link_to fa_icon("times-circle"), meeting_talk_path(talk.meeting, talk), class: "btn btn-outline-secondary", data: { "escape-cancel-target" => "link" } %>
+              <%= link_to fa_icon("times-circle"), meeting_talk_path(talk.meeting, talk), class: "btn btn-outline-secondary" %>
             <% else %>
-              <%= link_to fa_icon("times-circle"), meeting_talks_path(talk.meeting), target: "_top", class: "btn btn-outline-secondary", data: { "escape-cancel-target" => "link" } %>
+              <%= link_to fa_icon("times-circle"), meeting_path(talk.meeting), class: "btn btn-outline-secondary" %>
             <% end %>
           </div>
         </div>

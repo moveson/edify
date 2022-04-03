@@ -6,7 +6,7 @@ class Talk < ApplicationRecord
 
   strip_attributes
 
-  scope :most_recent_first, -> { order(date: :desc) }
+  scope :most_recent_first, -> { joins(:meeting).order(date: :desc) }
 
   before_save :match_member
 

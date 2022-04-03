@@ -12,35 +12,3 @@
 <%= turbo_frame_tag dom_id(@meeting) do %>
   <%= render "meeting", meeting: @meeting %>
 <% end %>
-
-<div class="d-flex justify-content-center">
-  <div class="card bg-light mt-2 w-100" style="max-width: 700px;">
-    <div class="card-header">
-      <h4>Talks</h4>
-    </div>
-    <div class="card-body">
-      <table class="table">
-        <thead>
-        <tr>
-          <th></th>
-          <th>Date</th>
-          <th>Purpose</th>
-          <th>Topic</th>
-        </tr>
-        </thead>
-        <tbody>
-        <% @meeting.talks.most_recent_first.each do |talk| %>
-          <tr>
-            <td>
-              <%= link_to fa_icon("scroll"), talk_path(talk) %>
-            </td>
-            <td><%= l(talk.date, format: :rfc822) %></td>
-            <td><%= talk.purpose %></td>
-            <td><%= talk.topic_truncated %></td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>

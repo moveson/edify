@@ -37,7 +37,7 @@ class TalksController < ApplicationController
         end
 
         format.turbo_stream do
-          render turbo_stream: turbo_stream.prepend(:talks, partial: "talks/talk", locals: { talk: @talk })
+          render turbo_stream: turbo_stream.replace("meeting_#{@meeting.id}", partial: "meetings/meeting", locals: { meeting: @meeting })
         end
       end
     else
@@ -54,7 +54,7 @@ class TalksController < ApplicationController
         end
 
         format.turbo_stream do
-          render turbo_stream: turbo_stream.replace(@talk, partial: "talks/talk", locals: { talk: @talk })
+          render turbo_stream: turbo_stream.replace("meeting_#{@meeting.id}", partial: "meetings/meeting", locals: { meeting: @meeting })
         end
       end
     else
@@ -72,7 +72,7 @@ class TalksController < ApplicationController
       end
 
       format.turbo_stream do
-        render turbo_stream: turbo_stream.remove(@talk)
+        render turbo_stream: turbo_stream.remove("meeting_#{@talk.meeting.id}_talk_#{@talk.id}")
       end
     end
   end
