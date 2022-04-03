@@ -18,7 +18,7 @@ class MembersController < ApplicationController
 
   # GET /members/new
   def new
-    @member = Member.new
+    @member = current_unit.members.new
   end
 
   # GET /members/1/edit
@@ -27,7 +27,7 @@ class MembersController < ApplicationController
 
   # POST /members
   def create
-    @member = Member.new(member_params)
+    @member = current_unit.members.new(member_params)
 
     if @member.save
       respond_to do |format|
@@ -108,7 +108,7 @@ class MembersController < ApplicationController
   private
 
   def set_member
-    @member = Member.find(params[:id])
+    @member = current_unit.members.find(params[:id])
   end
 
   def member_params
