@@ -16,4 +16,8 @@ class User < ApplicationRecord
   has_many :notifications, as: :recipient, dependent: :destroy
   has_many :services
   belongs_to :unit
+
+  def unit_name
+    unit.name
+  end
 end
