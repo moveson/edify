@@ -17,7 +17,7 @@ class MeetingsController < ApplicationController
 
   # GET /meetings/new
   def new
-    @meeting = Meeting.new
+    @meeting = current_unit.meetings.new
   end
 
   # GET /meetings/1/edit
@@ -26,7 +26,7 @@ class MeetingsController < ApplicationController
 
   # POST /meetings
   def create
-    @meeting = Meeting.new(meeting_params)
+    @meeting = current_unit.meetings.new(meeting_params)
 
     if @meeting.save
       respond_to do |format|
@@ -78,7 +78,7 @@ class MeetingsController < ApplicationController
   private
 
   def set_meeting
-    @meeting = Meeting.find(params[:id])
+    @meeting = current_unit.meetings.find(params[:id])
   end
 
   def meeting_params

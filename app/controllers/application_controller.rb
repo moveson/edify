@@ -19,6 +19,10 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def current_unit
+    @current_unit ||= current_user.unit
+  end
+
   def turbo_frame_request_variant
     request.variant = :turbo_frame if turbo_frame_request?
   end
