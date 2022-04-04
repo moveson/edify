@@ -34,9 +34,13 @@
 
 <hr/>
 
-<%= turbo_frame_tag :new_member, target: "_top" do %>
-  <%= link_to fa_icon("plus", text: " Add"), new_member_path, data: { turbo_frame: "new_member" }, class: "btn btn-primary" %>
-<% end %>
+<div class="d-flex justify-content-center">
+  <div class="my-2 w-100" style="max-width: 700px;">
+    <%= turbo_frame_tag :new_member do %>
+      <%= link_to fa_icon("plus", text: " Add"), new_member_path, data: { turbo_frame: "new_member" }, class: "btn btn-primary btn-sm" %>
+    <% end %>
+  </div>
+</div>
 
 <article>
   <%= turbo_frame_tag "page_handler" %>
