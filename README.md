@@ -21,12 +21,15 @@ Getting Started
 Instructions follow for setting up a local development environment in MacOS.
 
 **Homebrew**
-1. Install [Homebrew](http://brew.sh/).
+
+Install [Homebrew](http://brew.sh/).
 
 **Clone the Repo**
+
 Clone the repository to your local machine by [forking the repo](https://help.github.com/articles/fork-a-repo/)
 
 **Ruby**
+
 Ruby is installed by default on all MacOS systems, but it lives in the root directory and probably won't be the correct
 version to run Edify. Nearly all Ruby developers use a Ruby environment manager like rbenv, rvm, or asdf. Instructions
 for installing rbenv follow, but feel free to use one of the other tools if you wish.
@@ -43,7 +46,9 @@ for installing rbenv follow, but feel free to use one of the other tools if you 
 7. `$ rbenv rehash` then restart the terminal session
 
 **Postgres**
+
 Edify uses Postgres, so you'll need to install it if you haven't already.
+
 1. `$ brew install postgres`
 2. `$ brew services start postgres`
 
@@ -63,7 +68,9 @@ environment. Instead, install Node.js by downloading the package installer from 
 > `$ brew install yarn`
 
 **Rails and Gems**
+
 Setup the app by running the setup script:
+
 1. `$ ./bin/setup`
 2. `$ ./bin/dev` to start the servers in your dev environment
 3. Type `localhost:3000` in a browser
