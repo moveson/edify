@@ -41,7 +41,7 @@ class Member < ApplicationRecord
   private
 
   def match_talks
-    talks = Talk.where(speaker_name: name, member_id: nil)
+    talks = unit.talks.where(speaker_name: name, member_id: nil)
     talks.update_all(member_id: id)
   end
 

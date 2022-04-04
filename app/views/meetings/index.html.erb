@@ -3,7 +3,7 @@
     <h2 class="mt-md-4 mt-2"><strong><%= "#{current_user.unit_name} Meetings" %></strong></h2>
   </div>
   <div class="col-md">
-    <h5 class="mt-md-4 pt-md-3 text-md-end text-muted"><%= filtered_and_total_count(@pagy.count, current_unit.meetings.count, "meeting") %></h5>
+    <h5 class="mt-md-4 pt-md-3 text-md-end text-muted"><%= filtered_and_total_count(@pagy.count, current_unit.meeting_count, "meeting") %></h5>
   </div>
 </div>
 

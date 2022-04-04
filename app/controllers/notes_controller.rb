@@ -77,11 +77,11 @@ class NotesController < ApplicationController
   private
 
   def set_member
-    @member = Member.find(params[:member_id])
+    @member = current_unit.members.find(params[:member_id])
   end
 
   def set_note
-    @note = Note.find(params[:id])
+    @note = @member.notes.find(params[:id])
   end
 
   def note_params

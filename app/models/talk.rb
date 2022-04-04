@@ -23,9 +23,15 @@ class Talk < ApplicationRecord
     "#{topic.first(50)}..."
   end
 
+  def unit_members
+    meeting.unit.members
+  end
+
   private
 
   def match_member
-    self.member_id = ::Member.where(name: speaker_name).first&.id
+    return if meeting.nil?
+
+    self.member_id = unit_members.where(name: speaker_name).first&.id
   end
 end

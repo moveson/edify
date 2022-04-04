@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Meeting < ApplicationRecord
-  has_many :talks, dependent: :nullify
+  has_many :talks
   belongs_to :unit
 
   enum meeting_type: {
@@ -15,7 +15,7 @@ class Meeting < ApplicationRecord
   }
 
   validates_presence_of :meeting_type, :date
-  validates_uniqueness_of :date
+  validates_uniqueness_of :date, scope: :unit
 
   scope :most_recent_first, -> { order(date: :desc) }
 

@@ -6,9 +6,8 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-unit = Unit.create(
-  name: "Sunny Hills 3rd Ward"
-)
+unit_1 = Unit.create(name: "Sunny Hills 3rd Ward")
+unit_2 = Unit.create(name: "Pleasant Forest Ward")
 
 User.create(
   first_name: "Admin",
@@ -17,5 +16,15 @@ User.create(
   password: "password",
   admin: true,
   confirmed_at: Time.current,
-  unit: unit
+  unit: unit_1
+)
+
+User.create(
+  first_name: "Another",
+  last_name: "User",
+  email: "another@example.com",
+  password: "password",
+  admin: false,
+  confirmed_at: Time.current,
+  unit: unit_2
 )
