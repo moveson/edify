@@ -3,13 +3,13 @@
 class TalksController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :upsert
   before_action :authenticate_user!
-  before_action :set_meeting
+  before_action :set_meeting, except: :index
   before_action :set_talk, only: %i[show edit update destroy]
 
-  # GET /meetings/1/talks
+  # GET /talks
   def index
-    @q = @meeting.talks.ransack(params[:q])
-    @q.sorts = ["date desc", "speaker_name asc"] if @q.sorts.empty?
+    @q = current_unit.talks.ransack(params[:q])
+    @q.sorts = ["meeting_date desc", "speaker_name asc"] if @q.sorts.empty?
     @pagy, @talks = pagy(@q.result.includes(:member))
   end
 

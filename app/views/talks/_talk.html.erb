@@ -9,9 +9,10 @@
             <% end %>
             <%= talk.speaker_name %>
           </h5>
-          <% if talk.date? %>
-            <h6 class="col-3 text-end"><%= l(talk.date, format: :rfc822) %></h6>
-          <% end %>
+          <h6 class="col-3 text-end">
+            <%= link_to fa_icon("calendar-alt"), meeting_path(talk.meeting), target: "_top" %>&nbsp
+            <%= l(talk.date, format: :rfc822) %>
+          </h6>
         </div>
       </div>
       <div class="card-body">
@@ -19,10 +20,6 @@
           <div class="col">
             <h6><%= "Purpose: #{talk.purpose}" %></h6>
             <h6><%= "Topic: #{talk.topic_truncated}" %></h6>
-          </div>
-          <div class="col-3 col-md-2 text-center">
-            <%= link_to_talk_edit(talk, class: "mt-1 mt-md-2") %>
-            <%= link_to_talk_delete(talk, class: "mt-1 mt-md-2") %>
           </div>
         </div>
       </div>

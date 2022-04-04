@@ -180,7 +180,7 @@ module DropdownHelper
     title = case existing_sort_attribute
             when "speaker_name"
               "By name"
-            when "date"
+            when "meeting_date"
               "By date"
             else
               "By custom sort"
@@ -188,8 +188,8 @@ module DropdownHelper
 
     dropdown_items = [
       { name: "Date",
-        link: request_params.deep_merge(q: { s: "date desc" }),
-        active: existing_sort_attribute == "date" },
+        link: request_params.deep_merge(q: { s: "meeting_date desc" }),
+        active: existing_sort_attribute == "meeting_date" },
       { name: "Name",
         link: request_params.deep_merge(q: { s: "speaker_name asc" }),
         active: existing_sort_attribute == "speaker_name" },
