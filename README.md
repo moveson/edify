@@ -20,13 +20,9 @@ Getting Started
 
 Instructions follow for setting up a local development environment in MacOS.
 
-**Homebrew**
+1. Clone the repository to your local machine by [forking the repo](https://help.github.com/articles/fork-a-repo/)
 
-Install [Homebrew](http://brew.sh/).
-
-**Clone the Repo**
-
-Clone the repository to your local machine by [forking the repo](https://help.github.com/articles/fork-a-repo/)
+2. Install [Homebrew](http://brew.sh/).
 
 **Ruby**
 
