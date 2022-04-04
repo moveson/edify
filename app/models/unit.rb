@@ -13,4 +13,8 @@ class Unit < ApplicationRecord
   def member_count
     members.count
   end
+
+  def talk_count
+    talks.count
+  end
 end
