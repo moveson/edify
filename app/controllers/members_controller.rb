@@ -7,7 +7,7 @@ class MembersController < ApplicationController
 
   # GET /members
   def index
-    @q = Member.with_last_talk_date.ransack(params[:q])
+    @q = current_unit.members.with_last_talk_date.ransack(params[:q])
     @q.sorts = ["name asc"] if @q.sorts.empty?
     @pagy, @members = pagy(@q.result)
   end
