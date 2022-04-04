@@ -77,10 +77,10 @@ class TalksController < ApplicationController
     end
   end
 
-  # POST /talks/upsert
-  # This is an upsert using speaker_name and date as a composite unique key
+  # POST /meetings/1/talks/upsert
+  # This is an upsert using speaker_name as a unique key
   def upsert
-    @talk = current_unit.talks.find_or_initialize_by(speaker_name: talk_params[:speaker_name], date: talk_params[:date])
+    @talk = @meeting.talks.find_or_initialize_by(speaker_name: talk_params[:speaker_name])
     existing_talk = @talk.persisted?
     @talk.assign_attributes(talk_params)
 

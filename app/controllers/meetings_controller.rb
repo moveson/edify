@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class MeetingsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: :upsert
   before_action :authenticate_user!
   before_action :set_meeting, only: %i[ show edit update destroy ]
 
@@ -71,6 +72,27 @@ class MeetingsController < ApplicationController
 
       format.turbo_stream do
         render turbo_stream: turbo_stream.remove(@meeting)
+      end
+    end
+  end
+
+  # POST /meetings/upsert
+  # This is an upsert using date as a unique key
+  def upsert
+    @meeting = current_unit.meetings.find_or_initialize_by(date: meeting_params[:date])
+    existing_meeting = @meeting.persisted?
+    @meeting.assign_attributes(meeting_params)
+
+    if @meeting.save
+      respond_to do |format|
+        format.json do
+          status = existing_meeting ? :ok : :created
+          render json: @meeting.to_json, status: status
+        end
+      end
+    else
+      respond_to do |format|
+        format.json { render json: @meeting.errors.full_messages.to_json, status: :unprocessable_entity }
       end
     end
   end
