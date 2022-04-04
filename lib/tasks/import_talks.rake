@@ -34,7 +34,7 @@ namespace :temp do
 
       meeting.save!
 
-      unless meeting.meeting_type.to_sym == :sacrament
+      if meeting.meeting_type.to_sym.in?([:general_conference, :stake_conference, :testimony, :primary_program])
         talk.destroy!
       end
     end
