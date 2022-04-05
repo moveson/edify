@@ -23,18 +23,18 @@ namespace :temp do
       elsif talk.speaker_name.include?("Ward") && talk.speaker_name.include?("Conference")
         meeting.meeting_type = :ward_conference
       elsif talk.speaker_name.include?("Fast")
-        meeting.meeting_type = :testimony
+        meeting.meeting_type = :testimony_meeting
       elsif talk.speaker_name.include?("Primary")
         meeting.meeting_type = :primary_program
       elsif talk.speaker_name.include?("Music")
         meeting.meeting_type = :musical_testimony
       else
-        meeting.meeting_type = :sacrament
+        meeting.meeting_type = :sacrament_meeting
       end
 
       meeting.save!
 
-      if meeting.meeting_type.to_sym.in?([:general_conference, :stake_conference, :testimony, :primary_program])
+      if meeting.meeting_type.to_sym.in?([:general_conference, :stake_conference, :testimony_meeting, :primary_program])
         talk.destroy!
       end
     end

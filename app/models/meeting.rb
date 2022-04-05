@@ -5,8 +5,8 @@ class Meeting < ApplicationRecord
   belongs_to :unit
 
   enum meeting_type: {
-    sacrament: 0,
-    testimony: 1,
+    sacrament_meeting: 0,
+    testimony_meeting: 1,
     ward_conference: 2,
     stake_conference: 3,
     general_conference: 4,
@@ -21,7 +21,7 @@ class Meeting < ApplicationRecord
 
   def status
     case meeting_type.to_sym
-    when :sacrament
+    when :sacrament_meeting
       sacrament_status
     when :ward_conference
       sacrament_status
