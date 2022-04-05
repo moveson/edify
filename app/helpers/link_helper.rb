@@ -1,70 +1,78 @@
 # frozen_string_literal: true
 
 module LinkHelper
-  def link_to_meeting_delete(meeting, options = {})
+  def link_to_delete(resource_or_array, options = {})
     html_class = options[:class]
-    url = meeting_path(meeting)
-    options = { method: :delete,
-                data: { confirm: "This will delete the meeting and cannot be undone. Are you sure you want to proceed?",
-                        turbo: false },
-                class: ["btn btn-outline-danger btn-sm", html_class].compact.join(" ") }
+    url = polymorphic_path(resource_or_array)
+    resource = if resource_or_array.is_a?(Array)
+                 resource_or_array.last
+               else
+                 resource_or_array
+               end
+
+    resource_name = resource.class.name.underscore.humanize(capitalize: false)
+    options = {
+      method: :delete,
+      class: ["btn btn-outline-danger btn-sm", html_class].compact.join(" "),
+      title: "Delete #{resource_name}",
+      data: {
+        "bs-toggle" => "tooltip",
+        confirm: "Delete this #{resource_name}?",
+        turbo: false,
+      },
+    }
     link_to fa_icon("trash"), url, options
+  end
+
+  def link_to_edit(resource_or_array, options = {})
+    html_class = options[:class]
+    url = edit_polymorphic_path(resource_or_array)
+    resource = if resource_or_array.is_a?(Array)
+                 resource_or_array.last
+               else
+                 resource_or_array
+               end
+
+    resource_name = resource.class.name.underscore.humanize(capitalize: false)
+    options = {
+      class: ["btn btn-outline-primary btn-sm", html_class].compact.join(" "),
+      title: "Edit #{resource_name}",
+      data: {
+        "bs-toggle" => "tooltip",
+      },
+    }
+    link_to fa_icon("pencil-alt"), url, options
+  end
+
+  def link_to_meeting_delete(meeting, options = {})
+    link_to_delete(meeting, options)
   end
 
   def link_to_meeting_edit(meeting, options = {})
-    html_class = options[:class]
-    url = edit_meeting_path(meeting)
-    options = { class: ["btn btn-outline-primary btn-sm", html_class].compact.join(" ") }
-    link_to fa_icon("pencil-alt"), url, options
+    link_to_edit(meeting, options)
   end
 
   def link_to_member_delete(member, options = {})
-    html_class = options[:class]
-    url = member_path(member)
-    options = { method: :delete,
-                data: { confirm: "This will delete the member and cannot be undone. Are you sure you want to proceed?",
-                        turbo: false },
-                class: ["btn btn-outline-danger btn-sm", html_class].compact.join(" ") }
-    link_to fa_icon("trash"), url, options
+    link_to_delete(member, options)
   end
 
   def link_to_member_edit(member, options = {})
-    html_class = options[:class]
-    url = edit_member_path(member)
-    options = { class: ["btn btn-outline-primary btn-sm", html_class].compact.join(" ") }
-    link_to fa_icon("pencil-alt"), url, options
+    link_to_edit(member, options)
   end
 
   def link_to_note_delete(note, options = {})
-    html_class = options[:class]
-    url = member_note_path(note.member, note)
-    options = { method: :delete,
-                data: { confirm: "This will delete the note and cannot be undone. Are you sure you want to proceed?",
-                        turbo: false },
-                class: ["btn btn-outline-danger btn-sm", html_class].compact.join(" ") }
-    link_to fa_icon("trash"), url, options
+    link_to_delete([note.member, note], options)
   end
 
   def link_to_note_edit(note, options = {})
-    html_class = options[:class]
-    url = edit_member_note_path(note.member, note)
-    options = { class: ["btn btn-outline-primary btn-sm", html_class].compact.join(" ") }
-    link_to fa_icon("pencil-alt"), url, options
+    link_to_edit([note.member, note], options)
   end
 
   def link_to_talk_delete(talk, options = {})
-    html_class = options[:class]
-    url = meeting_talk_path(talk.meeting, talk)
-    options = { method: :delete,
-                data: { confirm: "Delete this talk?" },
-                class: ["btn btn-outline-danger btn-sm", html_class].compact.join(" ") }
-    link_to fa_icon("trash"), url, options
+    link_to_delete([talk.meeting, talk], options)
   end
 
   def link_to_talk_edit(talk, options = {})
-    html_class = options[:class]
-    url = edit_meeting_talk_path(talk.meeting, talk)
-    options = { class: ["btn btn-outline-primary btn-sm", html_class].compact.join(" ") }
-    link_to fa_icon("pencil-alt"), url, options
+    link_to_edit([talk.meeting, talk], options)
   end
 end

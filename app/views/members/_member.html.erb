@@ -4,7 +4,7 @@
       <div class="card-header">
         <div class="row pt-2">
           <h5 class="col font-weight-bold">
-            <%= link_to fa_icon("person"), member_path(member), target: "_top" %>&nbsp<%= member.name %>
+            <%= link_to fa_icon("person"), member_path(member), target: "_top", data: { "bs-toggle" => "tooltip" }, title: "Visit member page" %>&nbsp<%= member.name %>
           </h5>
           <h6 class="col-3 text-end"><%= member.bio %></h6>
         </div>
