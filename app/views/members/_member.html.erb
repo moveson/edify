@@ -3,10 +3,14 @@
     <div class="card bg-light mt-2 w-100" style="max-width: 700px;">
       <div class="card-header">
         <div class="row pt-2">
-          <h5 class="col font-weight-bold">
-            <%= link_to fa_icon("person"), member_path(member), target: "_top", data: { "bs-toggle" => "tooltip" }, title: "Visit member page" %>&nbsp<%= member.name %>
-          </h5>
-          <h6 class="col-3 text-end"><%= member.bio %></h6>
+          <div class="col">
+            <h5 class="font-weight-bold"><%= link_to fa_icon("person"), member_path(member), target: "_top", data: { "bs-toggle" => "tooltip" }, title: "Visit member page" %>&nbsp<%= member.name %></h5>
+            <h6><%= member.bio %></h6>
+          </div>
+          <div class="col-5 col-md-2 text-end">
+            <%= link_to_member_edit(member, class: "mt-1 mt-md-2") %>
+            <%= link_to_member_delete(member, class: "mt-1 mt-md-2") %>
+          </div>
         </div>
       </div>
       <div class="card-body">
@@ -19,10 +23,6 @@
             <% end %>
             <h6><%= "Phone: #{member.phone}" %></h6>
             <h6><%= "Email: #{member.email}" %></h6>
-          </div>
-          <div class="col-3 col-md-2 text-center">
-            <%= link_to_member_edit(member, class: "mt-1 mt-md-2") %>
-            <%= link_to_member_delete(member, class: "mt-1 mt-md-2") %>
           </div>
         </div>
       </div>
