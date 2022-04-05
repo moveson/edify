@@ -6,11 +6,11 @@
           <div class="col-12 col-md font-weight-bold">
             <div>
               <h5>
-                <%= status_icon(meeting.status) %>
                 <%= l(meeting.date, format: :rfc822) %>
               </h5>
             </div>
             <div>
+              <%= status_icon(meeting.status) %>
               <%= meeting.meeting_type.humanize %>
             </div>
           </div>
