@@ -5,12 +5,12 @@
         <div class="row pt-2">
           <h5 class="col font-weight-bold">
             <% if talk.member_id? %>
-              <%= link_to fa_icon("person"), member_path(talk.member_id), target: "_top" %>&nbsp
+              <%= link_to fa_icon("person"), member_path(talk.member_id), target: "_top", data: { "bs-toggle" => "tooltip" }, title: "Visit member page" %>&nbsp
             <% end %>
             <%= talk.speaker_name %>
           </h5>
           <h6 class="col-3 text-end">
-            <%= link_to fa_icon("calendar-alt"), meeting_path(talk.meeting), target: "_top" %>&nbsp
+            <%= link_to fa_icon("calendar-alt"), meeting_path(talk.meeting_id), target: "_top", data: { "bs-toggle" => "tooltip" }, title: "Visit meeting page" %>&nbsp
             <%= l(talk.date, format: :rfc822) %>
           </h6>
         </div>
