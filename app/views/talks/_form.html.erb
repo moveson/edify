@@ -46,11 +46,7 @@
               <%= fa_icon("check-circle") %>
             <% end %>
 
-            <% if talk.persisted? %>
-              <%= link_to fa_icon("times-circle"), meeting_talk_path(talk.meeting, talk), class: "btn btn-outline-secondary" %>
-            <% else %>
-              <%= link_to fa_icon("times-circle"), meeting_path(talk.meeting), class: "btn btn-outline-secondary" %>
-            <% end %>
+            <%= link_to fa_icon("times-circle"), meeting_path(talk.meeting), class: "btn btn-outline-secondary" %>
           </div>
         </div>
       <% end %>
