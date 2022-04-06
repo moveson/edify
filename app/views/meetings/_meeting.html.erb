@@ -7,6 +7,9 @@
             <div>
               <h5>
                 <%= l(meeting.date, format: :rfc822) %>
+                <% unless meeting.date.sunday? %>
+                  <span class="text-primary"><%= "(#{::Date::DAYNAMES[meeting.date.wday]})" %></span>
+                <% end %>
               </h5>
             </div>
             <div>
