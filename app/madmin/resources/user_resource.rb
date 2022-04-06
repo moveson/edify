@@ -2,6 +2,7 @@ class UserResource < Madmin::Resource
   # Attributes
   attribute :id, form: false
   attribute :email
+  attribute :confirmed_at
   attribute :encrypted_password
   attribute :reset_password_token
   attribute :reset_password_sent_at
