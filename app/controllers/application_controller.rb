@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   helper_method :user_assigned_to_unit?
 
   def current_unit
-    @current_unit ||= current_user.unit
+    @current_unit ||= current_user&.unit
   end
 
   def user_assigned_to_unit?
