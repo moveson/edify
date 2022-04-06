@@ -1,0 +1,13 @@
+<%= turbo_stream_action_tag(
+      :prepend,
+      target: :meetings,
+      template: "#{render partial: 'meetings/meeting', formats: [:html], locals: { meeting: @meeting }}"
+    )
+%>
+
+<%= turbo_stream_action_tag(
+      :update,
+      target: :new_meeting,
+      template: "#{render partial: 'meetings/form', formats: [:html], locals: { meeting: current_unit.meetings.new }}"
+    )
+%>
