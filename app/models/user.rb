@@ -15,7 +15,15 @@ class User < ApplicationRecord
 
   has_many :notifications, as: :recipient, dependent: :destroy
   has_many :services
-  belongs_to :unit
+  belongs_to :unit, optional: true
+
+  validates :phone, phone: { allow_blank: true }
+
+  strip_attributes
+
+  def assigned_to_unit?
+    unit_id?
+  end
 
   def unit_name
     unit.name

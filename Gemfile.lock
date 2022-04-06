@@ -198,6 +198,7 @@ GEM
     pagy (5.10.1)
       activesupport
     pg (1.3.5)
+    phonelib (0.6.58)
     pretender (0.4.0)
       actionpack (>= 5.2)
     public_suffix (4.0.6)
@@ -353,6 +354,7 @@ DEPENDENCIES
   noticed
   pagy
   pg
+  phonelib
   pretender
   puma
   pundit

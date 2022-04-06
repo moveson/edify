@@ -6,11 +6,15 @@
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="mb-3">
-        <%= f.text_field :name, autofocus: false, class: 'form-control', placeholder: "Full name" %>
+        <%= f.text_field :name, autofocus: true, class: 'form-control', placeholder: "Full name" %>
       </div>
 
       <div class="mb-3">
-        <%= f.email_field :email, autofocus: false, class: 'form-control', placeholder: "Email Address" %>
+        <%= f.email_field :email, class: 'form-control', placeholder: "Email Address" %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.text_field :phone, class: 'form-control', placeholder: "Phone (to receive text messages)" %>
       </div>
 
       <div class="mb-3">
@@ -22,7 +26,7 @@
       </div>
 
       <div class="mb-3 d-grid">
-        <%= f.submit "Sign up", class: "btn btn-primary btn-lg" %>
+        <%= f.submit "Sign up", class: "btn btn-primary btn-lg", data: { turbo: false } %>
       </div>
     <% end %>
 
