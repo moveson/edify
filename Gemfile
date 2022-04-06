@@ -30,6 +30,7 @@ gem "pundit"
 gem "ransack"
 gem "responders"
 gem "sassc-rails"
+gem "sendgrid-ruby"
 gem "sidekiq"
 gem "strip_attributes"
 gem "whenever", require: false
