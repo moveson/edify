@@ -1,5 +1,5 @@
-<% if user_signed_in? %>
-  <h2 class="text-center"><%= current_user.unit.name %></h2>
+<% if user_assigned_to_unit? %>
+  <h2 class="text-center"><%= current_user.unit_name %></h2>
 <% end %>
 <hr class="hr-text">
 <p class="blockquote text-center">

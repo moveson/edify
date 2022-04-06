@@ -1,10 +1,14 @@
 # frozen_string_literal: true
 
 class TalksController < ApplicationController
+  include Pundit
+
   skip_before_action :verify_authenticity_token, only: :upsert
   before_action :authenticate_user!
+  before_action :authorize_user
   before_action :set_meeting, except: :index
   before_action :set_talk, only: %i[show edit update destroy]
+  after_action :verify_authorized
 
   # GET /talks
   def index
