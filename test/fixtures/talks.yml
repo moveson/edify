@@ -2,7 +2,6 @@ one:
   speaker_name: Dyches, George
   member: one
   meeting: one
-  date: 2022-03-12
   purpose: Youth Speaker
   topic:
 
@@ -10,6 +9,5 @@ two:
   speaker_name: Harris, Jill
   member: two
   meeting: one
-  date: 2022-03-12
   purpose:
   topic:
