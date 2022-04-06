@@ -6,11 +6,18 @@
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="mb-3">
+        <%= f.label :username %>
         <%= f.text_field :name, autofocus: false, class: 'form-control', placeholder: "Full name" %>
       </div>
 
       <div class="mb-3">
+        <%= f.label :email %>
         <%= f.email_field :email, class: 'form-control', placeholder: 'Email Address' %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label "Phone (to receive text messages)" %>
+        <%= f.text_field :phone, class: 'form-control', placeholder: 'XXX-XXX-XXXX' %>
       </div>
 
       <div class="mb-3">

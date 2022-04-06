@@ -9,31 +9,35 @@ class ApplicationPolicy
   end
 
   def index?
-    false
+    user.assigned_to_unit?
   end
 
   def show?
-    false
+    user.assigned_to_unit?
   end
 
   def create?
-    false
+    user.assigned_to_unit?
   end
 
   def new?
-    create?
+    user.assigned_to_unit?
   end
 
   def update?
-    false
+    user.assigned_to_unit?
   end
 
   def edit?
-    update?
+    user.assigned_to_unit?
   end
 
   def destroy?
-    false
+    user.assigned_to_unit?
+  end
+
+  def upsert?
+    user.assigned_to_unit?
   end
 
   class Scope
