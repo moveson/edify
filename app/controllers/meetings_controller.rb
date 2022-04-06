@@ -9,7 +9,7 @@ class MeetingsController < ApplicationController
   def index
     @q = current_unit.meetings.ransack(params[:q])
     @q.sorts = ["date desc"] if @q.sorts.empty?
-    @pagy, @meetings = pagy(@q.result)
+    @pagy, @meetings = pagy(@q.result.includes(:talks))
   end
 
   # GET /meetings/1

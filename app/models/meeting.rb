@@ -42,6 +42,6 @@ class Meeting < ApplicationRecord
   end
 
   def talk_count
-    @talk_count ||= talks.count
+    @talk_count ||= talks.size
   end
 end
