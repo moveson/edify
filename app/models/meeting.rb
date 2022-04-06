@@ -19,6 +19,17 @@ class Meeting < ApplicationRecord
 
   scope :most_recent_first, -> { order(date: :desc) }
 
+  def self.next_available_sunday(unit)
+    future_meeting_dates = unit.meetings.where("date > ?", Date.current).order(:date).pluck(:date).select(&:sunday?)
+
+    proposed_date = Date.current.next_occurring(:sunday)
+    while proposed_date.in?(future_meeting_dates) do
+      proposed_date += 7.days
+    end
+
+    proposed_date
+  end
+
   def status
     case meeting_type.to_sym
     when :sacrament_meeting

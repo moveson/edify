@@ -39,9 +39,7 @@ class MeetingsController < ApplicationController
           redirect_to meetings_path, notice: "Meeting was successfully created."
         end
 
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.prepend(:meetings, partial: "meetings/meeting", locals: { meeting: @meeting })
-        end
+        format.turbo_stream
       end
     else
       render :new, status: :unprocessable_entity
