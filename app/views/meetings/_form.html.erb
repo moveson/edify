@@ -13,7 +13,7 @@
         <% end %>
 
         <div class="row mb-2">
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-md-3">
             <%= form.label :date, class: "required" %>
             <%= form.text_field :date, class: "form-control", autofocus: true, placeholder: "mm/dd/yyyy", value: form.object.date.present? ? l(form.object.date, format: :american) : l(::Meeting.next_available_sunday(meeting.unit), format: :american) %>
           </div>
@@ -21,6 +21,11 @@
           <div class="col-12 col-md-4">
             <%= form.label :meeting_type, class: "required" %>
             <%= form.select :meeting_type, options_for_select(Meeting.meeting_types.keys.map { |key| [key.titleize, key] }, meeting.meeting_type), {}, class: "form-select form-control" %>
+          </div>
+
+          <div class="col-12 col-md-3">
+            <%= form.label :scheduled_by %>
+            <%= form.select :user_id, options_for_select(current_unit.users.map { |user| [user.name, user.id] }, current_user), {}, class: "form-select form-control" %>
           </div>
 
           <div class="col-12 col-md text-md-end">

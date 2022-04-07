@@ -3,6 +3,7 @@
 class Meeting < ApplicationRecord
   has_many :talks
   belongs_to :unit
+  belongs_to :user, optional: true
 
   enum meeting_type: {
     sacrament_meeting: 0,
