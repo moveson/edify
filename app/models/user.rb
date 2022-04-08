@@ -17,6 +17,10 @@ class User < ApplicationRecord
   has_many :services
   belongs_to :unit, optional: true
 
+  after_create_commit :notify_admins
+
+  scope :admin, -> { where(admin: true) }
+
   validates :phone, phone: { allow_blank: true }
 
   strip_attributes
@@ -27,5 +31,11 @@ class User < ApplicationRecord
 
   def unit_name
     unit.name
+  end
+
+  private
+
+  def notify_admins
+    ::NewUserAdminNotification.with(user: self).deliver_later(::User.admin.all)
   end
 end
