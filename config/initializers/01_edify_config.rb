@@ -2,6 +2,6 @@
 
 class EdifyConfig
   def self.sendgrid_api_key
-    ::ENV["SENDGRID_API_KEY"]
+    Rails.application.credentials.sendgrid[:api_key]
   end
 end
