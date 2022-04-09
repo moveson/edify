@@ -18,7 +18,7 @@ class User < ApplicationRecord
   has_many :services
   belongs_to :unit, optional: true
 
-  after_create_commit :notify_admins
+  after_commit :send_welcome_notifications
 
   scope :admin, -> { where(admin: true) }
 
@@ -36,7 +36,9 @@ class User < ApplicationRecord
 
   private
 
-  def notify_admins
+  def send_welcome_notifications
+    return true unless saved_change_to_confirmed_at? && confirmed_at.present?
+
     ::NewUserAdminNotification.with(user: self).deliver_later(::User.admin.all)
     ::NewUserNotification.with(user: self).deliver_later(self)
   end
