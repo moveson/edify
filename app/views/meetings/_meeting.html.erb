@@ -1,6 +1,6 @@
 <%= turbo_frame_tag dom_id(meeting) do %>
   <div class="d-flex justify-content-center">
-    <div class="card bg-light mt-2 w-100" style="max-width: 700px;">
+    <div class="card bg-light mt-2 w-100 <%= 'callout' if meeting.user_id == current_user.id %>" style="max-width: 700px;">
       <div class="card-header">
         <div class="row pt-2">
           <div class="col-12 col-md font-weight-bold">
