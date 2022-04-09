@@ -30,7 +30,7 @@
         <% if user_signed_in? %>
 
           <li class="nav-item">
-            <%= link_to notifications_path, class: "nav-link" do %>
+            <%= link_to notifications_path, class: "nav-link #{unread_notifications(current_user)}" do %>
               <span><i class="far fa-bell" aria-hidden="true"></i></span>
             <% end %>
           </li>

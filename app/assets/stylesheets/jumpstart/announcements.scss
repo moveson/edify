@@ -17,5 +17,22 @@
   display: inline-block;
   height: 8px;
   width: 8px;
-  margin-right: 6px;
+  margin-right: 4px;
+  margin-bottom: 2px;
+}
+
+.unread-notifications:after {
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  -moz-background-clip: padding-box;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  background: $blue;
+  content: '';
+  display: inline-block;
+  height: 8px;
+  width: 8px;
+  margin-left: -10px;
+  margin-bottom: 7px;
 }

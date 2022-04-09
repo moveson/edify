@@ -1,5 +1,9 @@
 <% if user_assigned_to_unit? %>
-  <h2 class="text-center"><%= current_user.unit_name %></h2>
+  <div class="row">
+    <div class="col-md">
+      <h2 class="mt-md-4 mt-2 text-center"><strong><%= current_user.unit_name %></strong></h2>
+    </div>
+  </div>
 <% end %>
 <hr class="hr-text">
 <p class="blockquote text-center">

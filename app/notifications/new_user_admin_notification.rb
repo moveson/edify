@@ -14,7 +14,6 @@ class NewUserAdminNotification < Noticed::Base
   end
 
   def message
-    user = params[:user]
-    t(".message", user_name: user.name, user_email: user.email)
+    t(".message")
   end
 end

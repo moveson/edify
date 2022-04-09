@@ -32,7 +32,7 @@
 en:
   notifications:
     new_user_admin_notification:
-      message: "A new user has signed up for Edify.\n\nUser name: %{user_name}\nUser email: %{user_email}"
+      message: "A new user has signed up for Edify."
   date:
     formats:
       rfc822: "%d %b %Y"
