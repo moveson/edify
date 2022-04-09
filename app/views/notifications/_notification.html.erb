@@ -1,0 +1,10 @@
+<div class="card" data-controller="highlight" data-highlight-target="element" data-highlight-created-value="<%= notification.read_at.to_i %>">
+  <div class="card-body">
+    <h6><strong><%= notification.to_notification.message %></strong></h6>
+    <h6><%= "#{notification.to_notification.params[:user].name} (#{notification.to_notification.params[:user].email})" %></h6>
+  </div>
+  <div class="card-footer">
+    <span class="small text-muted"><%= "#{time_ago_in_words(notification.created_at)} ago" %></span>
+  </div>
+</div>
+<br/>

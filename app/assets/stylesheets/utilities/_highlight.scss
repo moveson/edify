@@ -1,0 +1,7 @@
+.bg-highlight {
+  background: lighten($warning, 30%) !important;
+}
+
+.bg-highlight-faded {
+    transition: background 4s linear;
+}
