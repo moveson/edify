@@ -4,6 +4,7 @@ class UserResource < Madmin::Resource
   attribute :email
   attribute :first_name
   attribute :last_name
+  attribute :phone
   attribute :confirmed_at
   attribute :admin
   attribute :reset_password_sent_at
