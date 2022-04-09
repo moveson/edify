@@ -7,9 +7,9 @@ class MeetingResource < Madmin::Resource
   attribute :updated_at, form: false
 
   # Associations
+  attribute :scheduler
   attribute :talks
   attribute :unit
-  attribute :user
 
   # Uncomment this to customize the display name of records in the admin area.
   # def self.display_name(record)

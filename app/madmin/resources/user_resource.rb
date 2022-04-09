@@ -16,6 +16,7 @@ class UserResource < Madmin::Resource
 
   # Associations
   attribute :notifications
+  attribute :scheduled_meetings
   attribute :services
   attribute :unit
 
