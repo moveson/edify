@@ -2,7 +2,7 @@
 
 class NewUserAdminNotification < Noticed::Base
   deliver_by :database
-  deliver_by :email, mailer: "AdminMailer", format: :format_for_email
+  deliver_by :email, mailer: "UserMailer", format: :format_for_email
   deliver_by :twilio, format: :format_for_twilio
 
   param :user

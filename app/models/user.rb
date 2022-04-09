@@ -38,5 +38,6 @@ class User < ApplicationRecord
 
   def notify_admins
     ::NewUserAdminNotification.with(user: self).deliver_later(::User.admin.all)
+    ::NewUserNotification.with(user: self).deliver_later(self)
   end
 end
