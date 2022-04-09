@@ -1,10 +1,18 @@
-<div class="card" data-controller="highlight" data-highlight-target="element" data-highlight-created-value="<%= notification.read_at.to_i %>">
-  <div class="card-body">
-    <h6><strong><%= notification.to_notification.message %></strong></h6>
-    <h6><%= "#{notification.to_notification.params[:user].name} (#{notification.to_notification.params[:user].email})" %></h6>
-  </div>
-  <div class="card-footer">
-    <span class="small text-muted"><%= "#{time_ago_in_words(notification.created_at)} ago" %></span>
+<div class="d-flex justify-content-center">
+  <div class="card bg-light mt-3 w-100" style="max-width: 700px;" data-controller="highlight" data-highlight-target="element" data-highlight-created-value="<%= notification.read_at.to_i %>">
+    <div class="card-body">
+      <h6><strong><%= notification.to_notification.message %></strong></h6>
+      <h6><%= "#{notification.to_notification.params[:user].name} (#{notification.to_notification.params[:user].email})" %></h6>
+    </div>
+    <div class="card-footer">
+      <div class="row">
+        <div class="col">
+          <span class="small text-muted"><small><%= "Created #{time_ago_in_words(notification.created_at)} ago" %></small></span>
+        </div>
+        <div class="col text-end">
+          <span class="small text-muted"><small><%= "Read #{time_ago_in_words(notification.read_at)} ago" %></small></span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-<br/>
