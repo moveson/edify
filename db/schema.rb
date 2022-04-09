@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_07_142441) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_09_095928) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -68,9 +68,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_07_142441) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "unit_id"
-    t.bigint "user_id"
+    t.bigint "scheduler_id"
+    t.index ["scheduler_id"], name: "index_meetings_on_scheduler_id"
     t.index ["unit_id"], name: "index_meetings_on_unit_id"
-    t.index ["user_id"], name: "index_meetings_on_user_id"
   end
 
   create_table "members", force: :cascade do |t|
@@ -164,7 +164,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_07_142441) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "meetings", "units"
-  add_foreign_key "meetings", "users"
+  add_foreign_key "meetings", "users", column: "scheduler_id"
   add_foreign_key "members", "units"
   add_foreign_key "notes", "members"
   add_foreign_key "services", "users"
