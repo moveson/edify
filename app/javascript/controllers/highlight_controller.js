@@ -6,8 +6,6 @@ export default class extends Controller {
     static values = { created: Number }
 
     connect() {
-        console.log("Connected to highlight controller")
-
         const five_seconds_ago = Math.round(Date.now() / 1000) - 5
         const subjectElement = this.elementTarget
 
