@@ -15,7 +15,7 @@
         <div class="row mb-2">
           <div class="col-12 col-md-3">
             <%= form.label :date, class: "required" %>
-            <%= form.text_field :date, class: "form-control", autofocus: true, placeholder: "mm/dd/yyyy", value: form.object.date.present? ? l(form.object.date, format: :american) : l(::Meeting.next_available_sunday(meeting.unit), format: :american) %>
+            <%= form.text_field :date, class: "form-control", autofocus: true, placeholder: "mm/dd/yyyy", value: form.object.date.present? ? l(form.object.date, format: :american) : l(meeting.unit.next_available_sunday, format: :american) %>
           </div>
 
           <div class="col-12 col-md-4">

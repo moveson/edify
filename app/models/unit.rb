@@ -14,6 +14,17 @@ class Unit < ApplicationRecord
     members.count
   end
 
+  def next_available_sunday
+    future_meeting_dates = meetings.future.order(:date).pluck(:date).select(&:sunday?).to_set
+
+    proposed_date = Date.current.next_occurring(:sunday)
+    while proposed_date.in?(future_meeting_dates) do
+      proposed_date += 7.days
+    end
+
+    proposed_date
+  end
+
   def talk_count
     talks.count
   end
