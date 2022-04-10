@@ -16,12 +16,12 @@
           <div class="col-12 col-md">
             <%= form.label :speaker_name, class: "required" %>
             <%= form.text_field :speaker_name,
-                                list: "speaker_names_autocomplete",
+                                list: "speaker_name_autocomplete",
                                 class: "form-control",
                                 placeholder: "Last, First",
                                 autofocus: true,
                                 data: { "form-target" => "autofocusInput" } %>
-            <datalist id="speaker_names_autocomplete">
+            <datalist id="speaker_name_autocomplete">
               <% talk.unit_members.alphabetized.each do |member| %>
                 <option value="<%= member.name %>">
               <% end %>
@@ -32,8 +32,15 @@
         <div class="row mb-2">
           <div class="col-12 col-md">
             <%= form.label :purpose %>
-            <%= form.text_field :purpose, class: "form-control" %>
+            <%= form.text_field :purpose,
+                                list: "purpose_autocomplete",
+                                class: "form-control" %>
           </div>
+          <datalist id="purpose_autocomplete">
+            <% Talk::DEFAULT_PURPOSE_LIST.each do |purpose| %>
+              <option value="<%= purpose %>">
+            <% end %>
+          </datalist>
 
           <div class="col-12 col-md">
             <%= form.label :topic %>
