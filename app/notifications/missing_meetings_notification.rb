@@ -2,9 +2,17 @@
 
 class MissingMeetingsNotification < Noticed::Base
   deliver_by :database
+  deliver_by :email, mailer: "UserMailer", format: :format_for_email
   deliver_by :twilio, format: :format_for_twilio
 
   param :dates
+
+  def format_for_email
+    {
+      message: message,
+      url: url,
+    }
+  end
 
   def format_for_twilio
     {
