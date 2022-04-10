@@ -11,8 +11,8 @@ class CheckMeetingsAndNotify
   end
 
   def perform!
-    notify_missing_dates
-    notify_incomplete_meetings
+    notify_missing_dates if notifiable_missing_dates.present?
+    notify_incomplete_meetings if notifiable_incomplete_meetings.present?
   end
 
   private
@@ -20,13 +20,13 @@ class CheckMeetingsAndNotify
   attr_reader :unit, :today
 
   def notify_missing_dates
-    ::MissingMeetingsNotification.with(notifiable_missing_dates).deliver_later(unit.users)
+    ::MissingMeetingsNotification.with(dates: notifiable_missing_dates).deliver_later(unit.users)
   end
 
   def notify_incomplete_meetings
     notifiable_incomplete_meetings.each do |meeting|
       users_to_notify = meeting.scheduler || unit.users
-      ::IncompleteMeetingNotification.with(meeting).deliver_later(users_to_notify)
+      ::IncompleteMeetingNotification.with(meeting: meeting).deliver_later(users_to_notify)
     end
   end
 
