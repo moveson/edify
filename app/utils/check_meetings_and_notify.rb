@@ -24,9 +24,9 @@ class CheckMeetingsAndNotify
   end
 
   def notify_incomplete_meetings
-    notifiable_incomplete_meetings.group_by(&:scheduler).each do |scheduler, meetings|
-      users_to_notify = scheduler || unit.users
-      ::IncompleteMeetingsNotification.with(meetings).deliver_later(users_to_notify)
+    notifiable_incomplete_meetings.each do |meeting|
+      users_to_notify = meeting.scheduler || unit.users
+      ::IncompleteMeetingNotification.with(meeting).deliver_later(users_to_notify)
     end
   end
 
