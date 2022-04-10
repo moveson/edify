@@ -1,4 +1,5 @@
 require "active_support/core_ext/integer/time"
+require_relative "../../config/initializers/01_edify_config"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -64,7 +65,7 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = {host: ENV["BASE_URI"], protocol: "http"}
+  config.action_mailer.default_url_options = {host: ::EdifyConfig.app_url, protocol: "http"}
 
   config.action_mailer.smtp_settings = {
     address: "smtp.sendgrid.net",
