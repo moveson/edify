@@ -1,4 +1,15 @@
 class Talk < ApplicationRecord
+  DEFAULT_PURPOSE_LIST = [
+    "Calling Change",
+    "Departing College Student",
+    "Departing Missionary",
+    "New Ward Member",
+    "Returning Missionary",
+    "Stake Representative",
+    "Ward Conference",
+    "Youth Speaker",
+  ]
+
   belongs_to :meeting
   belongs_to :member, optional: true
 
