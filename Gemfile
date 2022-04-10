@@ -32,8 +32,8 @@ gem "responders"
 gem "sassc-rails"
 gem "sendgrid-ruby"
 gem "sidekiq"
+gem "sidekiq-cron"
 gem "strip_attributes"
-gem "whenever", require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

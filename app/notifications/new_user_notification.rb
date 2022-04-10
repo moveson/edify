@@ -8,12 +8,21 @@ class NewUserNotification < Noticed::Base
 
   def format_for_email
     {
-      user: params[:user],
       message: message,
+      subject: subject,
+      user: user,
     }
   end
 
   def message
     t(".message")
+  end
+
+  def subject
+    t(".subject")
+  end
+
+  def user
+    params[:user]
   end
 end

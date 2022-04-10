@@ -1,41 +1,24 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   "true": "foo"
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
   notifications:
+    incomplete_meeting_notification:
+      message:
+        zero: "The %{meeting_type} scheduled for %{date} has no speakers yet scheduled."
+        one: "The %{meeting_type} meeting scheduled for %{date} has only one speaker scheduled at this time."
+        other: "The %{meeting_type} scheduled for %{date} has only %{count} speakers scheduled at this time."
+      subject: "Meeting for %{date} is not fully scheduled in Edify"
+    missing_meetings_notification:
+      message:
+        one: "Edify did not find a meeting scheduled for %{date_string}. Please schedule a meeting when you have a moment."
+        other: "Edify did not find meetings scheduled for %{date_string}. Please schedule those meetings when you have a moment."
+      subject: "Missing meetings in Edify"
     new_user_notification:
       message: "Hello, and thanks for joining Edify. Before continuing, we will need to assign you to a Ward unit. We are working to automate that procedure, but for now it will need to be done manually. An administrator will get in touch with you very soon!"
+      subject: "Welcome to Edify!"
     new_user_admin_notification:
       message: "A new user has signed up for Edify."
+      subject: "New user for Edify"
   date:
     formats:
       rfc822: "%d %b %Y"
       american: "%-m/%-d/%Y"
+      month_and_day: "%B %-d"

@@ -1,0 +1,5 @@
+meeting_schedule_notify:
+  cron: "0 12 * * *" # execute every day at noon UTC
+  class: "MeetingScheduleNotifyJob"
+  queue: default
+  symbolize_args: true

@@ -18,10 +18,12 @@ class Meeting < ApplicationRecord
   validates_presence_of :meeting_type, :date
   validates_uniqueness_of :date, scope: :unit
 
+  scope :future, -> { occurring_after(Date.current) }
   scope :most_recent_first, -> { order(date: :desc) }
+  scope :occurring_after, ->(date) { where("date > ?", date) }
 
   def self.next_available_sunday(unit)
-    future_meeting_dates = unit.meetings.where("date > ?", Date.current).order(:date).pluck(:date).select(&:sunday?)
+    future_meeting_dates = unit.meetings.future.order(:date).pluck(:date).select(&:sunday?)
 
     proposed_date = Date.current.next_occurring(:sunday)
     while proposed_date.in?(future_meeting_dates) do
@@ -29,6 +31,10 @@ class Meeting < ApplicationRecord
     end
 
     proposed_date
+  end
+
+  def not_fully_scheduled?
+    status != :ok
   end
 
   def status
@@ -47,7 +53,7 @@ class Meeting < ApplicationRecord
     when talk_count == 0
       :empty
     when talk_count < 3
-      :questionable
+      :incomplete
     else
       :ok
     end

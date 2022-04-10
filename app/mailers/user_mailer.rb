@@ -1,9 +1,25 @@
 class UserMailer < ApplicationMailer
+  def incomplete_meeting_notification
+    mail(
+      from: "noreply@edifyapp.herokuapp.com",
+      to: params[:recipient].email,
+      subject: params[:subject],
+      )
+  end
+
+  def missing_meetings_notification
+    mail(
+      from: "noreply@edifyapp.herokuapp.com",
+      to: params[:recipient].email,
+      subject: params[:subject],
+      )
+  end
+
   def new_user_admin_notification
     mail(
-      from: "notifications@edifyapp.herokuapp.com",
+      from: "noreply@edifyapp.herokuapp.com",
       to: params[:recipient].email,
-      subject: "New user for Edify",
+      subject: params[:subject],
     )
   end
 
@@ -11,7 +27,7 @@ class UserMailer < ApplicationMailer
     mail(
       from: "noreply@edifyapp.herokuapp.com",
       to: params[:recipient].email,
-      subject: "Welcome to Edify!",
+      subject: params[:subject],
     )
   end
 end
