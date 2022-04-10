@@ -11,7 +11,7 @@ class UserMailer < ApplicationMailer
     mail(
       from: "noreply@edifyapp.herokuapp.com",
       to: params[:recipient].email,
-      subject: "Meetings are missing in Edify",
+      subject: params[:subject],
       )
   end
 
@@ -19,7 +19,7 @@ class UserMailer < ApplicationMailer
     mail(
       from: "noreply@edifyapp.herokuapp.com",
       to: params[:recipient].email,
-      subject: "New user for Edify",
+      subject: params[:subject],
     )
   end
 
@@ -27,7 +27,7 @@ class UserMailer < ApplicationMailer
     mail(
       from: "noreply@edifyapp.herokuapp.com",
       to: params[:recipient].email,
-      subject: "Welcome to Edify!",
+      subject: params[:subject],
     )
   end
 end

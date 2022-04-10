@@ -10,10 +10,13 @@ en:
       message:
         one: "Edify did not find a meeting scheduled for %{date_string}. Please schedule a meeting when you have a moment."
         other: "Edify did not find meetings scheduled for %{date_string}. Please schedule those meetings when you have a moment."
+      subject: "Missing meetings in Edify"
     new_user_notification:
       message: "Hello, and thanks for joining Edify. Before continuing, we will need to assign you to a Ward unit. We are working to automate that procedure, but for now it will need to be done manually. An administrator will get in touch with you very soon!"
+      subject: "Welcome to Edify!"
     new_user_admin_notification:
       message: "A new user has signed up for Edify."
+      subject: "New user for Edify"
   date:
     formats:
       rfc822: "%d %b %Y"

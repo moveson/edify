@@ -9,14 +9,15 @@ class NewUserAdminNotification < Noticed::Base
 
   def format_for_email
     {
-      user: params[:user],
       message: message,
+      subject: subject,
+      user: user,
     }
   end
 
   def format_for_twilio
     {
-      Body: "#{message} #{params[:user].name} (#{params[:user].email})",
+      Body: "#{message} #{user.name} (#{user.email})",
       From: Rails.application.credentials.twilio[:phone_number],
       To: recipient.phone
     }
@@ -24,5 +25,13 @@ class NewUserAdminNotification < Noticed::Base
 
   def message
     t(".message")
+  end
+
+  def subject
+    t(".subject")
+  end
+
+  def user
+    params[:user]
   end
 end

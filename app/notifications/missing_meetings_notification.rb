@@ -10,6 +10,7 @@ class MissingMeetingsNotification < Noticed::Base
   def format_for_email
     {
       message: message,
+      subject: subject,
       url: url,
     }
   end
@@ -24,6 +25,10 @@ class MissingMeetingsNotification < Noticed::Base
 
   def message
     t(".message", date_string: date_string, count: params[:dates].size)
+  end
+
+  def subject
+    t(".subject")
   end
 
   def url
