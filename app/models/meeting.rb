@@ -47,7 +47,7 @@ class Meeting < ApplicationRecord
     when talk_count == 0
       :empty
     when talk_count < 3
-      :questionable
+      :incomplete
     else
       :ok
     end
