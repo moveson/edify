@@ -3,9 +3,10 @@
 module FormatHelper
   def callout_class(meeting)
     return unless meeting.not_yet_occurred?
+
     if meeting.scheduler_id == current_user.id
       "callout callout-primary"
-    elsif meeting.scheduler_id.nil?
+    elsif meeting.scheduler_id.nil? && meeting.not_fully_scheduled?
       "callout callout-warning"
     end
   end
