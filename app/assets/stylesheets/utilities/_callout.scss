@@ -2,5 +2,12 @@
   border-left-width: .35rem;
   border-top-left-radius: .35rem;
   border-bottom-left-radius: .35rem;
+}
+
+.callout-primary {
   border-left-color: $primary;
+}
+
+.callout-warning {
+  border-left-color: $warning;
 }
