@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 module FormatHelper
+  def callout_class(meeting)
+    if (meeting.scheduler_id == current_user.id) && meeting.not_yet_occurred?
+      "callout"
+    end
+  end
+
   def filtered_and_total_count(filtered_count, total_count, model_name)
     total_string = pluralize_with_delimiter(total_count, model_name)
     filtered_count == total_count ? total_string : "#{filtered_count} of #{total_string}"

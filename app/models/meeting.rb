@@ -37,6 +37,10 @@ class Meeting < ApplicationRecord
     status != :ok
   end
 
+  def not_yet_occurred?
+    date >= Date.current
+  end
+
   def status
     case meeting_type.to_sym
     when :sacrament_meeting
