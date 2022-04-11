@@ -4,4 +4,10 @@ class Notification < ApplicationRecord
 
   scope :most_recent_first, -> { order(created_at: :desc) }
   scope :unread, -> { where(read_at: nil) }
+
+  def to_notification
+    super
+  rescue ::ActiveRecord::RecordNotFound
+    nil
+  end
 end
