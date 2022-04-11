@@ -37,9 +37,13 @@ class User < ApplicationRecord
   private
 
   def send_welcome_notifications
-    return true unless saved_change_to_confirmed_at? && confirmed_at.present?
+    return true unless newly_confirmed?
 
     ::NewUserAdminNotification.with(user: self).deliver_later(::User.admin.all)
     ::NewUserNotification.with(user: self).deliver_later(self)
+  end
+
+  def newly_confirmed?
+    saved_changes["confirmed_at"].present? && saved_changes["confirmed_at"].first.nil?
   end
 end
