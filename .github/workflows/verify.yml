@@ -3,7 +3,7 @@ on: [ push ]
 
 jobs:
   linters:
-    name: Linters
+    name: Code integrity
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -32,10 +32,10 @@ jobs:
         run: |
           yarn install --pure-lockfile
 
-      - name: Run linters
+      - name: Run linter
         run: |
           bin/rubocop --parallel
-      - name: Run brakeman
+      - name: Run security checks
         run: |
           bin/brakeman -q -w2
           bin/bundle-audit check --update
