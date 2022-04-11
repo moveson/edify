@@ -37,7 +37,6 @@ jobs:
           bin/rubocop --parallel
       - name: Run security checks
         run: |
-          bin/bundler-audit --update
           bin/brakeman -q -w2
 
   tests:
