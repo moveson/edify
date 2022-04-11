@@ -47,9 +47,9 @@ jobs:
       postgres:
         image: postgres:latest
         env:
-          POSTGRES_USER: edify_test
+          POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: edify_test
+          POSTGRES_DB: postgres
         ports: [ "5432:5432" ]
         options: >-
           --health-cmd pg_isready
@@ -88,7 +88,7 @@ jobs:
         env:
           RAILS_ENV: test
           POSTGRES_HOST: localhost
-          POSTGRES_USER: edify_test
+          POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: edify_test
           POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
