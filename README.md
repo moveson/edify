@@ -85,7 +85,12 @@ You will also have at least two test units (wards). Each test user belongs to a 
 
 **Continuous Integration**
 
-(Github CI to come)
+Edify uses Github Actions for CI/CD. When you push a branch, pipeline will run and should pass before merging to master.
+
+Pipeline consists of:
+- Specs
+- Rubocop (linter)
+- Brakeman (security checks)
 
 Support
 -------------------------
