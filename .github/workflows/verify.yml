@@ -101,4 +101,7 @@ jobs:
           bin/rails db:setup
 
       - name: Run tests
+        env:
+          RAILS_ENV: test
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         run: bin/rspec
