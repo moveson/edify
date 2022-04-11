@@ -90,6 +90,7 @@ jobs:
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: edify_test
           POSTGRES_PORT: 5432
+          RAILS_ENV: test
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         run: |
           bin/rails db:setup
