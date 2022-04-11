@@ -35,7 +35,7 @@ class TalksController < ApplicationController
     if @talk.save
       respond_to do |format|
         format.html do
-          redirect_to @talk, notice: "Talk was successfully created."
+          redirect_to @talk, notice: t("controllers.talks_controller.created")
         end
 
         format.turbo_stream do
@@ -53,7 +53,7 @@ class TalksController < ApplicationController
     if @talk.update(talk_params)
       respond_to do |format|
         format.html do
-          redirect_to @talk, notice: "Talk was successfully updated."
+          redirect_to @talk, notice: t("controllers.talks_controller.updated")
         end
 
         format.turbo_stream do
@@ -72,7 +72,7 @@ class TalksController < ApplicationController
 
     respond_to do |format|
       format.html do
-        redirect_to talks_url, notice: "Talk was successfully destroyed."
+        redirect_to talks_url, notice: t("controllers.talks_controller.destroyed")
       end
 
       format.turbo_stream do

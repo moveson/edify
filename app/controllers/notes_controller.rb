@@ -32,7 +32,7 @@ class NotesController < ApplicationController
     if @note.save
       respond_to do |format|
         format.html do
-          redirect_to @member, notice: "Note was successfully created."
+          redirect_to @member, notice: t("controllers.notes_controller.created")
         end
 
         format.turbo_stream do
@@ -49,7 +49,7 @@ class NotesController < ApplicationController
     if @note.update(note_params)
       respond_to do |format|
         format.html do
-          redirect_to @note, notice: "Note was successfully updated."
+          redirect_to @note, notice: t("controllers.notes_controller.updated")
         end
 
         format.turbo_stream do

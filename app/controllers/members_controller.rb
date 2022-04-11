@@ -34,7 +34,7 @@ class MembersController < ApplicationController
     if @member.save
       respond_to do |format|
         format.html do
-          redirect_to @member, notice: "Member was successfully created."
+          redirect_to @member, notice: t("controllers.members_controller.created")
         end
 
         format.turbo_stream do
@@ -51,7 +51,7 @@ class MembersController < ApplicationController
     if @member.update(member_params)
       respond_to do |format|
         format.html do
-          redirect_to @member, notice: "Member was successfully updated."
+          redirect_to @member, notice: t("controllers.members_controller.updated")
         end
 
         format.turbo_stream do
@@ -69,7 +69,7 @@ class MembersController < ApplicationController
 
     respond_to do |format|
       format.html do
-        redirect_to members_url, notice: "Member was successfully destroyed."
+        redirect_to members_url, notice: t("controllers.members_controller.destroyed")
       end
 
       format.turbo_stream do
