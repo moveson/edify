@@ -34,7 +34,7 @@ class MeetingsController < ApplicationController
     if @meeting.save
       respond_to do |format|
         format.html do
-          redirect_to meetings_path, notice: "Meeting was successfully created."
+          redirect_to meetings_path, notice: t("controllers.meetings_controller.created")
         end
 
         format.turbo_stream
@@ -49,7 +49,7 @@ class MeetingsController < ApplicationController
     if @meeting.update(meeting_params)
       respond_to do |format|
         format.html do
-          redirect_to @meeting, notice: "Meeting was successfully updated."
+          redirect_to @meeting, notice: t("controllers.meetings_controller.updated")
         end
 
         format.turbo_stream do

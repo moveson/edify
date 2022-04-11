@@ -1,4 +1,24 @@
 en:
+  controllers:
+    madmin:
+      application_controller:
+        not_authorized: "Not authorized."
+    meetings_controller:
+      created: "Meeting was successfully created."
+      updated: "Meeting was successfully updated."
+      destroyed: "Meeting was successfully destroyed."
+    members_controller:
+      created: "Member was successfully created."
+      updated: "Member was successfully updated."
+      destroyed: "Member was successfully destroyed."
+    notes_controller:
+      created: "Note was successfully created."
+      updated: "Note was successfully updated."
+      destroyed: "Note was successfully destroyed."
+    talks_controller:
+      created: "Talk was successfully created."
+      updated: "Talk was successfully updated."
+      destroyed: "Talk was successfully destroyed."
   notifications:
     incomplete_meeting_notification:
       message:

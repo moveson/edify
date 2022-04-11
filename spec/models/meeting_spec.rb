@@ -4,6 +4,7 @@ require "rails_helper"
 
 RSpec.describe ::Meeting, type: :model do
   subject { described_class.new(date: date) }
+
   describe "#not_yet_occurred?" do
     let(:result) { subject.not_yet_occurred? }
 

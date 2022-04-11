@@ -14,16 +14,42 @@ AllCops:
   TargetRubyVersion: 3.1
   SuggestExtensions: false
 
-  DisabledByDefault: true
+Metrics:
+  Enabled: false
+
+#Metrics/BlockLength:
+#  Exclude:
+#    - "config/**/*"
+#
+#Metrics/MethodLength:
+#  Max: 20
 
 Naming/VariableNumber:
   EnforcedStyle: snake_case
 
+Rails/Delegate:
+  Enabled: false
+
+Rails/InverseOf:
+  Enabled: false
+
+Rails/OutputSafety:
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
 RSpec/BeEq:
+  Enabled: false
+
+RSpec/EmptyLineAfterFinalLet:
   Enabled: false
 
 Style/Documentation:
   Enabled: false
+
+Style/EmptyMethod:
+  EnforcedStyle: expanded
 
 Style/FrozenStringLiteralComment:
   Exclude:
@@ -35,6 +61,12 @@ Style/HashSyntax:
 Style/StringLiterals:
   Enabled: true
   EnforcedStyle: double_quotes
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/TrailingCommaInArguments:
+  Enabled: false
 
 Style/TrailingCommaInArrayLiteral:
   Enabled: false

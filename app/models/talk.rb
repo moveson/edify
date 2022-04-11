@@ -10,12 +10,12 @@ class Talk < ApplicationRecord
     "Stake Representative",
     "Ward Conference",
     "Youth Speaker",
-  ]
+  ].freeze
 
   belongs_to :meeting
   belongs_to :member, optional: true
 
-  validates_presence_of :meeting, :speaker_name
+  validates :speaker_name, presence: true
 
   strip_attributes
 
@@ -30,7 +30,7 @@ class Talk < ApplicationRecord
   end
 
   def topic_truncated
-    return unless topic.present?
+    return if topic.blank?
     return topic if topic.length <= 50
 
     "#{topic.first(50)}..."

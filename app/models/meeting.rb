@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Meeting < ApplicationRecord
-  has_many :talks
+  has_many :talks, dependent: nil
   belongs_to :unit
   belongs_to :scheduler, class_name: "User", optional: true
 
@@ -17,8 +17,8 @@ class Meeting < ApplicationRecord
     musical_testimony: 6,
   }
 
-  validates_presence_of :meeting_type, :date
-  validates_uniqueness_of :date, scope: :unit
+  validates :meeting_type, :date, presence: true
+  validates :date, uniqueness: { scope: :unit }
 
   scope :future, -> { occurring_after(Date.current) }
   scope :most_recent_first, -> { order(date: :desc) }
@@ -34,9 +34,7 @@ class Meeting < ApplicationRecord
 
   def status
     case meeting_type.to_sym
-    when :sacrament_meeting
-      sacrament_status
-    when :ward_conference
+    when :sacrament_meeting || :ward_conference
       sacrament_status
     else
       :ok
@@ -44,10 +42,9 @@ class Meeting < ApplicationRecord
   end
 
   def sacrament_status
-    case
-    when talk_count == 0
+    if talk_count.zero?
       :empty
-    when talk_count < 3
+    elsif talk_count < 3
       :incomplete
     else
       :ok
