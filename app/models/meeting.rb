@@ -5,6 +5,8 @@ class Meeting < ApplicationRecord
   belongs_to :unit
   belongs_to :scheduler, class_name: "User", optional: true
 
+  has_noticed_notifications
+
   enum meeting_type: {
     sacrament_meeting: 0,
     testimony_meeting: 1,
