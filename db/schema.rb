@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_09_095928) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_11_060158) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -69,6 +69,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_09_095928) do
     t.datetime "updated_at", null: false
     t.bigint "unit_id"
     t.bigint "scheduler_id"
+    t.index ["date", "unit_id"], name: "index_meetings_on_date_and_unit_id", unique: true
     t.index ["scheduler_id"], name: "index_meetings_on_scheduler_id"
     t.index ["unit_id"], name: "index_meetings_on_unit_id"
   end
@@ -83,6 +84,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_09_095928) do
     t.datetime "updated_at", null: false
     t.datetime "synced_at"
     t.bigint "unit_id"
+    t.index ["name", "birthdate"], name: "index_members_on_name_and_birthdate", unique: true
     t.index ["unit_id"], name: "index_members_on_unit_id"
   end
 
