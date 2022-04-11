@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Meeting < ApplicationRecord
-  has_many :talks
+  has_many :talks, dependent: nil
   belongs_to :unit
   belongs_to :scheduler, class_name: "User", optional: true
 
@@ -34,9 +34,7 @@ class Meeting < ApplicationRecord
 
   def status
     case meeting_type.to_sym
-    when :sacrament_meeting
-      sacrament_status
-    when :ward_conference
+    when :sacrament_meeting || :ward_conference
       sacrament_status
     else
       :ok

@@ -14,16 +14,26 @@ AllCops:
   TargetRubyVersion: 3.1
   SuggestExtensions: false
 
-  DisabledByDefault: false
+Metrics:
+  Enabled: false
 
-Metrics/BlockLength:
-  Exclude:
-    - "config/**/*"
+#Metrics/BlockLength:
+#  Exclude:
+#    - "config/**/*"
+#
+#Metrics/MethodLength:
+#  Max: 20
 
 Naming/VariableNumber:
   EnforcedStyle: snake_case
 
 Rails/Delegate:
+  Enabled: false
+
+Rails/InverseOf:
+  Enabled: false
+
+Rails/SkipsModelValidations:
   Enabled: false
 
 RSpec/BeEq:

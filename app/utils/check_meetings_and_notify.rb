@@ -7,7 +7,7 @@ class CheckMeetingsAndNotify
 
   def initialize(unit)
     @unit = unit
-    @today = Date.today
+    @today = Date.current
   end
 
   def perform!
