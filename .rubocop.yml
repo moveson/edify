@@ -29,6 +29,9 @@ Rails/Delegate:
 RSpec/BeEq:
   Enabled: false
 
+RSpec/EmptyLineAfterFinalLet:
+  Enabled: false
+
 Style/Documentation:
   Enabled: false
 

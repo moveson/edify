@@ -3,7 +3,7 @@
 class Note < ::ApplicationRecord
   belongs_to :member
 
-  validates :member_id, :date, :content, presence: true
+  validates :date, :content, presence: true
 
   scope :most_recent_first, -> { order(date: :desc) }
 end

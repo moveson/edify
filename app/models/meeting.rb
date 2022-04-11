@@ -44,7 +44,7 @@ class Meeting < ApplicationRecord
   end
 
   def sacrament_status
-    if talk_count == 0
+    if talk_count.zero?
       :empty
     elsif talk_count < 3
       :incomplete
