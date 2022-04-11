@@ -35,9 +35,10 @@ jobs:
       - name: Run linters
         run: |
           bin/rubocop --parallel
-      - name: Run security checks
+      - name: Run brakeman
         run: |
           bin/brakeman -q -w2
+          bin/bundle-audit check --update
 
   tests:
     name: Tests
