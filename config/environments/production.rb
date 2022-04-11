@@ -54,18 +54,18 @@ Rails.application.configure do
   config.log_level = :info
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
-  config.active_job.queue_adapter     = :sidekiq
+  config.active_job.queue_adapter = :sidekiq
   # config.active_job.queue_name_prefix = "edify_production"
 
   config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = {host: ::EdifyConfig.app_url, protocol: "http"}
+  config.action_mailer.default_url_options = { host: ::EdifyConfig.app_url, protocol: "http" }
 
   config.action_mailer.smtp_settings = {
     address: "smtp.sendgrid.net",

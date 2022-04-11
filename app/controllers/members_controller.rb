@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
 class MembersController < ApplicationController
-  include Pundit
-
   skip_before_action :verify_authenticity_token, only: :upsert
   before_action :authenticate_user!
   before_action :authorize_user
-  before_action :set_member, only: %i[ show edit update destroy ]
+  before_action :set_member, only: %i[show edit update destroy]
   after_action :verify_authorized
 
   # GET /members
@@ -83,7 +81,8 @@ class MembersController < ApplicationController
   # POST /members/upsert
   # This is an upsert using name and birthdate as a composite unique key
   def upsert
-    @member = current_unit.members.find_or_initialize_by(name: member_params[:name], birthdate: member_params[:birthdate])
+    @member = current_unit.members.find_or_initialize_by(name: member_params[:name],
+                                                         birthdate: member_params[:birthdate])
     existing_member = @member.persisted?
     @member.assign_attributes(member_params)
 

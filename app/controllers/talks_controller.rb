@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class TalksController < ApplicationController
-  include Pundit
-
   skip_before_action :verify_authenticity_token, only: :upsert
   before_action :authenticate_user!
   before_action :authorize_user
@@ -41,7 +39,8 @@ class TalksController < ApplicationController
         end
 
         format.turbo_stream do
-          render turbo_stream: turbo_stream.replace("meeting_#{@meeting.id}", partial: "meetings/meeting", locals: { meeting: @meeting })
+          render turbo_stream: turbo_stream.replace("meeting_#{@meeting.id}", partial: "meetings/meeting",
+                                                                              locals: { meeting: @meeting })
         end
       end
     else
@@ -58,7 +57,8 @@ class TalksController < ApplicationController
         end
 
         format.turbo_stream do
-          render turbo_stream: turbo_stream.replace("meeting_#{@meeting.id}", partial: "meetings/meeting", locals: { meeting: @meeting })
+          render turbo_stream: turbo_stream.replace("meeting_#{@meeting.id}", partial: "meetings/meeting",
+                                                                              locals: { meeting: @meeting })
         end
       end
     else

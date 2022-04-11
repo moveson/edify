@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class TurboFailureApp < Devise::FailureApp
   def respond
     if request_format == :turbo_stream
@@ -22,7 +23,9 @@ end
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
-  config.navigational_formats = ['/', :html, :turbo_stream]  # The secret key used by Devise. Devise uses this key to generate
+  config.navigational_formats = ["/", :html, :turbo_stream]
+
+  # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
@@ -49,7 +52,7 @@ Devise.setup do |config|
   # Load and configure the ORM. Supports :active_record (default) and
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
-  require 'devise/orm/active_record'
+  require "devise/orm/active_record"
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
@@ -139,7 +142,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '2b9991147e7ed0b2c687b50c7c66ba22c1ec61d64285a14aa8558e5052ab51b3a0a599019611689bd27369f2560f61f1de701ea2b7dea919566a6cc7e75291d8'
+  # config.pepper = '2b9991147e7ed0b2c687b50c7c66ba22c9019611689bd27369f2560f61f1de701ea2b7dea919566a6cc7e75291d8'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false

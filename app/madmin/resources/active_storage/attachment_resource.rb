@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ActiveStorage::AttachmentResource < Madmin::Resource
   # Attributes
   attribute :id, form: false

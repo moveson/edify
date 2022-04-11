@@ -1,10 +1,14 @@
+# frozen_string_literal: true
+
 module AnnouncementsHelper
   def unread_announcements(user)
     last_announcement = Announcement.order(published_at: :desc).first
     return if last_announcement.nil?
 
     # Highlight announcements for anyone not logged in, cuz tempting
-    if user.nil? || user.announcements_last_read_at.nil? || user.announcements_last_read_at < last_announcement.published_at
+    if user.nil? ||
+       user.announcements_last_read_at.nil? ||
+       user.announcements_last_read_at < last_announcement.published_at
       "unread-announcements"
     end
   end

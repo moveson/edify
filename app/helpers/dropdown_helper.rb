@@ -90,7 +90,9 @@ module DropdownHelper
     adult_filter = { birthdate_gteq: nil, birthdate_lt: adult_threshold }
     youth_filter = { birthdate_gteq: adult_threshold, birthdate_lt: nil }
 
-    existing_age_filter = [:birthdate_gteq, :birthdate_lt].map { |attr| [attr, request_params.dig(:q, attr).presence] }.to_h
+    existing_age_filter = [:birthdate_gteq, :birthdate_lt].map do |attr|
+      [attr, request_params.dig(:q, attr).presence]
+    end.to_h
 
     title = case existing_age_filter
             when all_ages_filter
