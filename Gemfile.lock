@@ -76,6 +76,9 @@ GEM
       msgpack (~> 1.2)
     brakeman (5.2.2)
     builder (3.2.4)
+    bundler-audit (0.9.0.1)
+      bundler (>= 1.2.0, < 3)
+      thor (~> 1.0)
     capybara (3.36.0)
       addressable
       matrix
@@ -169,7 +172,7 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.2)
     minitest (5.15.0)
-    msgpack (1.4.5)
+    msgpack (1.5.1)
     name_of_person (1.1.1)
       activesupport (>= 5.2.0)
     net-imap (0.2.3)
@@ -187,11 +190,11 @@ GEM
       net-protocol
       timeout
     nio4r (2.5.8)
-    nokogiri (1.13.3-arm64-darwin)
+    nokogiri (1.13.4-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.13.3-x86_64-darwin)
+    nokogiri (1.13.4-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.13.3-x86_64-linux)
+    nokogiri (1.13.4-x86_64-linux)
       racc (~> 1.4)
     noticed (1.5.9)
       http (>= 4.0.0)
@@ -244,12 +247,12 @@ GEM
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
     rake (13.0.6)
-    ransack (3.0.0)
+    ransack (3.0.1)
       activerecord (>= 6.0.4)
       activesupport (>= 6.0.4)
       i18n
     redis (4.6.0)
-    regexp_parser (2.2.1)
+    regexp_parser (2.3.0)
     reline (0.3.1)
       io-console (~> 0.5)
     responders (3.0.1)
@@ -370,6 +373,7 @@ DEPENDENCIES
   american_date
   bootsnap
   brakeman
+  bundler-audit
   capybara
   cssbundling-rails
   debug
