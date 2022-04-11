@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AnnouncementsHelper
   def unread_announcements(user)
     last_announcement = Announcement.order(published_at: :desc).first

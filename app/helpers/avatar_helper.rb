@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AvatarHelper
   def avatar_path(object, options = {})
     size = options[:size] || 180

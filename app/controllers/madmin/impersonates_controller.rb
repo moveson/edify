@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Madmin::ImpersonatesController < Madmin::ApplicationController
   impersonates :user
 
