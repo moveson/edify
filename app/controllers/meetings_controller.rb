@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class MeetingsController < ApplicationController
-  include Pundit
-
   skip_before_action :verify_authenticity_token, only: :upsert
   before_action :authenticate_user!
   before_action :authorize_user
