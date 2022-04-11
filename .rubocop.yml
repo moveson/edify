@@ -14,16 +14,26 @@ AllCops:
   TargetRubyVersion: 3.1
   SuggestExtensions: false
 
-  DisabledByDefault: true
+  DisabledByDefault: false
+
+Metrics/BlockLength:
+  Exclude:
+    - "config/**/*"
 
 Naming/VariableNumber:
   EnforcedStyle: snake_case
+
+Rails/Delegate:
+  Enabled: false
 
 RSpec/BeEq:
   Enabled: false
 
 Style/Documentation:
   Enabled: false
+
+Style/EmptyMethod:
+  EnforcedStyle: expanded
 
 Style/FrozenStringLiteralComment:
   Exclude:
@@ -35,6 +45,12 @@ Style/HashSyntax:
 Style/StringLiterals:
   Enabled: true
   EnforcedStyle: double_quotes
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/TrailingCommaInArguments:
+  Enabled: false
 
 Style/TrailingCommaInArrayLiteral:
   Enabled: false

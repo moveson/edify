@@ -5,25 +5,25 @@ class Member < ApplicationRecord
   has_many :notes, dependent: :destroy
   belongs_to :unit
 
-  enum gender: [:male, :female]
+  enum gender: { male: 0, female: 1 }
 
-  validates_presence_of :name, :gender, :birthdate
-  validates_uniqueness_of :name, scope: :birthdate
+  validates :name, :gender, :birthdate, presence: true
+  validates :name, uniqueness: { scope: :birthdate }
   validate :validate_age
 
   strip_attributes
 
   scope :alphabetized, -> { order(:name) }
-  scope :with_last_talk_date, -> do
+  scope :with_last_talk_date, lambda {
     from(left_joins(talks: :meeting)
            .select("distinct on (members.id) members.*, meetings.date as last_talk_date")
            .order("members.id, meetings.date desc"), :members)
-  end
+  }
 
   after_save_commit :match_talks
 
   def self.ransackable_attributes(auth_object = nil)
-    super | %w(last_talk_date)
+    super | %w[last_talk_date]
   end
 
   def age

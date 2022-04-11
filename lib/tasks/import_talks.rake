@@ -18,21 +18,21 @@ namespace :temp do
       meeting = current_unit.meetings.find_or_initialize_by(date: row_hash.delete(:date))
       talk = meeting.talks.new(row_hash)
 
-      if talk.speaker_name.include?("General") && talk.speaker_name.include?("Conference")
-        meeting.meeting_type = :general_conference
-      elsif talk.speaker_name.include?("Stake") && talk.speaker_name.include?("Conference")
-        meeting.meeting_type = :stake_conference
-      elsif talk.speaker_name.include?("Ward") && talk.speaker_name.include?("Conference")
-        meeting.meeting_type = :ward_conference
-      elsif talk.speaker_name.include?("Fast")
-        meeting.meeting_type = :testimony_meeting
-      elsif talk.speaker_name.include?("Primary")
-        meeting.meeting_type = :primary_program
-      elsif talk.speaker_name.include?("Music")
-        meeting.meeting_type = :musical_testimony
-      else
-        meeting.meeting_type = :sacrament_meeting
-      end
+      meeting.meeting_type = if talk.speaker_name.include?("General") && talk.speaker_name.include?("Conference")
+                               :general_conference
+                             elsif talk.speaker_name.include?("Stake") && talk.speaker_name.include?("Conference")
+                               :stake_conference
+                             elsif talk.speaker_name.include?("Ward") && talk.speaker_name.include?("Conference")
+                               :ward_conference
+                             elsif talk.speaker_name.include?("Fast")
+                               :testimony_meeting
+                             elsif talk.speaker_name.include?("Primary")
+                               :primary_program
+                             elsif talk.speaker_name.include?("Music")
+                               :musical_testimony
+                             else
+                               :sacrament_meeting
+                             end
 
       meeting.save!
 

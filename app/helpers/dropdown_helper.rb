@@ -41,7 +41,7 @@ module DropdownHelper
     dropdown_items = [
       { name: "Show all",
         link: request_params.deep_merge(q: { meeting_type_eq: nil }),
-        active: existing_meeting_type_filter == nil },
+        active: existing_meeting_type_filter.nil? },
     ]
 
     Meeting.meeting_types.each do |name, value|
@@ -72,7 +72,7 @@ module DropdownHelper
     dropdown_items = [
       { name: "Combined",
         link: request_params.deep_merge(q: { gender_eq: nil }),
-        active: existing_gender_filter == nil },
+        active: existing_gender_filter.nil? },
       { name: "Male",
         link: request_params.deep_merge(q: { gender_eq: "0" }),
         active: existing_gender_filter == "0" },
@@ -90,9 +90,9 @@ module DropdownHelper
     adult_filter = { birthdate_gteq: nil, birthdate_lt: adult_threshold }
     youth_filter = { birthdate_gteq: adult_threshold, birthdate_lt: nil }
 
-    existing_age_filter = [:birthdate_gteq, :birthdate_lt].map do |attr|
-      [attr, request_params.dig(:q, attr).presence]
-    end.to_h
+    existing_age_filter = [:birthdate_gteq, :birthdate_lt].index_with do |attr|
+      request_params.dig(:q, attr).presence
+    end
 
     title = case existing_age_filter
             when all_ages_filter
@@ -137,7 +137,7 @@ module DropdownHelper
     dropdown_items = [
       { name: "All",
         link: request_params.deep_merge(q: { member_id_null: nil }),
-        active: existing_matched_filter == nil },
+        active: existing_matched_filter.nil? },
       { name: "Matched",
         link: request_params.deep_merge(q: { member_id_null: false }),
         active: existing_matched_filter == "false" },

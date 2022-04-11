@@ -15,7 +15,7 @@ class Talk < ApplicationRecord
   belongs_to :meeting
   belongs_to :member, optional: true
 
-  validates_presence_of :meeting, :speaker_name
+  validates :meeting, :speaker_name, presence: true
 
   strip_attributes
 

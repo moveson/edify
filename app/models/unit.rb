@@ -18,9 +18,7 @@ class Unit < ApplicationRecord
     future_meeting_dates = meetings.future.order(:date).pluck(:date).select(&:sunday?).to_set
 
     proposed_date = Date.current.next_occurring(:sunday)
-    while proposed_date.in?(future_meeting_dates) do
-      proposed_date += 7.days
-    end
+    proposed_date += 7.days while proposed_date.in?(future_meeting_dates)
 
     proposed_date
   end

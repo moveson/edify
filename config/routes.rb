@@ -3,7 +3,7 @@ require "sidekiq/cron/web"
 
 Rails.application.routes.draw do
   draw :madmin
-  authenticate :user, lambda { |u| u.admin? } do
+  authenticate :user, ->(u) { u.admin? } do
     mount Sidekiq::Web => "/sidekiq"
 
     namespace :madmin do

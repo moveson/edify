@@ -17,8 +17,8 @@ class Meeting < ApplicationRecord
     musical_testimony: 6,
   }
 
-  validates_presence_of :meeting_type, :date
-  validates_uniqueness_of :date, scope: :unit
+  validates :meeting_type, :date, presence: true
+  validates :date, uniqueness: { scope: :unit }
 
   scope :future, -> { occurring_after(Date.current) }
   scope :most_recent_first, -> { order(date: :desc) }
@@ -44,10 +44,9 @@ class Meeting < ApplicationRecord
   end
 
   def sacrament_status
-    case
-    when talk_count == 0
+    if talk_count == 0
       :empty
-    when talk_count < 3
+    elsif talk_count < 3
       :incomplete
     else
       :ok

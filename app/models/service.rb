@@ -29,5 +29,6 @@ class Service < ApplicationRecord
     end
   end
 
-  def twitter_refresh_token!(token); end
+  def twitter_refresh_token!(token)
+  end
 end
