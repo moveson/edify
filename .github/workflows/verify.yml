@@ -47,7 +47,7 @@ jobs:
       postgres:
         image: postgres:latest
         env:
-          POSTGRES_USER: postgres
+          POSTGRES_USER: edify_test
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: edify_test
         ports: [ "5432:5432" ]
@@ -86,7 +86,7 @@ jobs:
 
       - name: Setup test database
         env:
-          POSTGRES_USER: postgres
+          POSTGRES_USER: edify_test
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: edify_test
           POSTGRES_PORT: 5432
