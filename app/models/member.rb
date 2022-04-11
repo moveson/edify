@@ -15,7 +15,9 @@ class Member < ApplicationRecord
 
   scope :alphabetized, -> { order(:name) }
   scope :with_last_talk_date, -> do
-    from(left_joins(talks: :meeting).select("distinct on (members.id) members.*, meetings.date as last_talk_date").order("members.id, meetings.date desc"), :members)
+    from(left_joins(talks: :meeting)
+           .select("distinct on (members.id) members.*, meetings.date as last_talk_date")
+           .order("members.id, meetings.date desc"), :members)
   end
 
   after_save_commit :match_talks
