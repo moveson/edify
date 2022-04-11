@@ -4,7 +4,7 @@ class MeetingsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :upsert
   before_action :authenticate_user!
   before_action :authorize_user
-  before_action :set_meeting, only: %i[ show edit update destroy ]
+  before_action :set_meeting, only: %i[show edit update destroy]
   after_action :verify_authorized
 
   # GET /meetings
@@ -53,7 +53,8 @@ class MeetingsController < ApplicationController
         end
 
         format.turbo_stream do
-          render turbo_stream: turbo_stream.replace(@meeting, partial: "meetings/meeting", locals: { meeting: @meeting })
+          render turbo_stream: turbo_stream.replace(@meeting, partial: "meetings/meeting",
+                                                              locals: { meeting: @meeting })
         end
       end
     else
