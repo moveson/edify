@@ -24,11 +24,8 @@
       </ul>
 
       <ul class="navbar-nav">
-        <% if current_user&.admin? %>
-          <li class="nav-item"><%= link_to "What's New", announcements_path, class: "nav-link #{unread_announcements(current_user)}" %></li>
-        <% end %>
         <% if user_signed_in? %>
-
+          <li class="nav-item"><%= link_to "What's New", announcements_path, class: "nav-link #{unread_announcements(current_user)}" %></li>
           <li class="nav-item">
             <%= link_to notifications_path, class: "nav-link #{unread_notifications(current_user)}" do %>
               <span><i class="far fa-bell" aria-hidden="true"></i></span>
@@ -41,9 +38,11 @@
             <% end %>
             <div id="nav-account-dropdown" class="dropdown-menu dropdown-menu-end" aria-labelledby="navbar-dropdown">
               <%= link_to "Settings", edit_user_registration_path, class: "dropdown-item" %>
+              <%= link_to "All Users", users_path, class: "dropdown-item" %>
               <% if current_user.admin? && respond_to?(:madmin_root_path) %>
                 <div class="dropdown-divider"></div>
                 <%= link_to "Admin Area", madmin_root_path, class: "dropdown-item" %>
+                <%= link_to "Sidekiq Web", sidekiq_web_path, target: "_blank", class: "dropdown-item" %>
               <% end %>
               <div class="dropdown-divider"></div>
               <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item" %>

@@ -1,0 +1,20 @@
+<div class="page-header">
+  <%= link_to access_requests_path, class: 'btn btn-default' do %>
+    All Access_requests
+  <% end %>
+  <%= link_to edit_access_request_path(@access_request), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show access_request</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>User:</dt>
+  <dd><%= @access_request.user %></dd>
+  <dt>Unit:</dt>
+  <dd><%= @access_request.unit %></dd>
+  <dt>Approved by:</dt>
+  <dd><%= @access_request.approved_by %></dd>
+  <dt>Approved at:</dt>
+  <dd><%= @access_request.approved_at %></dd>
+</dl>

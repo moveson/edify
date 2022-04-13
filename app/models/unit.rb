@@ -1,10 +1,14 @@
 # frozen_string_literal: true
 
 class Unit < ApplicationRecord
+  has_many :access_requests, dependent: nil
   has_many :meetings, dependent: nil
   has_many :members, dependent: nil
   has_many :users, dependent: nil
   has_many :talks, through: :meetings
+
+  validates :name, presence: true
+  validates :name, length: { minimum: 4 }, if: :name?
 
   def meeting_count
     meetings.count

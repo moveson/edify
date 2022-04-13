@@ -1,0 +1,26 @@
+<%= turbo_frame_tag dom_id(access_request) do %>
+  <div class="d-flex justify-content-center">
+    <div class="card bg-light mt-2 w-100" style="max-width: 700px;">
+      <div class="card-header">
+        <div class="row pt-2">
+          <div class="col">
+            <h5 class="font-weight-bold"><%= access_request.user.name %></h5>
+          </div>
+          <div class="col-5 col-md-2 text-end">
+            <%= link_to_access_request_approve(access_request) %>
+            <%= link_to_access_request_reject(access_request) %>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
+            <h6><%= "Email: #{access_request.user.email}" %></h6>
+            <h6><%= "Requested at: #{l(access_request.created_at, format: :long)}" %></h6>
+            <h6><%= "Status: #{access_request.status.to_s.titleize}" %></h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -4,6 +4,24 @@
       <h2 class="mt-md-4 mt-2 text-center"><strong><%= current_user.unit_name %></strong></h2>
     </div>
   </div>
+<% elsif user_needs_onboarding? %>
+  <div class="row">
+    <h5 class="mt-md-4 mt-2 text-center">
+      <strong>Looks like you aren't yet assigned to a Ward unit. Let's take care of that now.</strong>
+    </h5>
+  </div>
+  <br/>
+  <div class="text-center">
+    <%= link_to "Assign my Ward Unit", onboard_path, class: "btn btn-lg btn-primary" %>
+  </div>
+  <br/>
+<% elsif user_signed_in? %>
+  <div class="row">
+    <h5 class="mt-md-4 mt-2 text-center">
+      <strong><%= t("views.home.index.access_pending", unit_name: current_user.pending_unit.name) %></strong>
+    </h5>
+  </div>
+  <br/>
 <% end %>
 <hr class="hr-text">
 <p class="blockquote text-center">

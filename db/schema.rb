@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_11_060158) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_13_103648) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "access_requests", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "unit_id", null: false
+    t.integer "rejected_by"
+    t.datetime "rejected_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["unit_id", "user_id"], name: "index_access_requests_on_unit_id_and_user_id", unique: true
+    t.index ["unit_id"], name: "index_access_requests_on_unit_id"
+    t.index ["user_id"], name: "index_access_requests_on_user_id"
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -158,11 +170,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_11_060158) do
     t.datetime "confirmation_sent_at"
     t.bigint "unit_id"
     t.string "phone"
+    t.datetime "approved_at"
+    t.integer "approved_by"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unit_id"], name: "index_users_on_unit_id"
   end
 
+  add_foreign_key "access_requests", "units"
+  add_foreign_key "access_requests", "users"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "meetings", "units"

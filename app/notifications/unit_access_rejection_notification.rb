@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-class IncompleteMeetingNotification < Noticed::Base
+class UnitAccessRejectionNotification < Noticed::Base
   deliver_by :database
   deliver_by :email, mailer: "UserMailer", format: :format_for_email
   deliver_by :twilio, format: :format_for_twilio
 
-  param :meeting
+  param :user
 
   def format_for_email
     {
@@ -24,24 +24,14 @@ class IncompleteMeetingNotification < Noticed::Base
   end
 
   def message
-    t(".message", meeting_type: meeting.meeting_type.titleize, date: date, count: meeting.talks.size)
+    t(".message", user_name: params[:user].name)
   end
 
   def subject
-    t(".subject", date: date)
+    t(".subject")
   end
 
   def url
-    meeting_url(meeting)
-  end
-
-  private
-
-  def meeting
-    params[:meeting]
-  end
-
-  def date
-    ::I18n.localize(meeting.date, format: :month_and_day)
+    users_url
   end
 end

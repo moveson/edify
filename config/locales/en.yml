@@ -1,5 +1,16 @@
 en:
   controllers:
+    access_request_controller:
+      approve_failure: "Access request could not be approved. Something went wrong."
+      approve_success: "Access request was approved."
+      destroy_success: "Access request was destroyed."
+      email_not_found: "We could not find %{email} in the roster of %{unit_name}. Your Edify user email must be the same email that is on file with your member record in Edify."
+      reject_failure: "Access request could not be rejected. Something went wrong."
+      reject_success: "Access request was rejected."
+      request_sent: "Your request will be delivered to existing users of the %{unit_name}."
+      unit_not_found: "We could not find a ward by the name %{unit_name}. Please try again or go back to create a new ward."
+    application_controller:
+      not_authorized: "Not authorized."
     madmin:
       application_controller:
         not_authorized: "Not authorized."
@@ -19,6 +30,8 @@ en:
       created: "Talk was successfully created."
       updated: "Talk was successfully updated."
       destroyed: "Talk was successfully destroyed."
+    units_controller:
+      updated: "Unit was successfully updated."
   notifications:
     incomplete_meeting_notification:
       message:
@@ -32,11 +45,24 @@ en:
         other: "Edify did not find meetings scheduled for %{date_string}. Please schedule those meetings when you have a moment."
       subject: "Missing meetings in Edify"
     new_user_notification:
-      message: "Hello, and thanks for joining Edify. Before continuing, we will need to assign you to a Ward unit. We are working to automate that procedure, but for now it will need to be done manually. An administrator will get in touch with you very soon!"
+      message: "Hello, and thanks for joining Edify. Before continuing, you will need to create a Ward unit or request access to an existing one. Edify will walk you through the process."
       subject: "Welcome to Edify!"
     new_user_admin_notification:
       message: "A new user has signed up for Edify."
       subject: "New user for Edify"
+    unit_access_approval_notification:
+      message: "%{user_name} was approved for access to your ward in Edify."
+      subject: "Access approval for your ward in Edify"
+    unit_access_rejection_notification:
+      message: "%{user_name} was rejected for access to your ward in Edify. Click the link for more information."
+      subject: "Access rejection for your ward in Edify"
+    unit_access_request_notification:
+      message: "%{user_name} has requested access to your ward in Edify. Click the link to approve or reject this request."
+      subject: "Request for access to your ward in Edify"
+  views:
+    home:
+      index:
+        access_pending: "Your request for access to %{unit_name} is pending. You will receive a notification when access is approved."
   date:
     formats:
       rfc822: "%d %b %Y"

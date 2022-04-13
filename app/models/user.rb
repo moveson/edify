@@ -16,6 +16,7 @@ class User < ApplicationRecord
   has_many :scheduled_meetings, class_name: "Meeting", foreign_key: :scheduler_id, dependent: :nullify
   has_many :notifications, as: :recipient, dependent: :destroy
   has_many :services, dependent: nil
+  has_one :access_request, dependent: :destroy
   belongs_to :unit, optional: true
 
   after_commit :send_welcome_notifications
@@ -30,8 +31,16 @@ class User < ApplicationRecord
     unit_id?
   end
 
+  def needs_onboarding?
+    unit_id.nil? && access_request.nil?
+  end
+
+  def pending_unit
+    access_request&.unit
+  end
+
   def unit_name
-    unit.name
+    unit&.name
   end
 
   private

@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-md">
+    <h2 class="mt-md-4 mt-2"><strong>Users</strong></h2>
+  </div>
+</div>
+
+<hr/>
+<br/>
+
+<article>
+  <div id="users">
+    <%= render partial: "user", collection: @users %>
+  </div>
+</article>
+
+<% if @access_requests.exists? %>
+  <div class="row">
+    <div class="col-md">
+      <h2 class="mt-md-4 mt-2"><strong>Access Requests</strong></h2>
+    </div>
+  </div>
+
+  <hr/>
+  <br/>
+
+  <article>
+    <div id="access_requests">
+      <%= render partial: "access_requests/access_request", collection: @access_requests %>
+    </div>
+  </article>
+<% end %>

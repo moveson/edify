@@ -8,14 +8,21 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :turbo_frame_request_variant
 
   helper_method :current_unit
   helper_method :user_assigned_to_unit?
+  helper_method :user_needs_onboarding?
 
   def current_unit
     @current_unit ||= current_user&.unit
+  end
+
+  def user_needs_onboarding?
+    @user_needs_onboarding ||= current_user.present? && current_user.needs_onboarding?
   end
 
   def user_assigned_to_unit?
@@ -37,5 +44,10 @@ class ApplicationController < ActionController::Base
 
   def turbo_frame_request_variant
     request.variant = :turbo_frame if turbo_frame_request?
+  end
+
+  def user_not_authorized
+    flash[:alert] = t("controllers.application_controller.not_authorized")
+    redirect_back(fallback_location: root_path)
   end
 end
