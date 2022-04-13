@@ -1,5 +1,7 @@
 en:
   controllers:
+    application_controller:
+      not_authorized: "Not authorized."
     madmin:
       application_controller:
         not_authorized: "Not authorized."

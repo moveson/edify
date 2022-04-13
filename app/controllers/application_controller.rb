@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :turbo_frame_request_variant
 
@@ -37,5 +39,10 @@ class ApplicationController < ActionController::Base
 
   def turbo_frame_request_variant
     request.variant = :turbo_frame if turbo_frame_request?
+  end
+
+  def user_not_authorized
+    flash[:alert] = t("controllers.application_controller.not_authorized")
+    redirect_back(fallback_location: root_path)
   end
 end
