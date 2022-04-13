@@ -26,9 +26,7 @@ module DropdownHelper
           end
         end
       }
-      if label
-        concat content_tag(:span, label_tag(label), style: "position: absolute; top: -1.5em;")
-      end
+      concat content_tag(:span, label_tag(label), style: "position: absolute; top: -1.5em;") if label.present?
     end
   end
 
