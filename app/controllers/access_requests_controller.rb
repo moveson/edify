@@ -7,14 +7,6 @@ class AccessRequestsController < ApplicationController
   before_action :authorize_action, except: %i[update approve reject destroy]
   after_action :verify_authorized
 
-  # GET /access_requests
-  def index
-    @access_requests = current_unit.access_requests
-    @q = current_unit.access_requests.ransack(params[:q])
-    @q.sorts = ["date desc"] if @q.sorts.empty?
-    @pagy, @access_requests = pagy(@q.result)
-  end
-
   # GET /access_requests/new
   def new
     @access_request = ::AccessRequest.new
@@ -48,7 +40,7 @@ class AccessRequestsController < ApplicationController
     user = @access_request.user
 
     if user.update(user_params)
-      @access_request.destroy
+      ::UnitAccessApprovalJob.perform_later(unit: @access_request.unit, user: @access_request.user)
       redirect_to access_requests_path, notice: "Access request was approved."
     else
       redirect_to access_requests_path,
@@ -62,6 +54,7 @@ class AccessRequestsController < ApplicationController
     params = { rejected_at: Time.current, rejected_by: current_user.id }
 
     if @access_request.update(params)
+      ::UnitAccessRejectionJob.perform_later(unit: @access_request.unit, user: @access_request.user)
       redirect_to access_requests_path, notice: "Access request was rejected."
     else
       redirect_to access_requests_path,

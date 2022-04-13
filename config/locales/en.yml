@@ -45,6 +45,12 @@ en:
     new_user_admin_notification:
       message: "A new user has signed up for Edify."
       subject: "New user for Edify"
+    unit_access_approval_notification:
+      message: "%{user_name} was approved for access to your ward in Edify."
+      subject: "Access approval for your ward in Edify"
+    unit_access_rejection_notification:
+      message: "%{user_name} was rejected for access to your ward in Edify. Click the link for more information."
+      subject: "Access rejection for your ward in Edify"
     unit_access_request_notification:
       message: "%{user_name} has requested access to your ward in Edify. Click the link to approve or reject this request."
       subject: "Request for access to your ward in Edify"

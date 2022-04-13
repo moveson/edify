@@ -1,0 +1,21 @@
+<%= turbo_frame_tag dom_id(user) do %>
+  <div class="d-flex justify-content-center">
+    <div class="card bg-light mt-2 w-100" style="max-width: 700px;">
+      <div class="card-header">
+        <div class="row pt-2">
+          <div class="col">
+            <h5 class="font-weight-bold"><%= user.name %></h5>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
+            <h6><%= "Email: #{user.email}" %></h6>
+            <h6><%= "User since: #{l(user.created_at, format: :long)}" %></h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

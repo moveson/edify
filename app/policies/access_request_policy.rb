@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 class AccessRequestPolicy < ApplicationPolicy
-  def index?
-    user.present?
-  end
-
   def new?
     user.needs_onboarding?
   end

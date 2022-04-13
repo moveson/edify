@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class UnitAccessRequestNotification < Noticed::Base
+class UnitAccessApprovalNotification < Noticed::Base
   deliver_by :database
   deliver_by :email, mailer: "UserMailer", format: :format_for_email
   deliver_by :twilio, format: :format_for_twilio

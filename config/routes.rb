@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :access_requests, only: [:index, :new, :create, :destroy] do
+  resources :access_requests, only: [:new, :create, :destroy] do
     put :approve, on: :member
     put :reject, on: :member
   end
@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   resources :notifications, only: [:index]
   resources :talks, only: [:index]
   resources :units, only: [:new, :edit, :create, :update]
+  resources :users, only: [:index]
 
   devise_for :users, controllers: { sessions: "users/sessions" }
   root to: "home#index"
