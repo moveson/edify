@@ -4,6 +4,8 @@ module DropdownHelper
   def build_dropdown_menu(title, items, options = {})
     container_tag = :div
     container_class = "btn-group"
+    label = options.delete(:label)
+
     content_tag container_tag, class: [container_class, options[:class]].join(" ") do
       toggle_tag = :button
       toggle_class = "btn btn-outline-secondary dropdown-toggle"
@@ -24,14 +26,17 @@ module DropdownHelper
           end
         end
       }
+      if label
+        concat content_tag(:span, label_tag(label), style: "position: absolute; top: -1.5em;")
+      end
     end
   end
 
-  def filter_meetings_type_dropdown(request_params)
+  def filter_meetings_type_dropdown(request_params, options = {})
     existing_meeting_type_filter = request_params.dig(:q, :meeting_type_eq).presence&.to_i
 
     title = if existing_meeting_type_filter.nil?
-              "All"
+              "Show All"
             elsif existing_meeting_type_filter.in?(Meeting.meeting_types.values)
               Meeting.meeting_types.invert[existing_meeting_type_filter].humanize
             else
@@ -52,10 +57,10 @@ module DropdownHelper
       }
     end
 
-    build_dropdown_menu(title, dropdown_items)
+    build_dropdown_menu(title, dropdown_items, options)
   end
 
-  def filter_members_gender_dropdown(request_params)
+  def filter_members_gender_dropdown(request_params, options = {})
     existing_gender_filter = request_params.dig(:q, :gender_eq).presence
 
     title = case existing_gender_filter
@@ -81,10 +86,10 @@ module DropdownHelper
         active: existing_gender_filter == "1" },
     ]
 
-    build_dropdown_menu(title, dropdown_items)
+    build_dropdown_menu(title, dropdown_items, options)
   end
 
-  def filter_members_age_dropdown(request_params)
+  def filter_members_age_dropdown(request_params, options = {})
     adult_threshold = 18.years.ago.beginning_of_year.to_date.to_s
     all_ages_filter = { birthdate_gteq: nil, birthdate_lt: nil }
     adult_filter = { birthdate_gteq: nil, birthdate_lt: adult_threshold }
@@ -117,10 +122,10 @@ module DropdownHelper
         active: existing_age_filter == youth_filter },
     ]
 
-    build_dropdown_menu(title, dropdown_items)
+    build_dropdown_menu(title, dropdown_items, options)
   end
 
-  def filter_talks_matched_dropdown(request_params)
+  def filter_talks_matched_dropdown(request_params, options = {})
     existing_matched_filter = request_params.dig(:q, :member_id_null).presence
 
     title = case existing_matched_filter
@@ -146,10 +151,10 @@ module DropdownHelper
         active: existing_matched_filter == "true" },
     ]
 
-    build_dropdown_menu(title, dropdown_items)
+    build_dropdown_menu(title, dropdown_items, options)
   end
 
-  def sort_members_dropdown(request_params, ransack_query)
+  def sort_members_dropdown(request_params, ransack_query, options = {})
     existing_sort_attribute = ransack_query.sorts.first.name
     title = case existing_sort_attribute
             when "name"
@@ -174,10 +179,10 @@ module DropdownHelper
         active: existing_sort_attribute == "last_talk_date" },
     ]
 
-    build_dropdown_menu(title, dropdown_items)
+    build_dropdown_menu(title, dropdown_items, options)
   end
 
-  def sort_talks_dropdown(request_params, ransack_query)
+  def sort_talks_dropdown(request_params, ransack_query, options = {})
     existing_sort_attribute = ransack_query.sorts.first.name
     title = case existing_sort_attribute
             when "speaker_name"
@@ -197,6 +202,6 @@ module DropdownHelper
         active: existing_sort_attribute == "speaker_name" },
     ]
 
-    build_dropdown_menu(title, dropdown_items)
+    build_dropdown_menu(title, dropdown_items, options)
   end
 end
