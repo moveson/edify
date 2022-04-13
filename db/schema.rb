@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_13_064818) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_13_091819) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "access_requests", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "unit_id", null: false
-    t.integer "approved_by"
-    t.datetime "approved_at"
+    t.integer "rejected_by"
+    t.datetime "rejected_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["unit_id"], name: "index_access_requests_on_unit_id"
@@ -169,6 +169,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_13_064818) do
     t.datetime "confirmation_sent_at"
     t.bigint "unit_id"
     t.string "phone"
+    t.datetime "approved_at"
+    t.integer "approved_by"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unit_id"], name: "index_users_on_unit_id"

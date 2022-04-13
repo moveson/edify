@@ -14,7 +14,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :access_requests, only: [:index, :new, :create, :update, :destroy]
+  resources :access_requests, only: [:index, :new, :create, :destroy] do
+    put :approve
+    put :reject
+  end
   resources :announcements, only: [:index]
   resources :meetings do
     post :upsert, on: :collection

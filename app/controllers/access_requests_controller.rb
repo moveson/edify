@@ -9,6 +9,9 @@ class AccessRequestsController < ApplicationController
   # GET /access_requests
   def index
     @access_requests = current_unit.access_requests
+    @q = current_unit.access_requests.ransack(params[:q])
+    @q.sorts = ["date desc"] if @q.sorts.empty?
+    @pagy, @access_requests = pagy(@q.result)
   end
 
   # GET /access_requests/new
@@ -38,10 +41,23 @@ class AccessRequestsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /access_requests/1
-  def update
-    if @access_request.update(access_request_params)
-      redirect_to @access_request, notice: "Access request was successfully updated."
+  # PATCH/PUT /access_requests/1/approve
+  def approve
+    params = { approved_at: Time.current, approved_by: current_user.id }
+
+    if @access_request.update(params)
+      redirect_to @access_request, notice: "Access request was approved."
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  # PATCH/PUT /access_requests/1/reject
+  def reject
+    params = { approved_at: nil, approved_by: nil, status: :rejected }
+
+    if @access_request.update(params)
+      redirect_to @access_request, notice: "Access request was approved."
     else
       render :edit, status: :unprocessable_entity
     end
