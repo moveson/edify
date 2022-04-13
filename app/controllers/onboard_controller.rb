@@ -12,6 +12,7 @@ class OnboardController < ApplicationController
   end
 
   def new_ward
+    @unit = Unit.new
   end
 
   private

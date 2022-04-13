@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   end
   resources :notifications, only: [:index]
   resources :talks, only: [:index]
+  resources :units, only: [:edit, :create, :update]
 
   devise_for :users, controllers: { sessions: "users/sessions" }
   root to: "home#index"

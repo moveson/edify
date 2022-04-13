@@ -21,6 +21,8 @@ en:
       created: "Talk was successfully created."
       updated: "Talk was successfully updated."
       destroyed: "Talk was successfully destroyed."
+    units_controller:
+      updated: "Unit was successfully updated."
   notifications:
     incomplete_meeting_notification:
       message:

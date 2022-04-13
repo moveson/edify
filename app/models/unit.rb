@@ -6,6 +6,9 @@ class Unit < ApplicationRecord
   has_many :users, dependent: nil
   has_many :talks, through: :meetings
 
+  validates :name, presence: true
+  validates :name, length: { minimum: 4 }, if: :name?
+
   def meeting_count
     meetings.count
   end
