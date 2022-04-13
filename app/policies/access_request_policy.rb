@@ -13,11 +13,15 @@ class AccessRequestPolicy < ApplicationPolicy
     new?
   end
 
-  def update?
+  def approve?
     user.unit_id == resource.unit_id
   end
 
+  def reject?
+    approve?
+  end
+
   def destroy?
-    update?
+    approve?
   end
 end

@@ -3,7 +3,7 @@
 class AccessRequestsController < ApplicationController
   before_action :authenticate_user!
   before_action :authorize_user
-  before_action :set_access_request, only: %i[update destroy]
+  before_action :set_access_request, only: %i[update approve reject destroy]
   after_action :verify_authorized
 
   # GET /access_requests
@@ -43,30 +43,36 @@ class AccessRequestsController < ApplicationController
 
   # PATCH/PUT /access_requests/1/approve
   def approve
-    params = { approved_at: Time.current, approved_by: current_user.id }
+    user_params = { approved_at: Time.current, approved_by: current_user.id, unit_id: @access_request.unit_id }
+    user = @access_request.user
 
-    if @access_request.update(params)
-      redirect_to @access_request, notice: "Access request was approved."
+    if user.update(user_params)
+      @access_request.destroy
+      redirect_to access_requests_path, notice: "Access request was approved."
     else
-      render :edit, status: :unprocessable_entity
+      redirect_to access_requests_path,
+                  notice: "Access request could not be approved. Something went wrong.",
+                  status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /access_requests/1/reject
   def reject
-    params = { approved_at: nil, approved_by: nil, status: :rejected }
+    params = { rejected_at: Time.current, rejected_by: current_user.id }
 
     if @access_request.update(params)
-      redirect_to @access_request, notice: "Access request was approved."
+      redirect_to access_requests_path, notice: "Access request was rejected."
     else
-      render :edit, status: :unprocessable_entity
+      redirect_to access_requests_path,
+                  notice: "Access request could not be rejected. Something went wrong.",
+                  status: :unprocessable_entity
     end
   end
 
   # DELETE /access_requests/1
   def destroy
     @access_request.destroy
-    redirect_to access_requests_url, notice: "Access request was successfully destroyed."
+    redirect_to access_requests_path, notice: "Access request was successfully destroyed."
   end
 
   private
@@ -76,6 +82,6 @@ class AccessRequestsController < ApplicationController
   end
 
   def access_request_params
-    params.require(:access_request).permit(:unit_name, :approved)
+    params.require(:access_request).permit(:unit_name)
   end
 end
