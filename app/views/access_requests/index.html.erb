@@ -1,0 +1,49 @@
+
+
+
+<div class="row">
+  <div class="col-sm-6">
+    <h1>Access_requests</h1>
+  </div>
+
+  <div class="col-sm-6 text-end">
+  <%= link_to new_access_request_path, class: 'btn btn-primary' do %>
+    Add New Access request
+  <% end %>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+    
+
+            <th>User</th>
+            <th>Unit</th>
+            <th>Approved by</th>
+            <th>Approved at</th>
+            
+          <th></th>
+        
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @access_requests.each do |access_request| %>
+        <%= content_tag :tr, id: dom_id(access_request), class: dom_class(access_request) do %>
+          
+
+                      <td><%= access_request.user %></td>
+                      <td><%= access_request.unit %></td>
+                      <td><%= access_request.approved_by %></td>
+                      <td><%= access_request.approved_at %></td>
+          
+          
+            <td><%= link_to 'Show', access_request %></td>
+          
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

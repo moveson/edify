@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :access_requests
   resources :announcements, only: [:index]
   resources :meetings do
     post :upsert, on: :collection

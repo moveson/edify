@@ -1,0 +1,49 @@
+<%= form_with(model: access_request) do |form| %>
+  <% if access_request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(access_request.errors.count, "error") %> prohibited this access_request from being saved:</h2>
+
+      <ul>
+      <% access_request.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :user_id, class: 'form-label' %>
+      <%= form.text_field :user_id, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <%= form.label :unit_id, class: 'form-label' %>
+      <%= form.text_field :unit_id, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <%= form.label :approved_by, class: 'form-label' %>
+      <%= form.number_field :approved_by, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <%= form.label :approved_at, class: 'form-label' %>
+      <%= form.datetime_field :approved_at, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <% if access_request.persisted? %>
+      <div class="float-end">
+        <%= link_to 'Destroy', access_request, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if access_request.persisted? %>
+      <%= link_to "Cancel", access_request, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", access_requests_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>
