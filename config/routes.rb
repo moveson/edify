@@ -35,5 +35,6 @@ Rails.application.routes.draw do
   get "/terms", to: "home#terms"
   get "/onboard", to: "onboard#start"
   get "/onboard_request_access", to: "onboard#request_access"
+  post "/onboard_submit_request", to: "onboard#submit_request"
   get "/onboard_new_ward", to: "onboard#new_ward"
 end
