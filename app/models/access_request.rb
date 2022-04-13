@@ -7,6 +7,14 @@ class AccessRequest < ApplicationRecord
   validates_uniqueness_of :user_id, scope: :unit_id
 
   def pending?
-    approved_by.nil?
+    status == :pending
+  end
+
+  def status
+    if rejected_at.present?
+      :rejected
+    else
+      :pending
+    end
   end
 end

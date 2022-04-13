@@ -2,8 +2,9 @@
 
 class AccessRequestsController < ApplicationController
   before_action :authenticate_user!
-  before_action :authorize_user
   before_action :set_access_request, only: %i[update approve reject destroy]
+  before_action :authorize_access_request, only: %i[update approve reject destroy]
+  before_action :authorize_action, except: %i[update approve reject destroy]
   after_action :verify_authorized
 
   # GET /access_requests
@@ -76,6 +77,14 @@ class AccessRequestsController < ApplicationController
   end
 
   private
+
+  def authorize_access_request
+    authorize @access_request
+  end
+
+  def authorize_action
+    authorize ::AccessRequest
+  end
 
   def set_access_request
     @access_request = AccessRequest.find(params[:id])

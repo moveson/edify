@@ -16,7 +16,8 @@
         <div class="row">
           <div class="col">
             <h6><%= "Email: #{access_request.user.email}" %></h6>
-            <h6><%= "Requested at: #{access_request.created_at}" %></h6>
+            <h6><%= "Requested at: #{l(access_request.created_at, format: :long)}" %></h6>
+            <h6><%= "Status: #{access_request.status.to_s.titleize}" %></h6>
           </div>
         </div>
       </div>

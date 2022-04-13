@@ -3,7 +3,7 @@
 module LinkHelper
   def link_to_access_request_approve(access_request, options = {})
     html_class = options[:class]
-    url = access_request_approve_path(access_request)
+    url = approve_access_request_path(access_request)
     options = {
       method: :put,
       class: ["btn btn-outline-success btn-sm", html_class].compact.join(" "),
@@ -18,7 +18,7 @@ module LinkHelper
 
   def link_to_access_request_reject(access_request, options = {})
     html_class = options[:class]
-    url = access_request_reject_path(access_request)
+    url = reject_access_request_path(access_request)
     options = {
       method: :put,
       class: ["btn btn-outline-danger btn-sm", html_class].compact.join(" "),

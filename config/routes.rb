@@ -15,8 +15,8 @@ Rails.application.routes.draw do
   end
 
   resources :access_requests, only: [:index, :new, :create, :destroy] do
-    put :approve
-    put :reject
+    put :approve, on: :member
+    put :reject, on: :member
   end
   resources :announcements, only: [:index]
   resources :meetings do
