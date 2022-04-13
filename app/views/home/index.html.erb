@@ -4,6 +4,16 @@
       <h2 class="mt-md-4 mt-2 text-center"><strong><%= current_user.unit_name %></strong></h2>
     </div>
   </div>
+<% elsif user_signed_in? %>
+  <div class="row">
+    <h5 class="mt-md-4 mt-2 text-center">
+      <strong>Looks like you aren't yet assigned to a Ward unit. Let's take care of that now.</strong>
+    </h5>
+  </div>
+  <div class="text-center">
+    <%= link_to "Assign my Ward Unit", onboard_path, class: "btn btn-lg btn-primary" %>
+  </div>
+  <br/>
 <% end %>
 <hr class="hr-text">
 <p class="blockquote text-center">

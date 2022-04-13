@@ -32,4 +32,7 @@ Rails.application.routes.draw do
   root to: "home#index"
   get "/privacy", to: "home#privacy"
   get "/terms", to: "home#terms"
+  get "/onboard", to: "onboard#start"
+  get "/onboard_request_access", to: "onboard#request_access"
+  get "/onboard_new_ward", to: "onboard#new_ward"
 end
