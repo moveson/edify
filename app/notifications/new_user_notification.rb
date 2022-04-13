@@ -22,6 +22,10 @@ class NewUserNotification < Noticed::Base
     t(".subject")
   end
 
+  def url
+    root_url
+  end
+
   def user
     params[:user]
   end
