@@ -10,6 +10,7 @@ class NewUserNotification < Noticed::Base
     {
       message: message,
       subject: subject,
+      url: url,
       user: user,
     }
   end

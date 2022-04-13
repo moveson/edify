@@ -11,6 +11,7 @@ class NewUserAdminNotification < Noticed::Base
     {
       message: message,
       subject: subject,
+      url: url,
       user: user,
     }
   end
@@ -29,6 +30,10 @@ class NewUserAdminNotification < Noticed::Base
 
   def subject
     t(".subject")
+  end
+
+  def url
+    root_path
   end
 
   def user
