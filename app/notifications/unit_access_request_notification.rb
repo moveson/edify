@@ -32,6 +32,6 @@ class UnitAccessRequestNotification < Noticed::Base
   end
 
   def url
-    # access_requests_url
+    access_requests_url
   end
 end
