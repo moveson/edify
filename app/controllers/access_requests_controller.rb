@@ -2,9 +2,9 @@
 
 class AccessRequestsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_access_request, only: %i[update approve reject destroy]
-  before_action :authorize_access_request, only: %i[update approve reject destroy]
-  before_action :authorize_action, except: %i[update approve reject destroy]
+  before_action :set_access_request, only: %i[approve reject destroy]
+  before_action :authorize_access_request, only: %i[approve reject destroy]
+  before_action :authorize_action, except: %i[approve reject destroy]
   after_action :verify_authorized
 
   # GET /access_requests/new
@@ -42,10 +42,10 @@ class AccessRequestsController < ApplicationController
 
     if user.update(user_params)
       ::UnitAccessApprovalJob.perform_later(unit: @access_request.unit, user: @access_request.user)
-      redirect_to access_requests_path, notice: "Access request was approved."
+      redirect_to access_requests_path, notice: t("controllers.access_request_controller.approve_success")
     else
       redirect_to access_requests_path,
-                  notice: "Access request could not be approved. Something went wrong.",
+                  notice: t("controllers.access_request_controller.approve_failure"),
                   status: :unprocessable_entity
     end
   end
@@ -56,10 +56,10 @@ class AccessRequestsController < ApplicationController
 
     if @access_request.update(params)
       ::UnitAccessRejectionJob.perform_later(unit: @access_request.unit, user: @access_request.user)
-      redirect_to access_requests_path, notice: "Access request was rejected."
+      redirect_to access_requests_path, notice: t("controllers.access_request_controller.reject_success")
     else
       redirect_to access_requests_path,
-                  notice: "Access request could not be rejected. Something went wrong.",
+                  notice: t("controllers.access_request_controller.reject_failure"),
                   status: :unprocessable_entity
     end
   end
@@ -67,7 +67,7 @@ class AccessRequestsController < ApplicationController
   # DELETE /access_requests/1
   def destroy
     @access_request.destroy
-    redirect_to access_requests_path, notice: "Access request was successfully destroyed."
+    redirect_to access_requests_path, notice: t("controllers.access_request_controller.destroy_success")
   end
 
   private

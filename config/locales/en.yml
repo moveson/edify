@@ -1,7 +1,12 @@
 en:
   controllers:
     access_request_controller:
+      approve_failure: "Access request could not be approved. Something went wrong."
+      approve_success: "Access request was approved."
+      destroy_success: "Access request was destroyed."
       email_not_found: "We could not find %{email} in the roster of %{unit_name}. Your Edify user email must be the same email that is on file with your member record in Edify."
+      reject_failure: "Access request could not be rejected. Something went wrong."
+      reject_success: "Access request was rejected."
       request_sent: "Your request will be delivered to existing users of the %{unit_name}."
       unit_not_found: "We could not find a ward by the name %{unit_name}. Please try again or go back to create a new ward."
     application_controller:
