@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :access_requests
+  resources :access_requests, only: [:index, :new, :create, :update, :destroy]
   resources :announcements, only: [:index]
   resources :meetings do
     post :upsert, on: :collection
@@ -28,14 +28,11 @@ Rails.application.routes.draw do
   end
   resources :notifications, only: [:index]
   resources :talks, only: [:index]
-  resources :units, only: [:edit, :create, :update]
+  resources :units, only: [:new, :edit, :create, :update]
 
   devise_for :users, controllers: { sessions: "users/sessions" }
   root to: "home#index"
   get "/privacy", to: "home#privacy"
   get "/terms", to: "home#terms"
   get "/onboard", to: "onboard#start"
-  get "/onboard_request_access", to: "onboard#request_access"
-  post "/onboard_submit_request", to: "onboard#submit_request"
-  get "/onboard_new_ward", to: "onboard#new_ward"
 end

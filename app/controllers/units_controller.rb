@@ -6,6 +6,11 @@ class UnitsController < ApplicationController
   before_action :set_unit, only: [:edit, :update]
   after_action :verify_authorized
 
+  # GET /units/new
+  def new
+    @unit = ::Unit.new
+  end
+
   # GET /units/1/edit
   def edit
   end
@@ -18,7 +23,7 @@ class UnitsController < ApplicationController
     if @unit.save
       redirect_to root_path
     else
-      render "onboard/new_ward", status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 

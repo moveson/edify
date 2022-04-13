@@ -1,5 +1,9 @@
 en:
   controllers:
+    access_request_controller:
+      email_not_found: "We could not find %{email} in the roster of %{unit_name}. Your Edify user email must be the same email that is on file with your member record in Edify."
+      request_sent: "Your request will be delivered to existing users of the %{unit_name}."
+      unit_not_found: "We could not find a ward by the name %{unit_name}. Please try again or go back to create a new ward."
     application_controller:
       not_authorized: "Not authorized."
     madmin:
@@ -17,10 +21,6 @@ en:
       created: "Note was successfully created."
       updated: "Note was successfully updated."
       destroyed: "Note was successfully destroyed."
-    onboard_controller:
-      email_not_found: "We could not find %{email} in the roster of the requested ward. Your Edify user email must be the same email that is on file with your member record in Edify."
-      request_sent: "Your request will be delivered to existing users of the %{unit_name}."
-      unit_not_found: "We could not find a ward by the name %{unit_name}. Please try again or go back to create a new ward."
     talks_controller:
       created: "Talk was successfully created."
       updated: "Talk was successfully updated."
@@ -48,6 +48,10 @@ en:
     unit_access_request_notification:
       message: "%{user_name} has requested access to your ward in Edify. Click the link to approve or reject this request."
       subject: "Request for access to your ward in Edify"
+  views:
+    home:
+      index:
+        access_pending: "Your request for access to %{unit_name} is pending. You will receive a notification when access is approved."
   date:
     formats:
       rfc822: "%d %b %Y"

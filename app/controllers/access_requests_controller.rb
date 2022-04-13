@@ -1,32 +1,40 @@
+# frozen_string_literal: true
+
 class AccessRequestsController < ApplicationController
-  before_action :set_access_request, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
+  before_action :authorize_user
+  before_action :set_access_request, only: %i[update destroy]
+  after_action :verify_authorized
 
   # GET /access_requests
   def index
-    @access_requests = AccessRequest.all
-  end
-
-  # GET /access_requests/1
-  def show
+    @access_requests = current_unit.access_requests
   end
 
   # GET /access_requests/new
   def new
-    @access_request = AccessRequest.new
-  end
-
-  # GET /access_requests/1/edit
-  def edit
+    @access_request = ::AccessRequest.new
   end
 
   # POST /access_requests
   def create
-    @access_request = AccessRequest.new(access_request_params)
+    unit_name_param = access_request_params[:unit_name]
+    @unit = Unit.find_by(name: unit_name_param)
 
-    if @access_request.save
-      redirect_to @access_request, notice: "Access request was successfully created."
+    if @unit.present?
+      if @unit.members.where(email: current_user.email).exists?
+        @unit.access_requests.create(user: current_user)
+        ::UnitAccessRequestJob.perform_later(unit: @unit, user: current_user)
+
+        flash[:success] = t("controllers.access_request_controller.request_sent", unit_name: @unit.name)
+        redirect_to root_path
+      else
+        flash[:alert] = t("controllers.access_request_controller.email_not_found", email: current_user.email, unit_name: @unit.name)
+        redirect_to new_access_request_path
+      end
     else
-      render :new, status: :unprocessable_entity
+      flash[:alert] = t("controllers.access_request_controller.unit_not_found", unit_name: unit_name_param)
+      redirect_to new_access_request_path
     end
   end
 
@@ -46,13 +54,12 @@ class AccessRequestsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_access_request
-      @access_request = AccessRequest.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def access_request_params
-      params.require(:access_request).permit(:user_id, :unit_id, :approved_by, :approved_at)
-    end
+  def set_access_request
+    @access_request = AccessRequest.find(params[:id])
+  end
+
+  def access_request_params
+    params.require(:access_request).permit(:unit_name, :approved)
+  end
 end

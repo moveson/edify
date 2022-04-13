@@ -15,9 +15,14 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_unit
   helper_method :user_assigned_to_unit?
+  helper_method :user_needs_onboarding?
 
   def current_unit
     @current_unit ||= current_user&.unit
+  end
+
+  def user_needs_onboarding?
+    @user_needs_onboarding ||= current_user.present? && current_user.needs_onboarding?
   end
 
   def user_assigned_to_unit?

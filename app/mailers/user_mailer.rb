@@ -32,4 +32,12 @@ class UserMailer < ApplicationMailer
       subject: params[:subject],
     )
   end
+
+  def unit_access_request_notification
+    mail(
+      from: "noreply@edifyapp.herokuapp.com",
+      to: params[:recipient].email,
+      subject: params[:subject],
+      )
+  end
 end

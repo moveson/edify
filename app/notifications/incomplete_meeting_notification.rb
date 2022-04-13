@@ -24,7 +24,7 @@ class IncompleteMeetingNotification < Noticed::Base
   end
 
   def message
-    t(".message", meeting_type: meeting.meeting_type, date: date, count: meeting.talks.size)
+    t(".message", meeting_type: meeting.meeting_type.titleize, date: date, count: meeting.talks.size)
   end
 
   def subject
