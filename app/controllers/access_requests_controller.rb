@@ -18,14 +18,15 @@ class AccessRequestsController < ApplicationController
     @unit = Unit.find_by(name: unit_name_param)
 
     if @unit.present?
-      if @unit.members.where(email: current_user.email).exists?
+      if @unit.members.exists?(email: current_user.email)
         @unit.access_requests.create(user: current_user)
         ::UnitAccessRequestJob.perform_later(unit: @unit, user: current_user)
 
         flash[:success] = t("controllers.access_request_controller.request_sent", unit_name: @unit.name)
         redirect_to root_path
       else
-        flash[:alert] = t("controllers.access_request_controller.email_not_found", email: current_user.email, unit_name: @unit.name)
+        flash[:alert] =
+          t("controllers.access_request_controller.email_not_found", email: current_user.email, unit_name: @unit.name)
         redirect_to new_access_request_path
       end
     else

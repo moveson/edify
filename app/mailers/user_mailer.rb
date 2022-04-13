@@ -39,7 +39,7 @@ class UserMailer < ApplicationMailer
       to: params[:recipient].email,
       subject: params[:subject],
       template_name: "unit_access_notification",
-      )
+    )
   end
 
   def unit_access_rejection_notification
@@ -48,7 +48,7 @@ class UserMailer < ApplicationMailer
       to: params[:recipient].email,
       subject: params[:subject],
       template_name: "unit_access_notification",
-      )
+    )
   end
 
   def unit_access_request_notification
@@ -57,6 +57,6 @@ class UserMailer < ApplicationMailer
       to: params[:recipient].email,
       subject: params[:subject],
       template_name: "unit_access_notification",
-      )
+    )
   end
 end
