@@ -17,11 +17,13 @@ gem "stimulus-rails"
 gem "turbo-rails"
 
 gem "american_date"
+gem "aws-sdk-s3", require: false
 gem "cssbundling-rails"
 gem "devise"
 gem "devise-jwt"
 gem "font_awesome5_rails"
 gem "friendly_id"
+gem "image_processing", "~> 1.2"
 gem "jsbundling-rails"
 gem "madmin"
 gem "name_of_person"
