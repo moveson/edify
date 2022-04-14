@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_13_103648) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_14_125555) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -169,7 +169,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_13_103648) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.bigint "unit_id"
-    t.string "phone"
+    t.string "phone_number"
     t.datetime "approved_at"
     t.integer "approved_by"
     t.index ["email"], name: "index_users_on_email", unique: true
