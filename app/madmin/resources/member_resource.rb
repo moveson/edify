@@ -6,7 +6,7 @@ class MemberResource < Madmin::Resource
   attribute :name
   attribute :gender
   attribute :birthdate
-  attribute :phone
+  attribute :phone_number
   attribute :email
   attribute :created_at, form: false
   attribute :updated_at, form: false

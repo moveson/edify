@@ -20,7 +20,7 @@ class NewUserAdminNotification < Noticed::Base
     {
       Body: "#{message} #{user.name} (#{user.email})",
       From: Rails.application.credentials.twilio[:phone_number],
-      To: recipient.phone
+      To: recipient.phone_number
     }
   end
 

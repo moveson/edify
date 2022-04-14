@@ -19,7 +19,7 @@ class UnitAccessRejectionNotification < Noticed::Base
     {
       Body: "#{message} #{url}",
       From: Rails.application.credentials.twilio[:phone_number],
-      To: recipient.phone
+      To: recipient.phone_number
     }
   end
 
