@@ -55,6 +55,13 @@ Edify relies on Sidekiq for background jobs, and Sidekiq needs Redis. Install Re
 1. `$ brew install redis`
 2. `$ brew services start redis`
 
+**VIPS**
+
+Edify defaults to the Rails 7 standard of using `vips` for image processing. If you want to be able to test image 
+uploads locally, you will need to install it.
+
+> `$ brew install vips`
+
 **Javascript Runtime + Yarn**
 
 1. Node can be installed using homebrew, but it takes a long time and may cause dependency conflicts in your local
