@@ -18,11 +18,11 @@ class SettingsController < ApplicationController
   end
 
   def update
-    if current_user.update(settings_update_params)
-      message = "Updated."
-    else
-      message = current_user.errors.full_messages.join("; ")
-    end
+    message = if current_user.update(settings_update_params)
+                "Updated."
+              else
+                current_user.errors.full_messages.join("; ")
+              end
 
     redirect_to request.referrer, notice: message
   end

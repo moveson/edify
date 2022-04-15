@@ -18,7 +18,7 @@ class Meeting < ApplicationRecord
   }
 
   validates :meeting_type, :date, presence: true
-  validates :date, uniqueness: { scope: :unit, message: "has been taken; a meeting already exists for this date" }, if: :date?
+  validates :date, uniqueness: { scope: :unit, message: t("models.meeting.date_not_unique") }, if: :date?
 
   scope :future, -> { occurring_after(Date.current) }
   scope :most_recent_first, -> { order(date: :desc) }

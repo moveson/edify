@@ -39,6 +39,9 @@ Rails/OutputSafety:
 Rails/SkipsModelValidations:
   Enabled: false
 
+Rails/RequestReferer:
+  Enabled: false
+
 RSpec/BeEq:
   Enabled: false
 
