@@ -23,6 +23,7 @@ class User < ApplicationRecord
 
   scope :admin, -> { where(admin: true) }
 
+  validates :first_name, presence: true
   validates :phone_number, phone: { allow_blank: true }
 
   strip_attributes
