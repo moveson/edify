@@ -6,6 +6,8 @@ class AccessRequest < ApplicationRecord
 
   validates :user_id, uniqueness: { scope: :unit_id }
 
+  scope :alphabetical, -> { joins(:user).order(:first_name) }
+
   def pending?
     status == :pending
   end

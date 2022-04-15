@@ -13,22 +13,24 @@
       <h4>Set Avatar</h4>
       <%= form_with(model: current_user, url: settings_update_path, html: { method: :put }) do |f| %>
 
-      <div class="mb-3 text-center">
-        <%= f.file_field :avatar, accept:'image/*' %>
-      </div>
+        <div class="mb-3 text-center">
+          <%= f.file_field :avatar, accept: 'image/*' %>
+        </div>
 
-      <%= image_tag avatar_path(f.object), class: "rounded border shadow-sm d-block mx-auto my-3" %>
+        <%= image_tag avatar_path(f.object), class: "rounded border shadow-sm d-block mx-auto my-3" %>
 
         <div class="mb-3 text-center">
           <%= f.submit "Save Changes", class: 'btn btn-primary', data: { turbo: false } %>
         </div>
       <% end %>
 
-      <br/>
-      <hr/>
-      <h4>Remove Avatar</h4>
-      <br/>
-      <p><%= link_to "Remove this avatar", settings_remove_avatar_path, data: { confirm: "Are you sure?" }, method: :put, class: "btn btn-outline-danger" %></p>
+      <% if current_user.avatar.attached? %>
+        <br/>
+        <hr/>
+        <h4>Remove Avatar</h4>
+        <br/>
+        <p><%= link_to "Remove this avatar", settings_remove_avatar_path, data: { confirm: "Are you sure?" }, method: :put, class: "btn btn-outline-danger" %></p>
+      <% end %>
     </div>
   </div>
 </div>

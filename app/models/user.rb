@@ -21,6 +21,7 @@ class User < ApplicationRecord
 
   after_commit :send_welcome_notifications
 
+  scope :alphabetical, -> { order(:first_name) }
   scope :admin, -> { where(admin: true) }
 
   validates :first_name, presence: true

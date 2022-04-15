@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def index
     authorize ::User
 
-    @users = current_unit.users.with_attached_avatar
-    @access_requests = current_unit.access_requests
+    @users = current_unit.users.alphabetical.with_attached_avatar
+    @access_requests = current_unit.access_requests.alphabetical
   end
 end
