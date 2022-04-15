@@ -6,6 +6,9 @@
           <div class="col">
             <h5 class="font-weight-bold"><%= user.name %></h5>
           </div>
+          <div class="col">
+            <h5 class="text-end"><%= image_tag avatar_path(user, size: 40) %></h5>
+          </div>
         </div>
       </div>
       <div class="card-body">
