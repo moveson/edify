@@ -34,7 +34,19 @@ Rails.application.routes.draw do
   resources :units, only: [:new, :edit, :create, :update]
   resources :users, only: [:index]
 
-  devise_for :users, controllers: { sessions: "users/sessions" }
+  namespace :settings do
+    get :preferences
+    get :avatar
+    get :password
+    put :update
+    put :remove_avatar
+  end
+
+  devise_for :users, controllers: {
+    registrations: "users/registrations",
+    sessions: "users/sessions",
+  }
+
   root to: "home#index"
   get "/privacy", to: "home#privacy"
   get "/terms", to: "home#terms"

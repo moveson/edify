@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-md">
+    <h2 class="mt-md-4 mt-2"><strong>User Settings</strong></h2>
+  </div>
+</div>
+
+<hr/>
+
+<div class="container-fluid">
+  <div class="row flex-nowrap">
+    <%= render "sidebar" %>
+    <div class="col px-md-4 py-3">
+      <% if current_user.errors.any? %>
+        <div id="error_explanation">
+          <ul>
+            <% current_user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <h4>Personal Information</h4>
+      <%= form_with(model: current_user, url: settings_update_path, html: { method: :put }) do |f| %>
+        <div class="mb-3">
+          <%= f.label :full_name %>
+          <%= f.text_field :name, autofocus: false, class: 'form-control', placeholder: "Full name" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label "Phone (to receive text messages)" %>
+          <%= f.text_field :phone_number, class: 'form-control', placeholder: 'XXX-XXX-XXXX' %>
+        </div>
+
+        <br/>
+
+        <div class="mb-3">
+          <%= f.submit "Save Changes", class: 'btn btn-primary', data: { turbo: false } %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
