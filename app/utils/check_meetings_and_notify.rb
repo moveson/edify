@@ -51,7 +51,11 @@ class CheckMeetingsAndNotify
   end
 
   def incomplete_meetings
-    existing_meetings.select(&:not_fully_scheduled?)
+    existing_meetings.occurring_on_or_before(outside_check_date).select(&:not_fully_scheduled?)
+  end
+
+  def outside_check_date
+    expected_meeting_dates.last
   end
 
   def existing_meetings

@@ -23,6 +23,7 @@ class Meeting < ApplicationRecord
   scope :future, -> { occurring_after(Date.current) }
   scope :most_recent_first, -> { order(date: :desc) }
   scope :occurring_after, ->(date) { where("date > ?", date) }
+  scope :occurring_on_or_before, ->(date) { where("date <= ?", date) }
 
   def not_fully_scheduled?
     status != :ok
