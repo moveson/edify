@@ -19,6 +19,9 @@ class User < ApplicationRecord
   has_one :access_request, dependent: :destroy
   belongs_to :unit, optional: true
 
+  attribute :notification_preference_email, default: true
+  attribute :notification_preference_sms, default: true
+
   after_commit :send_welcome_notifications
 
   scope :alphabetical, -> { order(:first_name) }
