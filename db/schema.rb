@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_14_125845) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_16_050553) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -172,6 +172,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_14_125845) do
     t.string "phone_number"
     t.datetime "approved_at"
     t.integer "approved_by"
+    t.boolean "notification_preference_email"
+    t.boolean "notification_preference_sms"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unit_id"], name: "index_users_on_unit_id"
