@@ -5,13 +5,6 @@ Rails.application.routes.draw do
   draw :madmin
   authenticate :user, ->(u) { u.admin? } do
     mount Sidekiq::Web => "/sidekiq"
-
-    namespace :madmin do
-      resources :impersonates do
-        post :impersonate, on: :member
-        post :stop_impersonating, on: :collection
-      end
-    end
   end
 
   resources :access_requests, only: [:new, :create, :destroy] do
@@ -51,4 +44,6 @@ Rails.application.routes.draw do
   get "/privacy", to: "home#privacy"
   get "/terms", to: "home#terms"
   get "/onboard", to: "onboard#start"
+  post "impersonate/start/:id", to: "impersonate#start", as: "impersonate_start"
+  post "impersonate/stop", to: "impersonate#stop", as: "impersonate_stop"
 end
