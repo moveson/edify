@@ -86,6 +86,6 @@ namespace :db do
     end
 
     elapsed_time = Time.current - process_start_time
-    puts "\nFinished creating records for #{to_sentence(FIXTURE_TABLES)} in #{elapsed_time} seconds"
+    puts "\nFinished creating records for #{FIXTURE_TABLES.join(", ")} in #{elapsed_time} seconds"
   end
 end
