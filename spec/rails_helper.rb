@@ -66,4 +66,6 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.global_fixtures = :all
+
+  config.include ActiveSupport::Testing::TimeHelpers
 end
