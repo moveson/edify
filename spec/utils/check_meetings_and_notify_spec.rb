@@ -4,6 +4,7 @@ require "rails_helper"
 
 describe CheckMeetingsAndNotify do
   subject { described_class.new(unit) }
+
   let(:unit) { units(:sunny_hills) }
 
   before do
