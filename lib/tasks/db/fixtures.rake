@@ -2,34 +2,17 @@
 
 # Credit to Yi Zeng, https://yizeng.me/2017/07/16/generate-rails-test-fixtures-yaml-from-database-dump/
 
+require_relative "fixture_helper"
+
 namespace :db do
   desc "Convert development database to Rails test fixtures"
   task to_fixtures: :environment do
     process_start_time = Time.current
 
-    FIXTURE_TABLES = [
-      :meetings,
-      :members,
-      :notes,
-      :talks,
-      :units,
-      :users,
-    ].freeze
-
-    ATTRIBUTES_TO_IGNORE = [
-      :created_at,
-      :confirmation_sent_at,
-      :confirmation_token,
-      :remember_created_at,
-      :reset_password_token,
-      :reset_password_sent_at,
-      :updated_at,
-    ].freeze
-
     begin
       ActiveRecord::Base.establish_connection
       ActiveRecord::Base.connection.tables.each do |table_name|
-        next unless table_name.to_sym.in?(FIXTURE_TABLES)
+        next unless table_name.to_sym.in?(FixtureHelper::FIXTURE_TABLES)
 
         file_path = Rails.root.join("spec/fixtures/#{table_name}.yml")
         File.open(file_path, "w") do |file|
@@ -45,7 +28,7 @@ namespace :db do
                            end
 
             title = custom_title || "#{table_name.singularize}_#{record['id']}"
-            ATTRIBUTES_TO_IGNORE.each { |attr| record.delete(attr.to_s) }
+            FixtureHelper::ATTRIBUTES_TO_IGNORE.each { |attr| record.delete(attr.to_s) }
             hash[title] = record
           end
           puts "Writing table '#{table_name}' to '#{file_path}'"
@@ -57,26 +40,17 @@ namespace :db do
     end
 
     elapsed_time = Time.current - process_start_time
-    puts "\nFinished creating fixtures for #{FIXTURE_TABLES.join(', ')} in #{elapsed_time} seconds"
+    puts "\nFinished creating fixtures for #{FixtureHelper::FIXTURE_TABLES.join(', ')} in #{elapsed_time} seconds"
   end
 
   desc "Convert Rails test fixtures to development database"
   task from_fixtures: :environment do
     process_start_time = Time.current
 
-    FIXTURE_TABLES = [
-      :meetings,
-      :members,
-      :notes,
-      :talks,
-      :units,
-      :users,
-    ].freeze
-
     begin
       ActiveRecord::Base.establish_connection
       ENV["FIXTURES_PATH"] = "spec/fixtures"
-      ENV["FIXTURES"] = FIXTURE_TABLES.join(",")
+      ENV["FIXTURES"] = FixtureHelper::FIXTURE_TABLES.join(",")
       ENV["RAILS_ENV"] = "development"
       Rake::Task["db:fixtures:load"].invoke
     ensure
@@ -84,6 +58,6 @@ namespace :db do
     end
 
     elapsed_time = Time.current - process_start_time
-    puts "\nFinished creating records for #{FIXTURE_TABLES.join(', ')} in #{elapsed_time} seconds"
+    puts "\nFinished creating records for #{FixtureHelper::FIXTURE_TABLES.join(', ')} in #{elapsed_time} seconds"
   end
 end
