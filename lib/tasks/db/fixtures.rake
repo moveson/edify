@@ -42,11 +42,9 @@ namespace :db do
                              record["first_name"].parameterize.underscore
                            when "members"
                              record["name"].parameterize.underscore
-                           else
-                             nil
                            end
 
-            title = custom_title || "#{table_name.singularize}_#{record["id"]}"
+            title = custom_title || "#{table_name.singularize}_#{record['id']}"
             ATTRIBUTES_TO_IGNORE.each { |attr| record.delete(attr.to_s) }
             hash[title] = record
           end
@@ -59,7 +57,7 @@ namespace :db do
     end
 
     elapsed_time = Time.current - process_start_time
-    puts "\nFinished creating fixtures for #{FIXTURE_TABLES.join(", ")} in #{elapsed_time} seconds"
+    puts "\nFinished creating fixtures for #{FIXTURE_TABLES.join(', ')} in #{elapsed_time} seconds"
   end
 
   desc "Convert Rails test fixtures to development database"
@@ -86,6 +84,6 @@ namespace :db do
     end
 
     elapsed_time = Time.current - process_start_time
-    puts "\nFinished creating records for #{FIXTURE_TABLES.join(", ")} in #{elapsed_time} seconds"
+    puts "\nFinished creating records for #{FIXTURE_TABLES.join(', ')} in #{elapsed_time} seconds"
   end
 end
