@@ -1,0 +1,50 @@
+---
+talk_1:
+  id: 1
+  purpose: Departing Missionary
+  topic:
+  speaker_name: Barrows, Kenneth
+  member_id: 12
+  meeting_id: 2
+talk_2:
+  id: 2
+  purpose:
+  topic: It Is Finished
+  speaker_name: Hilll, Waylon
+  member_id: 4
+  meeting_id: 2
+talk_3:
+  id: 3
+  purpose: Stake Representative
+  topic: Behold Thy Mother
+  speaker_name: Ghibli, Gordon
+  member_id:
+  meeting_id: 2
+talk_4:
+  id: 4
+  purpose: New Ward Member
+  topic: Being brave
+  speaker_name: Nikolaus, Jetta
+  member_id: 6
+  meeting_id: 3
+talk_5:
+  id: 5
+  purpose: Departing Missionary
+  topic:
+  speaker_name: Heller, Yong
+  member_id: 30
+  meeting_id: 8
+talk_6:
+  id: 6
+  purpose: New Ward Member
+  topic: Gifts
+  speaker_name: Harris, Staci
+  member_id: 24
+  meeting_id: 8
+talk_7:
+  id: 7
+  purpose: Member Request
+  topic: Helaman 5:12
+  speaker_name: Aufderhar, Matthew
+  member_id: 29
+  meeting_id: 8

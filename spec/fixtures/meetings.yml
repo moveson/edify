@@ -1,0 +1,55 @@
+---
+meeting_1:
+  id: 1
+  meeting_type: 4
+  date: '2022-04-03'
+  unit_id: 1
+  scheduler_id:
+meeting_2:
+  id: 2
+  meeting_type: 0
+  date: '2022-04-10'
+  unit_id: 1
+  scheduler_id: 2
+meeting_3:
+  id: 3
+  meeting_type: 0
+  date: '2022-04-17'
+  unit_id: 1
+  scheduler_id: 2
+meeting_5:
+  id: 5
+  meeting_type: 1
+  date: '2022-05-01'
+  unit_id: 1
+  scheduler_id: 3
+meeting_6:
+  id: 6
+  meeting_type: 0
+  date: '2022-05-15'
+  unit_id: 1
+  scheduler_id:
+meeting_7:
+  id: 7
+  meeting_type: 0
+  date: '2022-04-24'
+  unit_id: 1
+  scheduler_id: 2
+meeting_8:
+  id: 8
+  meeting_type: 0
+  date: '2022-04-24'
+  unit_id: 2
+  scheduler_id: 4
+meeting_9:
+  id: 9
+  meeting_type: 1
+  date: '2022-05-01'
+  unit_id: 2
+  scheduler_id: 5
+meeting_10:
+  id: 10
+  meeting_type: 0
+  date: '2022-05-08'
+  unit_id: 2
+  scheduler_id: 5

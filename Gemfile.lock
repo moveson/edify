@@ -139,6 +139,7 @@ GEM
     erubi (1.10.0)
     et-orbi (1.2.7)
       tzinfo
+    ffaker (2.21.0)
     ffi (1.15.5)
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
@@ -404,6 +405,7 @@ DEPENDENCIES
   debug
   devise
   devise-jwt
+  ffaker
   font_awesome5_rails
   foreman
   friendly_id

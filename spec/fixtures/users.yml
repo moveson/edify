@@ -1,0 +1,79 @@
+---
+admin:
+  id: 1
+  email: admin@example.com
+  encrypted_password: "$2a$12$JXIQrZ/nSU9kmimQ8s4bJuYP.TEshF5zd30K28h9aARU4UIWCQwTW"
+  first_name: Admin
+  last_name: User
+  announcements_last_read_at:
+  admin: true
+  confirmed_at: 2022-04-14 16:32:30.544225000 Z
+  unit_id:
+  phone_number:
+  approved_at:
+  approved_by:
+sunny_one:
+  id: 2
+  email: sunny1@example.com
+  encrypted_password: "$2a$12$XXGebtw/HxxLQj8cYDMhN.zXPU8RGM7GqUT1x6JI9w2wlrG0epbTK"
+  first_name: Sunny One
+  last_name: User
+  announcements_last_read_at:
+  admin: false
+  confirmed_at: 2022-04-15 16:32:30.827166000 Z
+  unit_id: 1
+  phone_number:
+  approved_at:
+  approved_by:
+sunny_two:
+  id: 3
+  email: sunny2@example.com
+  encrypted_password: "$2a$12$sbQ5j.IkF/fEIhZ31iknsuZFUuLeH7dJLYzMkOfnAPxs50H1Ad9Um"
+  first_name: Sunny Two
+  last_name: User
+  announcements_last_read_at:
+  admin: false
+  confirmed_at: 2022-04-16 16:32:31.078429000 Z
+  unit_id: 1
+  phone_number:
+  approved_at: 2022-04-17 04:32:31.079809000 Z
+  approved_by: 2
+pleasant_one:
+  id: 4
+  email: pleasant1@example.com
+  encrypted_password: "$2a$12$58Dcf5VKr8gSSTMflGYXp.B7hJ/GPeE2KhW/lfCLFHrqGftRuEZqW"
+  first_name: Pleasant One
+  last_name: User
+  announcements_last_read_at:
+  admin: false
+  confirmed_at: 2022-04-15 16:32:31.330726000 Z
+  unit_id: 2
+  phone_number:
+  approved_at:
+  approved_by:
+pleasant_two:
+  id: 5
+  email: pleasant2@example.com
+  encrypted_password: "$2a$12$o76qREduQjurtgQ4eY5ATOwBLkz6bIJfDCWHpnMRS5hnzlgq5NYO6"
+  first_name: Pleasant Two
+  last_name: User
+  announcements_last_read_at:
+  admin: false
+  confirmed_at: 2022-04-16 16:32:31.582486000 Z
+  unit_id: 2
+  phone_number:
+  approved_at: 2022-04-17 04:32:31.583129000 Z
+  approved_by: 4
+unassigned:
+  id: 6
+  email: unassigned@example.com
+  encrypted_password: "$2a$12$98XRmn8X/BGktzGEa/qeCuuLZTnFuxlgwpj92u4pbzirB2NzBt.4S"
+  first_name: Unassigned
+  last_name: User
+  announcements_last_read_at:
+  admin: false
+  confirmed_at: 2022-04-17 20:25:37.567363000 Z
+  unit_id:
+  phone_number:
+  approved_at:
+  approved_by:
