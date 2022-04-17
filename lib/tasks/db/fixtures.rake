@@ -24,14 +24,14 @@ namespace :db do
       :reset_password_token,
       :reset_password_sent_at,
       :updated_at,
-    ]
+    ].freeze
 
     begin
       ActiveRecord::Base.establish_connection
       ActiveRecord::Base.connection.tables.each do |table_name|
         next unless table_name.to_sym.in?(FIXTURE_TABLES)
 
-        file_path = "#{Rails.root}/spec/fixtures/#{table_name}.yml"
+        file_path = Rails.root.join("spec/fixtures/#{table_name}.yml")
         File.open(file_path, "w") do |file|
           rows = ActiveRecord::Base.connection.select_all("SELECT * FROM #{table_name} ORDER BY id")
           data = rows.each_with_object({}) do |record, hash|
@@ -53,7 +53,7 @@ namespace :db do
         end
       end
     ensure
-      ActiveRecord::Base.connection.close if ActiveRecord::Base.connection
+      ActiveRecord::Base.connection&.close
     end
 
     elapsed_time = Time.current - process_start_time
@@ -80,7 +80,7 @@ namespace :db do
       ENV["RAILS_ENV"] = "development"
       Rake::Task["db:fixtures:load"].invoke
     ensure
-      ActiveRecord::Base.connection.close if ActiveRecord::Base.connection
+      ActiveRecord::Base.connection&.close
     end
 
     elapsed_time = Time.current - process_start_time
