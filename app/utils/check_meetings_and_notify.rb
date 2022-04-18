@@ -55,7 +55,11 @@ class CheckMeetingsAndNotify
   end
 
   def existing_meetings
-    @existing_meetings ||= unit.meetings.occurring_after(today).to_a
+    @existing_meetings ||= unit.meetings.occurring_after(today).occurring_on_or_before(outside_check_date).to_a
+  end
+
+  def outside_check_date
+    expected_meeting_dates.last
   end
 
   def expected_meeting_dates
