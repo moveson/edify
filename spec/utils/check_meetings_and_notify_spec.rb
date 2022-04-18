@@ -6,12 +6,14 @@ describe CheckMeetingsAndNotify do
   subject { described_class.new(unit) }
 
   let(:unit) { units(:sunny_hills) }
+  let(:missing_meetings_notification) { ::MissingMeetingsNotification.new }
+  let(:incomplete_meeting_notification) { ::IncompleteMeetingNotification.new }
 
   before do
-    allow(::MissingMeetingsNotification).to receive(:with).and_call_original
-    allow(::IncompleteMeetingNotification).to receive(:with).and_call_original
-    allow_any_instance_of(::MissingMeetingsNotification).to receive(:deliver_later)
-    allow_any_instance_of(::IncompleteMeetingNotification).to receive(:deliver_later)
+    allow(::MissingMeetingsNotification).to receive(:with).and_return(missing_meetings_notification)
+    allow(::IncompleteMeetingNotification).to receive(:with).and_return(incomplete_meeting_notification)
+    allow(missing_meetings_notification).to receive(:deliver_later)
+    allow(incomplete_meeting_notification).to receive(:deliver_later)
     travel_to(test_date)
   end
 
@@ -21,7 +23,7 @@ describe CheckMeetingsAndNotify do
 
     it "sends notifications of missing dates to unit users" do
       expect(::MissingMeetingsNotification).to receive(:with).with(dates: expected_missing_dates)
-      expect_any_instance_of(::MissingMeetingsNotification).to receive(:deliver_later).with(unit.users)
+      expect(missing_meetings_notification).to receive(:deliver_later).with(unit.users)
       subject.perform!
     end
   end
@@ -31,7 +33,7 @@ describe CheckMeetingsAndNotify do
 
     it "does not send missing meeting notifications" do
       expect(::MissingMeetingsNotification).not_to receive(:with)
-      expect_any_instance_of(::MissingMeetingsNotification).not_to receive(:deliver_later)
+      expect(missing_meetings_notification).not_to receive(:deliver_later)
       subject.perform!
     end
   end
@@ -43,7 +45,7 @@ describe CheckMeetingsAndNotify do
     context "when the meeting has no scheduler" do
       it "sends an incomplete meeting notification to unit users" do
         expect(::IncompleteMeetingNotification).to receive(:with).with(meeting: incomplete_meeting)
-        expect_any_instance_of(::IncompleteMeetingNotification).to receive(:deliver_later).with(unit.users)
+        expect(incomplete_meeting_notification).to receive(:deliver_later).with(unit.users)
         subject.perform!
       end
     end
@@ -54,7 +56,7 @@ describe CheckMeetingsAndNotify do
 
       it "sends an incomplete meeting notification to the scheduler" do
         expect(::IncompleteMeetingNotification).to receive(:with).with(meeting: incomplete_meeting)
-        expect_any_instance_of(::IncompleteMeetingNotification).to receive(:deliver_later).with(scheduler)
+        expect(incomplete_meeting_notification).to receive(:deliver_later).with(scheduler)
         subject.perform!
       end
     end
@@ -69,7 +71,7 @@ describe CheckMeetingsAndNotify do
 
     it "does not send an incomplete meeting notification" do
       expect(::IncompleteMeetingNotification).not_to receive(:with)
-      expect_any_instance_of(::IncompleteMeetingNotification).not_to receive(:deliver_later)
+      expect(incomplete_meeting_notification).not_to receive(:deliver_later)
       subject.perform!
     end
   end

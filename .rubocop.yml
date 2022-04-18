@@ -42,9 +42,6 @@ Rails/SkipsModelValidations:
 Rails/RequestReferer:
   Enabled: false
 
-RSpec/AnyInstance:
-  Enabled: false
-
 RSpec/BeEq:
   Enabled: false
 
@@ -55,6 +52,9 @@ RSpec/MessageSpies:
   Enabled: false
 
 RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
   Enabled: false
 
 RSpec/NamedSubject:
