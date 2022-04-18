@@ -25,13 +25,13 @@
           <h4>Personal Information</h4>
         </div>
         <div class="card-body">
-          <%= form_with(model: current_user, url: settings_update_path, html: { method: :put }) do |f| %>
+          <%= form_with(model: current_user, url: settings_update_path, html: { method: :put, data: { controller: "form-apply" } }) do |f| %>
             <div class="mb-3">
               <%= f.label :full_name %>
               <%= f.text_field :name, autofocus: false, class: "form-control", placeholder: "Full name" %>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-2">
               <%= f.label "Phone (to receive text messages)" %>
               <%= f.text_field :phone_number, class: "form-control", placeholder: "XXX-XXX-XXXX" %>
             </div>
@@ -39,7 +39,7 @@
             <br/>
 
             <div class="mb-3">
-              <%= f.submit "Save Changes", class: "btn btn-primary", data: { turbo: false } %>
+              <%= f.submit "Save Changes", class: "btn btn-primary", data: { turbo: false, "form-apply-target" => "submitButton" } %>
             </div>
           <% end %>
         </div>
@@ -50,7 +50,7 @@
           <h4>Notification Preferences</h4>
         </div>
         <div class="card-body">
-          <%= form_with(model: current_user, url: settings_update_path, html: { method: :put }) do |f| %>
+          <%= form_with(model: current_user, url: settings_update_path, html: { method: :put, data: { controller: "form-auto-submit" } }) do |f| %>
             <h5>Email notifications</h5>
             <div class="form-check form-switch mb-4 ms-3">
               <label class="form-check-label" for="email-switch-check-box"><%= current_user.email %></label>
@@ -58,15 +58,9 @@
             </div>
 
             <h5>Text notifications</h5>
-            <div class="form-check form-switch mb-4 ms-3">
+            <div class="form-check form-switch mb-2 ms-3">
               <label class="form-check-label" for="sms-switch-check-box"><%= current_user.phone_number || "Phone number not provided" %></label>
               <%= f.check_box :notification_preference_sms, class: "form-check-input fs-5", id: "sms-switch-check-box", disabled: current_user.phone_number.nil? %>
-            </div>
-
-            <br/>
-
-            <div class="mb-3">
-              <%= f.submit "Save Changes", class: "btn btn-primary", data: { turbo: false } %>
             </div>
           <% end %>
         </div>
