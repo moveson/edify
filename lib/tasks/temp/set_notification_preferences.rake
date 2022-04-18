@@ -2,7 +2,7 @@
 
 namespace :temp do
   desc "Sets initial notification preferences for existing users"
-  task :set_notification_preferences => :environment do |_, args|
+  task :set_notification_preferences => :environment do |_, _args|
     Rails.application.eager_load!
 
     # We just need to invoke callbacks
