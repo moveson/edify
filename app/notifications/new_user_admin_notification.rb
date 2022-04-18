@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
-class NewUserAdminNotification < Noticed::Base
+class NewUserAdminNotification < ApplicationNotification
   deliver_by :database
   deliver_by :email, mailer: "UserMailer", format: :format_for_email
-  deliver_by :twilio, format: :format_for_twilio
 
   param :user
 
@@ -13,14 +12,6 @@ class NewUserAdminNotification < Noticed::Base
       subject: subject,
       url: url,
       user: user,
-    }
-  end
-
-  def format_for_twilio
-    {
-      Body: "#{message} #{user.name} (#{user.email})",
-      From: Rails.application.credentials.twilio[:phone_number],
-      To: recipient.phone_number
     }
   end
 
