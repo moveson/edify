@@ -18,11 +18,7 @@ class SettingsController < ApplicationController
   end
 
   def update
-    message = if current_user.update(settings_update_params)
-                "Updated."
-              else
-                current_user.errors.full_messages.join("; ")
-              end
+    message = current_user.update(settings_update_params) ? nil : current_user.errors.full_messages.join("; ")
 
     redirect_to request.referrer, notice: message
   end
@@ -40,6 +36,14 @@ class SettingsController < ApplicationController
   end
 
   def settings_update_params
-    params.require(:user).permit(:avatar, :email, :name, :phone_number)
+    params.require(:user)
+          .permit(
+            :avatar,
+            :email,
+            :name,
+            :notification_preference_email,
+            :notification_preference_sms,
+            :phone_number
+          )
   end
 end
