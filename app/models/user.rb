@@ -19,9 +19,7 @@ class User < ApplicationRecord
   has_one :access_request, dependent: :destroy
   belongs_to :unit, optional: true
 
-  attribute :notification_preference_email, default: true
-  attribute :notification_preference_sms, default: true
-
+  before_validation :set_notification_preferences
   after_commit :send_welcome_notifications
 
   scope :alphabetical, -> { order(:first_name) }
@@ -55,6 +53,12 @@ class User < ApplicationRecord
 
     ::NewUserAdminNotification.with(user: self).deliver_later(::User.admin.all)
     ::NewUserNotification.with(user: self).deliver_later(self)
+  end
+
+  def set_notification_preferences
+    self.notification_preference_email = true if notification_preference_email.nil?
+    self.notification_preference_sms = phone_number.present? if notification_preference_sms.nil?
+    self.notification_preference_sms = false if phone_number.nil?
   end
 
   def newly_confirmed?

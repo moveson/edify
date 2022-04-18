@@ -60,7 +60,7 @@
             <h5>Text notifications</h5>
             <div class="form-check form-switch mb-4 ms-3">
               <label class="form-check-label" for="sms-switch-check-box"><%= current_user.phone_number || "Phone number not provided" %></label>
-              <%= f.check_box :notification_preference_sms, class: "form-check-input fs-5", id: "sms-switch-check-box" %>
+              <%= f.check_box :notification_preference_sms, class: "form-check-input fs-5", id: "sms-switch-check-box", disabled: current_user.phone_number.nil? %>
             </div>
 
             <br/>
