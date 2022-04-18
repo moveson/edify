@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class ApplicationNotification < Noticed::Base
-  self.abstract_class = true
-
   def format_for_email
     {
       message: message,
