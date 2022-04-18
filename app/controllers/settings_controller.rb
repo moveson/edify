@@ -40,6 +40,6 @@ class SettingsController < ApplicationController
   end
 
   def settings_update_params
-    params.require(:user).permit(:avatar, :email, :name, :phone_number)
+    params.require(:user).permit(:avatar, :email, :name, :notification_preference_email, :notification_preference_sms, :phone_number)
   end
 end
