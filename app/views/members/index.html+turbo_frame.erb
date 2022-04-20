@@ -1,19 +1,5 @@
 <%= turbo_frame_tag :filter_and_search do %>
-  <turbo-stream target="members_and_pager" action="replace">
-    <template>
-      <%= render partial: "members_and_pager", locals: { members: @members, pagy: @pagy } %>
-    </template>
-  </turbo-stream>
-
-  <turbo-stream target="members_count" action="replace">
-    <template>
-      <%= render partial: "member_count", locals: { pagy: @pagy } %>
-    </template>
-  </turbo-stream>
-
-  <turbo-stream target="sort_and_filter_dropdowns" action="replace">
-    <template>
-      <%= render partial: "sort_and_filter_dropdowns", locals: { q: @q } %>
-    </template>
-  </turbo-stream>
+  <%= turbo_stream.replace "members_and_pager", partial: "members_and_pager", locals: { members: @members, pagy: @pagy } %>
+  <%= turbo_stream.replace "member_count", partial: "member_count", locals: { pagy: @pagy } %>
+  <%= turbo_stream.replace "sort_and_filter_dropdowns", partial: "sort_and_filter_dropdowns", locals: { q: @q } %>
 <% end %>
