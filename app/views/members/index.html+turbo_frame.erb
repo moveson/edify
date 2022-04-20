@@ -1,13 +1,5 @@
-<%= turbo_frame_tag "page_handler" do %>
-  <%= turbo_stream_action_tag(
-        "append",
-        target: "members",
-        template: %(#{render @members})
-      ) %>
-
-  <%= turbo_stream_action_tag(
-        "replace",
-        target: "pager",
-        template: %(#{render "shared/pager", pagy: @pagy})
-      ) %>
+<%= turbo_frame_tag :filter_and_search do %>
+  <%= turbo_stream.replace "members_and_pager", partial: "members_and_pager", locals: { members: @members, pagy: @pagy } %>
+  <%= turbo_stream.replace "member_count", partial: "member_count", locals: { pagy: @pagy } %>
+  <%= turbo_stream.replace "sort_and_filter_dropdowns", partial: "sort_and_filter_dropdowns", locals: { q: @q } %>
 <% end %>

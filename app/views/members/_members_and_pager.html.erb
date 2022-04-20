@@ -1,0 +1,6 @@
+<%= turbo_frame_tag "members_and_pager" do %>
+  <%= turbo_frame_tag "members" do %>
+    <%= render partial: "member", collection: members %>
+  <% end %>
+  <%= render "shared/pager", pagy: pagy %>
+<% end %>
