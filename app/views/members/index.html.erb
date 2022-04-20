@@ -3,7 +3,7 @@
     <h2 class="mt-md-4 mt-2"><strong><%= "#{current_user.unit_name} Member List" %></strong></h2>
   </div>
   <div class="col-md">
-    <h5 class="mt-md-4 pt-md-3 text-md-end text-muted"><%= filtered_and_total_count(@pagy.count, current_unit.member_count, "member") %></h5>
+    <%= render partial: "member_count", locals: { pagy: @pagy } %>
   </div>
 </div>
 
@@ -44,10 +44,5 @@
 
 <article>
   <%= turbo_frame_tag "page_handler" %>
-  <%= turbo_frame_tag "members_and_pager" do %>
-    <%= turbo_frame_tag "members" do %>
-      <%= render partial: "member", collection: @members %>
-    <% end %>
-    <%= render "shared/pager", pagy: @pagy %>
-  <% end %>
+  <%= render partial: "members_and_pager", locals: { members: @members, pagy: @pagy} %>
 </article>
