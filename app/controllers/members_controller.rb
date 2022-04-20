@@ -11,6 +11,7 @@ class MembersController < ApplicationController
   def index
     @q = current_unit.members.with_last_talk_date.ransack(params[:q])
     @q.sorts = ["name asc"] if @q.sorts.empty?
+    # TODO: Remove items: 2
     @pagy, @members = pagy(@q.result, items: 2)
 
     if params[:page].present?
