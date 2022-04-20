@@ -19,9 +19,9 @@
   </div>
 
   <div class="col-12 col-md-6 mt-1">
-    <%= search_form_for @q do |f| %>
+    <%= search_form_for @q, data: { controller: "form-search-submit", turbo_frame: "members_and_pager", turbo_action: :advance } do |f| %>
       <div class="input-group">
-        <%= f.search_field :name_cont, placeholder: "Find someone", autofocus: true, class: "form-control" %>
+        <%= f.search_field :name_cont, placeholder: "Find someone", autofocus: true, data: { action: "input->form-search-submit#search"}, class: "form-control" %>
         <span class="input-group-append">
         <%= button_tag(type: :submit, class: 'btn btn-primary') do %>
             <i class='fas fa-search'></i>
@@ -44,8 +44,8 @@
 
 <article>
   <%= turbo_frame_tag "page_handler" %>
-  <div id="members">
-    <%= render partial: "member", collection: @members %>
-  </div>
-  <%= render "shared/pager", pagy: @pagy %>
+  <%= turbo_frame_tag "members_and_pager" do %>
+    <%= render partial: "members", locals: { members: @members } %>
+    <%= render "shared/pager", pagy: @pagy %>
+  <% end %>
 </article>
