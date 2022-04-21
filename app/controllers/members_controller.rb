@@ -14,7 +14,7 @@ class MembersController < ApplicationController
     @pagy, @members = pagy(@q.result)
 
     if params[:page].present?
-      render :page
+      render :next_page
     else
       render :index
     end
