@@ -1,9 +1,11 @@
+<%= turbo_frame_tag :filter_and_search %>
+
 <div class="row">
   <div class="col-md">
     <h2 class="mt-md-4 mt-2"><strong><%= "#{current_user.unit_name} Talks" %></strong></h2>
   </div>
   <div class="col-md">
-    <h5 class="mt-md-4 pt-md-3 text-md-end text-muted"><%= filtered_and_total_count(@pagy.count, current_unit.talk_count, "talk") %></h5>
+    <%= render partial: "talk_count", locals: { pagy: @pagy } %>
   </div>
 </div>
 
@@ -13,14 +15,13 @@
 
 <div class="row">
   <div class="col-12 col-md-6 col-inline mt-1">
-    <%= sort_talks_dropdown(request.params, @q, label: "Sort") %>
-    <%= filter_talks_matched_dropdown(request.params, label: "Matching?") %>
+    <%= render partial: "sort_and_filter_dropdowns", locals: { q: @q } %>
   </div>
 
   <div class="col-12 col-md-6 mt-1">
-    <%= search_form_for @q do |f| %>
+    <%= search_form_for @q, data: { controller: "form-search-submit", turbo_frame: :filter_and_search, turbo_action: :advance } do |f| %>
       <div class="input-group">
-        <%= f.search_field :speaker_name_or_purpose_or_topic_cont, placeholder: "Find a talk", autofocus: true, class: "form-control" %>
+        <%= f.search_field :speaker_name_or_purpose_or_topic_cont, placeholder: "Find a talk", autofocus: true, data: { action: "input->form-search-submit#search" }, class: "form-control" %>
         <span class="input-group-append">
         <%= button_tag(type: :submit, class: 'btn btn-primary') do %>
             <i class='fas fa-search'></i>
@@ -35,8 +36,5 @@
 
 <article>
   <%= turbo_frame_tag "page_handler" %>
-  <div id="talks">
-    <%= render partial: "talk", collection: @talks %>
-  </div>
-  <%= render "shared/pager", pagy: @pagy %>
+  <%= render partial: "talks_and_pager", locals: { talks: @talks, pagy: @pagy } %>
 </article>
