@@ -8,6 +8,9 @@ bartell_randal:
   email: nola@walkerfarrell.us
   synced_at:
   unit_id: 1
+  paused_until:
+  paused_at:
+  paused_by:
 predovic_mohamed:
   id: 3
   name: Predovic, Mohamed
@@ -17,6 +20,9 @@ predovic_mohamed:
   email: sunny@abernathy.com
   synced_at:
   unit_id: 1
+  paused_until:
+  paused_at:
+  paused_by:
 hilll_waylon:
   id: 4
   name: Hilll, Waylon
@@ -26,6 +32,9 @@ hilll_waylon:
   email: jorge.yost@oreilly.info
   synced_at:
   unit_id: 1
+  paused_until:
+  paused_at:
+  paused_by:
 nikolaus_jetta:
   id: 6
   name: Nikolaus, Jetta
@@ -35,6 +44,9 @@ nikolaus_jetta:
   email: beckie.stoltenberg@kuhnmcglynn.us
   synced_at:
   unit_id: 1
+  paused_until:
+  paused_at:
+  paused_by:
 zboncak_ivy:
   id: 8
   name: Zboncak, Ivy
@@ -44,6 +56,9 @@ zboncak_ivy:
   email: darleen@west.us
   synced_at:
   unit_id: 1
+  paused_until:
+  paused_at:
+  paused_by:
 waelchi_lindsey:
   id: 9
   name: Waelchi, Lindsey
@@ -53,6 +68,9 @@ waelchi_lindsey:
   email: josefa.kessler@leschpaucek.ca
   synced_at:
   unit_id: 1
+  paused_until:
+  paused_at:
+  paused_by:
 wilderman_kati:
   id: 10
   name: Wilderman, Kati
@@ -62,6 +80,9 @@ wilderman_kati:
   email: gregorio@kuhn.name
   synced_at:
   unit_id: 1
+  paused_until:
+  paused_at:
+  paused_by:
 barrows_kenneth:
   id: 12
   name: Barrows, Kenneth
@@ -71,6 +92,9 @@ barrows_kenneth:
   email: victor_schmeler@wiza.co.uk
   synced_at:
   unit_id: 1
+  paused_until:
+  paused_at:
+  paused_by:
 luettgen_stefan:
   id: 16
   name: Luettgen, Stefan
@@ -80,6 +104,9 @@ luettgen_stefan:
   email: monique.huels@lemke.ca
   synced_at:
   unit_id: 2
+  paused_until:
+  paused_at:
+  paused_by:
 legros_joaquin:
   id: 17
   name: Legros, Joaquin
@@ -89,6 +116,9 @@ legros_joaquin:
   email: clotilde_kiehn@brekkerowe.name
   synced_at:
   unit_id: 2
+  paused_until:
+  paused_at:
+  paused_by:
 anderson_torri:
   id: 19
   name: Anderson, Torri
@@ -98,6 +128,9 @@ anderson_torri:
   email: rayna_goldner@west.biz
   synced_at:
   unit_id: 2
+  paused_until:
+  paused_at:
+  paused_by:
 torp_cherri:
   id: 20
   name: Torp, Cherri
@@ -107,6 +140,9 @@ torp_cherri:
   email: jessica_spencer@littel.com
   synced_at:
   unit_id: 2
+  paused_until:
+  paused_at:
+  paused_by:
 hills_julie:
   id: 21
   name: Hills, Julie
@@ -116,6 +152,9 @@ hills_julie:
   email: divina@trantowschroeder.com
   synced_at:
   unit_id: 2
+  paused_until:
+  paused_at:
+  paused_by:
 oberbrunner_meghann:
   id: 22
   name: Oberbrunner, Meghann
@@ -125,6 +164,9 @@ oberbrunner_meghann:
   email: vincenza_mills@vandervort.biz
   synced_at:
   unit_id: 2
+  paused_until:
+  paused_at:
+  paused_by:
 collier_elinor:
   id: 23
   name: Collier, Elinor
@@ -134,6 +176,9 @@ collier_elinor:
   email: vance@walterchamplin.info
   synced_at:
   unit_id: 2
+  paused_until:
+  paused_at:
+  paused_by:
 harris_staci:
   id: 24
   name: Harris, Staci
@@ -143,6 +188,9 @@ harris_staci:
   email: ruthanne@cormier.ca
   synced_at:
   unit_id: 2
+  paused_until:
+  paused_at:
+  paused_by:
 miller_wilton:
   id: 25
   name: Miller, Wilton
@@ -152,6 +200,9 @@ miller_wilton:
   email: gillian@schaefer.co.uk
   synced_at:
   unit_id: 2
+  paused_until:
+  paused_at:
+  paused_by:
 friesen_sammy:
   id: 26
   name: Friesen, Sammy
@@ -161,6 +212,9 @@ friesen_sammy:
   email: carla@schneider.co.uk
   synced_at:
   unit_id: 2
+  paused_until:
+  paused_at:
+  paused_by:
 kilback_darron:
   id: 27
   name: Kilback, Darron
@@ -170,6 +224,9 @@ kilback_darron:
   email: lino_balistreri@haagdickens.ca
   synced_at:
   unit_id: 2
+  paused_until:
+  paused_at:
+  paused_by:
 hagenes_daryl:
   id: 28
   name: Hagenes, Daryl
@@ -179,6 +236,9 @@ hagenes_daryl:
   email: soraya_koch@erdmanleffler.com
   synced_at:
   unit_id: 2
+  paused_until:
+  paused_at:
+  paused_by:
 aufderhar_matthew:
   id: 29
   name: Aufderhar, Matthew
@@ -188,6 +248,9 @@ aufderhar_matthew:
   email: bernie@jaskolski.us
   synced_at:
   unit_id: 2
+  paused_until:
+  paused_at:
+  paused_by:
 heller_yong:
   id: 30
   name: Heller, Yong
@@ -197,3 +260,6 @@ heller_yong:
   email: jamie_bahringer@mcclure.ca
   synced_at:
   unit_id: 2
+  paused_until:
+  paused_at:
+  paused_by:
