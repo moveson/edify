@@ -42,7 +42,7 @@ class Member < ApplicationRecord
   end
 
   def paused?
-    paused_until? && paused_until > Date.today
+    paused_until? && paused_until > Date.current
   end
 
   private

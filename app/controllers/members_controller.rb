@@ -130,6 +130,6 @@ class MembersController < ApplicationController
       :paused_by,
       :paused_until,
       :phone_number,
-      )
+    )
   end
 end
