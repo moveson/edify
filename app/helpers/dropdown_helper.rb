@@ -159,7 +159,7 @@ module DropdownHelper
               "By name"
             when "birthdate"
               "By age"
-            when "last_talk_date"
+            when "paused_until"
               "By last talk"
             else
               "By custom sort"
@@ -173,8 +173,8 @@ module DropdownHelper
         link: request_params.deep_merge(q: { s: "birthdate desc" }),
         active: existing_sort_attribute == "birthdate" },
       { name: "Last talk",
-        link: request_params.deep_merge(q: { s: "last_talk_date asc" }),
-        active: existing_sort_attribute == "last_talk_date" },
+        link: request_params.deep_merge(q: { s: "paused_until asc, last_talk_date asc" }),
+        active: existing_sort_attribute == "paused_until" },
     ]
 
     build_dropdown_menu(title, dropdown_items, options)
