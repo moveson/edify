@@ -10,7 +10,7 @@ talk_2:
   id: 2
   purpose:
   topic: It Is Finished
-  speaker_name: Hilll, Waylon
+  speaker_name: Hill, Waylon
   member_id: 4
   meeting_id: 2
 talk_3:
@@ -48,3 +48,10 @@ talk_7:
   speaker_name: Aufderhar, Matthew
   member_id: 29
   meeting_id: 8
+talk_8:
+  id: 8
+  purpose:
+  topic:
+  speaker_name: Hill, Waylon
+  member_id: 4
+  meeting_id: 11

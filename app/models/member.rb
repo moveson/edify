@@ -27,22 +27,39 @@ class Member < ApplicationRecord
     super | %w[last_talk_date]
   end
 
+  # @return [Integer]
   def age
     (Date.current - birthdate).to_i / 365
   end
 
+  # @return [String (frozen)]
   def bio
     "#{gender.titleize}, #{age}"
   end
 
+  # @return [Boolean]
+  def created_on_first_sync?
+    created_at.to_date == unit.first_synced_on
+  end
+
+  # @return [Date, nil]
   def last_talk_date
     return attributes["last_talk_date"] if attributes.key?("last_talk_date")
 
-    talks.joins(:meeting).maximum("meetings.date")
+    talks.joins(:meeting).maximum("meetings.date")&.to_date
   end
 
   def paused?
     paused_until? && paused_until > Date.current
+  end
+
+  # @return [ActiveSupport::Duration]
+  def time_in_unit
+    return @time_in_unit if defined?(@time_in_unit)
+    # If member was created on the first sync, we don't know how long they have been a member of the unit
+    return @time_in_unit = nil if created_on_first_sync?
+
+    @time_in_unit = (Date.current - created_at.to_date).to_i.days
   end
 
   private
