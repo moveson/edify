@@ -41,6 +41,10 @@ class Member < ApplicationRecord
     talks.joins(:meeting).maximum("meetings.date")
   end
 
+  def paused?
+    paused_until? && paused_until > Date.today
+  end
+
   private
 
   def match_talks

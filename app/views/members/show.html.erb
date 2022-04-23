@@ -16,6 +16,52 @@
 <div class="d-flex justify-content-center">
   <div class="card bg-light mt-2 w-100" style="max-width: 700px;">
     <div class="card-header">
+      <h4>Pause Invitations</h4>
+    </div>
+    <div class="card-body">
+      <div class="row mb-2">
+        <h6>Don't suggest inviting this member to speak for:</h6>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="d-grid gap-2 d-md-block mx-3">
+            <%= link_to_pause(@member, "1 month") %>
+            <%= link_to_pause(@member, "3 months") %>
+            <%= link_to_pause(@member, "6 months") %>
+            <%= link_to_pause(@member, "1 year") %>
+          </div>
+        </div>
+        <div class="col-12 col-md-2 text-md-end mt-4 mt-md-0">
+          <div class="d-grid gap-2 d-md-block mx-3">
+            <%= link_to "Clear", member_path(@member, member: { paused_until: nil, paused_at: nil, paused_by: nil }), method: :patch, class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex justify-content-center">
+  <div class="card bg-light mt-2 w-100" style="max-width: 700px;">
+    <div class="card-header">
+      <h4>Notes</h4>
+    </div>
+
+    <%= turbo_frame_tag :new_note, target: "_top" do %>
+      <%= render partial: "notes/form", locals: { note: @member.notes.build } %>
+    <% end %>
+
+    <div class="card-body">
+      <%= turbo_frame_tag "notes" do %>
+        <%= render partial: "notes/note", collection: @member.notes.most_recent_first %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex justify-content-center">
+  <div class="card bg-light mt-2 w-100" style="max-width: 700px;">
+    <div class="card-header">
       <h4>Talks</h4>
     </div>
     <div class="card-body">
@@ -39,24 +85,6 @@
         <% end %>
         </tbody>
       </table>
-    </div>
-  </div>
-</div>
-
-<div class="d-flex justify-content-center">
-  <div class="card bg-light mt-2 w-100" style="max-width: 700px;">
-    <div class="card-header">
-      <h4>Notes</h4>
-    </div>
-
-    <%= turbo_frame_tag :new_note, target: "_top" do %>
-      <%= render partial: "notes/form", locals: { note: @member.notes.build } %>
-    <% end %>
-
-    <div class="card-body">
-      <%= turbo_frame_tag "notes" do %>
-        <%= render partial: "notes/note", collection: @member.notes.most_recent_first %>
-      <% end %>
     </div>
   </div>
 </div>

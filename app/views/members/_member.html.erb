@@ -16,6 +16,9 @@
       <div class="card-body">
         <div class="row">
           <div class="col">
+            <% if member.paused? %>
+              <h6 class="text-danger"><%= "Invitations paused until #{l(member.paused_until, format: :rfc822)}" %></h6>
+            <% end %>
             <% if member.last_talk_date %>
               <h6><%= "Last talk date: #{l(member.last_talk_date, format: :rfc822)}" %></h6>
             <% else %>
