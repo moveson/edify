@@ -173,7 +173,7 @@ module DropdownHelper
         link: request_params.deep_merge(q: { s: "birthdate desc" }),
         active: existing_sort_attribute == "birthdate" },
       { name: "Last talk",
-        link: request_params.deep_merge(q: { s: ["paused_until asc", "last_talk_date asc"] }),
+        link: request_params.deep_merge(q: { s: ["paused_until asc", "last_talk_date asc", "name asc"] }),
         active: existing_sort_attribute == "paused_until" },
     ]
 
