@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_23_213302) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_24_160214) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -72,6 +72,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_23_213302) do
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
+  create_table "import_jobs", force: :cascade do |t|
+    t.bigint "unit_id", null: false
+    t.integer "status"
+    t.string "status_text"
+    t.string "error_message"
+    t.integer "row_count"
+    t.integer "success_count"
+    t.integer "failure_count"
+    t.datetime "started_at"
+    t.integer "elapsed_seconds"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["unit_id"], name: "index_import_jobs_on_unit_id"
   end
 
   create_table "meetings", force: :cascade do |t|
@@ -188,6 +203,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_23_213302) do
   add_foreign_key "access_requests", "users"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "import_jobs", "units"
   add_foreign_key "meetings", "units"
   add_foreign_key "meetings", "users", column: "scheduler_id"
   add_foreign_key "members", "units"
