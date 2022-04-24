@@ -18,12 +18,16 @@
           <div class="col">
             <% if member.paused? %>
               <h6 class="text-danger"><%= "Invitations paused until #{l(member.paused_until, format: :rfc822)}" %></h6>
+            <% elsif member.new_member? && member.last_talk_date.nil? %>
+              <h6 class="text-success"><%= "New member who has yet to speak" %></h6>
             <% end %>
+
             <% if member.last_talk_date %>
               <h6><%= "Last talk date: #{l(member.last_talk_date, format: :rfc822)}" %></h6>
             <% else %>
               <h6><%= "Last talk date: Not found" %></h6>
             <% end %>
+
             <h6><%= "Phone: #{member.phone_number}" %></h6>
             <h6><%= "Email: #{member.email}" %></h6>
           </div>
