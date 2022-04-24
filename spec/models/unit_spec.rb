@@ -4,10 +4,10 @@ require "rails_helper"
 
 describe ::Unit, type: :model do
   describe "#next_available_sunday" do
-    subject { units(:sunny_hills) }
-    let(:result) { subject.next_available_sunday }
+    let(:unit) { units(:sunny_hills) }
+
+    let(:result) { unit.next_available_sunday }
     before { travel_to(test_date) }
-    after { travel_back }
 
     context "when the upcoming Sunday does not have a meeting scheduled" do
       let(:test_date) { "2022-05-02" }
@@ -17,7 +17,7 @@ describe ::Unit, type: :model do
       end
 
       context "when there is a meeting scheduled on the upcoming Saturday" do
-        before { subject.meetings.create!(date: "2022-05-07", meeting_type: :stake_conference) }
+        before { unit.meetings.create!(date: "2022-05-07", meeting_type: :stake_conference) }
 
         it "returns the upcoming Sunday" do
           expect(result).to eq("2022-05-08".to_date)
