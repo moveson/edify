@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe ::Member, type: :model do
+describe ::Member, type: :model do
   subject { members(:bartell_randal) }
 
   describe "#age" do

@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe ::User, type: :model do
+describe ::User, type: :model do
   subject { described_class.new(phone_number: phone_number) }
 
   let(:phone_number) { "303-303-0303" }
