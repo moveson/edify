@@ -41,6 +41,7 @@ describe ::Member, type: :model do
   describe "#last_talk_date" do
     let(:result) { member.last_talk_date }
     context "when the member has never given a talk" do
+      let(:member) { members(:bartell_randal) }
       it "returns nil" do
         expect(result).to be_nil
       end
@@ -58,6 +59,39 @@ describe ::Member, type: :model do
       it "returns the most recent talk date" do
         expect(result).to eq("2022-04-10".to_date)
       end
+    end
+  end
+
+  describe "#new_member?" do
+    let(:result) { member.new_member? }
+    let(:unit) { member.unit }
+
+    context "when the member was created on the date of the first sync" do
+      before { member.update(created_at: unit.first_synced_on) }
+
+      it { expect(result).to eq(false) }
+    end
+
+    context "when the member was created after the date of the first sync" do
+      before { member.update(created_at: unit.first_synced_on + 10.days) }
+
+      context "when a short time has passed" do
+        before { travel_to("2022-05-15") }
+
+        it { expect(result).to eq(true) }
+      end
+
+      context "when a long time has passed" do
+        before { travel_to("2023-05-15") }
+
+        it { expect(result).to eq(false) }
+      end
+    end
+
+    context "when the member was created long after the date of the first sync" do
+      before { member.update(created_at: unit.first_synced_on + 10.days) }
+
+      it { expect(result).to eq(true) }
     end
   end
 
