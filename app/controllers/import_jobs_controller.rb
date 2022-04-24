@@ -20,23 +20,15 @@ class ImportJobsController < ApplicationController
 
   # POST /import_jobs
   def create
-    @import_job = current_unit.import_jobs.new
+    @import_job = current_unit.import_jobs.new(import_job_params)
     @import_job.status = :waiting
 
-    username = params[:username]
-    password = params[:password]
-
-    if username.present? && password.present?
-      if @import_job.save
-        ::FetchMembersJob.perform_later(username, password, @import_job.id)
-        redirect_to members_url, notice: "Import in progress"
-      else
-        flash[:danger] = "Unable to create import job: #{@import_job.errors.full_messages.join(', ')}"
-        render "new"
-      end
+    if @import_job.save
+      ::ImporterJob.perform_later(current_unit, raw_data)
+      redirect_to import_jobs_path, notice: "Import in progress"
     else
-      flash[:danger] = "Username and password must be provided"
-      render :new
+      flash[:danger] = "Unable to create import job: #{@import_job.errors.full_messages.join(', ')}"
+      render "new"
     end
   end
 
@@ -50,6 +42,10 @@ class ImportJobsController < ApplicationController
   end
 
   private
+
+  def import_job_params
+    params.require(:import_job).permit(:raw_data)
+  end
 
   def set_import_job
     @import_job = ::ImportJob.find(params[:id])

@@ -1,8 +1,17 @@
 <div class="row">
-  <div class="col-sm-6">
-    <h1>Import Jobs</h1>
+  <div class="col-md">
+    <h2 class="mt-md-4 mt-2"><strong><%= "#{current_unit.name} Imports" %></strong></h2>
+  </div>
+  <div class="col-md text-end">
+    <%= link_to fa_icon("plus", text: " Import Members"),
+                new_import_job_path,
+                class: "btn btn-primary mt-4"
+    %>
   </div>
 </div>
+
+<hr/>
+<br/>
 
 <%= turbo_stream_from current_unit %>
 

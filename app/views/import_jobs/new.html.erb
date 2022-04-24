@@ -1,23 +1,20 @@
-<h1>Enter Your Credentials</h1>
-<p>
-  To fetch member data, we will need you to enter your username and password for the Church of Jesus Christ website.
-  Credentials are never stored, logged, or exposed. They are sent through a secure connection to
-  www.churchofjesuschrist.org and then discarded.
-</p>
+<div class="row">
+  <div class="col-md">
+    <h2 class="mt-md-4 mt-2"><strong><%= "#{current_unit.name} Membership List Import" %></strong></h2>
+  </div>
+</div>
+
+<hr/>
+<br/>
 
 <%= form_with(url: import_jobs_path) do |form| %>
   <div class="mb-3">
-    <%= form.label :username, class: 'form-label' %>
-    <%= form.text_field :username, class: 'form-control' %>
+    <%= form.label :raw_membership_list, class: "form-label" %>
+    <%= form.text_area :raw_data, class: "form-control", rows: 20, autofocus: true, placeholder: "Paste your membership list here" %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :password, class: 'form-label' %>
-    <%= form.password_field :password, class: 'form-control' %>
-  </div>
-
-  <div class="mb-3">
-    <%= form.submit "Fetch", class: 'btn btn-primary' %>
+    <%= form.submit "Import", class: "btn btn-primary" %>
 
     <%= link_to "Cancel", import_jobs_path, class: "btn btn-link" %>
   </div>
