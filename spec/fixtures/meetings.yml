@@ -53,3 +53,9 @@ meeting_10:
   date: '2022-05-08'
   unit_id: 2
   scheduler_id: 5
+meeting_11:
+  id: 11
+  meeting_type: 0
+  date: '2022-03-27'
+  unit_id: 1
+  scheduler_id: 2
