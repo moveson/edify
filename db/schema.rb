@@ -78,12 +78,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_24_160214) do
     t.bigint "unit_id", null: false
     t.integer "status"
     t.string "status_text"
-    t.string "error_message"
     t.integer "row_count"
-    t.integer "success_count"
-    t.integer "failure_count"
+    t.integer "succeeded_count"
+    t.integer "failed_count"
+    t.integer "ignored_count"
     t.datetime "started_at"
     t.integer "elapsed_seconds"
+    t.string "error_message"
+    t.string "log"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["unit_id"], name: "index_import_jobs_on_unit_id"

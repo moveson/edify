@@ -75,10 +75,10 @@ module Etl
 
         raw_member_row = RawMemberRow.new(attributes)
         raw_member_rows << raw_member_row
-        import_job.increment!(:success_count)
+        import_job.increment!(:succeeded_count)
       rescue StandardError => e
         errors.add(:base, "Extraction error at row #{row_index}: #{e}")
-        import_job.increment!(:failure_count)
+        import_job.increment!(:failed_count)
       ensure
         import_job.set_elapsed_time!
       end

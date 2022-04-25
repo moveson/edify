@@ -30,7 +30,7 @@ module Etl
     end
 
     def save_members
-      import_job.update(status: :loading, success_count: 0, failure_count: 0)
+      import_job.update(status: :loading, succeeded_count: 0, failed_count: 0)
 
       raw_member_rows.each.with_index(1) do |raw_member_row, row_index|
         member = unit.members.find_or_initialize_by(name: raw_member_row.name, birthdate: raw_member_row.birthdate)
@@ -38,13 +38,13 @@ module Etl
         member.assign_attributes(raw_member_row.to_h)
 
         if member.save
-          import_job.increment!(:success_count)
+          import_job.increment!(:succeeded_count)
         else
-          import_job.increment!(:failure_count)
+          import_job.increment!(:failed_count)
           errors.add(:base, resource_error_object(member, row_index))
         end
       rescue ActiveRecord::ActiveRecordError => e
-        import_job.increment!(:failure_count)
+        import_job.increment!(:failed_count)
         errors.add(:base, record_not_saved_error(e, row_index))
       ensure
         import_job.set_elapsed_time!
