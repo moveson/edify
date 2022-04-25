@@ -5,11 +5,13 @@
 # notations and behaviors.
 Rails.application.config.filter_parameters += [
   :_key,
+  :birthdate,
   :certificate,
   :crypt,
   :data_string,
   :otp,
   :passw,
+  :phone_number,
   :salt,
   :secret,
   :ssn,

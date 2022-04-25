@@ -60,8 +60,11 @@ module Etl
     end
 
     def resource_error_object(record, row_index)
+      param_filter = ActiveSupport::ParameterFilter.new(Rails.application.config.filter_parameters)
+      attributes = param_filter.filter(record.attributes.compact)
+
       { title: "#{record.class} #{record} could not be saved",
-        detail: { row_index: row_index, attributes: record.attributes.compact, messages: record.errors.full_messages } }
+        detail: { row_index: row_index, attributes: attributes, messages: record.errors.full_messages } }
     end
 
     def record_not_saved_error(error, row_index)
