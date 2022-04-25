@@ -4,7 +4,6 @@ require "csv"
 
 module Etl
   class ExtractMemberData
-    MEMBER_DATA_REGEX = /\A.*(^\t*Name.*^Count:).*\z/m
     ATTRIBUTE_NAME_MAP = {
       "Name" => "name",
       "Gender" => "gender",
@@ -12,6 +11,9 @@ module Etl
       "Phone Number" => "phone_number",
       "E-mail" => "email",
     }.freeze
+
+    MEMBER_DATA_REGEX = /\A.*(^\t*Name.*^Count:).*\z/m
+    UNBAPTIZED_MEMBER_OF_RECORD_INDICATOR = "*"
 
     def self.perform(import_job)
       new(import_job).perform
@@ -66,7 +68,7 @@ module Etl
     def extract_members
       import_job.update(status_text: "Parsing member list")
 
-      member_list_rows = CSV.parse(raw_data, headers: true, col_sep: "\t")
+      member_list_rows = CSV.parse(raw_data, headers: true, col_sep: "\t", encoding: "UTF-8")
 
       import_job.update(row_count: member_list_rows.size - 1)
       member_list_rows.each.with_index(1) do |row, row_index|
@@ -74,6 +76,9 @@ module Etl
         next if attributes.compact.empty?
 
         raw_member_row = RawMemberRow.new(attributes)
+
+        strip_unbaptized_member_of_record(raw_member_row)
+
         raw_member_rows << raw_member_row
         import_job.increment!(:succeeded_count)
       rescue StandardError => e
@@ -86,6 +91,11 @@ module Etl
 
     def included_attributes
       @included_attributes ||= RawMemberRow.members.map(&:to_s)
+    end
+
+    def strip_unbaptized_member_of_record(raw_member_row)
+      umor_indicator, stripped_name = raw_member_row.name.split(" ", 2)
+      raw_member_row.name = stripped_name if umor_indicator == UNBAPTIZED_MEMBER_OF_RECORD_INDICATOR
     end
   end
 end

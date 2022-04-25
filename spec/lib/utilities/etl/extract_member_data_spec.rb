@@ -34,6 +34,10 @@ describe ::Etl::ExtractMemberData do
         expect(result.last.phone_number).to eq("385-348-3585")
         expect(result.last.email).to eq("heidenrick@kenneth.com")
       end
+
+      it "removes unbaptized member of record indicators" do
+        expect(result.second.name).to eq("Bode, Yolanda")
+      end
     end
 
     context "when the raw member data is incomplete" do
