@@ -68,7 +68,7 @@ module Etl
 
       member_list_rows = CSV.parse(raw_data, headers: true, col_sep: "\t")
 
-      import_job.update(row_count: member_list_rows.size)
+      import_job.update(row_count: member_list_rows.size - 1)
       member_list_rows.each.with_index(1) do |row, row_index|
         attributes = row.to_h.slice(*included_attributes)
         next if attributes.compact.empty?
@@ -77,8 +77,8 @@ module Etl
         raw_member_rows << raw_member_row
         import_job.increment!(:success_count)
       rescue StandardError => e
-        errors.add(:base, "#{e}: #{row_index}")
-        import_job.increment!(:failed_count)
+        errors.add(:base, "Extraction error at row #{row_index}: #{e}")
+        import_job.increment!(:failure_count)
       ensure
         import_job.set_elapsed_time!
       end

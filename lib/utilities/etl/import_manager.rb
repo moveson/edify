@@ -20,10 +20,10 @@ module Etl
 
     private
 
-    attr_reader :username, :password, :import_job
+    attr_reader :import_job
     attr_accessor :raw_member_rows
 
-    delegate :errors, to: :import_job, private: true
+    delegate :errors, :unit, to: :import_job, private: true
 
     def extract_member_list
       self.raw_member_rows = ::Etl::ExtractMemberData.perform(import_job)
@@ -33,7 +33,7 @@ module Etl
       import_job.update(status: :loading, success_count: 0, failure_count: 0)
 
       raw_member_rows.each.with_index(1) do |raw_member_row, row_index|
-        member = Member.find_or_initialize_by(name: raw_member_row.name, birthdate: raw_member_row.birthdate)
+        member = unit.members.find_or_initialize_by(name: raw_member_row.name, birthdate: raw_member_row.birthdate)
         raw_member_row.gender = raw_member_row.gender.downcase == "f" ? "female" : "male"
         member.assign_attributes(raw_member_row.to_h)
 
