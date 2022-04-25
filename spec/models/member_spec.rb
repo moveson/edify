@@ -138,4 +138,22 @@ describe ::Member, type: :model do
       end
     end
   end
+
+  describe "#under_age?" do
+    let(:result) { member.under_age? }
+    context "when the member is below youth age" do
+      let(:member) { Member.new(birthdate: 10.years.ago) }
+      it { expect(result).to eq(true) }
+    end
+
+    context "when the member is youth age" do
+      let(:member) { Member.new(birthdate: 15.years.ago) }
+      it { expect(result).to eq(false) }
+    end
+
+    context "when the member is older" do
+      let(:member) { Member.new(birthdate: 90.years.ago) }
+      it { expect(result).to eq(false) }
+    end
+  end
 end
