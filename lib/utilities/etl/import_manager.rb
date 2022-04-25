@@ -59,10 +59,6 @@ module Etl
       end
     end
 
-    def credentials
-      @credentials ||= Brigham::Credentials.new(username: username, password: password)
-    end
-
     def resource_error_object(record, row_index)
       { title: "#{record.class} #{record} could not be saved",
         detail: { row_index: row_index, attributes: record.attributes.compact, messages: record.errors.full_messages } }

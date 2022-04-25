@@ -45,7 +45,7 @@ class ImportJob < ApplicationRecord
   def set_elapsed_time!
     return unless persisted? && started_at.present?
 
-    update_column(:elapsed_time, Time.current - started_at)
+    update_column(:elapsed_seconds, Time.current - started_at)
   end
 
   def start!
