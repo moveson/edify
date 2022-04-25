@@ -6,6 +6,8 @@ class UnitResource < Madmin::Resource
   attribute :name
   attribute :created_at, form: false
   attribute :updated_at, form: false
+  attribute :first_synced_on
+  attribute :last_synced_on
 
   # Associations
   attribute :meetings
