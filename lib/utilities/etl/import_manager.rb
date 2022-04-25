@@ -39,6 +39,8 @@ module Etl
 
         if member.save
           import_job.increment!(:succeeded_count)
+        elsif ignore?(member)
+          import_job.increment!(:ignored_count)
         else
           import_job.increment!(:failed_count)
           errors.add(:base, resource_error_object(member, row_index))
@@ -57,6 +59,10 @@ module Etl
       else
         import_job.update(status: :failed, status_text: nil, error_message: errors.full_messages.to_json)
       end
+    end
+
+    def ignore?(member)
+      member.under_age?
     end
 
     def resource_error_object(record, row_index)
