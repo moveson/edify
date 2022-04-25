@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-md">
+    <h2 class="mt-md-4 mt-2"><strong><%= "#{current_unit.name} Membership List Import" %></strong></h2>
+  </div>
+</div>
+
+<hr/>
+<br/>
+
+<%= form_with(model: @import_job) do |form| %>
+  <div class="mb-3">
+    <%= form.label :raw_membership_list, class: "form-label" %>
+    <%= form.text_area :data_string, class: "form-control", rows: 20, autofocus: true, placeholder: "Paste your membership list here" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.submit "Import", class: "btn btn-primary" %>
+
+    <%= link_to "Cancel", import_jobs_path, class: "btn btn-link" %>
+  </div>
+<% end %>

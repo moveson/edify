@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md">
+    <h2 class="mt-md-4 mt-2"><strong><%= "#{current_unit.name} Imports" %></strong></h2>
+  </div>
+  <div class="col-md text-end">
+    <%= link_to fa_icon("plus", text: " Import Members"),
+                new_import_job_path,
+                class: "btn btn-primary mt-4"
+    %>
+  </div>
+</div>
+
+<hr/>
+<br/>
+
+<%= turbo_stream_from current_unit %>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Created</th>
+      <th class="text-center">Rows</th>
+      <th class="text-center">Good/Bad/Ignored</th>
+      <th class="text-center">Elapsed Time</th>
+      <th>Status</th>
+    </tr>
+    </thead>
+
+    <tbody id="import_jobs">
+    <%= render partial: "import_job", collection: current_unit.import_jobs.most_recent_first %>
+    </tbody>
+  </table>
+</div>

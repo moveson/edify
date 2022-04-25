@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-md">
+    <h2 class="mt-md-4 mt-2"><strong><%= "Import Job #{@import_job.id}" %></strong></h2>
+  </div>
+</div>
+
+<hr/>
+
+<table class="table table-condensed table-striped">
+  <tbody>
+  <tr>
+    <td>Id</td>
+    <td><%= @import_job.id %></td>
+  </tr>
+  <tr>
+    <td>Created at</td>
+    <td><%= @import_job.created_at %></td>
+  </tr>
+  <tr>
+    <td>Row count</td>
+    <td><%= @import_job.row_count %></td>
+  </tr>
+  <tr>
+    <td>Good count</td>
+    <td><%= @import_job.succeeded_count %></td>
+  </tr>
+  <tr>
+    <td>Bad count</td>
+    <td><%= @import_job.failed_count %></td>
+  </tr>
+  <tr>
+    <td>Elapsed time</td>
+    <td><%= pretty_duration(@import_job.elapsed_seconds) %></td>
+  </tr>
+  <tr>
+    <td>Status</td>
+    <td><%= progress_monitorable_status_component(@import_job) %></td>
+  </tr>
+  <tr>
+    <td>Errors</td>
+    <td>
+      <% @import_job.parsed_errors.each do |error| %>
+        <p class="font-monospace" style="white-space:pre-wrap"><%= JSON.pretty_generate(error) %></p>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td>Logs</td>
+    <td>
+      <p class="font-monospace" style="white-space:pre-wrap"><%= @import_job.logs %></p>
+    </td>
+  </tr>
+  </tbody>
+</table>

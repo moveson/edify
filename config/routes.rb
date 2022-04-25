@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     put :reject, on: :member
   end
   resources :announcements, only: [:index]
+  resources :import_jobs, only: [:index, :show, :new, :create, :destroy]
   resources :meetings do
     post :upsert, on: :collection
     resources :talks, except: :index do

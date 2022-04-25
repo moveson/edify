@@ -67,6 +67,11 @@ class Member < ApplicationRecord
     @time_in_unit = (Date.current - created_at.to_date).to_i.days
   end
 
+  # @return [Boolean]
+  def under_age?
+    birthdate.present? && birthdate >= 11.years.ago.beginning_of_year.to_date
+  end
+
   private
 
   def match_talks
@@ -75,7 +80,7 @@ class Member < ApplicationRecord
   end
 
   def validate_age
-    return unless birthdate.present? && birthdate >= 11.years.ago.beginning_of_year.to_date
+    return unless under_age?
 
     errors.add(:birthdate, "member is not old enough")
   end
