@@ -33,7 +33,11 @@ module Etl
       import_job.update(status: :loading, succeeded_count: 0, failed_count: 0)
 
       raw_member_rows.each.with_index(1) do |raw_member_row, row_index|
-        member = ::Member.find_or_initialize_by(unit_id: unit.id, name: raw_member_row.name, birthdate: raw_member_row.birthdate)
+        member = ::Member.find_or_initialize_by(
+          unit_id: unit.id,
+          name: raw_member_row.name,
+          birthdate: raw_member_row.birthdate
+        )
         raw_member_row.gender = raw_member_row.gender.downcase == "f" ? "female" : "male"
         member.assign_attributes(raw_member_row.to_h)
         member.synced_at = Time.current
