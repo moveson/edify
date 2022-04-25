@@ -40,8 +40,14 @@
     <td>Errors</td>
     <td>
       <% @import_job.parsed_errors.each do |error| %>
-        <p style="white-space:pre-wrap"><%= JSON.pretty_generate(error) %></p>
+        <p class="font-monospace" style="white-space:pre-wrap"><%= JSON.pretty_generate(error) %></p>
       <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td>Logs</td>
+    <td>
+      <p class="font-monospace" style="white-space:pre-wrap"><%= @import_job.logs %></p>
     </td>
   </tr>
   </tbody>

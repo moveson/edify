@@ -85,7 +85,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_24_160214) do
     t.datetime "started_at"
     t.integer "elapsed_seconds"
     t.string "error_message"
-    t.string "log"
+    t.string "logs"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["unit_id"], name: "index_import_jobs_on_unit_id"

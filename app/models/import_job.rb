@@ -39,6 +39,11 @@ class ImportJob < ApplicationRecord
     @data_string = raw_data.download
   end
 
+  def log!(value)
+    new_logs = (logs || "") + value + "\n"
+    update(logs: new_logs)
+  end
+
   def parsed_errors
     JSON.parse(error_message || "[\"None\"]")
   end

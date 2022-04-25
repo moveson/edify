@@ -11,7 +11,7 @@ class CreateImportJobsAgain < ActiveRecord::Migration[7.0]
       t.datetime :started_at
       t.integer :elapsed_seconds
       t.string :error_message
-      t.string :log
+      t.string :logs
 
       t.timestamps
     end
