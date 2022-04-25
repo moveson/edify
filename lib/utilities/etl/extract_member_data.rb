@@ -12,7 +12,7 @@ module Etl
       "E-mail" => "email",
     }.freeze
 
-    MEMBER_DATA_REGEX = /\A.*(^\t*Name.*^Count:).*\z/m
+    MEMBER_DATA_REGEX = /\A.*(^\t*Name.*)^Count:/m
     UNBAPTIZED_MEMBER_OF_RECORD_INDICATOR = "*"
 
     def self.perform(import_job)
@@ -70,7 +70,7 @@ module Etl
 
       member_list_rows = CSV.parse(raw_data, headers: true, col_sep: "\t", encoding: "UTF-8")
 
-      import_job.update(row_count: member_list_rows.size - 1)
+      import_job.update(row_count: member_list_rows.size)
       member_list_rows.each.with_index(1) do |row, row_index|
         attributes = row.to_h.slice(*included_attributes)
         next if attributes.compact.empty?
