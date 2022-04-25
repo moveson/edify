@@ -1,0 +1,89 @@
+# frozen_string_literal: true
+
+require "csv"
+
+module Etl
+  class ExtractMemberData
+    MEMBER_DATA_REGEX = /\A.*(^\t*Name.*^Count:).*\z/m
+    ATTRIBUTE_NAME_MAP = {
+      "Name" => "name",
+      "Gender" => "gender",
+      "Birth Date" => "birthdate",
+      "Phone Number" => "phone_number",
+      "E-mail" => "email",
+    }.freeze
+
+    def self.perform(import_job)
+      new(import_job).perform
+    end
+
+    def initialize(import_job)
+      @import_job = import_job
+      @raw_member_rows = []
+    end
+
+    def perform
+      download_member_data
+      strip_raw_data if errors.empty?
+      morph_header_row if errors.empty?
+      extract_members if errors.empty?
+
+      raw_member_rows
+    end
+
+    private
+
+    attr_reader :import_job, :raw_member_rows
+    attr_accessor :raw_data
+
+    delegate :errors, to: :import_job, private: true
+
+    def download_member_data
+      self.raw_data = import_job.raw_data.download
+      errors.add(:raw_data, "was not provided") if raw_data.blank?
+    end
+
+    def strip_raw_data
+      self.raw_data = raw_data[MEMBER_DATA_REGEX, 1]
+      errors.add(:raw_data, "could not be parsed") and return if raw_data.blank?
+    end
+
+    def morph_header_row
+      lines = raw_data.lines
+      header = lines.shift
+
+      ATTRIBUTE_NAME_MAP.each do |header_name, attribute_name|
+        result = header.sub!(header_name, attribute_name)
+        errors.add(:raw_data, "did not contain expected header #{header_name}") if result.nil?
+      end
+
+      lines.unshift(header)
+      self.raw_data = lines.join
+    end
+
+    def extract_members
+      import_job.update(status_text: "Parsing member list")
+
+      member_list_rows = CSV.parse(raw_data, headers: true, col_sep: "\t")
+
+      import_job.update(row_count: member_list_rows.size)
+      member_list_rows.each.with_index(1) do |row, row_index|
+        attributes = row.to_h.slice(*included_attributes)
+        next if attributes.compact.empty?
+
+        raw_member_row = RawMemberRow.new(attributes)
+        raw_member_rows << raw_member_row
+        import_job.increment!(:success_count)
+      rescue StandardError => e
+        errors.add(:base, "#{e}: #{row_index}")
+        import_job.increment!(:failed_count)
+      ensure
+        import_job.set_elapsed_time!
+      end
+    end
+
+    def included_attributes
+      @included_attributes ||= RawMemberRow.members.map(&:to_s)
+    end
+  end
+end
