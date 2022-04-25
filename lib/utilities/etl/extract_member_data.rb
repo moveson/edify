@@ -45,7 +45,9 @@ module Etl
 
     def strip_raw_data
       self.raw_data = raw_data[MEMBER_DATA_REGEX, 1]
-      errors.add(:raw_data, "could not be parsed") and return if raw_data.blank?
+      return if raw_data.present?
+
+      errors.add(:raw_data, "could not be parsed. Please ensure you have copy/pasted the entire member list.")
     end
 
     def morph_header_row

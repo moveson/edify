@@ -13,7 +13,10 @@ describe ::Etl::ExtractMemberData do
     let(:result) { subject.perform }
 
     context "when a valid raw_data file is attached" do
-      before { import_job.raw_data.attach(io: File.open(file_fixture("raw_member_list.txt")), filename: "raw_data.txt", content_type: "text/plain") }
+      before do
+        import_job.raw_data.attach(io: File.open(file_fixture("raw_member_list.txt")), filename: "raw_data.txt",
+                                   content_type: "text/plain")
+      end
 
       it "returns raw member rows" do
         expect(result.count).to eq(5)
@@ -30,6 +33,53 @@ describe ::Etl::ExtractMemberData do
         expect(result.last.birthdate.to_date).to eq("1963-07-01".to_date)
         expect(result.last.phone_number).to eq("385-348-3585")
         expect(result.last.email).to eq("heidenrick@kenneth.com")
+      end
+    end
+
+    context "when the raw member data is incomplete" do
+      before do
+        import_job.raw_data.attach(io: File.open(file_fixture("raw_member_list_incomplete.txt")), filename: "raw_data.txt",
+                                   content_type: "text/plain")
+      end
+
+      it "returns an empty array" do
+        expect(result).to eq([])
+      end
+
+      it "adds a descriptive error" do
+        subject.perform
+        expect(import_job.errors).to be_present
+        expect(import_job.errors.full_messages).to include(/Raw data could not be parsed/)
+      end
+    end
+
+    context "when headers are not as expected" do
+      before do
+        import_job.raw_data.attach(io: File.open(file_fixture("raw_member_list_bad_headers.txt")), filename: "raw_data.txt",
+                                   content_type: "text/plain")
+      end
+
+      it "returns an empty array" do
+        expect(result).to eq([])
+      end
+
+      it "adds a descriptive error" do
+        subject.perform
+        expect(import_job.errors).to be_present
+        expect(import_job.errors.full_messages).to include(/Raw data did not contain expected header Birth Date/)
+        expect(import_job.errors.full_messages).to include(/Raw data did not contain expected header E-mail/)
+      end
+    end
+
+    context "when no raw_data file is attached" do
+      it "returns an empty array" do
+        expect(result).to eq([])
+      end
+
+      it "adds a descriptive error" do
+        subject.perform
+        expect(import_job.errors).to be_present
+        expect(import_job.errors.full_messages).to include(/Raw data was not provided/)
       end
     end
   end
