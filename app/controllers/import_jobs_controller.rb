@@ -24,8 +24,8 @@ class ImportJobsController < ApplicationController
     @import_job.status = :waiting
 
     if @import_job.save
-      ::ImporterJob.perform_later(current_unit, raw_data)
-      redirect_to import_jobs_path, notice: "Import in progress"
+      ::ImporterJob.perform_later(import_job: @import_job)
+      redirect_to import_jobs_path
     else
       flash[:danger] = "Unable to create import job: #{@import_job.errors.full_messages.join(', ')}"
       render "new"
@@ -44,7 +44,7 @@ class ImportJobsController < ApplicationController
   private
 
   def import_job_params
-    params.require(:import_job).permit(:raw_data)
+    params.require(:import_job).permit(:data_string)
   end
 
   def set_import_job

@@ -3,6 +3,7 @@
 class ImporterJob < ::ApplicationJob
   queue_as :default
 
-  def perform(*_args)
+  def perform(import_job:)
+    Etl::ImportManager.perform!(import_job)
   end
 end

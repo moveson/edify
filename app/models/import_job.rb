@@ -2,6 +2,7 @@
 
 class ImportJob < ApplicationRecord
   belongs_to :unit
+  has_one_attached :raw_data
   broadcasts_to :unit, inserts_by: :prepend
 
   scope :most_recent_first, -> { reorder(created_at: :desc) }
@@ -20,6 +21,22 @@ class ImportJob < ApplicationRecord
   }
 
   alias_attribute :owner_id, :user_id
+
+  def data_string=(string)
+    @data_string = string
+
+    raw_data.attach(
+      io: StringIO.new(string),
+      filename: "raw_data.txt",
+      content_type: "text/plain"
+    )
+  end
+
+  def data_string
+    return @data_string if defined?(@data_string)
+
+    @data_string = raw_data.download
+  end
 
   def parsed_errors
     JSON.parse(error_message || "[\"None\"]")
