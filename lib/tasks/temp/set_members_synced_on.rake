@@ -9,9 +9,7 @@ namespace :temp do
       puts "Setting synced_on for #{member.name}"
       synced_on = member.synced_at&.to_date
 
-      unless member.update(synced_on: synced_on)
-        puts "Update failed for #{member.name}: #{member.errors.full_messages}"
-      end
+      puts "Update failed for #{member.name}: #{member.errors.full_messages}" unless member.update(synced_on: synced_on)
     end
   end
 end
