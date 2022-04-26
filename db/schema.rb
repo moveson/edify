@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_24_160214) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_26_043301) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -141,20 +141,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_24_160214) do
     t.index ["recipient_type", "recipient_id"], name: "index_notifications_on_recipient"
   end
 
-  create_table "services", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "provider"
-    t.string "uid"
-    t.string "access_token"
-    t.string "access_token_secret"
-    t.string "refresh_token"
-    t.datetime "expires_at"
-    t.text "auth"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_services_on_user_id"
-  end
-
   create_table "talks", force: :cascade do |t|
     t.string "purpose"
     t.string "topic"
@@ -210,7 +196,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_24_160214) do
   add_foreign_key "meetings", "users", column: "scheduler_id"
   add_foreign_key "members", "units"
   add_foreign_key "notes", "members"
-  add_foreign_key "services", "users"
   add_foreign_key "talks", "meetings"
   add_foreign_key "users", "units"
 end
