@@ -6,7 +6,6 @@ bartell_randal:
   birthdate: '1997-03-19'
   phone_number: 553-783-8372
   email: nola@walkerfarrell.us
-  synced_at:
   unit_id: 1
   paused_until:
   paused_on:
@@ -19,7 +18,6 @@ predovic_mohamed:
   birthdate: '1994-02-22'
   phone_number: 254-579-2969
   email: sunny@abernathy.com
-  synced_at:
   unit_id: 1
   paused_until:
   paused_on:
@@ -32,7 +30,6 @@ hill_waylon:
   birthdate: '1968-10-19'
   phone_number: 601-915-6744
   email: jorge.yost@oreilly.info
-  synced_at:
   unit_id: 1
   paused_until:
   paused_on:
@@ -45,7 +42,6 @@ nikolaus_jetta:
   birthdate: '1956-03-06'
   phone_number: 623-880-6552
   email: beckie.stoltenberg@kuhnmcglynn.us
-  synced_at:
   unit_id: 1
   paused_until:
   paused_on:
@@ -58,7 +54,6 @@ zboncak_ivy:
   birthdate: '1982-03-11'
   phone_number: 650-484-9073
   email: darleen@west.us
-  synced_at:
   unit_id: 1
   paused_until:
   paused_on:
@@ -71,7 +66,6 @@ waelchi_lindsey:
   birthdate: '1973-11-25'
   phone_number: 521-521-5688
   email: josefa.kessler@leschpaucek.ca
-  synced_at:
   unit_id: 1
   paused_until:
   paused_on:
@@ -84,7 +78,6 @@ wilderman_kati:
   birthdate: '2005-03-26'
   phone_number: 934-220-0918
   email: gregorio@kuhn.name
-  synced_at:
   unit_id: 1
   paused_until:
   paused_on:
@@ -97,7 +90,6 @@ barrows_kenneth:
   birthdate: '2008-08-14'
   phone_number: 959-922-0653
   email: victor_schmeler@wiza.co.uk
-  synced_at:
   unit_id: 1
   paused_until:
   paused_on:
@@ -110,7 +102,6 @@ luettgen_stefan:
   birthdate: '2007-12-02'
   phone_number: 859-639-3222
   email: monique.huels@lemke.ca
-  synced_at:
   unit_id: 2
   paused_until:
   paused_on:
@@ -123,7 +114,6 @@ legros_joaquin:
   birthdate: '2008-12-19'
   phone_number: 314-934-8538
   email: clotilde_kiehn@brekkerowe.name
-  synced_at:
   unit_id: 2
   paused_until:
   paused_on:
@@ -136,7 +126,6 @@ anderson_torri:
   birthdate: '2005-08-21'
   phone_number: 206-328-9111
   email: rayna_goldner@west.biz
-  synced_at:
   unit_id: 2
   paused_until:
   paused_on:
@@ -149,7 +138,6 @@ torp_cherri:
   birthdate: '2007-02-18'
   phone_number: 840-434-5009
   email: jessica_spencer@littel.com
-  synced_at:
   unit_id: 2
   paused_until:
   paused_on:
@@ -162,7 +150,6 @@ hills_julie:
   birthdate: '1946-11-03'
   phone_number: 362-317-2870
   email: divina@trantowschroeder.com
-  synced_at:
   unit_id: 2
   paused_until:
   paused_on:
@@ -175,7 +162,6 @@ oberbrunner_meghann:
   birthdate: '1985-11-22'
   phone_number: 606-575-2670
   email: vincenza_mills@vandervort.biz
-  synced_at:
   unit_id: 2
   paused_until:
   paused_on:
@@ -188,7 +174,6 @@ collier_elinor:
   birthdate: '1938-01-20'
   phone_number: 410-830-9059
   email: vance@walterchamplin.info
-  synced_at:
   unit_id: 2
   paused_until:
   paused_on:
@@ -201,7 +186,6 @@ harris_staci:
   birthdate: '1977-08-04'
   phone_number: 337-875-0309
   email: ruthanne@cormier.ca
-  synced_at:
   unit_id: 2
   paused_until:
   paused_on:
@@ -214,7 +198,6 @@ miller_wilton:
   birthdate: '2001-09-19'
   phone_number: 358-657-6999
   email: gillian@schaefer.co.uk
-  synced_at:
   unit_id: 2
   paused_until:
   paused_on:
@@ -227,7 +210,6 @@ friesen_sammy:
   birthdate: '1945-06-14'
   phone_number: 839-699-0102
   email: carla@schneider.co.uk
-  synced_at:
   unit_id: 2
   paused_until:
   paused_on:
@@ -240,7 +222,6 @@ kilback_darron:
   birthdate: '1952-07-14'
   phone_number: 781-433-8139
   email: lino_balistreri@haagdickens.ca
-  synced_at:
   unit_id: 2
   paused_until:
   paused_on:
@@ -253,7 +234,6 @@ hagenes_daryl:
   birthdate: '1995-05-29'
   phone_number: 364-644-2030
   email: soraya_koch@erdmanleffler.com
-  synced_at:
   unit_id: 2
   paused_until:
   paused_on:
@@ -266,7 +246,6 @@ aufderhar_matthew:
   birthdate: '1932-08-28'
   phone_number: 689-285-2410
   email: bernie@jaskolski.us
-  synced_at:
   unit_id: 2
   paused_until:
   paused_on:
@@ -279,7 +258,6 @@ heller_yong:
   birthdate: '1926-09-17'
   phone_number: 496-764-9756
   email: jamie_bahringer@mcclure.ca
-  synced_at:
   unit_id: 2
   paused_until:
   paused_on:
