@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_26_135121) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_26_141636) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -116,6 +116,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_26_135121) do
     t.date "paused_until"
     t.date "paused_on"
     t.integer "paused_by"
+    t.date "synced_on"
     t.index ["name", "birthdate"], name: "index_members_on_name_and_birthdate", unique: true
     t.index ["unit_id"], name: "index_members_on_unit_id"
   end
