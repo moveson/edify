@@ -4,8 +4,18 @@
       <div class="card-header">
         <div class="row pt-2">
           <div class="col">
-            <h5 class="font-weight-bold"><%= link_to fa_icon("person"), member_path(member), target: "_top", data: { "bs-toggle" => "tooltip" }, title: "Visit member page" %>&nbsp<%= member.name %></h5>
-            <h6><%= member.bio %></h6>
+            <h5 class="font-weight-bold">
+              <%= link_to fa_icon("person"), member_path(member), target: "_top", data: { "bs-toggle" => "tooltip" }, title: "Visit member page" %>
+              &nbsp<%= member.name %>
+            </h5>
+            <h6>
+              <%= member.bio %>
+              <% if member.not_in_most_recent_sync? %>
+                <%= content_tag(:span, "Moved", class: "badge bg-danger mx-1", data: { "bs-toggle" => "tooltip" }, title: "This member did not appear in the most recent import and may have moved out") %>
+              <% elsif member.new_member? && member.last_talk_date.nil? %>
+                <%= content_tag(:span, "New", class: "badge bg-success mx-1", data: { "bs-toggle" => "tooltip" }, title: "This member is new and has not yet spoken in Sacrament meeting") %>
+              <% end %>
+            </h6>
           </div>
           <div class="col-5 col-md-2 text-end">
             <%= link_to_member_edit(member, class: "mt-1 mt-md-2") %>
@@ -13,13 +23,12 @@
           </div>
         </div>
       </div>
+
       <div class="card-body">
         <div class="row">
           <div class="col">
             <% if member.paused? %>
               <h6 class="text-danger"><%= "Invitations paused until #{l(member.paused_until, format: :rfc822)}" %></h6>
-            <% elsif member.new_member? && member.last_talk_date.nil? %>
-              <h6 class="text-success"><%= "New member who has yet to speak" %></h6>
             <% end %>
 
             <% if member.last_talk_date %>
