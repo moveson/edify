@@ -95,6 +95,37 @@ describe ::Member, type: :model do
     end
   end
 
+  describe "#not_in_most_recent_sync?" do
+    let(:result) { member.not_in_most_recent_sync? }
+    let(:unit) { member.unit }
+
+    before { unit.update(last_synced_on: "2022-04-15") }
+
+    context "when the member was synced on the same day as the most recent unit sync" do
+      before { member.update(synced_at: "2022-04-15") }
+
+      it { expect(result).to eq(false) }
+    end
+
+    context "when the member was synced later than the most recent unit sync" do
+      before { member.update(synced_at: "2022-04-20") }
+
+      it { expect(result).to eq(false) }
+    end
+
+    context "when the member was synced earlier than the most recent unit sync" do
+      before { member.update(synced_at: "2022-04-10") }
+
+      it { expect(result).to eq(true) }
+    end
+
+    context "when the member was never synced" do
+      before { member.update(synced_at: nil) }
+
+      it { expect(result).to eq(true) }
+    end
+  end
+
   describe "#paused?" do
     let(:result) { member.paused? }
     before { travel_to("2022-04-15") }

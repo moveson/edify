@@ -54,6 +54,12 @@ class Member < ApplicationRecord
     time_in_unit.present? && time_in_unit < 1.year
   end
 
+  # @return [Boolean]
+  def not_in_most_recent_sync?
+    synced_at.nil? || (synced_at.to_date < unit.last_synced_on)
+  end
+
+  # @return [Boolean]
   def paused?
     paused_until? && paused_until > Date.current
   end
