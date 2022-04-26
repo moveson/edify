@@ -10,7 +10,7 @@ class MemberResource < Madmin::Resource
   attribute :email
   attribute :created_at, form: false
   attribute :updated_at, form: false
-  attribute :synced_at
+  attribute :synced_on
 
   # Associations
   attribute :talks

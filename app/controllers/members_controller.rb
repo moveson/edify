@@ -97,13 +97,13 @@ class MembersController < ApplicationController
         format.json do
           if existing_member
             status = :ok
-            synced_at = Time.current
+            synced_on = Date.current
           else
             status = :created
-            synced_at = @member.created_at
+            synced_on = @member.created_at.to_date
           end
 
-          @member.update_column(:synced_at, synced_at)
+          @member.update_column(:synced_on, synced_on)
           render json: @member.to_json, status: status
         end
       end
