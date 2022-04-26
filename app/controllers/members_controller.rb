@@ -126,7 +126,7 @@ class MembersController < ApplicationController
       :email,
       :gender,
       :name,
-      :paused_at,
+      :paused_on,
       :paused_by,
       :paused_until,
       :phone_number,

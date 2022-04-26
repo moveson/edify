@@ -9,7 +9,7 @@ module MembersHelper
             member_path(member,
                         member: {
                           paused_until: paused_until,
-                          paused_at: Date.current,
+                          paused_on: Date.current,
                           paused_by: current_user.id
                         }),
             method: :patch,

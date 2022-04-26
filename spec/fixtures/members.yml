@@ -9,7 +9,7 @@ bartell_randal:
   synced_at:
   unit_id: 1
   paused_until:
-  paused_at:
+  paused_on:
   paused_by:
 predovic_mohamed:
   id: 3
@@ -21,7 +21,7 @@ predovic_mohamed:
   synced_at:
   unit_id: 1
   paused_until:
-  paused_at:
+  paused_on:
   paused_by:
 hill_waylon:
   id: 4
@@ -33,7 +33,7 @@ hill_waylon:
   synced_at:
   unit_id: 1
   paused_until:
-  paused_at:
+  paused_on:
   paused_by:
 nikolaus_jetta:
   id: 6
@@ -45,7 +45,7 @@ nikolaus_jetta:
   synced_at:
   unit_id: 1
   paused_until:
-  paused_at:
+  paused_on:
   paused_by:
 zboncak_ivy:
   id: 8
@@ -57,7 +57,7 @@ zboncak_ivy:
   synced_at:
   unit_id: 1
   paused_until:
-  paused_at:
+  paused_on:
   paused_by:
 waelchi_lindsey:
   id: 9
@@ -69,7 +69,7 @@ waelchi_lindsey:
   synced_at:
   unit_id: 1
   paused_until:
-  paused_at:
+  paused_on:
   paused_by:
 wilderman_kati:
   id: 10
@@ -81,7 +81,7 @@ wilderman_kati:
   synced_at:
   unit_id: 1
   paused_until:
-  paused_at:
+  paused_on:
   paused_by:
 barrows_kenneth:
   id: 12
@@ -93,7 +93,7 @@ barrows_kenneth:
   synced_at:
   unit_id: 1
   paused_until:
-  paused_at:
+  paused_on:
   paused_by:
 luettgen_stefan:
   id: 16
@@ -105,7 +105,7 @@ luettgen_stefan:
   synced_at:
   unit_id: 2
   paused_until:
-  paused_at:
+  paused_on:
   paused_by:
 legros_joaquin:
   id: 17
@@ -117,7 +117,7 @@ legros_joaquin:
   synced_at:
   unit_id: 2
   paused_until:
-  paused_at:
+  paused_on:
   paused_by:
 anderson_torri:
   id: 19
@@ -129,7 +129,7 @@ anderson_torri:
   synced_at:
   unit_id: 2
   paused_until:
-  paused_at:
+  paused_on:
   paused_by:
 torp_cherri:
   id: 20
@@ -141,7 +141,7 @@ torp_cherri:
   synced_at:
   unit_id: 2
   paused_until:
-  paused_at:
+  paused_on:
   paused_by:
 hills_julie:
   id: 21
@@ -153,7 +153,7 @@ hills_julie:
   synced_at:
   unit_id: 2
   paused_until:
-  paused_at:
+  paused_on:
   paused_by:
 oberbrunner_meghann:
   id: 22
@@ -165,7 +165,7 @@ oberbrunner_meghann:
   synced_at:
   unit_id: 2
   paused_until:
-  paused_at:
+  paused_on:
   paused_by:
 collier_elinor:
   id: 23
@@ -177,7 +177,7 @@ collier_elinor:
   synced_at:
   unit_id: 2
   paused_until:
-  paused_at:
+  paused_on:
   paused_by:
 harris_staci:
   id: 24
@@ -189,7 +189,7 @@ harris_staci:
   synced_at:
   unit_id: 2
   paused_until:
-  paused_at:
+  paused_on:
   paused_by:
 miller_wilton:
   id: 25
@@ -201,7 +201,7 @@ miller_wilton:
   synced_at:
   unit_id: 2
   paused_until:
-  paused_at:
+  paused_on:
   paused_by:
 friesen_sammy:
   id: 26
@@ -213,7 +213,7 @@ friesen_sammy:
   synced_at:
   unit_id: 2
   paused_until:
-  paused_at:
+  paused_on:
   paused_by:
 kilback_darron:
   id: 27
@@ -225,7 +225,7 @@ kilback_darron:
   synced_at:
   unit_id: 2
   paused_until:
-  paused_at:
+  paused_on:
   paused_by:
 hagenes_daryl:
   id: 28
@@ -237,7 +237,7 @@ hagenes_daryl:
   synced_at:
   unit_id: 2
   paused_until:
-  paused_at:
+  paused_on:
   paused_by:
 aufderhar_matthew:
   id: 29
@@ -249,7 +249,7 @@ aufderhar_matthew:
   synced_at:
   unit_id: 2
   paused_until:
-  paused_at:
+  paused_on:
   paused_by:
 heller_yong:
   id: 30
@@ -261,5 +261,5 @@ heller_yong:
   synced_at:
   unit_id: 2
   paused_until:
-  paused_at:
+  paused_on:
   paused_by:
