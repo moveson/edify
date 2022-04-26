@@ -102,25 +102,25 @@ describe ::Member, type: :model do
     before { unit.update(last_synced_on: "2022-04-15") }
 
     context "when the member was synced on the same day as the most recent unit sync" do
-      before { member.update(synced_at: "2022-04-15") }
+      before { member.update(synced_on: "2022-04-15") }
 
       it { expect(result).to eq(false) }
     end
 
     context "when the member was synced later than the most recent unit sync" do
-      before { member.update(synced_at: "2022-04-20") }
+      before { member.update(synced_on: "2022-04-20") }
 
       it { expect(result).to eq(false) }
     end
 
     context "when the member was synced earlier than the most recent unit sync" do
-      before { member.update(synced_at: "2022-04-10") }
+      before { member.update(synced_on: "2022-04-10") }
 
       it { expect(result).to eq(true) }
     end
 
     context "when the member was never synced" do
-      before { member.update(synced_at: nil) }
+      before { member.update(synced_on: nil) }
 
       it { expect(result).to eq(true) }
     end

@@ -40,7 +40,7 @@ module Etl
         )
         raw_member_row.gender = raw_member_row.gender.downcase == "f" ? "female" : "male"
         member.assign_attributes(raw_member_row.to_h)
-        member.synced_at = Time.current
+        member.synced_on = Date.current
 
         if member.save
           import_job.increment!(:succeeded_count)

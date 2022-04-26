@@ -56,7 +56,7 @@ class Member < ApplicationRecord
 
   # @return [Boolean]
   def not_in_most_recent_sync?
-    synced_at.nil? || (synced_at.to_date < unit.last_synced_on)
+    synced_on.nil? || (synced_on < unit.last_synced_on)
   end
 
   # @return [Boolean]
