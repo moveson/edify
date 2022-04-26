@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_26_141636) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_26_143729) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -111,7 +111,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_26_141636) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "synced_at"
     t.bigint "unit_id"
     t.date "paused_until"
     t.date "paused_on"
