@@ -33,7 +33,7 @@
         </div>
         <div class="col-12 col-md-2 text-md-end mt-4 mt-md-0">
           <div class="d-grid gap-2 d-md-block mx-3">
-            <%= link_to "Clear", member_path(@member, member: { paused_until: nil, paused_at: nil, paused_by: nil }), method: :patch, class: "btn btn-primary" %>
+            <%= link_to "Clear", member_path(@member, member: { paused_until: nil, paused_on: nil, paused_by: nil }), method: :patch, class: "btn btn-primary" %>
           </div>
         </div>
       </div>
