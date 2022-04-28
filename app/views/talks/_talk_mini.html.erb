@@ -3,7 +3,8 @@
     <div class="col-12 col-md-6 pt-md-2">
       <h6>
         <% if talk.member_id? %>
-          <%= link_to fa_icon("person"), member_path(talk.member_id), target: "_top", data: { "bs-toggle" => "tooltip" }, title: "Visit member page" %>&nbsp
+          <%= link_to fa_icon("person"), member_path(talk.member_id), target: "_top", data: { "bs-toggle" => "tooltip" }, title: "Visit member page" %>
+          &nbsp
         <% else %>
           <%= fa_icon("person", class: "text-muted") %>&nbsp
         <% end %>
@@ -11,7 +12,12 @@
       </h6>
     </div>
     <div class="col-12 col-md-4 pt-md-2">
-      <h6><%= talk.purpose %></h6>
+      <% if talk.purpose? %>
+        <h6><%= talk.purpose %></h6>
+      <% end %>
+      <% if talk.topic? %>
+        <h6>"<%= talk.topic %>"</h6>
+      <% end %>
     </div>
     <div class="col-12 col-md-2 text-md-end">
       <%= link_to_talk_edit(talk) %>
