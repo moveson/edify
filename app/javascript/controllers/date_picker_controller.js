@@ -178,9 +178,8 @@ export default class extends Controller {
   getCoordinates(date) {
     let coordinates = {}
     let day = date.getDate()
-    day += (date.getDay() == 0 ? 0 : 7 - date.getDay())
     coordinates.row = Math.ceil(parseFloat(day) / 7) - 1
-    coordinates.column = ((date.getDay() + 6) % 7)
+    coordinates.column = ((date.getDay() + 7) % 7)
     return coordinates
   }
 

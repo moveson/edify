@@ -6,9 +6,8 @@
      class="date_picker">
   <%= form.text_field attribute,
                       options.merge(
-                        value: l(form.object.try(attribute), format: :short),
                         data: {
-                          target: "date-picker.dateField",
+                          "date-picker-target" => "dateField",
                           controller: "popover-toggle",
                           popover_toggle_popover: "##{date_picker_id} .date_picker_popover",
                           action: "click@document->popover-toggle#dismiss "\
@@ -22,7 +21,7 @@
                       ) %>
   <div class="popover date_picker_popover">
     <header>
-      <h4 data-target="date-picker.currentMonthLabel"></h4>
+      <h6 data-date-picker-target="currentMonthLabel"></h6>
       <ul class="plain horizontal button_panel">
         <li>
           <%= link_to "&#9664;".html_safe, "#", class: "button secondary",
@@ -38,10 +37,10 @@
         </li>
       </ul>
     </header>
-    <table data-target="date-picker.calendar">
+    <table data-date-picker-target="calendar">
       <thead>
       <tr class="weekdays">
-        <% t("date.abbr_day_names").rotate(1).each do |day_name| %>
+        <% t("date.abbr_day_names").each do |day_name| %>
           <th><%= day_name %></th>
         <% end %>
       </tr>
@@ -56,15 +55,15 @@
       <% end %>
       </tbody>
     </table>
-    <div class="time_picker" data-target="date-picker.timePicker">
+    <div class="time_picker" data-date-picker-target="timePicker">
       <input type="number"
-             data-target="date-picker.hourField"
+             data-date-picker-target="hourField"
              data-action="change->date-picker#adjustTime keydown->date-picker#handleTimePickerKeydown"
              min="0"
              max="23">
       <span class="time_separator">:</span>
       <input type="number"
-             data-target="date-picker.minuteField"
+             data-date-picker-target="minuteField"
              data-action="change->date-picker#adjustTime keydown->date-picker#handleTimePickerKeydown"
              min="0"
              max="59">
