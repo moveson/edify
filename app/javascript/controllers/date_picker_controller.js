@@ -197,7 +197,7 @@ export default class extends Controller {
   }
 
   get dateFormat() {
-    return this.data.get("dateFormat") || "YYYY.MM.DD"
+    return this.data.get("dateFormat") || "DD MMM YYYY"
   }
 
   get timeFormat() {

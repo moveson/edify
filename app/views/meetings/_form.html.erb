@@ -15,7 +15,7 @@
         <div class="row mb-2">
           <div class="col-12 col-md-3">
             <%= form.label :date, class: "required" %>
-            <%= form.date_picker_field :date, class: "form-control", value: form.object.date.present? ? l(form.object.date, format: :american) : l(meeting.unit.next_available_sunday, format: :american) %>
+            <%= form.date_picker_field :date, class: "form-control", value: form.object.date.present? ? l(form.object.date, format: :day_month_year) : l(meeting.unit.next_available_sunday, format: :day_month_year) %>
           </div>
 
           <div class="col-12 col-md-4">

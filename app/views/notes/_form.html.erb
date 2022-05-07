@@ -12,7 +12,7 @@
   <div class="row m-2">
     <div class="col-12 col-md-3">
       <%= form.label "Date", class: "required" %>
-      <%= form.text_field :date, class: "form-control", placeholder: "mm/dd/yyyy", value: form.object.date.present? ? l(form.object.date, format: :american) : l(Date.today, format: :american) %>
+      <%= form.text_field :date, class: "form-control", placeholder: "mm/dd/yyyy", value: form.object.date.present? ? l(form.object.date, format: :day_month_year) : l(Date.today, format: :day_month_year) %>
     </div>
 
     <div class="col-12 col-md">
