@@ -13,6 +13,14 @@ class User < ApplicationRecord
   has_person_name
   has_noticed_notifications
 
+  enum role: {
+    admin: 0,
+    bishopric: 1,
+    clerk: 2,
+    music: 3,
+    program: 4,
+  }
+
   has_many :scheduled_meetings, class_name: "Meeting", foreign_key: :scheduler_id, dependent: :nullify
   has_many :notifications, as: :recipient, dependent: :destroy
   has_many :services, dependent: nil
