@@ -21,7 +21,6 @@ class UserResource < Madmin::Resource
   # Associations
   attribute :notifications
   attribute :scheduled_meetings
-  attribute :services
   attribute :unit
 
   # Uncomment this to customize the display name of records in the admin area.

@@ -7,7 +7,6 @@ namespace :madmin do
   resources :talks
   resources :members
   resources :announcements
-  resources :services
   resources :users
   namespace :active_storage do
     resources :blobs

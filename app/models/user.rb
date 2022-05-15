@@ -23,7 +23,6 @@ class User < ApplicationRecord
 
   has_many :scheduled_meetings, class_name: "Meeting", foreign_key: :scheduler_id, dependent: :nullify
   has_many :notifications, as: :recipient, dependent: :destroy
-  has_many :services, dependent: nil
   has_one :access_request, dependent: :destroy
   belongs_to :unit, optional: true
 
