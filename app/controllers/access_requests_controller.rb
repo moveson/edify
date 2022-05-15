@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class AccessRequestsController < ApplicationController
+  ASSIGNABLE_ROLES = User.roles.keys.reject { |k| k == "admin" }
+
   before_action :authenticate_user!
   before_action :set_access_request, only: %i[approve reject destroy]
   before_action :authorize_access_request, only: %i[approve reject destroy]
@@ -37,15 +39,29 @@ class AccessRequestsController < ApplicationController
 
   # PATCH/PUT /access_requests/1/approve
   def approve
-    user_params = { approved_at: Time.current, approved_by: current_user.id, unit_id: @access_request.unit_id }
+    role_param = params[:role]
+    role = role_param.in?(ASSIGNABLE_ROLES) ? role_param : nil
+
+    user_params = {
+      approved_at: Time.current,
+      approved_by: current_user.id,
+      role: role,
+      unit_id: @access_request.unit_id,
+    }
     user = @access_request.user
 
-    if user.update(user_params)
-      ::UnitAccessApprovalJob.perform_later(unit: @access_request.unit, user: @access_request.user)
-      redirect_to access_requests_path, notice: t("controllers.access_request_controller.approve_success")
+    if role.present?
+      if user.update(user_params)
+        ::UnitAccessApprovalJob.perform_later(unit: @access_request.unit, user: @access_request.user)
+        redirect_to access_requests_path, notice: t("controllers.access_request_controller.approve_success")
+      else
+        redirect_to access_requests_path,
+                    notice: t("controllers.access_request_controller.approve_failure"),
+                    status: :unprocessable_entity
+      end
     else
       redirect_to access_requests_path,
-                  notice: t("controllers.access_request_controller.approve_failure"),
+                  notice: t("controllers.access_request_controller.role_not_found", role_name: role_param),
                   status: :unprocessable_entity
     end
   end
