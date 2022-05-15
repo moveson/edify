@@ -9,35 +9,35 @@ class ApplicationPolicy
   end
 
   def index?
-    user.assigned_to_unit?
+    user.has_lcr_access? && user.assigned_to_unit?
   end
 
   def show?
-    user.assigned_to_unit?
+    user.has_lcr_access? && user.assigned_to_unit?
   end
 
   def create?
-    user.assigned_to_unit?
+    user.has_lcr_access? && user.assigned_to_unit?
   end
 
   def new?
-    user.assigned_to_unit?
+    user.has_lcr_access? && user.assigned_to_unit?
   end
 
   def update?
-    user.assigned_to_unit?
+    user.has_lcr_access? && user.assigned_to_unit?
   end
 
   def edit?
-    user.assigned_to_unit?
+    user.has_lcr_access? && user.assigned_to_unit?
   end
 
   def destroy?
-    user.assigned_to_unit?
+    user.has_lcr_access? && user.assigned_to_unit?
   end
 
   def upsert?
-    user.assigned_to_unit?
+    user.has_lcr_access? && user.assigned_to_unit?
   end
 
   class Scope

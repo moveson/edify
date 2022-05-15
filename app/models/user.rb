@@ -42,6 +42,22 @@ class User < ApplicationRecord
   end
   alias admin admin?
 
+  def approver?
+    admin? || bishopric?
+  end
+
+  def bishopric?
+    role == "bishopric"
+  end
+
+  def clerk?
+    role == "clerk"
+  end
+
+  def has_lcr_access?
+    admin? || bishopric? || clerk?
+  end
+
   def assigned_to_unit?
     unit_id?
   end
