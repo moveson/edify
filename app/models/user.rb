@@ -37,6 +37,10 @@ class User < ApplicationRecord
 
   strip_attributes
 
+  def access_to_lcr?
+    admin? || bishopric? || clerk?
+  end
+
   def admin?
     role == "admin"
   end
@@ -46,20 +50,16 @@ class User < ApplicationRecord
     admin? || bishopric?
   end
 
+  def assigned_to_unit?
+    unit_id?
+  end
+
   def bishopric?
     role == "bishopric"
   end
 
   def clerk?
     role == "clerk"
-  end
-
-  def has_lcr_access?
-    admin? || bishopric? || clerk?
-  end
-
-  def assigned_to_unit?
-    unit_id?
   end
 
   def needs_onboarding?
