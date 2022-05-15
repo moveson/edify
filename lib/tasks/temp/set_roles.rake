@@ -6,7 +6,6 @@ namespace :temp do
     Rails.application.eager_load!
 
     User.find_each do |user|
-
       if user.admin
         user.update(role: :admin)
       else
