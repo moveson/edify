@@ -8,7 +8,6 @@ class UserResource < Madmin::Resource
   attribute :last_name
   attribute :phone_number
   attribute :confirmed_at
-  attribute :admin
   attribute :role
   attribute :reset_password_sent_at
   attribute :remember_created_at

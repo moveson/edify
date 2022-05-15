@@ -30,12 +30,17 @@ class User < ApplicationRecord
   after_commit :send_welcome_notifications
 
   scope :alphabetical, -> { order(:first_name) }
-  scope :admin, -> { where(admin: true) }
+  scope :admin, -> { where(role: :admin) }
 
   validates :first_name, presence: true
   validates :phone_number, phone: { allow_blank: true }
 
   strip_attributes
+
+  def admin?
+    role == "admin"
+  end
+  alias admin admin?
 
   def assigned_to_unit?
     unit_id?
