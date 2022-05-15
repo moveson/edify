@@ -14,6 +14,7 @@ admin:
   approved_by:
   notification_preference_email: true
   notification_preference_sms: false
+  role: 0
 sunny_one:
   id: 2
   email: sunny1@example.com
@@ -29,6 +30,7 @@ sunny_one:
   approved_by:
   notification_preference_email: true
   notification_preference_sms: false
+  role: 1
 sunny_two:
   id: 3
   email: sunny2@example.com
@@ -44,6 +46,7 @@ sunny_two:
   approved_by: 2
   notification_preference_email: true
   notification_preference_sms: false
+  role: 1
 pleasant_one:
   id: 4
   email: pleasant1@example.com
@@ -59,6 +62,7 @@ pleasant_one:
   approved_by:
   notification_preference_email: true
   notification_preference_sms: false
+  role: 1
 pleasant_two:
   id: 5
   email: pleasant2@example.com
@@ -74,6 +78,7 @@ pleasant_two:
   approved_by: 4
   notification_preference_email: true
   notification_preference_sms: false
+  role: 1
 unassigned:
   id: 6
   email: unassigned@example.com
@@ -89,3 +94,4 @@ unassigned:
   approved_by:
   notification_preference_email: true
   notification_preference_sms: false
+  role: 1
