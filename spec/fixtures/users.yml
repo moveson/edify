@@ -6,7 +6,6 @@ admin:
   first_name: Admin
   last_name: User
   announcements_last_read_at:
-  admin: true
   confirmed_at: 2022-04-14 16:32:30.544225000 Z
   unit_id:
   phone_number:
@@ -22,7 +21,6 @@ sunny_one:
   first_name: Sunny One
   last_name: User
   announcements_last_read_at:
-  admin: false
   confirmed_at: 2022-04-15 16:32:30.827166000 Z
   unit_id: 1
   phone_number:
@@ -38,7 +36,6 @@ sunny_two:
   first_name: Sunny Two
   last_name: User
   announcements_last_read_at:
-  admin: false
   confirmed_at: 2022-04-16 16:32:31.078429000 Z
   unit_id: 1
   phone_number:
@@ -54,7 +51,6 @@ pleasant_one:
   first_name: Pleasant One
   last_name: User
   announcements_last_read_at:
-  admin: false
   confirmed_at: 2022-04-15 16:32:31.330726000 Z
   unit_id: 2
   phone_number:
@@ -70,7 +66,6 @@ pleasant_two:
   first_name: Pleasant Two
   last_name: User
   announcements_last_read_at:
-  admin: false
   confirmed_at: 2022-04-16 16:32:31.582486000 Z
   unit_id: 2
   phone_number:
@@ -86,7 +81,6 @@ unassigned:
   first_name: Unassigned
   last_name: User
   announcements_last_read_at:
-  admin: false
   confirmed_at: 2022-04-17 20:25:37.567363000 Z
   unit_id:
   phone_number:
