@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
 class AccessRequestsController < ApplicationController
-  ASSIGNABLE_ROLES = User.roles.keys.reject { |k| k == "admin" }
-
   before_action :authenticate_user!
-  before_action :set_access_request, only: %i[approve reject destroy]
-  before_action :authorize_access_request, only: %i[approve reject destroy]
-  before_action :authorize_action, except: %i[approve reject destroy]
+  before_action :set_access_request, only: %i[review approve reject destroy]
+  before_action :authorize_access_request, only: %i[review approve reject destroy]
+  before_action :authorize_action, except: %i[review approve reject destroy]
   after_action :verify_authorized
 
   # GET /access_requests/new
@@ -37,10 +35,14 @@ class AccessRequestsController < ApplicationController
     end
   end
 
+  # GET /access_requests/1/review
+  def review
+  end
+
   # PATCH/PUT /access_requests/1/approve
   def approve
     role_param = params[:role]
-    role = role_param.in?(ASSIGNABLE_ROLES) ? role_param : nil
+    role = role_param.in?(User::ASSIGNABLE_ROLES) ? role_param : nil
 
     user_params = {
       approved_at: Time.current,
@@ -53,16 +55,12 @@ class AccessRequestsController < ApplicationController
     if role.present?
       if user.update(user_params)
         ::UnitAccessApprovalJob.perform_later(unit: @access_request.unit, user: @access_request.user)
-        redirect_to access_requests_path, notice: t("controllers.access_request_controller.approve_success")
+        redirect_to users_path, notice: t("controllers.access_request_controller.approve_success")
       else
-        redirect_to access_requests_path,
-                    notice: t("controllers.access_request_controller.approve_failure"),
-                    status: :unprocessable_entity
+        render :review
       end
     else
-      redirect_to access_requests_path,
-                  notice: t("controllers.access_request_controller.role_not_found", role_name: role_param),
-                  status: :unprocessable_entity
+      render :review
     end
   end
 

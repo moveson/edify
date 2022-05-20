@@ -1,23 +1,9 @@
 # frozen_string_literal: true
 
 module LinkHelper
-  def link_to_access_request_approve(access_request, options = {})
-    html_class = options[:class]
-    url = approve_access_request_path(access_request)
-    options = {
-      method: :put,
-      class: ["btn btn-outline-success btn-sm", html_class].compact.join(" "),
-      title: "Approve this request",
-      data: {
-        "bs-toggle" => "tooltip",
-        confirm: "Approve #{access_request.user.name} for access to your ward?",
-      },
-    }
-    link_to fa_icon("check-circle"), url, options
-  end
-
   def link_to_access_request_reject(access_request, options = {})
-    html_class = options[:class]
+    html_class = options[:class] || ""
+    html_class += " disabled" if access_request.rejected?
     url = reject_access_request_path(access_request)
     options = {
       method: :put,
@@ -28,7 +14,7 @@ module LinkHelper
         confirm: "Reject #{access_request.user.name} from access to your ward?",
       },
     }
-    link_to fa_icon("times-circle"), url, options
+    link_to "Reject", url, options
   end
 
   def link_to_delete(resource_or_array, options = {})

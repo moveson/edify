@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
 
   resources :access_requests, only: [:new, :create, :destroy] do
+    get :review, on: :member
     put :approve, on: :member
     put :reject, on: :member
   end

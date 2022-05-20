@@ -9,6 +9,10 @@ class AccessRequestPolicy < ApplicationPolicy
     new?
   end
 
+  def review?
+    approve?
+  end
+
   def approve?
     user.approver? &&
       user.unit_id == record.unit_id

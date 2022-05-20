@@ -12,6 +12,10 @@ class AccessRequest < ApplicationRecord
     status == :pending
   end
 
+  def rejected?
+    status == :rejected
+  end
+
   def status
     if rejected_at?
       :rejected
@@ -20,5 +24,9 @@ class AccessRequest < ApplicationRecord
     else
       :pending
     end
+  end
+
+  def user_name
+    user&.name
   end
 end
