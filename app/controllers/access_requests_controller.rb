@@ -57,6 +57,7 @@ class AccessRequestsController < ApplicationController
         ::UnitAccessApprovalJob.perform_later(unit: @access_request.unit, user: @access_request.user)
         redirect_to users_path, notice: t("controllers.access_request_controller.approve_success")
       else
+        @access_request.errors.merge!(user)
         render :review
       end
     else
@@ -72,9 +73,7 @@ class AccessRequestsController < ApplicationController
       ::UnitAccessRejectionJob.perform_later(unit: @access_request.unit, user: @access_request.user)
       redirect_to access_requests_path, notice: t("controllers.access_request_controller.reject_success")
     else
-      redirect_to access_requests_path,
-                  notice: t("controllers.access_request_controller.reject_failure"),
-                  status: :unprocessable_entity
+      render :review
     end
   end
 
