@@ -19,7 +19,7 @@ class AccessRequest < ApplicationRecord
   def status
     if rejected_at?
       :rejected
-    elsif user.approved_at?
+    elsif approved_at?
       :approved
     else
       :pending
