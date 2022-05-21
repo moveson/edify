@@ -6,7 +6,8 @@ class UnitPolicy < ApplicationPolicy
   end
 
   def edit?
-    user.unit_id == record.id
+    user.approver? &&
+      user.unit_id == record.id
   end
 
   def create?

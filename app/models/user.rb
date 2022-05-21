@@ -21,6 +21,8 @@ class User < ApplicationRecord
     program: 4,
   }
 
+  ASSIGNABLE_ROLES = roles.keys.reject { |k| k == "admin" }
+
   has_many :scheduled_meetings, class_name: "Meeting", foreign_key: :scheduler_id, dependent: :nullify
   has_many :notifications, as: :recipient, dependent: :destroy
   has_one :access_request, dependent: :destroy
@@ -37,13 +39,29 @@ class User < ApplicationRecord
 
   strip_attributes
 
+  def access_to_lcr?
+    admin? || bishopric? || clerk?
+  end
+
   def admin?
     role == "admin"
   end
   alias admin admin?
 
+  def approver?
+    admin? || bishopric?
+  end
+
   def assigned_to_unit?
     unit_id?
+  end
+
+  def bishopric?
+    role == "bishopric"
+  end
+
+  def clerk?
+    role == "clerk"
   end
 
   def needs_onboarding?

@@ -9,8 +9,13 @@ class AccessRequestPolicy < ApplicationPolicy
     new?
   end
 
+  def review?
+    approve?
+  end
+
   def approve?
-    user.unit_id == record.unit_id
+    user.approver? &&
+      user.unit_id == record.unit_id
   end
 
   def reject?

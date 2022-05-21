@@ -14,6 +14,7 @@
       <div class="card-body">
         <div class="row">
           <div class="col">
+            <h6><%= "Role: #{user.role&.titleize || 'Not assigned'}" %></h6>
             <h6><%= "Email: #{user.email}" %></h6>
             <h6><%= "User since: #{l(user.created_at, format: :long)}" %></h6>
           </div>

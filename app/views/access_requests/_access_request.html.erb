@@ -6,9 +6,8 @@
           <div class="col">
             <h5 class="font-weight-bold"><%= access_request.user.name %></h5>
           </div>
-          <div class="col-5 col-md-2 text-end">
-            <%= link_to_access_request_approve(access_request) %>
-            <%= link_to_access_request_reject(access_request) %>
+          <div class="col-5 col-md-3 text-end">
+            <%= link_to "Review", review_access_request_path(access_request), class: "btn btn-sm btn-primary", data: { turbo: false } %>
           </div>
         </div>
       </div>

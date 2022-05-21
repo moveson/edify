@@ -2,9 +2,9 @@
 
 class AccessRequestsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_access_request, only: %i[approve reject destroy]
-  before_action :authorize_access_request, only: %i[approve reject destroy]
-  before_action :authorize_action, except: %i[approve reject destroy]
+  before_action :set_access_request, only: %i[review approve reject destroy]
+  before_action :authorize_access_request, only: %i[review approve reject destroy]
+  before_action :authorize_action, except: %i[review approve reject destroy]
   after_action :verify_authorized
 
   # GET /access_requests/new
@@ -35,18 +35,33 @@ class AccessRequestsController < ApplicationController
     end
   end
 
+  # GET /access_requests/1/review
+  def review
+  end
+
   # PATCH/PUT /access_requests/1/approve
   def approve
-    user_params = { approved_at: Time.current, approved_by: current_user.id, unit_id: @access_request.unit_id }
+    role_param = params[:role]
+    role = role_param.in?(User::ASSIGNABLE_ROLES) ? role_param : nil
+
+    user_params = {
+      approved_at: Time.current,
+      approved_by: current_user.id,
+      role: role,
+      unit_id: @access_request.unit_id,
+    }
     user = @access_request.user
 
-    if user.update(user_params)
-      ::UnitAccessApprovalJob.perform_later(unit: @access_request.unit, user: @access_request.user)
-      redirect_to access_requests_path, notice: t("controllers.access_request_controller.approve_success")
+    if role.present?
+      if user.update(user_params)
+        ::UnitAccessApprovalJob.perform_later(unit: @access_request.unit, user: @access_request.user)
+        redirect_to users_path, notice: t("controllers.access_request_controller.approve_success")
+      else
+        @access_request.errors.merge!(user)
+        render :review
+      end
     else
-      redirect_to access_requests_path,
-                  notice: t("controllers.access_request_controller.approve_failure"),
-                  status: :unprocessable_entity
+      render :review
     end
   end
 
@@ -58,9 +73,7 @@ class AccessRequestsController < ApplicationController
       ::UnitAccessRejectionJob.perform_later(unit: @access_request.unit, user: @access_request.user)
       redirect_to access_requests_path, notice: t("controllers.access_request_controller.reject_success")
     else
-      redirect_to access_requests_path,
-                  notice: t("controllers.access_request_controller.reject_failure"),
-                  status: :unprocessable_entity
+      render :review
     end
   end
 

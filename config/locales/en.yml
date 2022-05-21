@@ -8,6 +8,7 @@ en:
       reject_failure: "Access request could not be rejected. Something went wrong."
       reject_success: "Access request was rejected."
       request_sent: "Your request will be delivered to existing users of the %{unit_name}."
+      role_not_found: "The role %{role_name} could not be assigned. Please try again."
       unit_not_found: "We could not find a ward by the name %{unit_name}. Please try again or go back to create a new ward."
     application_controller:
       not_authorized: "Not authorized."
