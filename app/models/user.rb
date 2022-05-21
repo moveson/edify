@@ -40,7 +40,8 @@ class User < ApplicationRecord
   strip_attributes
 
   def access_to_lcr?
-    admin? || bishopric? || clerk?
+    admin? ||
+      (assigned_to_unit? && (bishopric? || clerk?))
   end
 
   def admin?
@@ -49,7 +50,7 @@ class User < ApplicationRecord
   alias admin admin?
 
   def approver?
-    admin? || bishopric?
+    unit_admin?
   end
 
   def assigned_to_unit?
@@ -70,6 +71,11 @@ class User < ApplicationRecord
 
   def pending_unit
     access_request&.unit
+  end
+
+  def unit_admin?
+    admin? ||
+      (assigned_to_unit? && bishopric?)
   end
 
   def unit_name

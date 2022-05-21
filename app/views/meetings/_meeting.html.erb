@@ -17,10 +17,12 @@
               <%= meeting.meeting_type.humanize %>
             </div>
           </div>
-          <div class="col-12 col-md-2 text-md-end">
-            <%= link_to_meeting_edit(meeting, class: "mt-2 mt-md-2") %>
-            <%= link_to_meeting_delete(meeting, class: "mt-2 mt-md-2") %>
-          </div>
+          <% if current_user.unit_admin? %>
+            <div class="col-12 col-md-2 text-md-end">
+              <%= link_to_meeting_edit(meeting, class: "mt-2 mt-md-2") %>
+              <%= link_to_meeting_delete(meeting, class: "mt-2 mt-md-2") %>
+            </div>
+          <% end %>
         </div>
       </div>
       <div class="card-body">
@@ -30,15 +32,17 @@
               <%= render partial: "talks/talk_mini", collection: meeting.talks, as: :talk %>
             <% end %>
           </div>
-          <div class="col-12">
-            <%= turbo_frame_tag "new_meeting_#{meeting.id}_talk" do %>
-              <%= link_to fa_icon("plus", text: " Add talk"),
-                          new_meeting_talk_path(meeting),
-                          data: { turbo_frame: "new_meeting_#{meeting.id}_talk" },
-                          class: "btn btn-primary btn-sm"
-              %>
-            <% end %>
-          </div>
+          <% if current_user.unit_admin? %>
+            <div class="col-12">
+              <%= turbo_frame_tag "new_meeting_#{meeting.id}_talk" do %>
+                <%= link_to fa_icon("plus", text: " Add talk"),
+                            new_meeting_talk_path(meeting),
+                            data: { turbo_frame: "new_meeting_#{meeting.id}_talk" },
+                            class: "btn btn-primary btn-sm"
+                %>
+              <% end %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
