@@ -19,10 +19,12 @@
         <h6>"<%= talk.topic %>"</h6>
       <% end %>
     </div>
-    <div class="col-12 col-md-2 text-md-end">
-      <%= link_to_talk_edit(talk) %>
-      <%= link_to_talk_delete(talk) %>
-    </div>
+    <% if current_user.unit_admin? %>
+      <div class="col-12 col-md-2 text-md-end">
+        <%= link_to_talk_edit(talk) %>
+        <%= link_to_talk_delete(talk) %>
+      </div>
+    <% end %>
   </div>
   <hr/>
 <% end %>
