@@ -1,10 +1,16 @@
 # frozen_string_literal: true
 
 class AccessRequest < ApplicationRecord
+  VALID_ROLES_FOR_APPROVAL = Set[*::User.roles.keys.reject { |k| k == "admin" }].freeze
+
   belongs_to :user
   belongs_to :unit
 
   validates :user_id, uniqueness: { scope: :unit_id }
+  validate :role_exists_on_approval
+  validate :role_is_assignable
+
+  strip_attributes
 
   scope :alphabetical, -> { joins(:user).order(:first_name) }
 
@@ -28,5 +34,19 @@ class AccessRequest < ApplicationRecord
 
   def user_name
     user&.name
+  end
+
+  private
+
+  def role_exists_on_approval
+    return if approved_at.nil?
+
+    errors.add(:approved_role, "must exist when access request is approved") if approved_role.blank?
+  end
+
+  def role_is_assignable
+    return if approved_role.blank?
+
+    errors.add(:approved_role, "cannot be #{approved_role}") unless approved_role.in?(VALID_ROLES_FOR_APPROVAL)
   end
 end
