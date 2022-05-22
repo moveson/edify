@@ -29,8 +29,10 @@ class User < ApplicationRecord
   before_validation :set_notification_preferences
   after_commit :send_welcome_notifications
 
-  scope :alphabetical, -> { order(:first_name) }
   scope :admin, -> { where(role: :admin) }
+  scope :alphabetical, -> { order(:first_name) }
+  scope :approvers, -> { where(role: :bishopric) }
+  scope :meeting_schedulers, -> { where(role: :bishopric) }
 
   validates :first_name, presence: true
   validates :phone_number, phone: { allow_blank: true }
