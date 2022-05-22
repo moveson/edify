@@ -46,7 +46,7 @@ describe ::AccessRequest, type: :model do
 
   describe "callbacks" do
     context "when a request is updated with approval attributes" do
-      let(:update_attributes) do
+      let(:attributes) do
         {
           approved_at: Time.current,
           approved_by: 1,
@@ -58,12 +58,12 @@ describe ::AccessRequest, type: :model do
 
       it "makes a call to conform the user" do
         expect(ConformUserToAccessRequest).to receive(:perform!).with(subject)
-        subject.update(update_attributes)
+        subject.update(attributes)
       end
     end
 
     context "when a request is updated with rejection attributes" do
-      let(:update_attributes) do
+      let(:attributes) do
         {
           approved_at: nil,
           approved_by: nil,
@@ -75,7 +75,7 @@ describe ::AccessRequest, type: :model do
 
       it "makes a call to conform the user" do
         expect(ConformUserToAccessRequest).to receive(:perform!).with(subject)
-        subject.update(update_attributes)
+        subject.update(attributes)
       end
     end
   end
