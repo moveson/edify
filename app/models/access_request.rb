@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AccessRequest < ApplicationRecord
-  VALID_ROLES_FOR_APPROVAL = Set[*::User.roles.keys.reject { |k| k == "admin" }].freeze
+  ASSIGNABLE_ROLES = Set[*::User.roles.keys.reject { |k| k == "admin" }].freeze
 
   belongs_to :user
   belongs_to :unit
@@ -59,6 +59,6 @@ class AccessRequest < ApplicationRecord
   def role_is_assignable
     return if approved_role.blank?
 
-    errors.add(:approved_role, "cannot be #{approved_role}") unless approved_role.in?(VALID_ROLES_FOR_APPROVAL)
+    errors.add(:approved_role, "cannot be #{approved_role}") unless approved_role.in?(ASSIGNABLE_ROLES)
   end
 end
