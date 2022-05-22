@@ -13,7 +13,7 @@
   </div>
 </article>
 
-<% if @access_requests.exists? %>
+<% if current_user.approver? && @access_requests.exists? %>
   <div class="row">
     <div class="col-md">
       <h2 class="mt-md-4 mt-2"><strong>Access Requests</strong></h2>

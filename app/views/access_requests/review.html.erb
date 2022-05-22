@@ -9,7 +9,7 @@
 <p><%= "#{@access_request.user_name} has requested access to your ward. Please choose one of the options below." %></p>
 
 <div class="d-flex justify-content-center" data-controller="access-request">
-  <div class="card bg-light mt-2 w-100" style="max-width: 700px;">
+  <div class="card bg-light border-success mt-2 w-100" style="max-width: 700px;">
     <div class="card-header">
       <h4><%= "#{@access_request.user_name}: Accept" %></h4>
     </div>
@@ -86,7 +86,7 @@
 </div>
 
 <div class="d-flex justify-content-center">
-  <div class="card bg-light mt-2 w-100" style="max-width: 700px;">
+  <div class="card bg-light border-danger mt-2 w-100" style="max-width: 700px;">
     <div class="card-header">
       <h4><%= "#{@access_request.user_name}: Reject" %></h4>
     </div>
