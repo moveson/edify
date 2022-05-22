@@ -263,3 +263,15 @@ heller_yong:
   paused_on:
   paused_by:
   synced_on:
+user_unassigned:
+  id: 31
+  name: User, Unassigned
+  gender: 0
+  birthdate: '1967-04-04'
+  phone_number: 496-873-2331
+  email: unassigned@example.com
+  unit_id: 1
+  paused_until:
+  paused_on:
+  paused_by:
+  synced_on:
