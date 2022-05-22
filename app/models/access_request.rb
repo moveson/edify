@@ -12,7 +12,13 @@ class AccessRequest < ApplicationRecord
 
   strip_attributes
 
+  after_update :conform_user_attributes
+
   scope :alphabetical, -> { joins(:user).order(:first_name) }
+
+  def approved?
+    status == :approved
+  end
 
   def pending?
     status == :pending
@@ -37,6 +43,12 @@ class AccessRequest < ApplicationRecord
   end
 
   private
+
+  def conform_user_attributes
+    return true if user_id.nil?
+
+    ::ConformUserToAccessRequest.perform!(self)
+  end
 
   def role_exists_on_approval
     return if approved_at.nil?

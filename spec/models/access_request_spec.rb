@@ -3,10 +3,7 @@
 require "rails_helper"
 
 describe ::AccessRequest, type: :model do
-  subject { described_class.create(user: user, unit: unit) }
-
-  let(:user) { users(:unassigned) }
-  let(:unit) { units(:sunny_hills) }
+  subject { access_requests(:access_request_1) }
 
   describe "validations" do
     context "when a request is approved" do
@@ -43,6 +40,42 @@ describe ::AccessRequest, type: :model do
           expect(subject).not_to be_valid
           expect(subject.errors.full_messages).to include("Approved role must exist when access request is approved")
         end
+      end
+    end
+  end
+
+  describe "callbacks" do
+    context "when a request is updated with approval attributes" do
+      let(:update_attributes) do
+        {
+          approved_at: Time.current,
+          approved_by: 1,
+          approved_role: "clerk",
+          rejected_at: nil,
+          rejected_by: nil,
+        }
+      end
+
+      it "makes a call to conform the user" do
+        expect(ConformUserToAccessRequest).to receive(:perform!).with(subject)
+        subject.update(update_attributes)
+      end
+    end
+
+    context "when a request is updated with rejection attributes" do
+      let(:update_attributes) do
+        {
+          approved_at: nil,
+          approved_by: nil,
+          approved_role: nil,
+          rejected_at: Time.current,
+          rejected_by: 1,
+        }
+      end
+
+      it "makes a call to conform the user" do
+        expect(ConformUserToAccessRequest).to receive(:perform!).with(subject)
+        subject.update(update_attributes)
       end
     end
   end
