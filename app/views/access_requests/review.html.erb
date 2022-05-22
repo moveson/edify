@@ -6,11 +6,9 @@
 
 <hr/>
 
-<p>
-  <strong><%= "#{@access_request.user_name} has requested access to your ward. Please choose one of the options below." %></strong>
-</p>
+<p><%= "#{@access_request.user_name} has requested access to your ward. Please choose one of the options below." %></p>
 
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center" data-controller="access-request">
   <div class="card bg-light mt-2 w-100" style="max-width: 700px;">
     <div class="card-header">
       <h4>Accept the Request</h4>
@@ -23,11 +21,53 @@
 
         <div class="row mb-2">
           <div class="col-12 col-md-3">
-            <%= form.select :role, select_options_for_user_role, { prompt: "Select a role" }, class: "form-select form-control" %>
+            <%= form.select :role,
+                            select_options_for_user_role,
+                            { prompt: "Select a role" },
+                            class: "form-select form-control",
+                            data: { "access-request-target" => "roleSelector",
+                                    :action => "change->access-request#hideOrShowRoleDescriptions change->access-request#disableOrEnableApproveButton" }
+            %>
           </div>
         </div>
+        <div>
+          <div id="bishopric" class="card mb-2" data-access-request-target="roleDescription">
+            <div class="card-body">
+              <p>Bishopric members have access to all views and can import membership lists. They can add, edit, and
+                delete meetings, members, and talks.</p>
+              <p><strong>This role permits access to private membership information available in Leader and Clerk
+                Resources on the Church website. Do not assign this role to anyone who does not have access to
+                LCR.</strong></p>
+            </div>
+          </div>
+          <div id="clerk" class="card mb-2" data-access-request-target="roleDescription">
+            <div class="card-body">
+              <p>Clerks have access to all views and can import membership lists. They can add, edit, and delete
+                members.</p>
+              <p><strong>This role permits access to private membership information available in Leader and Clerk
+                Resources on the Church website. Do not assign this role to anyone who does not have access to
+                LCR.</strong></p>
+            </div>
+          </div>
+          <div id="music" class="card mb-2" data-access-request-target="roleDescription">
+            <div class="card-body">
+              <p>Music users have access to meeting views and can add, edit, and delete hymns and musical numbers (music
+                features are under development). They do not have access to member lists.</p>
+              <p>This role does not provide access to private member information and is appropriate for any user with a
+                music-related calling.</p>
+            </div>
+          </div>
+          <div id="program" class="card mb-2" data-access-request-target="roleDescription">
+            <div class="card-body">
+              <p>Program users have access to meeting views on a read-only basis.</p>
+              <p>This role does not provide access to private member information and is appropriate for any user needing
+                read-only access to upcoming meeting information.</p>
+            </div>
+          </div>
+        </div>
+
         <div class="text-end">
-          <%= form.submit "Approve", class: "btn btn-sm btn-success" %>
+          <%= form.submit "Approve", class: "btn btn-sm btn-success", data: { "access-request-target" => "approveButton" } %>
           <%= link_to "Cancel", users_path, class: "btn btn-sm btn-outline-secondary" %>
         </div>
       <% end %>
