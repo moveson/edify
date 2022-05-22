@@ -4,11 +4,12 @@ require "rails_helper"
 
 describe ::AccessRequest, type: :model do
   subject { described_class.create(user: user, unit: unit) }
+
   let(:user) { users(:unassigned) }
   let(:unit) { units(:sunny_hills) }
 
   describe "validations" do
-    context "on approval" do
+    context "when a request is approved" do
       context "with a valid approved role" do
         let(:approved_role) { "clerk" }
         it "is valid" do
