@@ -76,4 +76,4 @@ unassigned:
   phone_number:
   notification_preference_email: true
   notification_preference_sms: false
-  role: 1
+  role:

@@ -1,0 +1,10 @@
+---
+access_request_1:
+  id: 1
+  user_id: 6
+  unit_id: 1
+  rejected_by:
+  rejected_at:
+  approved_at:
+  approved_by:
+  approved_role:

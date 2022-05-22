@@ -21,8 +21,6 @@ class User < ApplicationRecord
     program: 4,
   }
 
-  ASSIGNABLE_ROLES = roles.keys.reject { |k| k == "admin" }
-
   has_many :scheduled_meetings, class_name: "Meeting", foreign_key: :scheduler_id, dependent: :nullify
   has_many :notifications, as: :recipient, dependent: :destroy
   has_one :access_request, dependent: :destroy

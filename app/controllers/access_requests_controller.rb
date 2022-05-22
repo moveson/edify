@@ -41,39 +41,21 @@ class AccessRequestsController < ApplicationController
 
   # PATCH/PUT /access_requests/1/approve
   def approve
-    role_param = params[:role]
-    role = role_param.in?(User::ASSIGNABLE_ROLES) ? role_param : nil
-
-    user_params = {
-      approved_at: Time.current,
-      approved_by: current_user.id,
-      role: role,
-      unit_id: @access_request.unit_id,
-    }
-    user = @access_request.user
-
-    if role.present?
-      if user.update(user_params)
-        ::UnitAccessApprovalJob.perform_later(unit: @access_request.unit, user: @access_request.user)
-        redirect_to users_path, notice: t("controllers.access_request_controller.approve_success")
-      else
-        @access_request.errors.merge!(user)
-        render :review
-      end
+    if @access_request.update(approval_params)
+      ::UnitAccessApprovalJob.perform_later(unit: @access_request.unit, user: @access_request.user)
+      redirect_to users_path, notice: t("controllers.access_request_controller.approve_success")
     else
-      render :review
+      render :review, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /access_requests/1/reject
   def reject
-    params = { rejected_at: Time.current, rejected_by: current_user.id }
-
-    if @access_request.update(params)
+    if @access_request.update(rejection_params)
       ::UnitAccessRejectionJob.perform_later(unit: @access_request.unit, user: @access_request.user)
-      redirect_to access_requests_path, notice: t("controllers.access_request_controller.reject_success")
+      redirect_to users_path, notice: t("controllers.access_request_controller.reject_success")
     else
-      render :review
+      render :review, status: :unprocessable_entity
     end
   end
 
@@ -99,5 +81,25 @@ class AccessRequestsController < ApplicationController
 
   def access_request_params
     params.require(:access_request).permit(:unit_name)
+  end
+
+  def approval_params
+    {
+      approved_at: Time.current,
+      approved_by: current_user.id,
+      approved_role: params[:role],
+      rejected_at: nil,
+      rejected_by: nil,
+    }
+  end
+
+  def rejection_params
+    {
+      approved_at: nil,
+      approved_by: nil,
+      approved_role: nil,
+      rejected_at: Time.current,
+      rejected_by: current_user.id,
+    }
   end
 end

@@ -9,6 +9,6 @@ class UsersController < ApplicationController
     authorize ::User
 
     @users = current_unit.users.alphabetical.with_attached_avatar
-    @access_requests = current_unit.access_requests.alphabetical
+    @access_requests = current_unit.access_requests.unapproved.alphabetical
   end
 end
