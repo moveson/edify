@@ -76,17 +76,4 @@ unassigned:
   phone_number:
   notification_preference_email: true
   notification_preference_sms: false
-  role: 1
-unapproved:
-  id: 7
-  email: unapproved@example.com
-  encrypted_password: "$2a$12$lZNRuR7rrzyicKc234Wmn.SYgfu7ZFC8trYkJK.kIUDsLgjwBsWGK"
-  first_name: Unapproved
-  last_name: User
-  announcements_last_read_at:
-  confirmed_at: 2022-04-17 20:25:37.567363000 Z
-  unit_id: 1
-  phone_number:
-  notification_preference_email: true
-  notification_preference_sms: false
   role:

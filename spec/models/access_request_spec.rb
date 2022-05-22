@@ -4,7 +4,7 @@ require "rails_helper"
 
 describe ::AccessRequest, type: :model do
   subject { described_class.create(user: user, unit: unit) }
-  let(:user) { users(:unapproved) }
+  let(:user) { users(:unassigned) }
   let(:unit) { units(:sunny_hills) }
 
   describe "validations" do
