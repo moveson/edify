@@ -15,6 +15,16 @@
     </div>
     <div class="card-body">
       <%= form_with(url: approve_access_request_path(@access_request), method: :put, data: { turbo: false }) do |form| %>
+        <% if @access_request.errors.any? %>
+          <div id="error_explanation" class="alert alert-danger">
+            <ul>
+              <% @access_request.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
         <div class="row my-2">
           <h6><%= "I know #{@access_request.user_name}, and he or she has a legitimate need for access to Edify for the #{current_unit.name} in the following capacity:" %></h6>
         </div>
