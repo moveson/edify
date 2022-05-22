@@ -15,6 +15,7 @@ class AccessRequest < ApplicationRecord
   after_update :conform_user_attributes
 
   scope :alphabetical, -> { joins(:user).order(:first_name) }
+  scope :unapproved, -> { where(approved_at: nil) }
 
   def approved?
     status == :approved
