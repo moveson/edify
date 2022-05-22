@@ -10,10 +10,4 @@ module MeetingsHelper
 
     options_for_select(select_array, default_value)
   end
-
-  def select_options_for_user_role
-    select_array = AccessRequest::ASSIGNABLE_ROLES.map { |role| [role.titleize, role] }
-
-    options_for_select(select_array, "")
-  end
 end
