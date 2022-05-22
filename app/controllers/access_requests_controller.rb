@@ -88,11 +88,16 @@ class AccessRequestsController < ApplicationController
       approved_at: Time.current,
       approved_by: current_user.id,
       approved_role: params[:approved_role],
+      rejected_at: nil,
+      rejected_by: nil,
     }
   end
 
   def rejection_params
     {
+      approved_at: nil,
+      approved_by: nil,
+      approved_role: nil,
       rejected_at: Time.current,
       rejected_by: current_user.id,
     }
