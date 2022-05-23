@@ -18,6 +18,7 @@ class UnitsController < ApplicationController
   # POST /units
   def create
     @unit = ::Unit.new(unit_params)
+    current_user.role = :bishopric
     @unit.users << current_user
 
     if @unit.save
