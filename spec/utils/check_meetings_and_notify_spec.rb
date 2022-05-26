@@ -23,7 +23,7 @@ describe CheckMeetingsAndNotify do
 
     it "sends notifications of missing dates to unit users" do
       expect(::MissingMeetingsNotification).to receive(:with).with(dates: expected_missing_dates)
-      expect(missing_meetings_notification).to receive(:deliver_later).with(unit.users)
+      expect(missing_meetings_notification).to receive(:deliver_later).with(unit.users.bishopric)
       subject.perform!
     end
   end
@@ -45,7 +45,7 @@ describe CheckMeetingsAndNotify do
     context "when the meeting has no scheduler" do
       it "sends an incomplete meeting notification to unit users" do
         expect(::IncompleteMeetingNotification).to receive(:with).with(meeting: incomplete_meeting)
-        expect(incomplete_meeting_notification).to receive(:deliver_later).with(unit.users)
+        expect(incomplete_meeting_notification).to receive(:deliver_later).with(unit.users.bishopric)
         subject.perform!
       end
     end

@@ -40,7 +40,7 @@ describe ::User, type: :model do
     end
 
     context "when the user is not an admin" do
-      let(:user) { users(:sunny_one) }
+      let(:user) { users(:sunny_bishopric) }
       it "returns false" do
         expect(result).to eq(false)
       end
