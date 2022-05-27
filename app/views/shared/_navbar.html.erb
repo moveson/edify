@@ -41,7 +41,7 @@
             <div id="nav-account-dropdown" class="dropdown-menu dropdown-menu-end" aria-labelledby="navbar-dropdown">
               <%= link_to "Settings", settings_preferences_path, class: "dropdown-item" %>
               <%= link_to "All Users", users_path, class: "dropdown-item" %>
-              <% if current_user.admin? && respond_to?(:madmin_root_path) %>
+              <% if current_user.admin? %>
                 <div class="dropdown-divider"></div>
                 <%= link_to "Admin Area", madmin_root_path, class: "dropdown-item" %>
                 <%= link_to "Sidekiq Web", sidekiq_web_path, target: "_blank", class: "dropdown-item" %>

@@ -39,8 +39,7 @@ class User < ApplicationRecord
   strip_attributes
 
   def access_to_lcr?
-    admin? ||
-      (assigned_to_unit? && (bishopric? || clerk?))
+    assigned_to_unit? && (bishopric? || clerk?)
   end
 
   def approver?
@@ -68,8 +67,7 @@ class User < ApplicationRecord
   end
 
   def unit_admin?
-    admin? ||
-      (assigned_to_unit? && bishopric?)
+    assigned_to_unit? && bishopric?
   end
 
   def unit_name
