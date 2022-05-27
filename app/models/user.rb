@@ -14,7 +14,6 @@ class User < ApplicationRecord
   has_noticed_notifications
 
   enum role: {
-    admin: 0,
     bishopric: 1,
     clerk: 2,
     music: 3,
@@ -29,7 +28,7 @@ class User < ApplicationRecord
   before_validation :set_notification_preferences
   after_commit :send_welcome_notifications
 
-  scope :admin, -> { where(role: :admin) }
+  scope :admin, -> { where(admin: true) }
   scope :alphabetical, -> { order(:first_name) }
   scope :approvers, -> { where(role: :bishopric) }
   scope :meeting_schedulers, -> { where(role: [:bishopric]) }
@@ -43,11 +42,6 @@ class User < ApplicationRecord
     admin? ||
       (assigned_to_unit? && (bishopric? || clerk?))
   end
-
-  def admin?
-    role == "admin"
-  end
-  alias admin admin?
 
   def approver?
     unit_admin?
