@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md">
-    <h2 class="mt-md-4 mt-2"><strong>Users</strong></h2>
+    <h3 class="mt-md-4 mt-2"><strong>Me</strong></h3>
   </div>
 </div>
 
@@ -8,15 +8,34 @@
 <br/>
 
 <article>
-  <div id="users">
-    <%= render partial: "user", collection: @users %>
+  <div id="current_user">
+    <%= render partial: "user", locals: { user: current_user } %>
   </div>
 </article>
 
-<% if current_user.approver? && @access_requests.exists? %>
+<% if @users.exists? %>
+  <br/>
   <div class="row">
     <div class="col-md">
-      <h2 class="mt-md-4 mt-2"><strong>Access Requests</strong></h2>
+      <h3 class="mt-md-4 mt-2"><strong>Other Users</strong></h3>
+    </div>
+  </div>
+
+  <hr/>
+  <br/>
+
+  <article>
+    <div id="users">
+      <%= render partial: "user", collection: @users %>
+    </div>
+  </article>
+<% end %>
+
+<% if current_user.approver? && @access_requests.exists? %>
+  <br/>
+  <div class="row">
+    <div class="col-md">
+      <h3 class="mt-md-4 mt-2"><strong>Access Requests</strong></h3>
     </div>
   </div>
 

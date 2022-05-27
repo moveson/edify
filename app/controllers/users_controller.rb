@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def index
     authorize ::User
 
-    @users = current_unit.users.alphabetical.with_attached_avatar
+    @users = current_unit.users.where.not(id: current_user).alphabetical.with_attached_avatar
     @access_requests = current_unit.access_requests.unapproved.alphabetical
   end
 end
