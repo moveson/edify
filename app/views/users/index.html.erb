@@ -31,7 +31,7 @@
   </article>
 <% end %>
 
-<% if current_user.approver? && @access_requests.exists? %>
+<% if current_user.unit_admin? && @access_requests.exists? %>
   <br/>
   <div class="row">
     <div class="col-md">

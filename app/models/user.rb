@@ -42,10 +42,6 @@ class User < ApplicationRecord
     assigned_to_unit? && (bishopric? || clerk?)
   end
 
-  def approver?
-    unit_admin?
-  end
-
   def assigned_to_unit?
     unit_id?
   end

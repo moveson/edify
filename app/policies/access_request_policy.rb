@@ -14,7 +14,7 @@ class AccessRequestPolicy < ApplicationPolicy
   end
 
   def approve?
-    user.approver? &&
+    user.unit_admin? &&
       user.unit_id == record.unit_id
   end
 
