@@ -11,7 +11,8 @@ admin:
   phone_number:
   notification_preference_email: true
   notification_preference_sms: false
-  role: 0
+  role: 1
+  admin: true
 sunny_bishopric:
   id: 2
   email: bishopric@example.com
@@ -25,6 +26,7 @@ sunny_bishopric:
   notification_preference_email: true
   notification_preference_sms: false
   role: 1
+  admin: false
 sunny_clerk:
   id: 3
   email: clerk@example.com
@@ -38,6 +40,7 @@ sunny_clerk:
   notification_preference_email: true
   notification_preference_sms: false
   role: 2
+  admin: false
 sunny_music:
   id: 4
   email: music@example.com
@@ -51,6 +54,7 @@ sunny_music:
   notification_preference_email: true
   notification_preference_sms: false
   role: 3
+  admin: false
 sunny_program:
   id: 5
   email: program@example.com
@@ -64,6 +68,7 @@ sunny_program:
   notification_preference_email: true
   notification_preference_sms: false
   role: 4
+  admin: false
 pleasant_one:
   id: 6
   email: pleasant1@example.com
@@ -77,6 +82,7 @@ pleasant_one:
   notification_preference_email: true
   notification_preference_sms: false
   role: 1
+  admin: false
 pleasant_two:
   id: 7
   email: pleasant2@example.com
@@ -90,6 +96,7 @@ pleasant_two:
   notification_preference_email: true
   notification_preference_sms: false
   role: 1
+  admin: false
 unassigned:
   id: 8
   email: unassigned@example.com
@@ -103,6 +110,7 @@ unassigned:
   notification_preference_email: true
   notification_preference_sms: false
   role:
+  admin: false
 new_unit:
   id: 9
   email: newunit@example.com
@@ -116,3 +124,4 @@ new_unit:
   notification_preference_email: true
   notification_preference_sms: false
   role:
+  admin: false
