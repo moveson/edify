@@ -27,6 +27,7 @@ class UsersController < ApplicationController
     role = params[:role].in?(::AccessRequest::ASSIGNABLE_ROLES) ? params[:role] : nil
 
     if role.nil?
+      @user.errors.add(:base, "Role not permitted: #{params[:role]}")
       render :edit, status: :unprocessable_entity
     elsif @user.update(role: role)
       respond_to do |format|
