@@ -22,6 +22,7 @@ describe "Visit the users index", type: :system do
 
   context "when the user is an admin without a unit assigned" do
     before { login_as admin, scope: :user }
+
     it "does not permit access" do
       visit users_path
       expect(page).to have_current_path(root_path)
@@ -31,6 +32,7 @@ describe "Visit the users index", type: :system do
 
   context "when the user is in a bishopric" do
     before { login_as bishopric_user, scope: :user }
+
     it "lists all users and access requests" do
       visit users_path
       verify_users_present
@@ -40,6 +42,7 @@ describe "Visit the users index", type: :system do
 
   context "when the user is a clerk" do
     before { login_as clerk_user, scope: :user }
+
     it "lists all users but not access requests" do
       visit users_path
       verify_users_present
@@ -49,6 +52,7 @@ describe "Visit the users index", type: :system do
 
   context "when the user is a music person" do
     before { login_as music_user, scope: :user }
+
     it "lists all users but not access requests" do
       visit users_path
       verify_users_present
@@ -58,6 +62,7 @@ describe "Visit the users index", type: :system do
 
   context "when the user is a program person" do
     before { login_as program_user, scope: :user }
+
     it "lists all users but not access requests" do
       visit users_path
       verify_users_present
@@ -67,6 +72,7 @@ describe "Visit the users index", type: :system do
 
   context "when the user is not assigned to the ward" do
     before { login_as unassigned_user, scope: :user }
+
     it "does not permit access" do
       visit users_path
       expect(page).to have_current_path(root_path)

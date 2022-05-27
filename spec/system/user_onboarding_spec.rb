@@ -5,7 +5,6 @@ require "rails_helper"
 describe "Onboard a new user", type: :system do
   let(:new_unit_user) { users(:new_unit) }
   context "when the user has not requested access" do
-
     scenario "the user creates a new ward unit" do
       login_as new_unit_user, scope: :user
       navigate_to_onboard_page
@@ -13,7 +12,7 @@ describe "Onboard a new user", type: :system do
 
       expect(page).to have_text("Set Up A New Ward")
       fill_in :unit_name, with: "Fountain Valley Ward"
-      expect { click_button "Create Ward" }.to change { Unit.count }.by(1)
+      expect { click_button "Create Ward" }.to change(Unit, :count).by(1)
 
       new_unit = Unit.last
       new_unit_user.reload
@@ -36,7 +35,7 @@ describe "Onboard a new user", type: :system do
 
         expect(page).to have_text("Request Access")
         fill_in :access_request_unit_name, with: existing_unit.name
-        expect { click_button "Submit Request" }.not_to change { Unit.count }
+        expect { click_button "Submit Request" }.not_to change(Unit, :count)
 
         new_unit_user.reload
         expect(new_unit_user.unit).to be_nil
@@ -58,7 +57,7 @@ describe "Onboard a new user", type: :system do
 
         expect(page).to have_text("Request Access")
         fill_in :access_request_unit_name, with: existing_unit.name
-        expect { click_button "Submit Request" }.not_to change { Unit.count }
+        expect { click_button "Submit Request" }.not_to change(Unit, :count)
 
         new_unit_user.reload
         expect(new_unit_user.unit).to be_nil
