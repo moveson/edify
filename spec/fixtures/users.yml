@@ -12,11 +12,11 @@ admin:
   notification_preference_email: true
   notification_preference_sms: false
   role: 0
-sunny_one:
+sunny_bishopric:
   id: 2
-  email: sunny1@example.com
+  email: bishopric@example.com
   encrypted_password: "$2a$12$XXGebtw/HxxLQj8cYDMhN.zXPU8RGM7GqUT1x6JI9w2wlrG0epbTK"
-  first_name: Sunny One
+  first_name: Sunny Bishopric
   last_name: User
   announcements_last_read_at:
   confirmed_at: 2022-04-15 16:32:30.827166000 Z
@@ -25,11 +25,11 @@ sunny_one:
   notification_preference_email: true
   notification_preference_sms: false
   role: 1
-sunny_two:
+sunny_clerk:
   id: 3
-  email: sunny2@example.com
+  email: clerk@example.com
   encrypted_password: "$2a$12$sbQ5j.IkF/fEIhZ31iknsuZFUuLeH7dJLYzMkOfnAPxs50H1Ad9Um"
-  first_name: Sunny Two
+  first_name: Sunny Clerk
   last_name: User
   announcements_last_read_at:
   confirmed_at: 2022-04-16 16:32:31.078429000 Z
@@ -37,9 +37,35 @@ sunny_two:
   phone_number:
   notification_preference_email: true
   notification_preference_sms: false
-  role: 1
-pleasant_one:
+  role: 2
+sunny_music:
   id: 4
+  email: music@example.com
+  encrypted_password: "$2a$12$sbQ5j.IkF/fEIhZ31iknsuZFUuLeH7dJLYzMkOfnAPxs50H1Ad9Um"
+  first_name: Sunny Three
+  last_name: User
+  announcements_last_read_at:
+  confirmed_at: 2022-04-16 16:32:31.078429000 Z
+  unit_id: 1
+  phone_number:
+  notification_preference_email: true
+  notification_preference_sms: false
+  role: 3
+sunny_program:
+  id: 5
+  email: program@example.com
+  encrypted_password: "$2a$12$sbQ5j.IkF/fEIhZ31iknsuZFUuLeH7dJLYzMkOfnAPxs50H1Ad9Um"
+  first_name: Sunny Program
+  last_name: User
+  announcements_last_read_at:
+  confirmed_at: 2022-04-16 16:32:31.078429000 Z
+  unit_id: 1
+  phone_number:
+  notification_preference_email: true
+  notification_preference_sms: false
+  role: 4
+pleasant_one:
+  id: 6
   email: pleasant1@example.com
   encrypted_password: "$2a$12$58Dcf5VKr8gSSTMflGYXp.B7hJ/GPeE2KhW/lfCLFHrqGftRuEZqW"
   first_name: Pleasant One
@@ -52,7 +78,7 @@ pleasant_one:
   notification_preference_sms: false
   role: 1
 pleasant_two:
-  id: 5
+  id: 7
   email: pleasant2@example.com
   encrypted_password: "$2a$12$o76qREduQjurtgQ4eY5ATOwBLkz6bIJfDCWHpnMRS5hnzlgq5NYO6"
   first_name: Pleasant Two
@@ -65,7 +91,7 @@ pleasant_two:
   notification_preference_sms: false
   role: 1
 unassigned:
-  id: 6
+  id: 8
   email: unassigned@example.com
   encrypted_password: "$2a$12$98XRmn8X/BGktzGEa/qeCuuLZTnFuxlgwpj92u4pbzirB2NzBt.4S"
   first_name: Unassigned
