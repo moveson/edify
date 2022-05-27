@@ -7,6 +7,11 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => "/sidekiq"
   end
 
+  devise_for :users, controllers: {
+    registrations: "users/registrations",
+    sessions: "users/sessions",
+  }
+
   resources :access_requests, only: [:new, :create, :destroy] do
     get :review, on: :member
     put :approve, on: :member
@@ -36,11 +41,6 @@ Rails.application.routes.draw do
     put :update
     put :remove_avatar
   end
-
-  devise_for :users, controllers: {
-    registrations: "users/registrations",
-    sessions: "users/sessions",
-  }
 
   root to: "home#index"
   get "/privacy", to: "home#privacy"
