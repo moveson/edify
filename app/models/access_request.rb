@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AccessRequest < ApplicationRecord
-  ASSIGNABLE_ROLES = Set[*::User.roles.keys.reject { |k| k == "admin" }].freeze
+  ASSIGNABLE_ROLES = Set[*::User.roles.keys].freeze
 
   belongs_to :user
   belongs_to :unit
