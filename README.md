@@ -80,15 +80,19 @@ Setup the app by running the setup script:
 
 *Test Users*
 
-After you setup/seed your database, you should have at least five test users:
+After you setup/seed your database, you should have several test users:
 ```
-| Role  | Email                  | Password | Unit            |
-| ----- | ---------------------- | -------- | --------------- |
-| admin | admin@example.com      | password | [none]          |
-| user  | sunny1@example.com     | password | Sunny Hills     |
-| user  | sunny2@example.com     | password | Sunny Hills     |
-| user  | pleasant1@example.com  | password | Pleasant Forest |
-| user  | pleasant2@example.com  | password | Pleasant Forest |
+| Role      | Email                  | Password | Unit            |
+| -----     | ---------------------- | -------- | --------------- |
+| admin     | admin@example.com      | password | [none]          |
+| bishopric | bishopric@example.com  | password | Sunny Hills     |
+| clerk     | clerk@example.com      | password | Sunny Hills     |
+| music     | music@example.com      | password | Sunny Hills     |
+| program   | program@example.com    | password | Sunny Hills     |
+| user      | pleasant1@example.com  | password | Pleasant Forest |
+| user      | pleasant2@example.com  | password | Pleasant Forest |
+| <none>    | unassigned@example.com | password | <none>          |
+| <none>    | newunit@example.com    | password | <none>          |
 ```
 
 You will also have at least two test units (wards). Each test user belongs to a test unit.
