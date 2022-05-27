@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-md">
+    <h2 class="mt-md-4 mt-2"><strong><%= @user.name %></strong></h2>
+  </div>
+</div>
+
+<hr/>
+
+<%= turbo_frame_tag dom_id(@user) do %>
+  <%= render "user", user: @user %>
+<% end %>

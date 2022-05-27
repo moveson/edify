@@ -3,22 +3,28 @@
     <div class="card bg-light mt-2 w-100" style="max-width: 700px;">
       <div class="card-header">
         <div class="row pt-2">
-          <div class="col-12 col-md-8">
+          <div class="col-12 col-md-9">
             <h5 class="font-weight-bold">
               <%= user.name %>
               <%= content_tag(:span, user.role&.titleize, class: "badge bg-success mx-1 align-top", style: "font-size:0.7rem;") %>
             </h5>
           </div>
-          <div class="col-12 col-md-4">
-            <h5 class="text-md-end"><%= image_tag avatar_path(user, size: 40) %></h5>
-          </div>
+          <% if current_user.unit_admin? && current_user != user %>
+            <div class="col-12 col-md-3 text-md-end">
+              <%= link_to_user_edit(user, class: "mb-1", title: "Change role") %>
+              <%= link_to_user_delete(user, class: "mb-1") %>
+            </div>
+          <% end %>
         </div>
       </div>
       <div class="card-body">
         <div class="row">
-          <div class="col">
+          <div class="col-12 col-md-9">
             <h6><%= "Email: #{user.email}" %></h6>
             <h6><%= "User since: #{l(user.created_at.to_date, format: :long)}" %></h6>
+          </div>
+          <div class="col-12 col-md-3">
+            <h5 class="text-md-end"><%= image_tag avatar_path(user, size: 40) %></h5>
           </div>
         </div>
       </div>

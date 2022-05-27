@@ -41,7 +41,7 @@ module LinkHelper
   end
 
   def link_to_edit(resource_or_array, options = {})
-    html_class = options[:class]
+    html_class = options.delete(:class)
     url = edit_polymorphic_path(resource_or_array)
     resource = if resource_or_array.is_a?(Array)
                  resource_or_array.last
@@ -50,14 +50,14 @@ module LinkHelper
                end
 
     resource_name = resource.class.name.underscore.humanize(capitalize: false)
-    options = {
+    default_options = {
       class: ["btn btn-outline-primary btn-sm", html_class].compact.join(" "),
       title: "Edit #{resource_name}",
       data: {
         "bs-toggle" => "tooltip",
       },
     }
-    link_to fa_icon("pencil-alt"), url, options
+    link_to fa_icon("pencil-alt"), url, default_options.merge(options)
   end
 
   def link_to_meeting_delete(meeting, options = {})
@@ -90,5 +90,13 @@ module LinkHelper
 
   def link_to_talk_edit(talk, options = {})
     link_to_edit([talk.meeting, talk], options)
+  end
+
+  def link_to_user_delete(user, options = {})
+    link_to_delete(user, options)
+  end
+
+  def link_to_user_edit(user, options = {})
+    link_to_edit(user, options)
   end
 end

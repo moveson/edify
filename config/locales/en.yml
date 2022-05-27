@@ -33,6 +33,9 @@ en:
       destroyed: "Talk was successfully destroyed."
     units_controller:
       updated: "Unit was successfully updated."
+    users_controller:
+      updated: "User was successfully updated."
+      destroyed: "User was successfully destroyed."
   models:
     meeting:
       date_not_unique: "has been taken; a meeting already exists for this date"

@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   resources :notifications, only: [:index]
   resources :talks, only: [:index]
   resources :units, only: [:new, :edit, :create, :update]
-  resources :users, only: [:index]
+  resources :users, only: [:index, :show, :edit, :update, :destroy]
 
   namespace :settings do
     get :preferences
