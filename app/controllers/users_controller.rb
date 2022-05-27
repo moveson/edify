@@ -24,12 +24,7 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
-    role = params[:role].in?(::AccessRequest::ASSIGNABLE_ROLES) ? params[:role] : nil
-
-    if role.nil?
-      @user.errors.add(:base, "Role not permitted: #{params[:role]}")
-      render :edit, status: :unprocessable_entity
-    elsif @user.update(role: role)
+    if @user.update(role: params[:role])
       respond_to do |format|
         format.html do
           redirect_to users_path, notice: t("controllers.users_controller.updated")
