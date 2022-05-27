@@ -42,6 +42,9 @@ Rails/RequestReferer:
 RSpec/BeEq:
   Enabled: false
 
+RSpec/Capybara/FeatureMethods:
+  Enabled: false
+
 RSpec/EmptyLineAfterFinalLet:
   Enabled: false
 
