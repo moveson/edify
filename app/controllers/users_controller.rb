@@ -24,18 +24,24 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
-    if @user.update(user_params)
-      respond_to do |format|
-        format.html do
-          redirect_to users_path, notice: t("controllers.users_controller.updated")
-        end
+    role = params[:role].in?(::AccessRequest::ASSIGNABLE_ROLES) ? params[:role] : nil
 
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.replace(@user, partial: "users/user", locals: { user: @user })
-        end
-      end
-    else
+    if role.nil?
       render :edit, status: :unprocessable_entity
+    else
+      if @user.update(role: role)
+        respond_to do |format|
+          format.html do
+            redirect_to users_path, notice: t("controllers.users_controller.updated")
+          end
+
+          format.turbo_stream do
+            render turbo_stream: turbo_stream.replace(@user, partial: "users/user", locals: { user: @user })
+          end
+        end
+      else
+        render :edit, status: :unprocessable_entity
+      end
     end
   end
 
@@ -62,9 +68,5 @@ class UsersController < ApplicationController
 
   def authorize_user
     authorize @user
-  end
-
-  def user_params
-    params.require(:user).permit(:role)
   end
 end
