@@ -95,7 +95,8 @@ After you setup/seed your database, you should have several test users:
 | [none]    | newunit@example.com    | password | [none]          |
 ```
 
-You will also have at least two test units (wards). Each test user belongs to a test unit.
+You will also have at least two test units (wards). Most test users belongs to a test unit, but some are as yet 
+unassigned.
 
 **Continuous Integration**
 
@@ -105,6 +106,7 @@ Pipeline consists of:
 - Specs
 - Rubocop (linter)
 - Brakeman (security checks)
+- Bundle Audit (dependency vulnerability checker)
 
 Support
 -------------------------
