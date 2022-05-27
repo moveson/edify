@@ -103,3 +103,16 @@ unassigned:
   notification_preference_email: true
   notification_preference_sms: false
   role:
+new_unit:
+  id: 9
+  email: newunit@example.com
+  encrypted_password: "$2a$12$uBqy3jmS5ioFQ0hwijSLWu3iMlDwVyHSpXuodwYWY.0HOdoaIoWfa"
+  first_name: New
+  last_name: Unit User
+  announcements_last_read_at:
+  confirmed_at: 2022-05-27 04:56:17.484126000 Z
+  unit_id:
+  phone_number:
+  notification_preference_email: true
+  notification_preference_sms: false
+  role:
