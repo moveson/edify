@@ -28,20 +28,18 @@ class UsersController < ApplicationController
 
     if role.nil?
       render :edit, status: :unprocessable_entity
-    else
-      if @user.update(role: role)
-        respond_to do |format|
-          format.html do
-            redirect_to users_path, notice: t("controllers.users_controller.updated")
-          end
-
-          format.turbo_stream do
-            render turbo_stream: turbo_stream.replace(@user, partial: "users/user", locals: { user: @user })
-          end
+    elsif @user.update(role: role)
+      respond_to do |format|
+        format.html do
+          redirect_to users_path, notice: t("controllers.users_controller.updated")
         end
-      else
-        render :edit, status: :unprocessable_entity
+
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace(@user, partial: "users/user", locals: { user: @user })
+        end
       end
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
