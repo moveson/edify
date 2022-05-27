@@ -91,8 +91,8 @@ After you setup/seed your database, you should have several test users:
 | program   | program@example.com    | password | Sunny Hills     |
 | user      | pleasant1@example.com  | password | Pleasant Forest |
 | user      | pleasant2@example.com  | password | Pleasant Forest |
-| <none>    | unassigned@example.com | password | <none>          |
-| <none>    | newunit@example.com    | password | <none>          |
+| [none]    | unassigned@example.com | password | [none]          |
+| [none]    | newunit@example.com    | password | [none]          |
 ```
 
 You will also have at least two test units (wards). Each test user belongs to a test unit.
