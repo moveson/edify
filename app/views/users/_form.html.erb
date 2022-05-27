@@ -1,0 +1,33 @@
+<div class="d-flex justify-content-center ">
+  <div class="card bg-light mt-2 w-100" style="max-width: 700px;">
+    <div class="card-body">
+      <%= form_with(model: user, data: { controller: "escape-cancel" }) do |form| %>
+        <% if user.errors.any? %>
+          <div id="error_explanation">
+            <ul>
+              <% user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="row mb-2">
+          <div class="col-12 col-md-9">
+            <%= form.label :role, class: "required" %>
+            <%= form.select :role, options_for_select(User.roles.keys.map { |key| [key.titleize, key] }, user.role), {}, class: "form-select form-control" %>
+          </div>
+
+          <div class="col-12 col-md-3 text-md-end">
+            <br/>
+            <%= button_tag type: "submit", class: "btn btn-outline-primary" do %>
+              <%= fa_icon("check-circle") %>
+            <% end %>
+
+            <%= link_to fa_icon("times-circle"), user, class: "btn btn-outline-secondary", data: { "escape-cancel-target" => "link" } %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
