@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
-    if @user.update(role: params[:role])
+    if @user.update(role: params.dig(:user, :role))
       respond_to do |format|
         format.html do
           redirect_to users_path, notice: t("controllers.users_controller.updated")
