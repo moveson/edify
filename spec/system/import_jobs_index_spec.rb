@@ -68,6 +68,7 @@ describe "Visit the import jobs index", type: :system do
   end
 
   def verify_expected_items_present
-
+    expect(page).to have_text("Imports")
+    expect(page).to have_link(href: new_import_job_path)
   end
 end
