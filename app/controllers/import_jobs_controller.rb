@@ -2,7 +2,10 @@
 
 class ImportJobsController < ApplicationController
   before_action :authenticate_user!
+  before_action :authorize_import_job, only: %i[show destroy]
+  before_action :authorize_action, except: %i[show destroy]
   before_action :set_import_job, only: [:show, :destroy]
+  after_action :verify_authorized
 
   # GET /import_jobs
   def index
@@ -42,6 +45,14 @@ class ImportJobsController < ApplicationController
   end
 
   private
+
+  def authorize_import_job
+    authorize @import_job
+  end
+
+  def authorize_action
+    authorize ::ImportJob
+  end
 
   def import_job_params
     params.require(:import_job).permit(:data_string)
