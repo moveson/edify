@@ -10,25 +10,43 @@
   <div class="row flex-nowrap">
     <%= render "sidebar" %>
     <div class="col py-3">
-      <%= form_with(model: current_user, url: settings_update_path, html: { method: :put }) do |f| %>
+      <%= form_with(model: current_user, url: settings_update_path, local: true, multipart: true, data: { turbo: false }, html: { method: :put }) do |f| %>
+        <% if current_user.errors.any? %>
+          <div id="error_explanation">
+            <ul>
+              <% current_user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
 
-        <div class="mb-3 text-center">
-          <%= f.file_field :avatar, accept: 'image/*' %>
-        </div>
+        <% unless current_user.avatar.attached? %>
+          <div class="mb-3 text-center">
+            <div class="dropzone dropzone-default dz-clickable" data-controller="dropzone" data-dropzone-max-file-size="2" data-dropzone-max-files="1">
+              <%= f.file_field :avatar, direct_upload: true, data: { target: 'dropzone.input' } %>
+              <div class="dropzone-msg dz-message needsclick text-muted">
+                <h3 class="dropzone-msg-title">Drag here to upload or click here to browse</h3>
+                <span class="dropzone-msg-desc text-sm">2 MB file size maximum. Allowed file types png, jpg.</span>
+              </div>
+            </div>
+          </div>
 
-        <%= image_tag avatar_path(f.object), class: "rounded border shadow-sm d-block mx-auto my-3" %>
+          <div class="mb-3 text-center">
+            <%= f.submit "Upload avatar", class: 'btn btn-primary', data: { turbo: false } %>
+          </div>
+        <% end %>
 
-        <div class="mb-3 text-center">
-          <%= f.submit "Upload avatar", class: 'btn btn-primary', data: { turbo: false } %>
-        </div>
+        <% if current_user.avatar.attached? %>
+          <%= image_tag avatar_path(f.object), class: "rounded border shadow-sm d-block mx-auto my-3" %>
 
-        <div class="mt-4 text-center">
-          <% if current_user.avatar.attached? %>
-            <p><%= link_to "Remove avatar", settings_remove_avatar_path, method: :put, class: "btn btn-outline-danger" %></p>
-          <% end %>
-        </div>
+          <div class="mt-4 text-center">
+            <% if current_user.avatar.attached? %>
+              <p><%= link_to "Remove avatar", settings_remove_avatar_path, method: :put, class: "btn btn-outline-danger" %></p>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
-
     </div>
   </div>
 </div>
