@@ -33,19 +33,17 @@
           </div>
 
           <div class="mb-3 text-center">
-            <%= f.submit "Upload avatar", class: 'btn btn-primary', data: { turbo: false } %>
+            <%= f.submit "Save avatar", class: 'btn btn-primary', data: { turbo: false } %>
           </div>
         <% end %>
+      <% end %>
 
-        <% if current_user.avatar.attached? %>
-          <%= image_tag avatar_path(f.object), class: "rounded border shadow-sm d-block mx-auto my-3" %>
+      <% if current_user.avatar.attached? %>
+        <%= image_tag avatar_path(current_user), class: "rounded border shadow-sm d-block mx-auto my-3" %>
 
-          <div class="mt-4 text-center">
-            <% if current_user.avatar.attached? %>
-              <p><%= link_to "Remove avatar", settings_remove_avatar_path, method: :put, class: "btn btn-outline-danger" %></p>
-            <% end %>
-          </div>
-        <% end %>
+        <div class="mt-4 text-center">
+          <p><%= link_to "Remove avatar", settings_remove_avatar_path, method: :put, class: "btn btn-outline-danger" %></p>
+        </div>
       <% end %>
     </div>
   </div>
