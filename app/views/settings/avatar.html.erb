@@ -10,7 +10,7 @@
   <div class="row flex-nowrap">
     <%= render "sidebar" %>
     <div class="col py-3">
-      <%= form_with(model: current_user, url: settings_update_path, local: true, multipart: true, data: { turbo: false }, html: { method: :put }) do |f| %>
+      <%= form_with(model: current_user, url: settings_update_path, html: { method: :put }) do |f| %>
         <% if current_user.errors.any? %>
           <div id="error_explanation">
             <ul>
@@ -23,17 +23,17 @@
 
         <% unless current_user.avatar.attached? %>
           <div class="mb-3 text-center">
-            <div class="dropzone dropzone-default dz-clickable" data-controller="dropzone" data-dropzone-max-file-size="2" data-dropzone-max-files="1">
-              <%= f.file_field :avatar, direct_upload: true, data: { target: 'dropzone.input' } %>
+            <div class="dropzone dropzone-default dz-clickable" data-controller="dropzone" data-dropzone-max-file-size="1" data-dropzone-max-files="1" data-dropzone-accepted-files="image/*">
+              <%= f.file_field :avatar, direct_upload: true, data: { "dropzone-target" => "input" } %>
               <div class="dropzone-msg dz-message needsclick text-muted">
                 <h3 class="dropzone-msg-title">Drag here to upload or click here to browse</h3>
-                <span class="dropzone-msg-desc text-sm">2 MB file size maximum. Allowed file types png, jpg.</span>
+                <span class="dropzone-msg-desc text-sm">1 MB file size maximum. Allowed file types png, jpg.</span>
               </div>
             </div>
           </div>
 
           <div class="mb-3 text-center">
-            <%= f.submit "Save avatar", class: 'btn btn-primary', data: { turbo: false } %>
+            <%= f.submit "Save avatar", class: "btn btn-primary", data: { turbo: false } %>
           </div>
         <% end %>
       <% end %>
