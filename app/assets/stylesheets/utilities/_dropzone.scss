@@ -1,0 +1,15 @@
+@import "dropzone/src/dropzone.scss";
+@import "dropzone/src/basic.scss";
+
+.dropzone {
+  border: dashed #888888;
+  border-radius: 20px;
+
+  &.dz-drag-hover {
+    border: dashed #BBBBBB;
+
+    .dz-message {
+      opacity: 0.9;
+    }
+  }
+}
