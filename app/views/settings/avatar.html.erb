@@ -10,20 +10,32 @@
   <div class="row flex-nowrap">
     <%= render "sidebar" %>
     <div class="col py-3">
-      <%= form_with(model: current_user, url: settings_update_path, html: { method: :put }) do |f| %>
-        <% if current_user.errors.any? %>
-          <div id="error_explanation">
-            <ul>
-              <% current_user.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
+      <% if current_user.avatar.attached? %>
+        <%= image_tag avatar_path(current_user), class: "rounded border shadow-sm d-block mx-auto my-3" %>
 
-        <% unless current_user.avatar.attached? %>
+        <div class="mt-4 text-center">
+          <p><%= link_to "Remove avatar", settings_remove_avatar_path, method: :put, class: "btn btn-outline-danger" %></p>
+        </div>
+      <% else %>
+        <%= form_with(model: current_user, url: settings_update_path, html: { method: :put, data: { controller: "form-apply" } }) do |f| %>
+          <% if current_user.errors.any? %>
+            <div id="error_explanation">
+              <ul>
+                <% current_user.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
           <div class="mb-3 text-center">
-            <div class="dropzone dropzone-default dz-clickable" data-controller="dropzone" data-dropzone-max-file-size="1" data-dropzone-max-files="1" data-dropzone-accepted-files="image/*">
+            <div class="dropzone dropzone-default dz-clickable"
+                 data-controller="dropzone"
+                 data-dropzone-max-file-size="1"
+                 data-dropzone-max-files="1"
+                 data-dropzone-accepted-files="image/*"
+                 data-action="dropzone:success->form-apply#enableSubmitButton"
+            >
               <%= f.file_field :avatar, direct_upload: true, data: { "dropzone-target" => "input" } %>
               <div class="dropzone-msg dz-message needsclick text-muted">
                 <h3 class="dropzone-msg-title">Drag here to upload or click here to browse</h3>
@@ -33,17 +45,9 @@
           </div>
 
           <div class="mb-3 text-center">
-            <%= f.submit "Save avatar", class: "btn btn-primary", data: { turbo: false } %>
+            <%= f.submit "Save avatar", class: "btn btn-primary", data: { turbo: false, "form-apply-target" => "submitButton" } %>
           </div>
         <% end %>
-      <% end %>
-
-      <% if current_user.avatar.attached? %>
-        <%= image_tag avatar_path(current_user), class: "rounded border shadow-sm d-block mx-auto my-3" %>
-
-        <div class="mt-4 text-center">
-          <p><%= link_to "Remove avatar", settings_remove_avatar_path, method: :put, class: "btn btn-outline-danger" %></p>
-        </div>
       <% end %>
     </div>
   </div>

@@ -7,7 +7,7 @@ export default class extends Controller {
     connect() {
         const controller = this
         const form = this.element
-        this.submitButtonTarget.classList.add("disabled")
+        this.disableSubmitButton()
 
         Array.from(form).forEach(function (el) {
             if(el.type !== "hidden") {
@@ -19,11 +19,19 @@ export default class extends Controller {
         })
     }
 
+    disableSubmitButton() {
+        this.submitButtonTarget.classList.add("disabled")
+    }
+
+    enableSubmitButton() {
+        this.submitButtonTarget.classList.remove("disabled")
+    }
+
     enableSubmitIfChanged() {
         if(this.formHasChanges()) {
-            this.submitButtonTarget.classList.remove("disabled")
+            this.enableSubmitButton();
         } else {
-            this.submitButtonTarget.classList.add("disabled")
+            this.disableSubmitButton();
         }
     }
 
