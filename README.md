@@ -98,6 +98,13 @@ After you setup/seed your database, you should have several test users:
 You will also have at least two test units (wards). Most test users belongs to a test unit, but some are as yet 
 unassigned.
 
+**Credentials**
+
+Edify uses the [Rails Credentials](https://guides.rubyonrails.org/security.html#custom-credentials) feature for storing 
+credentials. Credentials are stored in the `config/credentials.yml.enc` file, which can be decrypted using a master key
+stored in the `config/master.key` file on your local machine. The `config/master.key` file is not checked into the
+repository. Contact a member of the development team if you need access to the Rails master key.
+
 **Continuous Integration**
 
 Edify uses Github Actions for CI/CD. When you push a branch, pipeline will run and should pass before merging to master.
