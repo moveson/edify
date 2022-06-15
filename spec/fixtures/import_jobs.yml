@@ -1,0 +1,24 @@
+---
+import_job_7:
+  id: 7
+  unit_id: 1
+  status: 4
+  status_text:
+  row_count: 10
+  succeeded_count: 9
+  failed_count: 0
+  ignored_count: 1
+  started_at: 2022-03-15 13:57:51.083603000 Z
+  elapsed_seconds: 0
+  error_message:
+  logs: |
+    Saved:   Barrows, Kenneth
+    Saved:   Bartell, Randal
+    Ignored: Bartell, Winny
+    Saved:   Hill, Waylon
+    Saved:   Nikolaus, Jetta
+    Saved:   Predovic, Mohamed
+    Saved:   User, Unassigned
+    Saved:   Waelchi, Lindsey
+    Saved:   Wilderman, Kati
+    Saved:   Zboncak, Ivy
