@@ -7,6 +7,45 @@
 <hr/>
 <br/>
 
+<h4>Instructions</h4>
+<ol>
+  <li>In a new browser tab, log into your Church of Jesus Christ account
+    on <%= link_to("the Church website", "https://lcr.churchofjesuschrist.org", target: "_blank") %></li>
+  <li>Visit
+    the <%= link_to("member list page", "https://lcr.churchofjesuschrist.org/records/member-list", target: "_blank") %>
+    to see your ward membership list
+  </li>
+  <li><strong>Scroll to the very bottom of the membership list.</strong> This is important. Members are loaded a page at
+    a time, and your member list will be incomplete if you do not scroll all the way down.
+  </li>
+  <li>Click anywhere within the white space on the Church member list page. This shifts focus to the page itself. (Do
+    not click on any names, phone numbers, or email addresses. In general, if your mouse cursor is over white space and
+    looks like an arrow, that will work.)
+  </li>
+  <li>From your browser's "Edit" menu, choose "Select All" or type Command-A (on a Mac) or Control-A (on a Windows
+    machine). All of the text on the page should now be highlighted, including menus, headers, and all of the membership
+    information.
+  </li>
+  <li>From your browser's "Edit" menu, choose "Copy" or type Command-C (on a Mac) or Control-C (on a Windows machine).
+    This copies all of that text to your clipboard.
+  </li>
+  <li>Return to this page in Edify and click in the "Raw Membership List" box below.</li>
+  <li>From your browser's "Edit" menu, choose "Paste" or type Command-V (on a Mac) or Control-V (on a Windows machine).
+    You should see the raw text appear in the box, including menus ("Membership", "Organizations", etc.), headers, and
+    membership information for all members of your ward.
+  </li>
+  <li>Scroll down to ensure the list is complete. Near the bottom, you should see something that looks like "Count: XXX"
+    (where XXX is the number of members in your ward).
+  </li>
+  <li>Once you have ensured the raw information is complete, click the "Import" button below. Your members will be
+    imported.
+  </li>
+</ol>
+
+<p><strong>Note:</strong> New members (anyone not seen on the initial import) will be marked as "New Member," and
+  members that appeared in a previous import but not in this import will be marked as "Moved Out".</p>
+<p><strong>With some practice, this process will take just a minute or two.</strong></p>
+
 <%= form_with(model: @import_job) do |form| %>
   <div class="mb-3">
     <%= form.label :raw_membership_list, class: "form-label" %>
