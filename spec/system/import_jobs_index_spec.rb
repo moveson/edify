@@ -9,7 +9,6 @@ describe "Visit the import jobs index", type: :system do
   let(:music_user) { users(:sunny_music) }
   let(:program_user) { users(:sunny_program) }
   let(:unassigned_user) { users(:unassigned) }
-  let(:new_unit_user) { users(:new_unit) }
 
   context "when the user is a visitor" do
     it "does not permit access" do
@@ -22,7 +21,7 @@ describe "Visit the import jobs index", type: :system do
   context "when the user is in a bishopric" do
     before { login_as bishopric_user, scope: :user }
 
-    it "lists all talks" do
+    it "lists all import jobs" do
       visit import_jobs_path
       verify_expected_items_present
     end
@@ -31,7 +30,7 @@ describe "Visit the import jobs index", type: :system do
   context "when the user is a clerk" do
     before { login_as clerk_user, scope: :user }
 
-    it "lists all talks" do
+    it "lists all import jobs" do
       visit import_jobs_path
       verify_expected_items_present
     end
