@@ -3,6 +3,7 @@
 module FixtureHelper
   FIXTURE_TABLES = [
     :access_requests,
+    :import_jobs,
     :meetings,
     :members,
     :notes,
