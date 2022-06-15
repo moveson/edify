@@ -70,7 +70,7 @@ describe "Visit an import job show page", type: :system do
   end
 
   context "when the user is in the bishopric of another ward" do
-    before { login_as other_unit_user, scope: :user}
+    before { login_as other_unit_user, scope: :user }
 
     it "returns not found" do
       expect { visit_page }.to raise_error ::ActiveRecord::RecordNotFound
