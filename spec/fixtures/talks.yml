@@ -6,6 +6,7 @@ talk_1:
   speaker_name: Barrows, Kenneth
   member_id: 12
   meeting_id: 2
+  position: 1
 talk_2:
   id: 2
   purpose:
@@ -13,6 +14,7 @@ talk_2:
   speaker_name: Hill, Waylon
   member_id: 4
   meeting_id: 2
+  position: 2
 talk_3:
   id: 3
   purpose: Stake Representative
@@ -20,6 +22,7 @@ talk_3:
   speaker_name: Ghibli, Gordon
   member_id:
   meeting_id: 2
+  position: 3
 talk_4:
   id: 4
   purpose: New Ward Member
@@ -27,6 +30,7 @@ talk_4:
   speaker_name: Nikolaus, Jetta
   member_id: 6
   meeting_id: 3
+  position: 1
 talk_5:
   id: 5
   purpose: Departing Missionary
@@ -34,6 +38,7 @@ talk_5:
   speaker_name: Heller, Yong
   member_id: 30
   meeting_id: 8
+  position: 1
 talk_6:
   id: 6
   purpose: New Ward Member
@@ -41,6 +46,7 @@ talk_6:
   speaker_name: Harris, Staci
   member_id: 24
   meeting_id: 8
+  position: 2
 talk_7:
   id: 7
   purpose: Member Request
@@ -48,6 +54,7 @@ talk_7:
   speaker_name: Aufderhar, Matthew
   member_id: 29
   meeting_id: 8
+  position: 3
 talk_8:
   id: 8
   purpose:
@@ -55,3 +62,4 @@ talk_8:
   speaker_name: Hill, Waylon
   member_id: 4
   meeting_id: 11
+  position: 1

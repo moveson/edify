@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Meeting < ApplicationRecord
-  has_many :talks, dependent: nil
+  has_many :talks, -> { order(position: :asc) }, dependent: nil
   belongs_to :unit
   belongs_to :scheduler, class_name: "User", optional: true
 
