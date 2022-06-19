@@ -16,6 +16,7 @@ gem "sprockets-rails"
 gem "stimulus-rails"
 gem "turbo-rails"
 
+gem "acts_as_list"
 gem "american_date"
 gem "aws-sdk-s3", require: false
 gem "cssbundling-rails"

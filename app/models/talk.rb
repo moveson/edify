@@ -14,6 +14,7 @@ class Talk < ApplicationRecord
 
   belongs_to :meeting
   belongs_to :member, optional: true
+  acts_as_list scope: :meeting
 
   validates :speaker_name, presence: true
 
