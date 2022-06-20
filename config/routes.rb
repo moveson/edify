@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :meetings do
     post :upsert, on: :collection
     resources :talks, except: :index do
+      patch :move, on: :member
       post :upsert, on: :collection
     end
   end

@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "meeting_#{talk.meeting.id}_talk_#{talk.id}" do %>
+<%= turbo_frame_tag "meeting_#{talk.meeting.id}_talk_#{talk.id}", data: { id: talk.id } do %>
   <div class="row">
     <div class="col-12 col-md-6 pt-md-2">
       <h6>
@@ -9,6 +9,7 @@
           <%= fa_icon("person", class: "text-muted") %>&nbsp
         <% end %>
         <%= talk.speaker_name %>
+        <%= talk.position %>
       </h6>
     </div>
     <div class="col-12 col-md-4 pt-md-2">
