@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_19_194652) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_20_213858) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -27,6 +27,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_19_194652) do
     t.index ["unit_id", "user_id"], name: "index_access_requests_on_unit_id_and_user_id", unique: true
     t.index ["unit_id"], name: "index_access_requests_on_unit_id"
     t.index ["user_id"], name: "index_access_requests_on_user_id"
+  end
+
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
   end
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -153,7 +163,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_19_194652) do
     t.bigint "member_id"
     t.bigint "meeting_id"
     t.integer "position"
-    t.index ["meeting_id", "position"], name: "index_talks_on_meeting_id_and_position", unique: true
+    t.index ["meeting_id", "position"], name: "unique_meeting_id_position", unique: true
     t.index ["meeting_id"], name: "index_talks_on_meeting_id"
     t.index ["member_id"], name: "index_talks_on_member_id"
   end
