@@ -5,13 +5,11 @@
         <% if current_user.unit_admin? %>
           <%= fa_icon("grip-vertical", class: "text-muted handle me-1") %>
         <% end %>
-        <% if current_user.access_to_lcr? %>
-          <% if talk.member_id? %>
-            <%= link_to fa_icon("person"), member_path(talk.member_id), target: "_top", data: { "bs-toggle" => "tooltip" }, title: "Visit member page" %>
-            &nbsp
-          <% else %>
-            <%= fa_icon("person", class: "text-muted") %>&nbsp
-          <% end %>
+        <% if current_user.access_to_lcr? && talk.member_id? %>
+          <%= link_to fa_icon("person"), member_path(talk.member_id), target: "_top", data: { "bs-toggle" => "tooltip" }, title: "Visit member page" %>
+          &nbsp
+        <% else %>
+          <%= fa_icon("person", class: "text-muted") %>&nbsp
         <% end %>
         <%= talk.speaker_name %>
       </h6>
