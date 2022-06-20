@@ -5,7 +5,7 @@ class TalksController < ApplicationController
   before_action :authenticate_user!
   before_action :authorize_user
   before_action :set_meeting, except: :index
-  before_action :set_talk, only: %i[show edit update destroy]
+  before_action :set_talk, only: %i[show edit update destroy move]
   after_action :verify_authorized
 
   # GET /talks
@@ -104,6 +104,23 @@ class TalksController < ApplicationController
     else
       respond_to do |format|
         format.json { render json: @talk.errors.full_messages.to_json, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH /meetings/1/talks/1/move
+  def move
+    respond_to do |format|
+      format.json do
+        position = params[:position]&.to_i
+
+        if position.present? && @talk.insert_at(position)
+          head :ok
+        else
+          @talk.errors.add(:position, "was not provided") if position.nil?
+
+          render json: @talk.errors.full_messages.to_json, status: :unprocessable_entity
+        end
       end
     end
   end

@@ -28,7 +28,7 @@
       <div class="card-body">
         <div class="row">
           <div class="col-12">
-            <%= turbo_frame_tag "meeting_#{meeting.id}_talks" do %>
+            <%= turbo_frame_tag "meeting_#{meeting.id}_talks", data: { controller: :drag, "drag-url-value" => "/meetings/#{meeting.id}/talks/:id/move" } do %>
               <%= render partial: "talks/talk_mini", collection: meeting.talks, as: :talk %>
             <% end %>
           </div>

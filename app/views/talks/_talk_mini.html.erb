@@ -1,7 +1,8 @@
-<%= turbo_frame_tag "meeting_#{talk.meeting.id}_talk_#{talk.id}" do %>
+<%= turbo_frame_tag "meeting_#{talk.meeting.id}_talk_#{talk.id}", data: { id: talk.id } do %>
   <div class="row">
     <div class="col-12 col-md-6 pt-md-2">
       <h6>
+        <%= fa_icon("grip-vertical", class: "text-muted handle me-1") %>
         <% if talk.member_id? %>
           <%= link_to fa_icon("person"), member_path(talk.member_id), target: "_top", data: { "bs-toggle" => "tooltip" }, title: "Visit member page" %>
           &nbsp
