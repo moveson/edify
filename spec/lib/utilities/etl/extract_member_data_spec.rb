@@ -14,7 +14,8 @@ describe ::Etl::ExtractMemberData do
 
     context "when a valid raw_data file is attached" do
       before do
-        import_job.raw_data.attach(io: File.open(file_fixture("raw_member_list.txt")), filename: "raw_data.txt",
+        import_job.raw_data.attach(io: File.open(file_fixture("raw_member_list.txt")),
+                                   filename: "raw_data.txt",
                                    content_type: "text/plain")
       end
 
@@ -42,7 +43,8 @@ describe ::Etl::ExtractMemberData do
 
     context "when the raw member data is incomplete" do
       before do
-        import_job.raw_data.attach(io: File.open(file_fixture("raw_member_list_incomplete.txt")), filename: "raw_data.txt",
+        import_job.raw_data.attach(io: File.open(file_fixture("raw_member_list_incomplete.txt")),
+                                   filename: "raw_data.txt",
                                    content_type: "text/plain")
       end
 
@@ -59,7 +61,8 @@ describe ::Etl::ExtractMemberData do
 
     context "when headers are not as expected" do
       before do
-        import_job.raw_data.attach(io: File.open(file_fixture("raw_member_list_bad_headers.txt")), filename: "raw_data.txt",
+        import_job.raw_data.attach(io: File.open(file_fixture("raw_member_list_bad_headers.txt")),
+                                   filename: "raw_data.txt",
                                    content_type: "text/plain")
       end
 
