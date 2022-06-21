@@ -53,9 +53,10 @@ describe ::Etl::ExtractMemberData do
       end
 
       it "adds a descriptive error" do
+        expected_string = "Raw data could not be parsed. Please ensure you have copy/pasted the entire member list."
         subject.perform
         expect(import_job.errors).to be_present
-        expect(import_job.errors.full_messages).to include(/Raw data could not be parsed/)
+        expect(import_job.errors.full_messages).to include(expected_string)
       end
     end
 
