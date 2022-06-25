@@ -31,8 +31,9 @@ class SongsController < ApplicationController
         end
 
         format.turbo_stream do
-          render turbo_stream: turbo_stream.replace("meeting_#{@meeting.id}", partial: "meetings/meeting",
-                                                                              locals: { meeting: @meeting })
+          render turbo_stream: turbo_stream.append("meeting_#{@meeting.id}_songs",
+                                                   partial: "songs/song",
+                                                   locals: { song: @song })
         end
       end
     else
@@ -49,8 +50,9 @@ class SongsController < ApplicationController
         end
 
         format.turbo_stream do
-          render turbo_stream: turbo_stream.replace("meeting_#{@meeting.id}", partial: "meetings/meeting",
-                                                                              locals: { meeting: @meeting })
+          render turbo_stream: turbo_stream.replace("meeting_#{@song.meeting_id}_song_#{@song.id}",
+                                                    partial: "songs/song",
+                                                    locals: { song: @song })
         end
       end
     else
@@ -63,10 +65,6 @@ class SongsController < ApplicationController
     @song.destroy
 
     respond_to do |format|
-      format.html do
-        redirect_to songs_url, notice: t("controllers.songs_controller.destroyed")
-      end
-
       format.turbo_stream do
         render turbo_stream: turbo_stream.remove("meeting_#{@song.meeting.id}_song_#{@song.id}")
       end

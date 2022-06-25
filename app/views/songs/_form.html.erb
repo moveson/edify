@@ -1,7 +1,10 @@
 <div class="d-flex justify-content-center ">
   <div class="card bg-light mt-2 w-100" style="max-width: 700px;">
     <div class="card-body">
-      <%= form_with(model: [song.meeting, song], data: { "turbo-frame" => dom_id(song.meeting) }) do |form| %>
+      <%= form_with(model: [song.meeting, song],
+                    data: { "turbo-frame" => dom_id(song.meeting),
+                            controller: "form escape-cancel",
+                            action: "turbo:submit-end->form#clear" }) do |form| %>
         <% if song.errors.any? %>
           <div id="error_explanation">
             <ul>
@@ -15,7 +18,11 @@
         <div class="row mb-2">
           <div class="col-12 col-md">
             <%= form.label :song_type, class: "required" %>
-            <%= form.select :song_type, options_for_select(Song.song_types.keys.map { |key| [key.titleize, key] }, song.song_type), {}, autofocus: true, class: "form-select form-control" %>
+            <%= form.select :song_type,
+                            options_for_select(Song.song_types.keys.map { |key| [key.titleize, key] }, song.song_type),
+                            {},
+                            autofocus: true,
+                            class: "form-select form-control" %>
           </div>
         </div>
 
@@ -38,7 +45,10 @@
               <%= fa_icon("check-circle") %>
             <% end %>
 
-            <%= link_to fa_icon("times-circle"), meeting_path(song.meeting), class: "btn btn-outline-secondary" %>
+            <%= link_to fa_icon("times-circle"),
+                        meeting_path(song.meeting),
+                        class: "btn btn-outline-secondary",
+                        data: { "escape-cancel-target" => "link" } %>
           </div>
         </div>
       <% end %>
