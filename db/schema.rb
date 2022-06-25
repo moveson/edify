@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_20_213858) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_25_033221) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -154,6 +154,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_20_213858) do
     t.index ["recipient_type", "recipient_id"], name: "index_notifications_on_recipient"
   end
 
+  create_table "songs", force: :cascade do |t|
+    t.bigint "meeting_id", null: false
+    t.string "title"
+    t.integer "song_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["meeting_id"], name: "index_songs_on_meeting_id"
+  end
+
   create_table "talks", force: :cascade do |t|
     t.string "purpose"
     t.string "topic"
@@ -210,6 +219,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_20_213858) do
   add_foreign_key "meetings", "users", column: "scheduler_id"
   add_foreign_key "members", "units"
   add_foreign_key "notes", "members"
+  add_foreign_key "songs", "meetings"
   add_foreign_key "talks", "meetings"
   add_foreign_key "users", "units"
 end

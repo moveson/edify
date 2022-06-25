@@ -54,6 +54,15 @@ class User < ApplicationRecord
     role == "clerk"
   end
 
+  def music?
+    role == "music"
+  end
+
+  def music_editor?
+    assigned_to_unit? &&
+      (bishopric? || music?)
+  end
+
   def needs_onboarding?
     unit_id.nil? && access_request.nil?
   end

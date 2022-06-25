@@ -27,6 +27,10 @@ en:
       created: "Note was successfully created."
       updated: "Note was successfully updated."
       destroyed: "Note was successfully destroyed."
+    songs_controller:
+      created: "Song was successfully created."
+      updated: "Song was successfully updated."
+      destroyed: "Song was successfully destroyed."
     talks_controller:
       created: "Talk was successfully created."
       updated: "Talk was successfully updated."

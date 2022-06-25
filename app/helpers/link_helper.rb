@@ -84,6 +84,14 @@ module LinkHelper
     link_to_edit([note.member, note], options)
   end
 
+  def link_to_song_delete(song, options = {})
+    link_to_delete([song.meeting, song], options)
+  end
+
+  def link_to_song_edit(song, options = {})
+    link_to_edit([song.meeting, song], options)
+  end
+
   def link_to_talk_delete(talk, options = {})
     link_to_delete([talk.meeting, talk], options)
   end

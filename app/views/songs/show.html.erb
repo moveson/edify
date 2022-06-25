@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-md">
+    <h2 class="mt-md-4 mt-2"><strong><%= @song.title %></strong></h2>
+  </div>
+</div>
+
+<hr/>
+
+<%= turbo_frame_tag "meeting_#{@song.meeting.id}_song_#{@song.id}" do %>
+  <%= render "song", song: @song %>
+<% end %>
