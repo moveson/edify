@@ -14,27 +14,25 @@
 
         <div class="row mb-2">
           <div class="col-12 col-md">
-            <%= form.label :title, class: "required" %>
-            <%= form.text_field :title,
-                                list: "hymns_autocomplete",
-                                class: "form-control",
-                                placeholder: "An Inspiring Hymn",
-                                autofocus: true,
-                                data: { "form-target" => "autofocusInput" } %>
-            <datalist id="hymns_autocomplete">
-              <option value="Hymn of Rejoicing #123">
-              <option value="Hymn of Praise #234">
-            </datalist>
+            <%= form.label :song_type, class: "required" %>
+            <%= form.select :song_type, options_for_select(Song.song_types.keys.map { |key| [key.titleize, key] }, song.song_type), {}, autofocus: true, class: "form-select form-control" %>
           </div>
         </div>
 
         <div class="row mb-2">
           <div class="col-12 col-md">
-            <%= form.label :song_type %>
-            <%= form.select :song_type, options_for_select(Song.song_types.keys.map { |key| [key.titleize, key] }, song.song_type), {}, class: "form-select form-control" %>
+            <%= form.label :title, class: "required" %>
+            <%= form.text_field :title,
+                                list: "hymns_autocomplete",
+                                class: "form-control",
+                                placeholder: "An Inspiring Hymn",
+                                data: { "form-target" => "autofocusInput" } %>
+            <datalist id="hymns_autocomplete">
+              <%= hymns_datalist %>
+            </datalist>
           </div>
 
-          <div class="col-12 col-md">
+          <div class="col-12 col-md-3">
             <br/>
             <%= button_tag type: "submit", class: "btn btn-outline-primary" do %>
               <%= fa_icon("check-circle") %>
