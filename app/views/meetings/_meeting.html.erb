@@ -57,7 +57,7 @@
             <div class="row">
               <div class="col-12">
                 <%= turbo_frame_tag "meeting_#{meeting.id}_songs" do %>
-                  <%= render partial: "songs/song", collection: meeting.songs %>
+                  <%= render partial: "songs/song", collection: meeting.songs.default_order %>
                 <% end %>
               </div>
               <% if current_user.unit_admin? %>

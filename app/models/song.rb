@@ -4,8 +4,10 @@ class Song < ApplicationRecord
   enum song_type: {
     opening_hymn: 0,
     sacrament_hymn: 1,
-    closing_hymn: 2,
-    congregational_hymn: 3,
-    musical_number: 4,
+    congregational_hymn: 2,
+    musical_number: 3,
+    closing_hymn: 4,
   }
+
+  scope :default_order, -> { order(:song_type) }
 end
