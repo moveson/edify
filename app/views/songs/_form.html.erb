@@ -31,7 +31,7 @@
         <div class="row mb-2">
           <div class="col-12 col-md">
             <%= form.label :song_type %>
-            <%= form.text_field :song_type, class: "form-control" %>
+            <%= form.select :song_type, options_for_select(Song.song_types.keys.map { |key| [key.titleize, key] }, song.song_type), {}, class: "form-select form-control" %>
           </div>
 
           <div class="col-12 col-md">
