@@ -3,8 +3,8 @@
 class SongsController < ApplicationController
   before_action :authenticate_user!
   before_action :authorize_user
-  before_action :set_meeting, except: :index
-  before_action :set_song, only: %i[show edit update destroy move]
+  before_action :set_meeting
+  before_action :set_song, only: %i[show edit update destroy]
   after_action :verify_authorized
 
   # GET /meetings/1/songs/1
