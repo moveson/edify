@@ -1,0 +1,17 @@
+<%= turbo_frame_tag "meeting_#{song.meeting.id}_song_#{song.id}", data: { id: song.id } do %>
+  <div class="row">
+    <div class="col-12 col-md-4 pt-md-2">
+      <h6><%= song.song_type.titleize %></h6>
+    </div>
+    <div class="col-12 col-md-6 pt-md-2">
+      <h6><%= song.title %></h6>
+    </div>
+    <% if true %>
+      <div class="col-12 col-md-2 text-md-end">
+        <%= link_to_song_edit(song) %>
+        <%= link_to_song_delete(song) %>
+      </div>
+    <% end %>
+  </div>
+  <hr/>
+<% end %>

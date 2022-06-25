@@ -2,6 +2,7 @@
 
 class Meeting < ApplicationRecord
   has_many :talks, -> { order(position: :asc) }, dependent: nil
+  has_many :songs, dependent: :destroy
   belongs_to :unit
   belongs_to :scheduler, class_name: "User", optional: true
 

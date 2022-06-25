@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       patch :move, on: :member
       post :upsert, on: :collection
     end
+    resources :songs, except: :index
   end
   resources :members do
     post :upsert, on: :collection

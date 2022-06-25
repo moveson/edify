@@ -1,0 +1,3 @@
+<%= turbo_stream.update "new_meeting_#{@song.meeting.id}_song" do %>
+  <%= render "form", song: @song %>
+<% end %>

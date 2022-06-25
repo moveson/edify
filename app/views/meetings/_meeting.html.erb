@@ -25,25 +25,56 @@
           <% end %>
         </div>
       </div>
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <button class="nav-link active" id="nav-talks-tab" data-bs-toggle="tab" data-bs-target="#nav-talks-<%= dom_id(meeting) %>" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Talks</button>
+          <button class="nav-link" id="nav-music-tab" data-bs-toggle="tab" data-bs-target="#nav-music-<%= dom_id(meeting) %>" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Music</button>
+        </div>
+      </nav>
       <div class="card-body">
-        <div class="row">
-          <div class="col-12">
-            <%= turbo_frame_tag "meeting_#{meeting.id}_talks", data: { controller: :drag, "drag-url-value" => "/meetings/#{meeting.id}/talks/:id/move" } do %>
-              <%= render partial: "talks/talk_mini", collection: meeting.talks, as: :talk %>
-            <% end %>
-          </div>
-          <% if current_user.unit_admin? %>
-            <div class="col-12">
-              <%= turbo_frame_tag "new_meeting_#{meeting.id}_talk" do %>
-                <%= link_to fa_icon("plus", text: " Add talk"),
-                            new_meeting_talk_path(meeting),
-                            data: { turbo_frame: "new_meeting_#{meeting.id}_talk" },
-                            class: "btn btn-primary btn-sm"
-                %>
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-talks-<%= dom_id(meeting) %>" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="row">
+              <div class="col-12">
+                <%= turbo_frame_tag "meeting_#{meeting.id}_talks", data: { controller: :drag, "drag-url-value" => "/meetings/#{meeting.id}/talks/:id/move" } do %>
+                  <%= render partial: "talks/talk_mini", collection: meeting.talks, as: :talk %>
+                <% end %>
+              </div>
+              <% if current_user.unit_admin? %>
+                <div class="col-12">
+                  <%= turbo_frame_tag "new_meeting_#{meeting.id}_talk" do %>
+                    <%= link_to fa_icon("plus", text: " Add talk"),
+                                new_meeting_talk_path(meeting),
+                                data: { turbo_frame: "new_meeting_#{meeting.id}_talk" },
+                                class: "btn btn-primary btn-sm"
+                    %>
+                  <% end %>
+                </div>
               <% end %>
             </div>
-          <% end %>
+          </div>
+          <div class="tab-pane fade" id="nav-music-<%= dom_id(meeting) %>" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class="row">
+              <div class="col-12">
+                <%= turbo_frame_tag "meeting_#{meeting.id}_songs" do %>
+                  <%= render partial: "songs/song", collection: meeting.songs %>
+                <% end %>
+              </div>
+              <% if current_user.unit_admin? %>
+                <div class="col-12">
+                  <%= turbo_frame_tag "new_meeting_#{meeting.id}_song" do %>
+                    <%= link_to fa_icon("plus", text: " Add song"),
+                                new_meeting_song_path(meeting),
+                                data: { turbo_frame: "new_meeting_#{meeting.id}_song" },
+                                class: "btn btn-primary btn-sm"
+                    %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
   </div>
