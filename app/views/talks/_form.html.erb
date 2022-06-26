@@ -19,8 +19,7 @@
                                 list: "speaker_name_autocomplete",
                                 class: "form-control",
                                 placeholder: "Last, First",
-                                autofocus: true,
-                                data: { "form-target" => "autofocusInput" } %>
+                                autofocus: true %>
             <datalist id="speaker_name_autocomplete">
               <% talk.unit_members.alphabetized.each do |member| %>
                 <option value="<%= member.name %>">

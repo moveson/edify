@@ -32,8 +32,7 @@
             <%= form.text_field :title,
                                 list: "hymns_autocomplete",
                                 class: "form-control",
-                                placeholder: "An Inspiring Hymn",
-                                data: { "form-target" => "autofocusInput" } %>
+                                placeholder: "An Inspiring Hymn" %>
             <datalist id="hymns_autocomplete">
               <%= ::Edify::Hymns.datalist %>
             </datalist>
