@@ -14,7 +14,7 @@ module Edify
       }.freeze
 
       MEMBER_DATA_REGEX = /\A.*(^\t*Name.*)^Count:/m
-      UNBAPTIZED_MEMBER_OF_RECORD_INDICATOR = "*"
+      UNBAPTIZED_MEMBER_OF_RECORD_REGEX = /\A[*\s]*(.*)\z/
 
       def self.perform(import_job)
         new(import_job).perform
@@ -95,8 +95,8 @@ module Edify
       end
 
       def strip_unbaptized_member_of_record(raw_member_row)
-        umor_indicator, stripped_name = raw_member_row.name.split(" ", 2)
-        raw_member_row.name = stripped_name if umor_indicator == UNBAPTIZED_MEMBER_OF_RECORD_INDICATOR
+        stripped_name = raw_member_row.name.match(UNBAPTIZED_MEMBER_OF_RECORD_REGEX)[1]
+        raw_member_row.name = stripped_name
       end
     end
   end

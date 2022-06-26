@@ -20,8 +20,8 @@ describe ::Edify::Etl::ExtractMemberData do
       end
 
       it "returns raw member rows" do
-        expect(result.count).to eq(5)
-        expect(result).to all be_a(::Etl::RawMemberRow)
+        expect(result.count).to eq(6)
+        expect(result).to all be_a(::Edify::Etl::RawMemberRow)
 
         expect(result.first.name).to eq("Bins, Froederick")
         expect(result.first.gender).to eq("M")
@@ -38,6 +38,7 @@ describe ::Edify::Etl::ExtractMemberData do
 
       it "removes unbaptized member of record indicators" do
         expect(result.second.name).to eq("Bode, Yolanda")
+        expect(result.third.name).to eq("Jiminy, Theophilus")
       end
     end
 
