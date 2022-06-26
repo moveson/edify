@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "utilities/etl"
+require "edify/etl"
 
 class ImporterJob < ::ApplicationJob
   queue_as :default

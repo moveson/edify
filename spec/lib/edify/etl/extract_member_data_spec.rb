@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require "rails_helper"
-require "utilities/etl"
+require "edify/etl"
 
-describe ::Etl::ExtractMemberData do
+describe ::Edify::Etl::ExtractMemberData do
   subject { described_class.new(import_job) }
 
   let(:unit) { units(:sunny_hills) }
@@ -20,8 +20,8 @@ describe ::Etl::ExtractMemberData do
       end
 
       it "returns raw member rows" do
-        expect(result.count).to eq(5)
-        expect(result).to all be_a(::Etl::RawMemberRow)
+        expect(result.count).to eq(6)
+        expect(result).to all be_a(::Edify::Etl::RawMemberRow)
 
         expect(result.first.name).to eq("Bins, Froederick")
         expect(result.first.gender).to eq("M")
@@ -38,6 +38,7 @@ describe ::Etl::ExtractMemberData do
 
       it "removes unbaptized member of record indicators" do
         expect(result.second.name).to eq("Bode, Yolanda")
+        expect(result.third.name).to eq("Jiminy, Theophilus")
       end
     end
 
