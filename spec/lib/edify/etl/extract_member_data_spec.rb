@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require "rails_helper"
-require "utilities/etl"
+require "edify/etl"
 
-describe ::Etl::ExtractMemberData do
+describe ::Edify::Etl::ExtractMemberData do
   subject { described_class.new(import_job) }
 
   let(:unit) { units(:sunny_hills) }
