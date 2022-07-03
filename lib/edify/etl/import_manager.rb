@@ -27,7 +27,7 @@ module Edify
       delegate :errors, to: :import_job, private: true
 
       def extract_member_list
-        self.raw_member_rows = ::Etl::ExtractMemberData.perform(import_job)
+        self.raw_member_rows = ExtractMemberData.perform(import_job)
       end
 
       def save_members
