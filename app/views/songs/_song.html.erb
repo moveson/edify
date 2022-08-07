@@ -3,8 +3,11 @@
     <div class="col-12 col-md-4 pt-md-2">
       <h6><%= song.song_type.titleize %></h6>
     </div>
-    <div class="col-12 col-md-6 pt-md-2">
-      <h6><%= song.title %></h6>
+    <div class="col-12 col-md-6 pt-md-2" data-controller="clipboard">
+      <h6>
+        <span data-clipboard-target="source"><%= song.title %></span>
+        <span><%= button_tag(fa_icon("clipboard"), class: "btn btn-sm btn-outline-primary ms-1", style: "font-size: 0.7em;", data: { action: "clipboard#copy" }) %></span>
+      </h6>
     </div>
     <% if current_user.music_editor? %>
       <div class="col-12 col-md-2 text-md-end">
