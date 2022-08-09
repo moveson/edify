@@ -13,7 +13,7 @@ module Edify
       end
 
       def perform!
-        import_job.start!
+        start_import_job
         extract_member_list
         save_members if errors.empty?
         set_finish_attributes
@@ -25,6 +25,11 @@ module Edify
       attr_accessor :raw_member_rows
 
       delegate :errors, to: :import_job, private: true
+
+      def start_import_job
+        import_job.start!
+        import_job.touch
+      end
 
       def extract_member_list
         self.raw_member_rows = ExtractMemberData.perform(import_job)
