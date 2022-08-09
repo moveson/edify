@@ -13,6 +13,7 @@ module Edify
         "E-mail" => "email",
       }.freeze
 
+      FILTERED_DATA_REGEX = /\(filtered from \d+ total\)/
       MEMBER_DATA_REGEX = /\A.*(^\t*Name.*)^Count:/m
       UNBAPTIZED_MEMBER_OF_RECORD_REGEX = /\A[*\s]*(.*)\z/
 
@@ -27,6 +28,7 @@ module Edify
 
       def perform
         download_member_data
+        check_for_filter_text if errors.empty?
         strip_raw_data if errors.empty?
         morph_header_row if errors.empty?
         extract_members if errors.empty?
@@ -44,6 +46,13 @@ module Edify
       def download_member_data
         self.raw_data = import_job.raw_data.download
         errors.add(:raw_data, "was not provided") if raw_data.blank?
+      end
+
+      def check_for_filter_text
+        return unless raw_data =~ FILTERED_DATA_REGEX
+
+        message = "has been filtered. Please ensure you have scrolled to the bottom of the member list before copying."
+        errors.add(:raw_data, message)
       end
 
       def strip_raw_data

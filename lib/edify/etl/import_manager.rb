@@ -3,6 +3,11 @@
 module Edify
   module Etl
     class ImportManager
+      GENDER_MAP = {
+        "f" => "female",
+        "m" => "male",
+      }.freeze
+
       def self.perform!(import_job)
         new(import_job).perform!
       end
@@ -13,7 +18,7 @@ module Edify
       end
 
       def perform!
-        import_job.start!
+        start_import_job
         extract_member_list
         save_members if errors.empty?
         set_finish_attributes
@@ -25,6 +30,11 @@ module Edify
       attr_accessor :raw_member_rows
 
       delegate :errors, to: :import_job, private: true
+
+      def start_import_job
+        import_job.start!
+        import_job.touch
+      end
 
       def extract_member_list
         self.raw_member_rows = ExtractMemberData.perform(import_job)
@@ -39,7 +49,8 @@ module Edify
             name: raw_member_row.name,
             birthdate: raw_member_row.birthdate
           )
-          raw_member_row.gender = raw_member_row.gender.downcase == "f" ? "female" : "male"
+          gender_indicator = raw_member_row.gender&.downcase&.first
+          raw_member_row.gender = GENDER_MAP[gender_indicator]
           member.assign_attributes(raw_member_row.to_h)
           member.synced_on = Date.current
 
