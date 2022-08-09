@@ -43,6 +43,11 @@ describe ::Edify::Etl::ExtractMemberData do
           expect(result.second.name).to eq("Bode, Yolanda")
           expect(result.third.name).to eq("Jiminy, Theophilus")
         end
+
+        it "handles international phone numbers" do
+          expect(result.fourth.name).to eq("Cummerata, Lisette")
+          expect(result.fourth.phone_number).to eq("07710587623")
+        end
       end
 
       context "when the raw member data is incomplete" do
