@@ -39,21 +39,28 @@ class ImportJob < ApplicationRecord
     @data_string = raw_data.download
   end
 
+  # A regular update with callbacks will wipe out errors on the ImportJob object.
+  # Use update_column to keep errors intact.
   def log!(value)
     new_logs = "#{logs}#{value}\n"
     update_column(:logs, new_logs)
   end
 
+  # @return [Array[<String>]]
   def parsed_errors
     JSON.parse(error_message || "[\"None\"]")
   end
 
+  # A regular update with callbacks will wipe out errors on the ImportJob object.
+  # Use update_column to keep errors intact.
   def set_elapsed_time!
     return unless persisted? && started_at.present?
 
     update_column(:elapsed_seconds, ::Time.current - started_at)
   end
 
+  # A regular update with callbacks will wipe out errors on the ImportJob object.
+  # Use update_column to keep errors intact.
   def start!
     update_column(:started_at, ::Time.current)
   end
