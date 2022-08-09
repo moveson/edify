@@ -9,7 +9,6 @@ class Member < ApplicationRecord
 
   validates :name, :gender, :birthdate, presence: true
   validates :name, uniqueness: { scope: :birthdate }, if: :name?
-  validates :phone_number, phone: { allow_blank: true }
   validate :validate_age
 
   strip_attributes

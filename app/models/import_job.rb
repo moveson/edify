@@ -40,8 +40,8 @@ class ImportJob < ApplicationRecord
   end
 
   def log!(value)
-    new_logs = "#{logs || ''}#{value}\n"
-    update(logs: new_logs)
+    new_logs = "#{logs}#{value}\n"
+    update_column(:logs, new_logs)
   end
 
   def parsed_errors

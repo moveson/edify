@@ -3,6 +3,11 @@
 module Edify
   module Etl
     class ImportManager
+      GENDER_MAP = {
+        "f" => "female",
+        "m" => "male",
+      }.freeze
+
       def self.perform!(import_job)
         new(import_job).perform!
       end
@@ -44,7 +49,8 @@ module Edify
             name: raw_member_row.name,
             birthdate: raw_member_row.birthdate
           )
-          raw_member_row.gender = raw_member_row.gender.downcase == "f" ? "female" : "male"
+          gender_indicator = raw_member_row.gender&.downcase&.first
+          raw_member_row.gender = GENDER_MAP[gender_indicator]
           member.assign_attributes(raw_member_row.to_h)
           member.synced_on = Date.current
 
