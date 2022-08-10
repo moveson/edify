@@ -6,12 +6,13 @@
     <div class="col-12 col-md-6 pt-md-2" data-controller="clipboard">
       <h6>
         <span data-clipboard-target="source"><%= song.title %></span>
-        <span><%= button_tag(fa_icon("clipboard"),
-                             class: "btn btn-sm btn-outline-primary ms-1",
-                             style: "font-size: 0.7em;",
-                             title: "Copy to clipboard",
-                             data: { action: "clipboard#copy", "bs-toggle": "tooltip" })
-        %></span>
+        <span>
+          <%= button_tag(fa_icon("clipboard"),
+                         class: "btn btn-sm btn-outline-primary ms-1",
+                         style: "font-size: 0.7em;",
+                         title: "Copy to clipboard",
+                         data: { action: "clipboard#copy", clipboard_target: "button", bs_toggle: "tooltip" }) %>
+        </span>
       </h6>
     </div>
     <% if current_user.music_editor? %>
