@@ -12,7 +12,7 @@ describe "Handle access request by a new user", type: :system do
       login_as reviewing_user, scope: :user
       navigate_to_review_screen
 
-      find("#role").find(:xpath, "option[contains(text(), 'Bishopric')]").select_option
+      find_by_id("role").find(:xpath, "option[contains(text(), 'Bishopric')]").select_option
       click_button("Approve")
 
       expect(page).to have_current_path(users_path)
@@ -28,7 +28,7 @@ describe "Handle access request by a new user", type: :system do
       login_as reviewing_user, scope: :user
       navigate_to_review_screen
 
-      find("#role").find(:xpath, "option[contains(text(), 'Music')]").select_option
+      find_by_id("role").find(:xpath, "option[contains(text(), 'Music')]").select_option
       click_button("Approve")
 
       expect(page).to have_current_path(users_path)

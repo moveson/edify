@@ -19,7 +19,7 @@ describe "Update a user role", type: :system, js: true do
     edit_button = music_user_element.find(:xpath, "//a[@href='/users/#{music_user.id}/edit']")
     edit_button.click
 
-    music_user_element.find("#user_role").find(:xpath, "option[contains(text(), 'Clerk')]").select_option
+    music_user_element.find_by_id("user_role").find(:xpath, "option[contains(text(), 'Clerk')]").select_option
     music_user_element.find('[type="submit"]').click
 
     expect(page).to have_current_path(users_path)

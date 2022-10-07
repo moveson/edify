@@ -29,7 +29,7 @@ class ImportJobsController < ApplicationController
       ::ImporterJob.perform_later(import_job: @import_job)
       redirect_to import_jobs_path
     else
-      flash[:danger] = "Unable to create import job: #{@import_job.errors.full_messages.join(', ')}"
+      flash.now[:danger] = "Unable to create import job: #{@import_job.errors.full_messages.join(', ')}"
       render "new"
     end
   end
