@@ -27,6 +27,9 @@ Naming/VariableNumber:
 Rails/Delegate:
   Enabled: false
 
+Rails/DynamicFindBy:
+  Enabled: false
+
 Rails/InverseOf:
   Enabled: false
 
@@ -64,6 +67,9 @@ RSpec/NamedSubject:
   Enabled: false
 
 RSpec/NestedGroups:
+  Enabled: false
+
+RSpec/NoExpectationExample:
   Enabled: false
 
 Style/Documentation:
