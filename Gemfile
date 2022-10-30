@@ -9,7 +9,7 @@ gem "rails", "~> 7.0.2", ">= 7.0.2.3"
 
 gem "bootsnap", require: false
 gem "pg"
-gem "puma"
+gem "puma", "< 6" # Remove this constraint when Capybara has been updated for compatibility with Puma 6
 gem "redis"
 gem "sprockets-rails"
 gem "stimulus-rails"

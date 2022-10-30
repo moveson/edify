@@ -226,7 +226,7 @@ GEM
     pretender (0.4.0)
       actionpack (>= 5.2)
     public_suffix (5.0.0)
-    puma (6.0.0)
+    puma (5.6.5)
       nio4r (~> 2.0)
     pundit (2.2.0)
       activesupport (>= 3.0.0)
@@ -410,7 +410,7 @@ DEPENDENCIES
   pg
   phonelib
   pretender
-  puma
+  puma (< 6)
   pundit
   rails (~> 7.0.2, >= 7.0.2.3)
   ransack
