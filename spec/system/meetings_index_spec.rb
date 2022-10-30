@@ -25,7 +25,8 @@ describe "Visit the meetings index" do
     it "lists all meetings with scheduling tools" do
       visit meetings_path
       verify_meetings_present
-      verify_scheduling_tools_present
+      verify_meeting_scheduling_tools_present
+      verify_talk_scheduling_tools_present
     end
   end
 
@@ -35,17 +36,19 @@ describe "Visit the meetings index" do
     it "lists all meetings but not scheduling tools" do
       visit meetings_path
       verify_meetings_present
-      verify_scheduling_tools_absent
+      verify_meeting_scheduling_tools_absent
+      verify_talk_scheduling_tools_absent
     end
   end
 
   context "when the user is a music person" do
     before { login_as music_user, scope: :user }
 
-    it "lists all meetings but not scheduling tools" do
+    it "lists all meetings with scheduling tools" do
       visit meetings_path
       verify_meetings_present
-      verify_scheduling_tools_absent
+      verify_meeting_scheduling_tools_present
+      verify_talk_scheduling_tools_absent
     end
   end
 
@@ -55,7 +58,8 @@ describe "Visit the meetings index" do
     it "lists all meetings but not scheduling tools" do
       visit meetings_path
       verify_meetings_present
-      verify_scheduling_tools_absent
+      verify_meeting_scheduling_tools_absent
+      verify_talk_scheduling_tools_absent
     end
   end
 
@@ -80,13 +84,19 @@ describe "Visit the meetings index" do
     end
   end
 
-  def verify_scheduling_tools_present
+  def verify_meeting_scheduling_tools_present
     expect(page).to have_link(href: new_meeting_path)
 
     unit.meetings.each do |meeting|
       meeting_card = page.find("#meeting_#{meeting.id}")
-      expect(meeting_card).to have_link(href: new_meeting_talk_path(meeting))
       expect(meeting_card).to have_link(href: edit_meeting_path(meeting))
+    end
+  end
+
+  def verify_talk_scheduling_tools_present
+    unit.meetings.each do |meeting|
+      meeting_card = page.find("#meeting_#{meeting.id}")
+      expect(meeting_card).to have_link(href: new_meeting_talk_path(meeting))
       expect(meeting_card).to have_link(href: meeting_path(meeting))
 
       meeting.talks.each do |talk|
@@ -96,13 +106,19 @@ describe "Visit the meetings index" do
     end
   end
 
-  def verify_scheduling_tools_absent
+  def verify_meeting_scheduling_tools_absent
     expect(page).not_to have_link(href: new_meeting_path)
 
     unit.meetings.each do |meeting|
       meeting_card = page.find("#meeting_#{meeting.id}")
-      expect(meeting_card).not_to have_link(href: new_meeting_talk_path(meeting))
       expect(meeting_card).not_to have_link(href: edit_meeting_path(meeting))
+    end
+  end
+
+  def verify_talk_scheduling_tools_absent
+    unit.meetings.each do |meeting|
+      meeting_card = page.find("#meeting_#{meeting.id}")
+      expect(meeting_card).not_to have_link(href: new_meeting_talk_path(meeting))
       expect(meeting_card).not_to have_link(href: meeting_path(meeting))
 
       meeting.talks.each do |talk|

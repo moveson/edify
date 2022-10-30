@@ -17,10 +17,12 @@
               <%= meeting.meeting_type.humanize %>
             </div>
           </div>
-          <% if current_user.unit_admin? %>
+          <% if current_user.music_editor? %>
             <div class="col-12 col-md-2 text-md-end">
               <%= link_to_meeting_edit(meeting, class: "mt-2 mt-md-2") %>
-              <%= link_to_meeting_delete(meeting, class: "mt-2 mt-md-2") %>
+              <% if current_user.unit_admin? %>
+                <%= link_to_meeting_delete(meeting, class: "mt-2 mt-md-2") %>
+              <% end %>
             </div>
           <% end %>
         </div>
@@ -64,9 +66,9 @@
                 <div class="col-12">
                   <%= turbo_frame_tag "new_meeting_#{meeting.id}_song" do %>
                     <%= link_to fa_icon("plus", text: " Add song"),
-                                new_meeting_song_path(meeting),
-                                data: { turbo_frame: "new_meeting_#{meeting.id}_song" },
-                                class: "btn btn-primary btn-sm"
+                      new_meeting_song_path(meeting),
+                      data: { turbo_frame: "new_meeting_#{meeting.id}_song" },
+                      class: "btn btn-primary btn-sm"
                     %>
                   <% end %>
                 </div>
