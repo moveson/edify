@@ -36,7 +36,7 @@ gem "pundit"
 gem "ransack"
 gem "responders"
 gem "sendgrid-ruby"
-gem "sidekiq"
+gem "sidekiq", "<7"
 gem "sidekiq-cron"
 gem "strip_attributes"
 
