@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe ::Member, type: :model do
+describe ::Member do
   let(:member) { members(:bartell_randal) }
 
   describe "#age" do

@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe ::Unit, type: :model do
+describe ::Unit do
   describe "#next_available_sunday" do
     let(:unit) { units(:sunny_hills) }
 

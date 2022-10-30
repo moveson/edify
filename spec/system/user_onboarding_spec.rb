@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "Onboard a new user", type: :system do
+describe "Onboard a new user" do
   let(:new_unit_user) { users(:new_unit) }
   context "when the user has not requested access" do
     scenario "the user creates a new ward unit" do

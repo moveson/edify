@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe ::AccessRequest, type: :model do
+describe ::AccessRequest do
   subject { access_requests(:access_request_1) }
 
   describe "validations" do

@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "Update a user role", type: :system, js: true do
+describe "Update a user role", js: true do
   let(:unit) { units(:sunny_hills) }
   let(:bishopric_user) { users(:sunny_bishopric) }
   let(:music_user) { users(:sunny_music) }
