@@ -18,7 +18,7 @@ class AccessRequestsController < ApplicationController
     @unit = Unit.find_by(name: unit_name_param)
 
     if @unit.present?
-      if @unit.members.where("email ilike ?", current_user.email).exists?
+      if @unit.members.exists?(["email ilike ?", current_user.email])
         @unit.access_requests.create(user: current_user)
         ::UnitAccessRequestJob.perform_later(unit: @unit, user: current_user)
 
