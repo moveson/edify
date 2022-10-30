@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "Visit the home page", type: :system do
+describe "Visit the home page" do
   let(:admin) { users(:admin) }
   let(:bishopric_user) { users(:sunny_bishopric) }
   let(:clerk_user) { users(:sunny_clerk) }

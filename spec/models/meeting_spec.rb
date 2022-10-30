@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe ::Meeting, type: :model do
+describe ::Meeting do
   subject { described_class.new(date: date) }
 
   describe "#not_yet_occurred?" do

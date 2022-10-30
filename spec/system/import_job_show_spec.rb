@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "Visit an import job show page", type: :system do
+describe "Visit an import job show page" do
   let(:unit) { units(:sunny_hills) }
   let(:import_job) { import_jobs(:import_job_7) }
 
