@@ -70,6 +70,33 @@ describe "Onboard a new user" do
         expect(page).to have_text("Your request for access to #{existing_unit.name} is pending")
       end
     end
+
+    context "when the user is on the existing ward roster but email case is inconsistent" do
+      before do
+        new_unit_user.update(email: existing_unit.members.last.email)
+        existing_unit.members.last.update(email: existing_unit.members.last.email.upcase)
+      end
+
+      scenario "the user requests access to an existing ward unit" do
+        login_as new_unit_user, scope: :user
+        navigate_to_onboard_page
+        click_link "My ward already uses Edify"
+
+        expect(page).to have_text("Request Access")
+        fill_in :access_request_unit_name, with: existing_unit.name
+        expect { click_button "Submit Request" }.not_to change(Unit, :count)
+
+        new_unit_user.reload
+        expect(new_unit_user.unit).to be_nil
+        expect(new_unit_user.role).to be_nil
+        expect(new_unit_user.access_request).to be_present
+        expect(new_unit_user.access_request.unit).to eq(existing_unit)
+        expect(new_unit_user.access_request.status).to eq(:pending)
+
+        expect(page).to have_current_path(root_path)
+        expect(page).to have_text("Your request for access to #{existing_unit.name} is pending")
+      end
+    end
   end
 
   def navigate_to_onboard_page
