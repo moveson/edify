@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "Visit the users index", type: :system do
+describe "Visit the users index" do
   let(:unit) { units(:sunny_hills) }
   let(:admin) { users(:admin) }
   let(:bishopric_user) { users(:sunny_bishopric) }

@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "Visit the import jobs index", type: :system do
+describe "Visit the import jobs index" do
   let(:unit) { units(:sunny_hills) }
   let(:bishopric_user) { users(:sunny_bishopric) }
   let(:clerk_user) { users(:sunny_clerk) }
