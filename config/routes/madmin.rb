@@ -1,5 +1,6 @@
 # Below are the routes for madmin
 namespace :madmin do
+  resources :access_requests
   resources :import_jobs
   resources :notifications
   resources :units
