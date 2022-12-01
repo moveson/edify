@@ -26,6 +26,6 @@ class IncompleteMeetingNotification < ApplicationNotification
   end
 
   def date
-    ::I18n.localize(meeting.date, format: :month_and_day)
+    ::I18n.l(meeting.date, format: :month_and_day)
   end
 end
