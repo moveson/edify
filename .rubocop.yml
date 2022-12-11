@@ -85,6 +85,9 @@ Style/FrozenStringLiteralComment:
 Style/HashSyntax:
   Enabled: false
 
+Style/RedundantConstantBase:
+  Enabled: false
+
 Style/StringLiterals:
   Enabled: true
   EnforcedStyle: double_quotes
