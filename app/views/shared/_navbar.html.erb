@@ -1,7 +1,7 @@
 <% if current_user != true_user %>
   <div class="alert alert-warning text-center">
-    You're logged in as <b><%= current_user.name %> (<%= current_user.email %>)</b>
-    <%= link_to fa_icon("times", text: "Logout"), impersonate_stop_path, method: :post %>
+    <span>You're logged in as <b><%= current_user.name %> (<%= current_user.email %>)</b></span>
+    <span class="px-2"><%= link_to "Stop impersonating", impersonate_stop_path, method: :post, class: "btn btn-sm btn-outline-danger" %></span>
   </div>
 <% end %>
 
