@@ -24,6 +24,10 @@ class UserResource < Madmin::Resource
   attribute :scheduled_meetings
   attribute :unit
 
+  def self.impersonate_start_path(record)
+    url_helpers.impersonate_start_path(record)
+  end
+
   # Uncomment this to customize the display name of records in the admin area.
   # def self.display_name(record)
   #   record.name
