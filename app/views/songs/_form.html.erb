@@ -1,5 +1,7 @@
+<%# locals: (song:) -%>
+
 <div class="d-flex justify-content-center ">
-  <div class="card bg-light mt-2 w-100" style="max-width: 700px;">
+  <div class="card bg-light my-4 w-100 border-primary" style="max-width: 700px;">
     <div class="card-body">
       <%= form_with(model: [song.meeting, song],
                     data: { "turbo-frame" => dom_id(song.meeting),
@@ -50,6 +52,7 @@
                         data: { "escape-cancel-target" => "link" } %>
           </div>
         </div>
+        <%= render "last_sung_date", song: song %>
       <% end %>
     </div>
   </div>
