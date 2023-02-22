@@ -26,11 +26,11 @@ class Talk < ApplicationRecord
 
   delegate :date, :date?, to: :meeting, allow_nil: true
 
-  def self.ransackable_attributes(auth_object = nil)
+  def self.ransackable_attributes(_auth_object = nil)
     %w[purpose speaker_name topic]
   end
 
-  def self.ransackable_associations(auth_object = nil)
+  def self.ransackable_associations(_auth_object = nil)
     %w[]
   end
 
