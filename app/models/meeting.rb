@@ -27,7 +27,7 @@ class Meeting < ApplicationRecord
   scope :occurring_on_or_before, ->(date) { where("date <= ?", date) }
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[meeting_type]
+    %w[date meeting_type]
   end
 
   def self.ransackable_associations(_auth_object = nil)
