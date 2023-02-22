@@ -1,0 +1,19 @@
+<%# locals: (title:, duration:) -%>
+
+<% if title.present? %>
+  <label>
+    <% if duration.blank? %>
+      <span>
+        No record of this song found before this meeting
+      </span>
+    <% elsif duration < 28.days %>
+      <span class="text-danger">
+        <%= "NOTE: Previously sung #{distance_of_time_in_words(duration)} before this meeting" %>
+      </span>
+    <% else %>
+      <span>
+        <%= "Previously sung #{distance_of_time_in_words(duration)} before this meeting" %>
+      </span>
+    <% end %>
+  </label>
+<% end %>

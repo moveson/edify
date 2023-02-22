@@ -2,7 +2,10 @@
 
 <div class="d-flex justify-content-center ">
   <div class="card bg-light my-4 w-100 border-primary" style="max-width: 700px;">
-    <div class="card-body">
+    <div class="card-body"
+         data-controller="song-last-sung"
+         data-song-last-sung-unit-id-value="<%= song.meeting.unit_id %>"
+    data-song-last-sung-date-value="<%= song.meeting.date %>">
       <%= form_with(model: [song.meeting, song],
                     data: { "turbo-frame" => dom_id(song.meeting),
                             controller: "form escape-cancel",
@@ -34,11 +37,14 @@
             <%= form.text_field :title,
                                 list: "hymns_autocomplete",
                                 class: "form-control",
-                                placeholder: "An Inspiring Hymn" %>
+                                placeholder: "An Inspiring Hymn",
+                                data: { "song-last-sung-target" => "input" }%>
             <datalist id="hymns_autocomplete">
               <%= ::Edify::Hymns.datalist %>
             </datalist>
           </div>
+
+          <%= render "last_sung", title: song.title, duration: song.duration_since_previously_sung %>
 
           <div class="col-12 col-md-3">
             <br/>
@@ -52,7 +58,7 @@
                         data: { "escape-cancel-target" => "link" } %>
           </div>
         </div>
-        <%= render "last_sung_date", song: song %>
+        <div data-song-last-sung-target="lastSungMessage"></div>
       <% end %>
     </div>
   </div>
