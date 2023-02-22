@@ -11,7 +11,7 @@ class Song < ApplicationRecord
     closing_hymn: 4,
   }
 
-  validates_presence_of :meeting_id, :song_type, :title
+  validates :song_type, :title, presence: true
 
   scope :default_order, -> { order(:song_type) }
 
