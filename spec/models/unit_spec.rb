@@ -49,4 +49,40 @@ describe ::Unit do
       end
     end
   end
+
+  describe "#song_last_sung" do
+    let(:unit) { units(:sunny_hills) }
+    let(:result) { unit.song_last_sung(title, date) }
+    let(:title) { "Away in a Manger #206" }
+    let(:date) { "2022-04-10".to_date }
+
+    context "when the song was sung previously" do
+      it { expect(result).to eq(songs(:song_1)) }
+    end
+
+    context "when the song was sung after but not previously" do
+      let(:date) { "2022-03-03".to_date }
+      it { expect(result).to be_nil }
+    end
+
+    context "when the song was never sung" do
+      let(:title) { "Not a real song" }
+      it { expect(result).to be_nil }
+    end
+
+    context "when title is blank" do
+      let(:title) { "" }
+      it { expect(result).to be_nil }
+    end
+
+    context "when title is nil" do
+      let(:title) { nil }
+      it { expect(result).to be_nil }
+    end
+
+    context "when date is nil" do
+      let(:date) { nil }
+      it { expect(result).to be_nil }
+    end
+  end
 end

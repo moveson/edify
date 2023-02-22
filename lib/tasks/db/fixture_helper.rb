@@ -7,6 +7,7 @@ module FixtureHelper
     :meetings,
     :members,
     :notes,
+    :songs,
     :talks,
     :units,
     :users,

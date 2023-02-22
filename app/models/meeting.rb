@@ -26,6 +26,14 @@ class Meeting < ApplicationRecord
   scope :occurring_after, ->(date) { where("date > ?", date) }
   scope :occurring_on_or_before, ->(date) { where("date <= ?", date) }
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[date meeting_type]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[]
+  end
+
   def not_fully_scheduled?
     status != :ok
   end

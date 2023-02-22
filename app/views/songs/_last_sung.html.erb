@@ -1,0 +1,21 @@
+<%# locals: (title:, duration:) -%>
+
+<div id="last_sung_message" data-form-target="clear">
+  <% if title.present? %>
+    <label class="mt-1">
+      <% if duration.blank? %>
+      <span>
+        No record of this song found before this meeting
+      </span>
+      <% elsif duration < 28.days %>
+      <span class="text-danger">
+        <%= "NOTE: Previously sung #{distance_of_time_in_words(duration)} before this meeting" %>
+      </span>
+      <% else %>
+      <span>
+        <%= "Previously sung #{distance_of_time_in_words(duration)} before this meeting" %>
+      </span>
+      <% end %>
+    </label>
+  <% end %>
+</div>

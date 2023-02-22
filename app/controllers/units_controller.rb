@@ -3,7 +3,7 @@
 class UnitsController < ApplicationController
   before_action :authenticate_user!
   before_action :authorize_user
-  before_action :set_unit, only: [:edit, :update]
+  before_action :set_unit, only: [:edit, :update, :song_last_sung]
   after_action :verify_authorized
 
   # GET /units/new
@@ -38,6 +38,22 @@ class UnitsController < ApplicationController
       end
     else
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  # GET /units/1/song_last_sung?title=SongTitle&date=2022-04-10
+  def song_last_sung
+    title = params[:title]
+    date = params[:date].to_date
+    previous_song = title.present? && date.present? ? @unit.song_last_sung(title, date) : nil
+    duration = date.present? && previous_song.present? ? (date - previous_song.meeting_date).to_i.days : nil
+
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace("last_sung_message",
+                                                  partial: "songs/last_sung",
+                                                  locals: { title: title, duration: duration })
+      end
     end
   end
 

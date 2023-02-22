@@ -1,5 +1,7 @@
+<%# locals: (song:) -%>
+
 <div class="d-flex justify-content-center ">
-  <div class="card bg-light mt-2 w-100" style="max-width: 700px;">
+  <div class="card bg-light my-4 w-100 border-primary" style="max-width: 700px;">
     <div class="card-body">
       <%= form_with(model: [song.meeting, song],
                     data: { "turbo-frame" => dom_id(song.meeting),
@@ -32,11 +34,19 @@
             <%= form.text_field :title,
                                 list: "hymns_autocomplete",
                                 class: "form-control",
-                                placeholder: "An Inspiring Hymn" %>
+                                placeholder: "An Inspiring Hymn",
+                                data: {
+                                  controller: "song-last-sung",
+                                  action: "change->song-last-sung#update",
+                                  song_last_sung_unit_id_value: song.meeting.unit_id,
+                                  song_last_sung_date_value: song.meeting.date.to_s,
+                                }%>
             <datalist id="hymns_autocomplete">
               <%= ::Edify::Hymns.datalist %>
             </datalist>
           </div>
+
+          <%= render "last_sung", title: song.title, duration: song.duration_since_previously_sung %>
 
           <div class="col-12 col-md-3">
             <br/>

@@ -1,0 +1,36 @@
+---
+song_1:
+  id: 1
+  meeting_id: 1
+  title: "Away in a Manger #206"
+  song_type: 0
+song_2:
+  id: 2
+  meeting_id: 1
+  title: "O Lord of Hosts #178"
+  song_type: 1
+song_3:
+  id: 3
+  meeting_id: 1
+  title: "Silent Night #204"
+  song_type: 4
+song_4:
+  id: 4
+  meeting_id: 2
+  title: "The Morning Breaks #1"
+  song_type: 0
+song_5:
+  id: 5
+  meeting_id: 2
+  title: "There Is a Green Hill Far Away #194"
+  song_type: 1
+song_6:
+  id: 6
+  meeting_id: 2
+  title: "O That I Were An Angel"
+  song_type: 3
+song_7:
+  id: 7
+  meeting_id: 2
+  title: "The Spirit of God #2"
+  song_type: 4
