@@ -33,7 +33,9 @@ Rails.application.routes.draw do
   end
   resources :notifications, only: [:index]
   resources :talks, only: [:index]
-  resources :units, only: [:new, :edit, :create, :update]
+  resources :units, only: [:new, :edit, :create, :update] do
+    get :song_last_sung, on: :member
+  end
   resources :users, only: [:index, :show, :edit, :update, :destroy]
 
   namespace :settings do

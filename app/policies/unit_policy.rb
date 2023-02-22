@@ -17,4 +17,8 @@ class UnitPolicy < ApplicationPolicy
   def update?
     edit?
   end
+
+  def song_last_sung?
+    user.music_editor?
+  end
 end
