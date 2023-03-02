@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "Handle access request by a new user" do
+describe "Handle access request by a new user", js: true do
   let(:reviewing_user) { users(:sunny_bishopric) }
   let(:requesting_user) { users(:unassigned) }
   let(:access_request) { requesting_user.access_request }
@@ -41,25 +41,21 @@ describe "Handle access request by a new user" do
     end
   end
 
-  context "when access is rejected" do
-    before { driven_by :selenium_chrome_headless }
+  scenario "Access request is rejected" do
+    login_as reviewing_user, scope: :user
+    navigate_to_review_screen
 
-    scenario "Access request is rejected" do
-      login_as reviewing_user, scope: :user
-      navigate_to_review_screen
-
-      accept_alert do
-        click_link("Reject")
-      end
-
-      expect(page).to have_current_path(users_path)
-      requesting_user.reload
-      expect(requesting_user.unit).to be_nil
-      expect(requesting_user.role).to be_nil
-
-      access_request.reload
-      expect(access_request).to be_rejected
+    accept_alert do
+      click_link("Reject")
     end
+
+    expect(page).to have_current_path(users_path)
+    requesting_user.reload
+    expect(requesting_user.unit).to be_nil
+    expect(requesting_user.role).to be_nil
+
+    access_request.reload
+    expect(access_request).to be_rejected
   end
 
   def navigate_to_review_screen
