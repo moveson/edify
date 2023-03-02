@@ -85,7 +85,7 @@ module Edify
           attributes = row.to_h.slice(*included_attributes)
           next if attributes.compact.empty?
 
-          raw_member_row = RawMemberRow.new(attributes)
+          raw_member_row = RawMemberRow.new(**attributes)
 
           strip_unbaptized_member_of_record(raw_member_row)
 
@@ -100,6 +100,9 @@ module Edify
       end
 
       def included_attributes
+        # Struct#members returns an array of symbols representing the attributes of the Struct,
+        # e.g., [:name, :gender, :birthdate], similar to calling `.to_h.keys` on the Struct.
+        # It has nothing to do with the Member model
         @included_attributes ||= RawMemberRow.members.map(&:to_s)
       end
 
