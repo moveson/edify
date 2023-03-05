@@ -12,7 +12,7 @@ class ImportJobResource < Madmin::Resource
   attribute :started_at
   attribute :elapsed_seconds
   attribute :error_message
-  attribute :logs
+  attribute :logs, index: false
   attribute :created_at, form: false
   attribute :updated_at, form: false
   attribute :raw_data, index: false
