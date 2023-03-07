@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ImportJob < ApplicationRecord
+  belongs_to :owner, class_name: "User", optional: true
   belongs_to :unit
   has_one_attached :raw_data
   broadcasts_to :unit, inserts_by: :prepend
@@ -20,8 +21,6 @@ class ImportJob < ApplicationRecord
     finished: 4,
     failed: 5
   }
-
-  alias_attribute :owner_id, :user_id
 
   def data_string=(string)
     @data_string = string
