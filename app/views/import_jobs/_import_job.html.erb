@@ -1,6 +1,14 @@
 <tr id=<%= dom_id import_job %>>
   <td><%= link_to import_job.id, import_job_path(import_job) %></td>
   <td><%= "#{time_ago_in_words(import_job.created_at)} ago" %></td>
+  <td class="text-center">
+    <%= image_tag avatar_path(import_job.owner, size: 40),
+                  height: 20,
+                  width: 20,
+                  class: "rounded",
+                  title: import_job.owner_first_name,
+                  data: { "bs-toggle": "tooltip" } %>
+  </td>
   <td class="text-center"><%= import_job.row_count %></td>
   <td class="text-center"><%= "#{import_job.succeeded_count}/#{import_job.failed_count}/#{import_job.ignored_count}" %></td>
   <td class="text-center"><%= pretty_duration(import_job.elapsed_seconds) %></td>

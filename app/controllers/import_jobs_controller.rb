@@ -8,7 +8,7 @@ class ImportJobsController < ApplicationController
 
   # GET /import_jobs
   def index
-    @import_jobs = current_unit.import_jobs
+    @import_jobs = current_unit.import_jobs.includes(:owner)
   end
 
   # GET /import_jobs/:id

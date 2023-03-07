@@ -45,6 +45,10 @@ class ImportJob < ApplicationRecord
     update_column(:logs, new_logs)
   end
 
+  def owner_first_name
+    owner&.first_name || "Unknown"
+  end
+
   # @return [Array[<String>]]
   def parsed_errors
     JSON.parse(error_message || "[\"None\"]")
