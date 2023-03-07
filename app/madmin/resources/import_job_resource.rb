@@ -19,6 +19,7 @@ class ImportJobResource < Madmin::Resource
 
   # Associations
   attribute :unit
+  attribute :owner
 
   # Uncomment this to customize the display name of records in the admin area.
   # def self.display_name(record)
