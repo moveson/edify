@@ -30,7 +30,7 @@ describe ConformUserToAccessRequest do
     before do
       # Use update_columns to avoid running callbacks during setup
       access_request.update_columns(rejected_at: Time.current, rejected_by: 1)
-      user.update_columns(unit_id: 1, role: :clerk)
+      user.update_columns(unit_id: units(:sunny_hills).id, role: :clerk)
     end
 
     it "adds a unit id and role to the user" do
