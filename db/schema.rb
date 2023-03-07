@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_25_033221) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_07_031239) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -101,6 +101,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_25_033221) do
     t.string "logs"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "owner_id"
+    t.index ["owner_id"], name: "index_import_jobs_on_owner_id"
     t.index ["unit_id"], name: "index_import_jobs_on_unit_id"
   end
 
@@ -215,6 +217,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_25_033221) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "import_jobs", "units"
+  add_foreign_key "import_jobs", "users", column: "owner_id"
   add_foreign_key "meetings", "units"
   add_foreign_key "meetings", "users", column: "scheduler_id"
   add_foreign_key "members", "units"
