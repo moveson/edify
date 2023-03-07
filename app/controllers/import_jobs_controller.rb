@@ -23,6 +23,7 @@ class ImportJobsController < ApplicationController
   # POST /import_jobs
   def create
     @import_job = current_unit.import_jobs.new(import_job_params)
+    @import_job.owner = current_user
     @import_job.status = :waiting
 
     if @import_job.save
