@@ -2,6 +2,7 @@
 
 class Song < ApplicationRecord
   belongs_to :meeting
+  has_one :unit, through: :meeting
 
   enum song_type: {
     opening_hymn: 0,
@@ -17,11 +18,7 @@ class Song < ApplicationRecord
 
   # @return [ActiveSupport::Duration, nil]
   def duration_since_previously_sung
-    previous_song = meeting.unit.songs
-                           .where(title: title)
-                           .where("meetings.date < ?", meeting.date)
-                           .order("meetings.date desc")
-                           .first
+    previous_song = unit.song_last_sung(title, meeting_date)
 
     (meeting_date - previous_song.meeting_date).to_i.days if previous_song.present?
   end

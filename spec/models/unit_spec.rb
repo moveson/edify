@@ -85,4 +85,40 @@ describe ::Unit do
       it { expect(result).to be_nil }
     end
   end
+
+  describe "#speaker_last_talk" do
+    let(:unit) { units(:sunny_hills) }
+    let(:result) { unit.speaker_last_talk(name, date) }
+    let(:name) { "Hill, Waylon" }
+    let(:date) { "2022-04-17".to_date }
+
+    context "when the speaker spoke previously" do
+      it { expect(result).to eq(talks(:talk_2)) }
+    end
+
+    context "when the speaker spoke after but not previously" do
+      let(:date) { "2022-03-03".to_date }
+      it { expect(result).to be_nil }
+    end
+
+    context "when the speaker never spoke" do
+      let(:name) { "Not a real speaker" }
+      it { expect(result).to be_nil }
+    end
+
+    context "when name is blank" do
+      let(:name) { "" }
+      it { expect(result).to be_nil }
+    end
+
+    context "when name is nil" do
+      let(:name) { nil }
+      it { expect(result).to be_nil }
+    end
+
+    context "when date is nil" do
+      let(:date) { nil }
+      it { expect(result).to be_nil }
+    end
+  end
 end

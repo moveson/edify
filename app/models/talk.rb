@@ -14,6 +14,7 @@ class Talk < ApplicationRecord
 
   belongs_to :meeting
   belongs_to :member, optional: true
+  has_one :unit, through: :meeting
   acts_as_list scope: :meeting
 
   validates :speaker_name, presence: true
@@ -36,11 +37,7 @@ class Talk < ApplicationRecord
 
   # @return [ActiveSupport::Duration, nil]
   def duration_since_previously_spoke
-    previous_talk = meeting.unit.talks
-                           .where(speaker_name: speaker_name)
-                           .where("meetings.date < ?", meeting.date)
-                           .order("meetings.date desc")
-                           .first
+    previous_talk = unit.speaker_last_talk(speaker_name, meeting_date)
 
     (meeting_date - previous_talk.meeting_date).to_i.days if previous_talk.present?
   end

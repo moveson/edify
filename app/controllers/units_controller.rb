@@ -61,7 +61,7 @@ class UnitsController < ApplicationController
   def speaker_last_spoke
     name = params[:name]
     date = params[:date].to_date
-    previous_talk = name.present? && date.present? ? @unit.speaker_last_spoke(name, date) : nil
+    previous_talk = name.present? && date.present? ? @unit.speaker_last_talk(name, date) : nil
     duration = date.present? && previous_talk.present? ? (date - previous_talk.meeting_date).to_i.days : nil
 
     respond_to do |format|
