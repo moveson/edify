@@ -1,0 +1,21 @@
+<%# locals: (name:, duration:) -%>
+
+<div id="last_spoke_message" data-form-target="clear">
+  <% if name.present? %>
+    <label class="mt-1">
+      <% if duration.blank? %>
+      <span>
+        No record of this speaker found before this meeting
+      </span>
+      <% elsif duration < 3.months %>
+      <span class="text-danger">
+        <%= "NOTE: Previously spoke #{distance_of_time_in_words(duration)} before this meeting" %>
+      </span>
+      <% else %>
+      <span>
+        <%= "Previously spoke #{distance_of_time_in_words(duration)} before this meeting" %>
+      </span>
+      <% end %>
+    </label>
+  <% end %>
+</div>

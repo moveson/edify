@@ -34,6 +34,21 @@ class Talk < ApplicationRecord
     %w[]
   end
 
+  # @return [ActiveSupport::Duration, nil]
+  def duration_since_previously_spoke
+    previous_talk = meeting.unit.talks
+                           .where(speaker_name: speaker_name)
+                           .where("meetings.date < ?", meeting.date)
+                           .order("meetings.date desc")
+                           .first
+
+    (meeting_date - previous_talk.meeting_date).to_i.days if previous_talk.present?
+  end
+
+  def meeting_date
+    meeting.date
+  end
+
   def member_name
     member&.name
   end

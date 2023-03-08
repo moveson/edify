@@ -3,7 +3,8 @@
 <div class="d-flex justify-content-center ">
   <div class="card bg-light my-4 w-100 border-primary" style="max-width: 700px;">
     <div class="card-body">
-      <%= form_with(model: [talk.meeting, talk], data: { "turbo-frame" => dom_id(talk.meeting) }) do |form| %>
+      <%= form_with(model: [talk.meeting, talk],
+                    data: { "turbo-frame" => dom_id(talk.meeting) }) do |form| %>
         <% if talk.errors.any? %>
           <div id="error_explanation">
             <ul>
@@ -21,7 +22,13 @@
                                 list: "speaker_name_autocomplete",
                                 class: "form-control",
                                 placeholder: "Last, First",
-                                autofocus: true %>
+                                autofocus: true,
+                                data: {
+                                  controller: "speaker-last-spoke",
+                                  action: "change->speaker-last-spoke#update",
+                                  speaker_last_spoke_unit_id_value: talk.meeting.unit_id,
+                                  speaker_last_spoke_date_value: talk.meeting.date.to_s,
+                                } %>
             <datalist id="speaker_name_autocomplete">
               <% talk.unit_members.alphabetized.each do |member| %>
                 <option value="<%= member.name %>">
@@ -29,6 +36,8 @@
             </datalist>
           </div>
         </div>
+
+        <%= render "last_spoke", name: talk.speaker_name, duration: talk.duration_since_previously_spoke %>
 
         <div class="row mb-2">
           <div class="col-12 col-md">

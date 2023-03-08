@@ -44,6 +44,18 @@ class Unit < ApplicationRecord
          .first
   end
 
+  # @param [String] name
+  # @param [Date] date
+  # @return [Song, nil]
+  def speaker_last_spoke(name, date)
+    return unless name.present? && date.present?
+
+    talks.where("talks.speaker_name ilike ?", name)
+         .where("meetings.date < ?", date)
+         .order("meetings.date desc")
+         .first
+  end
+
   # @return [Integer]
   def talk_count
     talks.count
