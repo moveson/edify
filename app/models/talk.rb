@@ -14,6 +14,7 @@ class Talk < ApplicationRecord
 
   belongs_to :meeting
   belongs_to :member, optional: true
+  has_one :unit, through: :meeting
   acts_as_list scope: :meeting
 
   validates :speaker_name, presence: true
@@ -32,6 +33,17 @@ class Talk < ApplicationRecord
 
   def self.ransackable_associations(_auth_object = nil)
     %w[]
+  end
+
+  # @return [ActiveSupport::Duration, nil]
+  def duration_since_previously_spoke
+    previous_talk = unit.speaker_last_talk(speaker_name, meeting_date)
+
+    (meeting_date - previous_talk.meeting_date).to_i.days if previous_talk.present?
+  end
+
+  def meeting_date
+    meeting.date
   end
 
   def member_name

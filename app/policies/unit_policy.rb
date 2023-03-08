@@ -21,4 +21,8 @@ class UnitPolicy < ApplicationPolicy
   def song_last_sung?
     user.music_editor?
   end
+
+  def speaker_last_spoke?
+    user.unit_admin?
+  end
 end

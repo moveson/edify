@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   resources :talks, only: [:index]
   resources :units, only: [:new, :edit, :create, :update] do
     get :song_last_sung, on: :member
+    get :speaker_last_spoke, on: :member
   end
   resources :users, only: [:index, :show, :edit, :update, :destroy]
 
