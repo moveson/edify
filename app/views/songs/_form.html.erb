@@ -4,9 +4,11 @@
   <div class="card bg-light my-4 w-100 border-primary" style="max-width: 700px;">
     <div class="card-body">
       <%= form_with(model: [song.meeting, song],
-                    data: { "turbo-frame" => dom_id(song.meeting),
-                            controller: "form escape-cancel",
-                            action: "turbo:submit-end->form#clear" }) do |form| %>
+                    data: {
+                      "turbo-frame" => dom_id(song.meeting),
+                      controller: "form escape-cancel",
+                      action: "turbo:submit-end->form#clear"
+                    }) do |form| %>
         <% if song.errors.any? %>
           <div id="error_explanation">
             <ul>
@@ -40,7 +42,7 @@
                                   action: "change->song-last-sung#update",
                                   song_last_sung_unit_id_value: song.meeting.unit_id,
                                   song_last_sung_date_value: song.meeting.date.to_s,
-                                }%>
+                                } %>
             <datalist id="hymns_autocomplete">
               <%= ::Edify::Hymns.datalist %>
             </datalist>

@@ -4,7 +4,10 @@
   <div class="card bg-light my-4 w-100 border-primary" style="max-width: 700px;">
     <div class="card-body">
       <%= form_with(model: [talk.meeting, talk],
-                    data: { "turbo-frame" => dom_id(talk.meeting) }) do |form| %>
+                    data: {
+                      "turbo-frame" => dom_id(talk.meeting),
+                      controller: "form escape-cancel",
+                    }) do |form| %>
         <% if talk.errors.any? %>
           <div id="error_explanation">
             <ul>
@@ -63,7 +66,10 @@
               <%= fa_icon("check-circle") %>
             <% end %>
 
-            <%= link_to fa_icon("times-circle"), meeting_path(talk.meeting), class: "btn btn-outline-secondary" %>
+            <%= link_to fa_icon("times-circle"),
+                        meeting_path(talk.meeting),
+                        class: "btn btn-outline-secondary",
+                        data: { "escape-cancel-target" => "link" } %>
           </div>
         </div>
       <% end %>
