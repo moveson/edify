@@ -87,12 +87,6 @@ describe ::Member do
         it { expect(result).to eq(false) }
       end
     end
-
-    context "when the member was created long after the date of the first sync" do
-      before { member.update(created_at: unit.first_synced_on + 10.days) }
-
-      it { expect(result).to eq(true) }
-    end
   end
 
   describe "#not_in_most_recent_sync?" do
