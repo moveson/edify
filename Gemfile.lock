@@ -319,6 +319,8 @@ GEM
       websocket (~> 1.0)
     sendgrid-ruby (6.6.2)
       ruby_http_client (~> 3.4)
+    sentry-ruby (5.9.0)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
     sidekiq (6.5.8)
       connection_pool (>= 2.2.5, < 3)
       rack (~> 2.0)
@@ -416,6 +418,7 @@ DEPENDENCIES
   rubocop-rspec
   selenium-webdriver
   sendgrid-ruby
+  sentry-ruby
   sidekiq (< 7)
   sidekiq-cron
   sprockets-rails
