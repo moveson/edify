@@ -105,6 +105,8 @@ credentials. Credentials are stored in the `config/credentials.yml.enc` file, wh
 stored in the `config/master.key` file on your local machine. The `config/master.key` file is not checked into the
 repository. Contact a member of the development team if you need access to the Rails master key.
 
+Contact Mark Oveson or Evan Child for further information.
+
 **Continuous Integration**
 
 Edify uses Github Actions for CI/CD. When you push a branch, pipeline will run and should pass before merging to master.
