@@ -1,5 +1,6 @@
 # Below are the routes for madmin
 namespace :madmin do
+  resources :sendgrid_events
   resources :access_requests
   resources :import_jobs
   resources :notifications
