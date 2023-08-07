@@ -46,7 +46,9 @@ module Webhooks
     end
 
     def valid_webhook_token?
+      Rails.logger.info "=============================================================="
       Rails.logger.info request.headers
+      Rails.logger.info "=============================================================="
 
       true
     end
