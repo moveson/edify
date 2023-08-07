@@ -53,6 +53,8 @@ module Webhooks
       end
       Rails.logger.info "=========================================================="
 
+      true
+
       # public_key = EdifyConfig.sendgrid_webhook_verification_key
       # ec_public_key = SendGrid::EventWebhook.convert_public_key_to_ecdsa(public_key)
       # payload = request.body
