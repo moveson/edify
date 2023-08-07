@@ -47,7 +47,9 @@ module Webhooks
 
     def valid_webhook_token?
       Rails.logger.info "=============================================================="
-      Rails.logger.info request.headers
+      request.headers.each do |header|
+        Rails.logger.info header
+      end
       Rails.logger.info "=============================================================="
 
       true
