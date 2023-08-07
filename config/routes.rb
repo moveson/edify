@@ -47,6 +47,10 @@ Rails.application.routes.draw do
     put :remove_avatar
   end
 
+  namespace :webhooks do
+    resources :sendgrid_events, only: [:create]
+  end
+
   root to: "home#index"
   get "/privacy", to: "home#privacy"
   get "/terms", to: "home#terms"
