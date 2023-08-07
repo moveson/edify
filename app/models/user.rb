@@ -27,7 +27,6 @@ class User < ApplicationRecord
   belongs_to :unit, optional: true
 
   before_validation :set_notification_preferences
-  after_commit :send_pending_devise_notifications
   after_commit :send_welcome_notifications
 
   scope :admin, -> { where(admin: true) }
@@ -81,21 +80,6 @@ class User < ApplicationRecord
     unit&.name
   end
 
-  protected
-
-  # https://github.com/heartcombo/devise#activejob-integration
-  def send_devise_notification(notification, *args)
-    # If the record is new or changed then delay the
-    # delivery until the after_commit callback otherwise
-    # send now because after_commit will not be called.
-    # For Rails < 6 use `changed?` instead of `saved_changes?`.
-    if new_record? || saved_changes?
-      pending_devise_notifications << [notification, args]
-    else
-      render_and_send_devise_message(notification, *args)
-    end
-  end
-
   private
 
   def send_welcome_notifications
@@ -113,24 +97,5 @@ class User < ApplicationRecord
 
   def newly_confirmed?
     saved_changes["confirmed_at"].present? && saved_changes["confirmed_at"].first.nil?
-  end
-
-  def send_pending_devise_notifications
-    pending_devise_notifications.each do |notification, args|
-      render_and_send_devise_message(notification, *args)
-    end
-
-    # Empty the pending notifications array because the
-    # after_commit hook can be called multiple times which
-    # could cause multiple emails to be sent.
-    pending_devise_notifications.clear
-  end
-
-  def pending_devise_notifications
-    @pending_devise_notifications ||= []
-  end
-
-  def render_and_send_devise_message(notification, *args)
-    devise_mailer.send(notification, self, *args).deliver_later
   end
 end
