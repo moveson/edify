@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class String
   def numeric?
     true if Float(self)

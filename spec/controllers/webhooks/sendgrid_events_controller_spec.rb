@@ -6,7 +6,7 @@ RSpec.describe Webhooks::SendgridEventsController do
   describe "#create" do
     subject(:make_request) { post :create, params: params }
 
-    before { allow_any_instance_of(described_class).to receive(:valid_webhook_token?).and_return(true) }
+    before { allow(controller).to receive(:valid_webhook_token?).and_return(true) }
 
     context "when the request is valid" do
       let(:params) do
@@ -29,11 +29,11 @@ RSpec.describe Webhooks::SendgridEventsController do
 
       it "returns a successful 200 response" do
         make_request
-        expect(response.status).to eq(200)
+        expect(response).to have_http_status(:ok)
       end
 
       it "creates a new event for each row" do
-        expect { make_request }.to change { SendgridEvent.count }.by(11)
+        expect { make_request }.to change(SendgridEvent, :count).by(11)
       end
 
       it "saves type as the event type" do
@@ -54,11 +54,11 @@ RSpec.describe Webhooks::SendgridEventsController do
 
       it "returns a 422 response" do
         make_request
-        expect(response.status).to eq(422)
+        expect(response).to have_http_status(:unprocessable_entity)
       end
 
       it "does not create a new record" do
-        expect { make_request }.not_to(change { SendgridEvent.count })
+        expect { make_request }.not_to(change(SendgridEvent, :count))
       end
     end
 
@@ -67,7 +67,7 @@ RSpec.describe Webhooks::SendgridEventsController do
 
       it "returns a 422 response" do
         make_request
-        expect(response.status).to eq(422)
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
