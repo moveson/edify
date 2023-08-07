@@ -47,9 +47,9 @@ module Webhooks
 
     def valid_webhook_token?
       Rails.logger.info "=============================================================="
-      request.headers.each do |header|
-        Rails.logger.info header
-      end
+      Rails.logger.info request.headers[SendGrid::EventWebhookHeader::SIGNATURE]
+      Rails.logger.info request.headers[SendGrid::EventWebhookHeader::TIMESTAMP]
+      Rails.logger.info request.body
       Rails.logger.info "=============================================================="
 
       true
