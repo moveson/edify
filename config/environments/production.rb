@@ -72,7 +72,7 @@ Rails.application.configure do
     port: "587",
     authentication: :plain,
     user_name: "apikey",
-    password: Rails.application.credentials.sendgrid[:api_key],
+    password: ::EdifyConfig.sendgrid_api_key,
     domain: "heroku.com",
     enable_starttls_auto: true
   }
