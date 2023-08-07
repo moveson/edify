@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 class SendgridEvent < ApplicationRecord
-  validates_presence_of :email, :event, :timestamp
+  validates :email, :event, :timestamp, presence: true
 
   def timestamp=(timestamp)
     if timestamp.is_a?(Numeric)
-      super Time.at(timestamp)
+      super Time.zone.at(timestamp)
     elsif timestamp.respond_to?(:numeric?) && timestamp.numeric?
-      super Time.at(timestamp.to_i)
+      super Time.zone.at(timestamp.to_i)
     else
       super timestamp
     end
