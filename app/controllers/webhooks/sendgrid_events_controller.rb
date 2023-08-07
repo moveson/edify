@@ -46,22 +46,13 @@ module Webhooks
     end
 
     def valid_webhook_token?
+      public_key = EdifyConfig.sendgrid_webhook_verification_key
+      ec_public_key = SendGrid::EventWebhook.convert_public_key_to_ecdsa(public_key)
+      payload = request.body
+      signature = request.headers[SendGrid::EventWebhookHeader::SIGNATURE]
+      timestamp = request.headers[SendGrid::EventWebhookHeader::TIMESTAMP]
 
-      Rails.logger.info "=========================================================="
-      request.body.each_line do |line|
-        Rails.logger.info line
-      end
-      Rails.logger.info "=========================================================="
-
-      true
-
-      # public_key = EdifyConfig.sendgrid_webhook_verification_key
-      # ec_public_key = SendGrid::EventWebhook.convert_public_key_to_ecdsa(public_key)
-      # payload = request.body
-      # signature = request.headers[SendGrid::EventWebhookHeader::SIGNATURE]
-      # timestamp = request.headers[SendGrid::EventWebhookHeader::TIMESTAMP]
-      #
-      # SendGrid::EventWebhook.verify_signature(ec_public_key, payload, signature, timestamp)
+      SendGrid::EventWebhook.verify_signature(ec_public_key, payload, signature, timestamp)
     end
   end
 end
