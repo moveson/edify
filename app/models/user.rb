@@ -83,6 +83,7 @@ class User < ApplicationRecord
 
   protected
 
+  # https://github.com/heartcombo/devise#activejob-integration
   def send_devise_notification(notification, *args)
     # If the record is new or changed then delay the
     # delivery until the after_commit callback otherwise
@@ -130,13 +131,6 @@ class User < ApplicationRecord
   end
 
   def render_and_send_devise_message(notification, *args)
-    message = devise_mailer.send(notification, self, *args)
-
-    # Deliver later with Active Job's `deliver_later`
-    if message.respond_to?(:deliver_later)
-      message.deliver_later
-    else
-      message.deliver_now
-    end
+    devise_mailer.send(notification, self, *args).deliver_later
   end
 end
