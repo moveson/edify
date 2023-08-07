@@ -50,7 +50,7 @@ module Webhooks
 
       public_key = EdifyConfig.sendgrid_webhook_verification_key
       ec_public_key = event_webhook.convert_public_key_to_ecdsa(public_key)
-      payload = request.body
+      payload = request.body.read
       signature = request.headers[SendGrid::EventWebhookHeader::SIGNATURE]
       timestamp = request.headers[SendGrid::EventWebhookHeader::TIMESTAMP]
 
