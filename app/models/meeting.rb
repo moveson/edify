@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
 class Meeting < ApplicationRecord
-  PROGRAM_MEMBER_TITLES = {
+  CONTRIBUTOR_TITLES = {
     presider_name: "Presiding",
     conductor_name: "Conducting",
     chorister_name: "Chorister",
     organist_name: "Organist",
+    opening_prayer_name: "Opening Prayer",
+    closing_prayer_name: "Closing Prayer",
   }.freeze
 
   has_many :talks, -> { order(position: :asc) }, dependent: nil

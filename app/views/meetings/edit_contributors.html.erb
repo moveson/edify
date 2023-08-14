@@ -1,4 +1,4 @@
-<% Meeting::PROGRAM_MEMBER_TITLES.each do |attribute, display_name| %>
+<% Meeting::CONTRIBUTOR_TITLES.each do |attribute, display_name| %>
   <%= turbo_frame_tag dom_id(@meeting, "contributors_#{attribute}") do %>
     <% form_with model: @meeting,
                  url: update_contributors_meeting_path(@meeting),
