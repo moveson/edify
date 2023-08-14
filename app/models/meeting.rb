@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 class Meeting < ApplicationRecord
-  PROGRAM_MEMBER_TITLES = %w[
-    presider_name
-    conductor_name
-    chorister_name
-    organist_name
-  ].freeze
+  PROGRAM_MEMBER_TITLES = {
+    presider_name: "Presiding",
+    conductor_name: "Conducting",
+    chorister_name: "Chorister",
+    organist_name: "Organist",
+  }.freeze
 
   has_many :talks, -> { order(position: :asc) }, dependent: nil
   has_many :songs, dependent: :destroy
@@ -27,6 +27,8 @@ class Meeting < ApplicationRecord
 
   validates :meeting_type, :date, presence: true
   validates :date, uniqueness: { scope: :unit, message: I18n.t("models.meeting.date_not_unique") }, if: :date?
+
+  strip_attributes
 
   scope :future, -> { occurring_after(Date.current) }
   scope :most_recent_first, -> { order(date: :desc) }

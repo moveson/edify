@@ -1,15 +1,15 @@
 <%# locals: (meeting:) %>
 
 <%= turbo_frame_tag dom_id(meeting, :program_members) do %>
-  <% Meeting::PROGRAM_MEMBER_TITLES.each do |title| %>
-    <%= turbo_frame_tag dom_id(meeting, "program_members_#{title}") do %>
+  <% Meeting::PROGRAM_MEMBER_TITLES.each do |attribute, display_name| %>
+    <%= turbo_frame_tag dom_id(meeting, "program_members_#{attribute}") do %>
       <div class="row">
         <div class="col-12 col-md-4 pt-md-2">
-          <h6><%= title.titleize %></h6>
+          <h6><%= display_name %></h6>
         </div>
         <div class="col-12 col-md-6 pt-md-2" data-controller="clipboard">
           <h6>
-            <span><%= meeting.public_send(title) || "[Not yet assigned]" %></span>
+            <span><%= meeting.public_send(attribute) || "[Not yet assigned]" %></span>
           </h6>
         </div>
         <div class="col-12 col-md-2 text-md-end">
