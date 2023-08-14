@@ -31,7 +31,7 @@
         <div class="nav nav-tabs" id="nav-tab-<%= dom_id(meeting) %>" role="tablist">
           <button class="nav-link active" id="nav-talks-tab-<%= dom_id(meeting) %>" data-bs-toggle="tab" data-bs-target="#nav-talks-<%= dom_id(meeting) %>" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Talks</button>
           <button class="nav-link" id="nav-music-tab-<%= dom_id(meeting) %>" data-bs-toggle="tab" data-bs-target="#nav-music-<%= dom_id(meeting) %>" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Music</button>
-          <button class="nav-link" id="nav-program-tab-<%= dom_id(meeting) %>" data-bs-toggle="tab" data-bs-target="#nav-program-<%= dom_id(meeting) %>" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Program</button>
+          <button class="nav-link" id="nav-program-tab-<%= dom_id(meeting) %>" data-bs-toggle="tab" data-bs-target="#nav-program-<%= dom_id(meeting) %>" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Contributors</button>
         </div>
       </nav>
       <div class="card-body">
@@ -79,7 +79,7 @@
           <div class="tab-pane fade" id="nav-program-<%= dom_id(meeting) %>" role="tabpanel" aria-labelledby="nav-profile-tab">
             <div class="row">
               <div class="col-12">
-                <%= render partial: "meetings/program_members", locals: { meeting: meeting } %>
+                <%= render partial: "meetings/contributors", locals: { meeting: meeting } %>
               </div>
             </div>
           </div>

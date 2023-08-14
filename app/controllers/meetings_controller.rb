@@ -6,7 +6,7 @@ class MeetingsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :upsert
   before_action :authenticate_user!
   before_action :authorize_user
-  before_action :set_meeting, only: %i[show edit update destroy edit_program_members update_program_members]
+  before_action :set_meeting, only: %i[show edit update destroy edit_contributors update_contributors]
   after_action :verify_authorized
 
   # GET /meetings
@@ -80,20 +80,20 @@ class MeetingsController < ApplicationController
     end
   end
 
-  # GET /meetings/1/edit_program_members
-  def edit_program_members
+  # GET /meetings/1/edit_contributors
+  def edit_contributors
   end
 
-  # PATCH/PUT /meetings/1/update_program_members
-  def update_program_members
+  # PATCH/PUT /meetings/1/update_contributors
+  def update_contributors
     respond_to do |format|
       format.turbo_stream do
         if @meeting.update(meeting_program_member_params)
-          render turbo_stream: turbo_stream.replace(dom_id(@meeting, :program_members),
-                                                    partial: "meetings/program_members",
+          render turbo_stream: turbo_stream.replace(dom_id(@meeting, :contributors),
+                                                    partial: "meetings/contributors",
                                                     locals: { meeting: @meeting })
         else
-          render :edit_program_members, status: :unprocessable_entity
+          render :edit_contributors, status: :unprocessable_entity
         end
       end
     end

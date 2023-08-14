@@ -1,6 +1,6 @@
 <% Meeting::PROGRAM_MEMBER_TITLES.each do |attribute, display_name| %>
-  <%= turbo_frame_tag dom_id(@meeting, "program_members_#{attribute}") do %>
-    <% form_with model: @meeting, url: update_program_members_meeting_path(@meeting) do |form| %>
+  <%= turbo_frame_tag dom_id(@meeting, "contributors_#{attribute}") do %>
+    <% form_with model: @meeting, url: update_contributors_meeting_path(@meeting) do |form| %>
       <div class="row">
         <div class="col-12 col-md-4 pt-md-2">
           <h6><%= display_name %></h6>
