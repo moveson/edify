@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   resources :announcements, only: [:index]
   resources :import_jobs, only: [:index, :show, :new, :create, :destroy]
   resources :meetings do
+    get :edit_contributors, on: :member
+    patch :update_contributors, on: :member
     post :upsert, on: :collection
     resources :talks, except: :index do
       patch :move, on: :member

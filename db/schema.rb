@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_13_164610) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_14_152429) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -117,6 +117,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_13_164610) do
     t.string "conductor_name"
     t.string "chorister_name"
     t.string "organist_name"
+    t.string "opening_prayer_name"
+    t.string "closing_prayer_name"
     t.index ["date", "unit_id"], name: "index_meetings_on_date_and_unit_id", unique: true
     t.index ["scheduler_id"], name: "index_meetings_on_scheduler_id"
     t.index ["unit_id"], name: "index_meetings_on_unit_id"
