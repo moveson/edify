@@ -84,6 +84,10 @@ module LinkHelper
     link_to_edit([note.member, note], options)
   end
 
+  def link_to_program_member_edit(meeting, options = {})
+    link_to_edit([:program_members, meeting], options)
+  end
+
   def link_to_song_delete(song, options = {})
     link_to_delete([song.meeting, song], options)
   end

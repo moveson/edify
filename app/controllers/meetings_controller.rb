@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 class MeetingsController < ApplicationController
+  include ActionView::RecordIdentifier
+
   skip_before_action :verify_authenticity_token, only: :upsert
   before_action :authenticate_user!
   before_action :authorize_user
-  before_action :set_meeting, only: %i[show edit update destroy]
+  before_action :set_meeting, only: %i[show edit update destroy edit_program_members update_program_members]
   after_action :verify_authorized
 
   # GET /meetings
@@ -53,8 +55,9 @@ class MeetingsController < ApplicationController
         end
 
         format.turbo_stream do
-          render turbo_stream: turbo_stream.replace(@meeting, partial: "meetings/meeting",
-                                                              locals: { meeting: @meeting })
+          render turbo_stream: turbo_stream.replace(@meeting,
+                                                    partial: "meetings/meeting",
+                                                    locals: { meeting: @meeting })
         end
       end
     else
@@ -73,6 +76,25 @@ class MeetingsController < ApplicationController
 
       format.turbo_stream do
         render turbo_stream: turbo_stream.remove(@meeting)
+      end
+    end
+  end
+
+  # GET /meetings/1/edit_program_members
+  def edit_program_members
+  end
+
+  # PATCH/PUT /meetings/1/update_program_members
+  def update_program_members
+    respond_to do |format|
+      format.turbo_stream do
+        if @meeting.update(meeting_program_member_params)
+          render turbo_stream: turbo_stream.replace(dom_id(@meeting, :program_members),
+                                                    partial: "meetings/program_members",
+                                                    locals: { meeting: @meeting })
+        else
+          render :edit_program_members, status: :unprocessable_entity
+        end
       end
     end
   end
@@ -106,5 +128,9 @@ class MeetingsController < ApplicationController
 
   def meeting_params
     params.require(:meeting).permit(:date, :meeting_type, :scheduler_id)
+  end
+
+  def meeting_program_member_params
+    params.require(:meeting).permit(*Meeting::PROGRAM_MEMBER_TITLES)
   end
 end

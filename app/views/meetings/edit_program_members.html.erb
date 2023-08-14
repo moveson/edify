@@ -1,0 +1,17 @@
+<% Meeting::PROGRAM_MEMBER_TITLES.each do |title| %>
+  <%= turbo_frame_tag dom_id(@meeting, "program_members_#{title}") do %>
+    <% form_with model: @meeting, url: update_program_members_meeting_path(@meeting) do |form| %>
+      <div class="row">
+        <div class="col-12 col-md-4 pt-md-2">
+          <h6><%= title.titleize %></h6>
+        </div>
+        <div class="col-12 col-md-6 pt-md-2" data-controller="clipboard">
+          <h6>
+            <span><%= form.text_field title, autofocus: true %></span>
+          </h6>
+        </div>
+      </div>
+      <hr/>
+    <% end %>
+  <% end %>
+<% end %>
