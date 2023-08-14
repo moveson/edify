@@ -7,9 +7,20 @@
         </div>
         <div class="col-12 col-md-6 pt-md-2" data-controller="clipboard">
           <h6>
-            <span><%= form.text_field attribute, autofocus: true %></span>
+            <span>
+              <%= form.text_field attribute,
+                                  list: "speaker_name_autocomplete",
+                                  class: "form-control",
+                                  placeholder: "Last, First",
+                                  autofocus: true %>
+            </span>
           </h6>
         </div>
+        <datalist id="speaker_name_autocomplete">
+          <% @meeting.unit_members.alphabetized.each do |member| %>
+            <option value="<%= member.name %>">
+          <% end %>
+        </datalist>
       </div>
       <hr/>
     <% end %>
