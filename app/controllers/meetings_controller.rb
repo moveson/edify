@@ -131,6 +131,6 @@ class MeetingsController < ApplicationController
   end
 
   def meeting_program_member_params
-    params.require(:meeting).permit(*Meeting::PROGRAM_MEMBER_TITLES)
+    params.require(:meeting).permit(*Meeting::CONTRIBUTOR_TITLES.keys)
   end
 end
