@@ -7,9 +7,9 @@
 
   <div class="flex items-center px-4">
     <div class="mr-2">
-      <%= link_to "Impersonate",
+      <%= button_to "Impersonate",
         resource.impersonate_start_path(@record),
-        data: { "turbo-method": :post },
+        data: { turbo_method: :post },
         class: "block bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" %>
     </div>
     <div class="mr-2">
