@@ -1,6 +1,10 @@
+<%# locals: (meeting:, current: false) %>
+
+<% current ||= false %>
+
 <%= turbo_frame_tag dom_id(meeting) do %>
   <div class="d-flex justify-content-center">
-    <div class="card bg-light mt-2 w-100 w-max-700 <%= callout_class(meeting) %>">
+    <div class='<%= "card bg-light m-1 w-100 w-max-700 #{callout_class(meeting)}".strip %>'>
       <div class="card-header">
         <div class="row pt-2">
           <div class="col-12 col-md font-weight-bold">
@@ -87,4 +91,7 @@
       </div>
     </div>
   </div>
+  <% if current %>
+    <hr class="hr-text" data-content="Today" data-meetings-target="todayIndicator">
+  <% end %>
 <% end %>

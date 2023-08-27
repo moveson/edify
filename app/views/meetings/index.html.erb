@@ -29,10 +29,13 @@
   </div>
 <% end %>
 
-<article>
+<article data-controller="meetings">
   <%= turbo_frame_tag "page_handler" %>
   <div id="meetings">
-    <%= render partial: "meeting", collection: @meetings_view_object.meetings %>
+    <% @meetings_view_object.meetings.each do |meeting| %>
+      <%= render partial: "meeting",
+                 locals: { meeting: meeting, current: @meetings_view_object.current_meeting_id == meeting.id } %>
+    <% end %>
   </div>
   <%= render "shared/pager", pagy: @meetings_view_object.pagy %>
 </article>
