@@ -8,12 +8,13 @@ class MeetingsViewObject
   end
 
   attr_reader :meetings, :pagy
+
   delegate :unit_name, to: :current_user
 
   # @return [Integer]
   def current_meeting_id
     # We have to use current_unit.meetings here because meetings is scoped to the current pagy
-    @current_meeting_id ||= current_unit.meetings.occurring_on_or_after(Date.current).oldest_first.pluck(:id).first
+    @current_meeting_id ||= current_unit.meetings.occurring_on_or_after(Date.current).oldest_first.pick(:id)
   end
 
   # @return [Integer]

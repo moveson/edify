@@ -4,6 +4,7 @@ require "rails_helper"
 
 describe MeetingsViewObject do
   subject { described_class.new(meetings, view_context, pagy) }
+
   let(:unit) { units(:sunny_hills) }
   let(:meetings) { unit.meetings }
   let(:view_context) { MeetingsController.new.view_context }
