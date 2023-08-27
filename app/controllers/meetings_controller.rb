@@ -14,6 +14,7 @@ class MeetingsController < ApplicationController
     @q = current_unit.meetings.ransack(params[:q])
     @q.sorts = ["date desc"] if @q.sorts.empty?
     @pagy, @meetings = pagy(@q.result.includes(:talks))
+    @meetings_view_object = ::MeetingsViewObject.new(@meetings, view_context, @pagy)
   end
 
   # GET /meetings/1

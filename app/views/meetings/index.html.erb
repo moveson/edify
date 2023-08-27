@@ -1,9 +1,11 @@
 <div class="row">
   <div class="col-md">
-    <h2 class="mt-md-4 mt-2"><strong><%= "#{current_user.unit_name} Meetings" %></strong></h2>
+    <h2 class="mt-md-4 mt-2"><strong><%= "#{@meetings_view_object.unit_name} Meetings" %></strong></h2>
   </div>
   <div class="col-md">
-    <h5 class="mt-md-4 pt-md-3 text-md-end text-muted"><%= filtered_and_total_count(@pagy.count, current_unit.meeting_count, "meeting") %></h5>
+    <h5 class="mt-md-4 pt-md-3 text-md-end text-muted">
+      <%= filtered_and_total_count(@meetings_view_object.filtered_count, @meetings_view_object.total_count, "meeting") %>
+    </h5>
   </div>
 </div>
 
@@ -30,7 +32,7 @@
 <article>
   <%= turbo_frame_tag "page_handler" %>
   <div id="meetings">
-    <%= render partial: "meeting", collection: @meetings %>
+    <%= render partial: "meeting", collection: @meetings_view_object.meetings %>
   </div>
-  <%= render "shared/pager", pagy: @pagy %>
+  <%= render "shared/pager", pagy: @meetings_view_object.pagy %>
 </article>
