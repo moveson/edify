@@ -7,7 +7,7 @@ export default class extends Controller {
 
   connect() {
     if (this.hasTodayIndicatorTarget) {
-      this.todayIndicatorTarget.scrollIntoView({ behavior: "smooth", block: "center" })
+      this.todayIndicatorTarget.scrollIntoView({ behavior: "smooth", block: "end" })
     }
   }
 }
