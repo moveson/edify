@@ -92,6 +92,10 @@
     </div>
   </div>
   <% if current %>
-    <hr class="hr-text" data-content="Today" data-meetings-target="todayIndicator">
+    <div data-meetings-target="todayIndicator"
+         data-controller="highlight"
+         data-highlight-created-value="<%= Time.current.to_i %>">
+      <hr class="hr-text" data-content="Today">
+    </div>
   <% end %>
 <% end %>
