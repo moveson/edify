@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "Handle access request by a new user", js: true do
+describe "Handle access request by a new user", :js do
   let(:reviewing_user) { users(:sunny_bishopric) }
   let(:requesting_user) { users(:unassigned) }
   let(:access_request) { requesting_user.access_request }
