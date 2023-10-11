@@ -1,5 +1,4 @@
 require "active_support/core_ext/integer/time"
-require_relative "../../config/initializers/01_edify_config"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -72,20 +71,6 @@ Rails.application.configure do
   config.active_job.queue_adapter = :sidekiq
   # config.active_job.queue_name_prefix = "edify_production"
 
-  config.action_mailer.perform_caching = false
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: ::EdifyConfig.app_url, protocol: "http" }
-
-  config.action_mailer.smtp_settings = {
-    address: "smtp.sendgrid.net",
-    port: "587",
-    authentication: :plain,
-    user_name: "apikey",
-    password: ::EdifyConfig.sendgrid_api_key,
-    domain: "heroku.com",
-    enable_starttls_auto: true
-  }
-
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
@@ -107,4 +92,22 @@ Rails.application.configure do
   # ]
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+end
+
+Rails.configuration.after_initialize do
+  Rails.application.configure do
+    config.action_mailer.perform_caching = false
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.default_url_options = { host: ::EdifyConfig.app_url, protocol: "http" }
+
+    config.action_mailer.smtp_settings = {
+      address: "smtp.sendgrid.net",
+      port: "587",
+      authentication: :plain,
+      user_name: "apikey",
+      password: ::EdifyConfig.sendgrid_api_key,
+      domain: "heroku.com",
+      enable_starttls_auto: true
+    }
+  end
 end
