@@ -1,4 +1,4 @@
-<%# locals: (song:) %>
+<%# locals: (song:, song_counter:, song_iteration:) %>
 
 <%= turbo_frame_tag "meeting_#{song.meeting.id}_song_#{song.id}", data: { id: song.id } do %>
   <div class="row">
