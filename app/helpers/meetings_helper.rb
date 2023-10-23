@@ -5,7 +5,13 @@ module MeetingsHelper
     text = meeting_badge_attributes.dig(meeting_type, :text)
     color = meeting_badge_attributes.dig(meeting_type, :color)
 
-    content_tag(:span, text, class: ["badge", "bg-#{color}"].join(" "), data: { "bs-toggle" => "tooltip" }, title: meeting_type.titleize)
+    content_tag(
+      :span,
+      text,
+      class: ["badge", "bg-#{color}"].join(" "),
+      data: { "bs-toggle" => "tooltip" },
+      title: meeting_type.titleize
+    )
   end
 
   def meeting_badge_attributes
