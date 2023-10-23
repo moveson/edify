@@ -29,9 +29,9 @@ class UserResource < Madmin::Resource
   end
 
   # Uncomment this to customize the display name of records in the admin area.
-  # def self.display_name(record)
-  #   record.name
-  # end
+  def self.display_name(record)
+    record.name
+  end
 
   # Uncomment this to customize the default sort column and direction.
   # def self.default_sort_column
