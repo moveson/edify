@@ -25,6 +25,10 @@ class MeetingPolicy < ApplicationPolicy
     user.music_editor?
   end
 
+  def music?
+    index?
+  end
+
   def edit_contributors?
     user.present?
   end
