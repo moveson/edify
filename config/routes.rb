@@ -17,28 +17,39 @@ Rails.application.routes.draw do
     put :approve, on: :member
     put :reject, on: :member
   end
+
   resources :announcements, only: [:index]
   resources :import_jobs, only: [:index, :show, :new, :create, :destroy]
+
   resources :meetings do
-    get :edit_contributors, on: :member
-    patch :update_contributors, on: :member
-    post :upsert, on: :collection
+    member do
+      get :edit_contributors
+      patch :update_contributors
+    end
+    collection do
+      get :music
+      post :upsert
+    end
     resources :talks, except: :index do
       patch :move, on: :member
       post :upsert, on: :collection
     end
     resources :songs, except: :index
   end
+
   resources :members do
     post :upsert, on: :collection
     resources :notes
   end
+
   resources :notifications, only: [:index]
   resources :talks, only: [:index]
+
   resources :units, only: [:new, :edit, :create, :update] do
     get :song_last_sung, on: :member
     get :speaker_last_spoke, on: :member
   end
+
   resources :users, only: [:index, :show, :edit, :update, :destroy]
 
   namespace :settings do

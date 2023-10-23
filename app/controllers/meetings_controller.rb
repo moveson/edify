@@ -7,13 +7,11 @@ class MeetingsController < ApplicationController
   before_action :authenticate_user!
   before_action :authorize_user
   before_action :set_meeting, only: %i[show edit update destroy edit_contributors update_contributors]
+  before_action :set_meetings_and_pagy, only: %i[index music]
   after_action :verify_authorized
 
   # GET /meetings
   def index
-    @q = current_unit.meetings.ransack(params[:q])
-    @q.sorts = ["date desc"] if @q.sorts.empty?
-    @pagy, @meetings = pagy(@q.result.includes(:talks))
     @meetings_view_object = ::MeetingsViewObject.new(@meetings, view_context, @pagy)
   end
 
@@ -100,6 +98,11 @@ class MeetingsController < ApplicationController
     end
   end
 
+  # GET /meetings/music
+  def music
+    @meetings_view_object = ::MeetingsViewObject.new(@meetings, view_context, @pagy)
+  end
+
   # POST /meetings/upsert
   # This is an upsert using date as a unique key
   def upsert
@@ -122,6 +125,12 @@ class MeetingsController < ApplicationController
   end
 
   private
+
+  def set_meetings_and_pagy
+    @q = current_unit.meetings.ransack(params[:q])
+    @q.sorts = ["date desc"] if @q.sorts.empty?
+    @pagy, @meetings = pagy(@q.result.includes(:talks, :songs))
+  end
 
   def set_meeting
     @meeting = current_unit.meetings.find(params[:id])
