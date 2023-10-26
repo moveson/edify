@@ -43,6 +43,5 @@
 </div>
 
 <article>
-  <%= turbo_frame_tag "page_handler" %>
   <%= render partial: "members_and_pager", locals: { members: @members, pagy: @pagy } %>
 </article>

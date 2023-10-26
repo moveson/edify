@@ -39,6 +39,5 @@
 <hr/>
 
 <article>
-  <%= turbo_frame_tag "page_handler" %>
   <%= render partial: "talks_and_pager", locals: { talks: @talks, pagy: @pagy } %>
 </article>

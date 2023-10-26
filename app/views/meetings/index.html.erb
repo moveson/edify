@@ -30,7 +30,6 @@
 <% end %>
 
 <article data-controller="meetings">
-  <%= turbo_frame_tag "page_handler" %>
   <div id="meetings">
     <% @meetings_view_object.meetings.each do |meeting| %>
       <%= render partial: "meeting",
