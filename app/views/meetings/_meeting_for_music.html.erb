@@ -1,0 +1,12 @@
+<tr>
+  <td class="ps-2 pe-3 text-nowrap">
+    <%= l(meeting.date, format: :rfc822) %>
+    <span class="ps-1"><%= badge_for_meeting_type(meeting.meeting_type) %></span>
+  </td>
+  <td class="ps-2 pe-3 text-nowrap"><%= meeting.chorister_name %></td>
+  <td class="ps-2 pe-3 text-nowrap"><%= meeting.organist_name %></td>
+  <td class="ps-2 pe-3 text-nowrap"><%= meeting.songs.find { |song| song.song_type == "opening_hymn" }&.title %></td>
+  <td class="ps-2 pe-3 text-nowrap"><%= meeting.songs.find { |song| song.song_type == "sacrament_hymn" }&.title %></td>
+  <td class="ps-2 pe-3 text-nowrap"><%= meeting.songs.find { |song| song.song_type == "closing_hymn" }&.title %></td>
+  <td class="ps-2 pe-3 text-nowrap"><%= meeting.songs.find { |song| song.song_type == "musical_number" }&.title %></td>
+</tr>

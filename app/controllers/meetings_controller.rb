@@ -129,7 +129,7 @@ class MeetingsController < ApplicationController
   def set_meetings_and_pagy
     @q = current_unit.meetings.ransack(params[:q])
     @q.sorts = ["date desc"] if @q.sorts.empty?
-    @pagy, @meetings = pagy(@q.result.includes(:talks, :songs))
+    @pagy, @meetings = pagy(@q.result.includes(:talks, :songs), items: params[:items])
   end
 
   def set_meeting

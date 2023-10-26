@@ -11,13 +11,7 @@ class MembersController < ApplicationController
   def index
     @q = current_unit.members.with_last_talk_date.ransack(params[:q])
     @q.sorts = ["name asc"] if @q.sorts.empty?
-    @pagy, @members = pagy(@q.result.includes(:unit))
-
-    if params[:page].present?
-      render :next_page
-    else
-      render :index
-    end
+    @pagy, @members = pagy(@q.result.includes(:unit), items: params[:items])
   end
 
   # GET /members/1

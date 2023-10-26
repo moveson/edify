@@ -1,0 +1,8 @@
+<%= turbo_stream.append "members",
+                        partial: "members/member",
+                        collection: @members,
+                        as: :member %>
+
+<%= turbo_stream.replace "pager",
+                         partial: "shared/pager",
+                         locals: { pagy: @pagy } %>

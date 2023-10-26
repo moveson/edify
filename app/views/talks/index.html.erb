@@ -21,9 +21,13 @@
   <div class="col-12 col-md-6 mt-1">
     <%= search_form_for @q, data: { controller: "form-search-submit", turbo_frame: :filter_and_search, turbo_action: :advance } do |f| %>
       <div class="input-group">
-        <%= f.search_field :speaker_name_or_purpose_or_topic_cont, placeholder: "Find a talk", autofocus: true, data: { action: "input->form-search-submit#search" }, class: "form-control" %>
+        <%= f.search_field :speaker_name_or_purpose_or_topic_cont,
+                           placeholder: "Find a talk",
+                           autofocus: true,
+                           data: { action: "input->form-search-submit#search" },
+                           class: "form-control" %>
         <span class="input-group-append">
-        <%= button_tag(type: :submit, class: 'btn btn-primary') do %>
+        <%= button_tag(type: :submit, class: "btn btn-primary") do %>
             <i class='fas fa-search'></i>
         <% end %>
       </span>
