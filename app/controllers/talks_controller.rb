@@ -12,13 +12,7 @@ class TalksController < ApplicationController
   def index
     @q = current_unit.talks.ransack(params[:q])
     @q.sorts = ["meeting_date desc", "speaker_name asc"] if @q.sorts.empty?
-    @pagy, @talks = pagy(@q.result.includes(:member, :meeting))
-
-    if params[:page].present?
-      render :next_page
-    else
-      render :index
-    end
+    @pagy, @talks = pagy(@q.result.includes(:member, :meeting), items: params[:items])
   end
 
   # GET /meetings/1/talks/1
