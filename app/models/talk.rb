@@ -21,14 +21,15 @@ class Talk < ApplicationRecord
 
   strip_attributes
 
-  scope :most_recent_first, -> { joins(:meeting).order(date: :desc) }
+  scope :sort_by_meeting_date_asc, -> { joins(:meeting).order("meetings.date asc") }
+  scope :sort_by_meeting_date_desc, -> { joins(:meeting).order("meetings.date desc") }
 
   before_save :match_member
 
   delegate :date, :date?, to: :meeting, allow_nil: true
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[purpose speaker_name topic]
+    %w[purpose speaker_name topic member_id]
   end
 
   def self.ransackable_associations(_auth_object = nil)

@@ -10,8 +10,8 @@ class TalksController < ApplicationController
 
   # GET /talks
   def index
-    @q = current_unit.talks.ransack(params[:q])
-    @q.sorts = ["meeting_date desc", "speaker_name asc"] if @q.sorts.empty?
+    # unscope(:order) is needed to remove the position order inserted by acts_as_list
+    @q = current_unit.talks.unscope(:order).sort_by_meeting_date_desc.ransack(params[:q])
     @pagy, @talks = pagy(@q.result.includes(:member, :meeting), items: params[:items])
   end
 

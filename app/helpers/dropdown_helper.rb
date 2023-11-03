@@ -180,8 +180,8 @@ module DropdownHelper
     build_dropdown_menu(title, dropdown_items, options)
   end
 
-  def sort_talks_dropdown(request_params, ransack_query, options = {})
-    existing_sort_attribute = ransack_query.sorts.first.name
+  def sort_talks_dropdown(ransack_query, options = {})
+    existing_sort_attribute = ransack_query.sorts.first&.name || "meeting_date"
     title = case existing_sort_attribute
             when "speaker_name"
               "By name"
@@ -193,10 +193,10 @@ module DropdownHelper
 
     dropdown_items = [
       { name: "Date",
-        link: request_params.deep_merge(q: { s: "meeting_date desc" }),
+        link: sort_url(ransack_query, :meeting_date, default_order: :desc),
         active: existing_sort_attribute == "meeting_date" },
       { name: "Name",
-        link: request_params.deep_merge(q: { s: "speaker_name asc" }),
+        link: sort_url(ransack_query, :speaker_name, default_order: :asc),
         active: existing_sort_attribute == "speaker_name" },
     ]
 

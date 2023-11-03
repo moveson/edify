@@ -1,4 +1,4 @@
 <div id="sort_and_filter_dropdowns">
-  <%= sort_talks_dropdown(request.params, @q, label: "Sort") %>
+  <%= sort_talks_dropdown(@q, label: "Sort") %>
   <%= filter_talks_matched_dropdown(request.params, label: "Matching?") %>
 </div>
