@@ -100,6 +100,7 @@ class MeetingsController < ApplicationController
 
   # GET /meetings/music
   def music
+    use_fluid_container
     @meetings_view_object = ::MeetingsViewObject.new(@meetings, view_context, @pagy)
   end
 

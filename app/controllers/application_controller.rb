@@ -13,9 +13,14 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :turbo_frame_request_variant
 
+  helper_method :container_class
   helper_method :current_unit
   helper_method :user_assigned_to_unit?
   helper_method :user_needs_onboarding?
+
+  def container_class
+    @container_class || "container"
+  end
 
   def current_unit
     @current_unit ||= current_user&.unit
@@ -44,6 +49,10 @@ class ApplicationController < ActionController::Base
 
   def turbo_frame_request_variant
     request.variant = :turbo_frame if turbo_frame_request?
+  end
+
+  def use_fluid_container
+    @container_class = "container-fluid"
   end
 
   def user_not_authorized
