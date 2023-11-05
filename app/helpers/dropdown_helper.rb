@@ -152,6 +152,25 @@ module DropdownHelper
     build_dropdown_menu(title, dropdown_items, options)
   end
 
+  def meeting_view_dropdown(options = {})
+    title = action_name == "index" ? "Cards" : "Music"
+
+    dropdown_items = [
+      {
+        name: "Cards",
+        link: meetings_path,
+        active: controller_name == "meetings" && action_name == "index",
+      },
+      {
+        name: "Music",
+        link: music_meetings_path,
+        active: controller_name == "meetings" && action_name == "music",
+      },
+    ]
+
+    build_dropdown_menu(title, dropdown_items, options)
+  end
+
   def sort_members_dropdown(request_params, ransack_query, options = {})
     existing_sort_attribute = ransack_query.sorts.first.name
     title = case existing_sort_attribute
