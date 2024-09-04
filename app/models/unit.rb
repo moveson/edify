@@ -39,7 +39,7 @@ class Unit < ApplicationRecord
     return unless title.present? && date.present?
 
     songs.where("songs.title ilike ?", title)
-         .where("meetings.date < ?", date)
+         .where(meetings: { date: ...date })
          .order("meetings.date desc")
          .first
   end
@@ -51,7 +51,7 @@ class Unit < ApplicationRecord
     return unless name.present? && date.present?
 
     talks.where("talks.speaker_name ilike ?", name)
-         .where("meetings.date < ?", date)
+         .where(meetings: { date: ...date })
          .reorder("meetings.date desc")
          .first
   end

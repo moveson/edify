@@ -35,8 +35,8 @@ class Meeting < ApplicationRecord
   scope :future, -> { occurring_after(Date.current) }
   scope :most_recent_first, -> { order(date: :desc) }
   scope :occurring_after, ->(date) { where("date > ?", date) }
-  scope :occurring_on_or_after, ->(date) { where("date >= ?", date) }
-  scope :occurring_on_or_before, ->(date) { where("date <= ?", date) }
+  scope :occurring_on_or_after, ->(date) { where(date: date..) }
+  scope :occurring_on_or_before, ->(date) { where(date: ..date) }
   scope :oldest_first, -> { order(date: :asc) }
 
   def self.ransackable_attributes(_auth_object = nil)
