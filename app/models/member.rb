@@ -5,7 +5,7 @@ class Member < ApplicationRecord
   has_many :notes, dependent: :destroy
   belongs_to :unit
 
-  enum gender: { male: 0, female: 1 }
+  enum :gender, { male: 0, female: 1 }
 
   validates :name, :gender, :birthdate, presence: true
   validates :name, uniqueness: { scope: :birthdate }, if: :name?

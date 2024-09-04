@@ -4,7 +4,7 @@ class Song < ApplicationRecord
   belongs_to :meeting
   has_one :unit, through: :meeting
 
-  enum song_type: {
+  enum :song_type, {
     opening_hymn: 0,
     sacrament_hymn: 1,
     congregational_hymn: 2,
