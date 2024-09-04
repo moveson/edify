@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_person_name
   has_noticed_notifications
 
-  enum role: {
+  enum :role, {
     bishopric: 1,
     clerk: 2,
     music: 3,

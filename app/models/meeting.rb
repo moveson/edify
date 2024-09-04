@@ -17,7 +17,7 @@ class Meeting < ApplicationRecord
 
   has_noticed_notifications
 
-  enum meeting_type: {
+  enum :meeting_type, {
     sacrament_meeting: 0,
     testimony_meeting: 1,
     ward_conference: 2,
