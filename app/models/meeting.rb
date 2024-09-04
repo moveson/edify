@@ -17,7 +17,7 @@ class Meeting < ApplicationRecord
 
   has_noticed_notifications
 
-  enum meeting_type: {
+  enum :meeting_type, {
     sacrament_meeting: 0,
     testimony_meeting: 1,
     ward_conference: 2,
@@ -35,8 +35,8 @@ class Meeting < ApplicationRecord
   scope :future, -> { occurring_after(Date.current) }
   scope :most_recent_first, -> { order(date: :desc) }
   scope :occurring_after, ->(date) { where("date > ?", date) }
-  scope :occurring_on_or_after, ->(date) { where("date >= ?", date) }
-  scope :occurring_on_or_before, ->(date) { where("date <= ?", date) }
+  scope :occurring_on_or_after, ->(date) { where(date: date..) }
+  scope :occurring_on_or_before, ->(date) { where(date: ..date) }
   scope :oldest_first, -> { order(date: :asc) }
 
   def self.ransackable_attributes(_auth_object = nil)
