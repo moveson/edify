@@ -31,7 +31,9 @@ module MeetingsHelper
     users.unshift(current_user)
     select_array = users.map { |user| [user.name, user.id] }
     select_array.push(["Unassigned", ""])
-    default_value = meeting.persisted? ? meeting.scheduler_id.to_s : (meeting.scheduler_id || current_user.id).to_s
+    bishopric_user_id = current_user.bishopric? ? current_user.id : nil
+    new_meeting_default = (meeting.scheduler_id || bishopric_user_id).to_s
+    default_value = meeting.persisted? ? meeting.scheduler_id.to_s : new_meeting_default
 
     options_for_select(select_array, default_value)
   end
