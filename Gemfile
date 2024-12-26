@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.2.5"
+ruby "3.3.6"
 
 gem "rails", "~> 7.0.2", ">= 7.0.2.3"
 
@@ -25,7 +25,7 @@ gem "font_awesome5_rails"
 gem "friendly_id"
 gem "image_processing", "~> 1.2"
 gem "jsbundling-rails"
-gem "madmin"
+gem "madmin", "~> 1.2"
 gem "name_of_person"
 gem "nokogiri", ">= 1.13.4"
 gem "noticed", "~> 1.0"
