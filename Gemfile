@@ -5,12 +5,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.3.6"
 
-gem "rails", "~> 7.0.2", ">= 7.0.2.3"
+gem "rails", "~> 7.1.0"
 
 gem "bootsnap", require: false
 gem "pg"
-gem "puma", "< 6" # Remove this constraint when Capybara has been updated for compatibility with Puma 6
-gem "redis", "< 5"
+gem "puma"
+gem "redis"
 gem "sprockets-rails"
 gem "stimulus-rails"
 gem "turbo-rails"
@@ -37,7 +37,7 @@ gem "ransack"
 gem "responders"
 gem "sendgrid-ruby"
 gem "sentry-ruby"
-gem "sidekiq", "<7"
+gem "sidekiq"
 gem "sidekiq-cron"
 gem "strip_attributes"
 
