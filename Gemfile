@@ -5,12 +5,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.3.6"
 
-gem "rails", "~> 7.0.2", ">= 7.0.2.3"
+gem "rails", "~> 7.1.0"
 
 gem "bootsnap", require: false
 gem "pg"
-gem "puma", "< 6" # Remove this constraint when Capybara has been updated for compatibility with Puma 6
-gem "redis", "< 5"
+gem "puma"
+gem "redis"
 gem "sprockets-rails"
 gem "stimulus-rails"
 gem "turbo-rails"
@@ -19,6 +19,7 @@ gem "acts_as_list"
 gem "american_date"
 gem "aws-sdk-s3", require: false
 gem "cssbundling-rails"
+gem "csv"
 gem "devise"
 gem "devise-jwt"
 gem "font_awesome5_rails"
@@ -37,13 +38,14 @@ gem "ransack"
 gem "responders"
 gem "sendgrid-ruby"
 gem "sentry-ruby"
-gem "sidekiq", "<7"
+gem "sidekiq"
 gem "sidekiq-cron"
 gem "strip_attributes"
 
 group :development, :test do
   gem "brakeman"
   gem "bundler-audit"
+  gem "rspec-rails"
   gem "rubocop-rails"
   gem "rubocop-rspec"
 end
@@ -56,7 +58,6 @@ end
 
 group :test do
   gem "capybara"
-  gem "rspec-rails"
   gem "selenium-webdriver"
 end
 

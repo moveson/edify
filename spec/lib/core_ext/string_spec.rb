@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../../../lib/core_ext/string"
-require "active_record"
+require "core_ext/string"
 
 RSpec.describe String do
   describe "#numeric?" do
