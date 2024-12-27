@@ -9,8 +9,8 @@ Ruby on Rails
 
 This application requires:
 
-- Ruby 3.2
-- Rails 7.0
+- Ruby 3.4
+- Rails 7.1
 
 Learn more about [Installing Rails](https://gorails.com/setup/osx/10.12-sierra).
 
