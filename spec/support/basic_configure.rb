@@ -7,5 +7,6 @@ RSpec.configure do |config|
 
   config.before(:each, :js, type: :system) do
     driven_by :chrome_headless
+    # driven_by :chrome_visible
   end
 end
