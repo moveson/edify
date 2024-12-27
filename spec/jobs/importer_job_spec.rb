@@ -4,6 +4,7 @@ require "rails_helper"
 
 RSpec.describe ImporterJob, type: :job do
   subject { described_class.new }
+
   let(:import_job) { import_jobs(:import_job_7) }
 
   it "enqueues the job" do

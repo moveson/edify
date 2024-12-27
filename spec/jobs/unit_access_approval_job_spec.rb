@@ -4,6 +4,7 @@ require "rails_helper"
 
 RSpec.describe UnitAccessApprovalJob, type: :job do
   subject { described_class.new }
+
   let(:unit) { units(:sunny_hills) }
   let(:user) { users(:sunny_bishopric) }
 
