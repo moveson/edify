@@ -27,5 +27,9 @@ module Edify
     #
     config.time_zone = "UTC"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # Don't use http basic auth for mission control, because we are using devise
+    # and checking user.admin? in config/routes.rb
+    config.mission_control.jobs.http_basic_auth_enabled = false
   end
 end

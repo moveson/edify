@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   draw :madmin
 
+  authenticate :user, ->(u) { u.admin? } do
+    mount MissionControl::Jobs::Engine, at: "/jobs"
+  end
+
   devise_for :users, controllers: {
     registrations: "users/registrations",
     sessions: "users/sessions",
