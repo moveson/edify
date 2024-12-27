@@ -13,4 +13,4 @@ production:
   meeting_schedule_notify:
     class: "MeetingScheduleNotifyJob"
     queue: default
-    schedule: at 1500 every day
+    schedule: at 3pm every day
