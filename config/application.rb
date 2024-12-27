@@ -16,7 +16,7 @@ module Edify
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
-    config.autoload_lib(ignore: %w(assets tasks))
+    config.autoload_lib(ignore: %w[assets tasks])
 
     # Require all core extensions
     Dir[Rails.root.join("lib/core_ext/**/*.rb").to_s].each { |l| require l }
