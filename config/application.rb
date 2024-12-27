@@ -18,14 +18,15 @@ module Edify
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w(assets tasks))
 
+    # Require all core extensions
+    Dir[Rails.root.join("lib/core_ext/**/*.rb").to_s].each { |l| require l }
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
-    # config.time_zone = "Central Time (US & Canada)"
+    config.time_zone = "UTC"
     # config.eager_load_paths << Rails.root.join("extras")
-
-    Dir[Rails.root.join("lib/core_ext/**/*.rb").to_s].each { |l| require l }
   end
 end
