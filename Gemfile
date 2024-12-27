@@ -44,6 +44,7 @@ gem "strip_attributes"
 group :development, :test do
   gem "brakeman"
   gem "bundler-audit"
+  gem "rspec-rails"
   gem "rubocop-rails"
   gem "rubocop-rspec"
 end
@@ -56,7 +57,6 @@ end
 
 group :test do
   gem "capybara"
-  gem "rspec-rails"
   gem "selenium-webdriver"
 end
 
