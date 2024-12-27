@@ -9,4 +9,8 @@ RSpec.configure do |config|
     driven_by :chrome_headless
     # driven_by :chrome_visible
   end
+
+  config.after(:each, type: :job) do
+    clear_enqueued_jobs
+  end
 end

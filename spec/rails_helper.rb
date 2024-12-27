@@ -70,6 +70,7 @@ RSpec.configure do |config|
 
   config.global_fixtures = :all
 
+  config.include ActiveJob::TestHelper
   config.include ActiveSupport::Testing::TimeHelpers
   config.include Warden::Test::Helpers
 end
