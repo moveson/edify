@@ -44,7 +44,7 @@
               <% if current_user.admin? %>
                 <div class="dropdown-divider"></div>
                 <%= link_to "Admin Area", madmin_root_path, class: "dropdown-item" %>
-                <%= link_to "Sidekiq Web", sidekiq_web_path, target: "_blank", class: "dropdown-item" %>
+                <%= link_to "Mission Control", mission_control_jobs_path, target: "_blank", class: "dropdown-item" %>
               <% end %>
               <div class="dropdown-divider"></div>
               <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item" %>

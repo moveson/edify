@@ -114,13 +114,13 @@ describe "Visit the home page" do
 
   def verify_admin_links_present
     expect(page).to have_link("Admin Area", href: madmin_root_path)
-    expect(page).to have_link("Sidekiq", href: sidekiq_web_path)
+    expect(page).to have_link("Mission Control", href: mission_control_jobs_path)
   end
 
   def verify_admin_links_absent
     expect(page).not_to have_link("Admin Area")
     expect(page).not_to have_link(href: madmin_root_path)
-    expect(page).not_to have_link("Sidekiq")
-    expect(page).not_to have_link(href: sidekiq_web_path)
+    expect(page).not_to have_link("Mission Control")
+    expect(page).not_to have_link(href: mission_control_jobs_path)
   end
 end

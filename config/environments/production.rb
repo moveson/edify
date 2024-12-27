@@ -69,9 +69,8 @@ Rails.application.configure do
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 
-  # Use a real queuing backend for Active Job (and separate queues per environment).
-  config.active_job.queue_adapter = :sidekiq
-  # config.active_job.queue_name_prefix = "edify_production"
+  # Use a real queuing backend for Active Job.
+  config.active_job.queue_adapter = :solid_queue
 
   config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :smtp

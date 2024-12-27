@@ -48,13 +48,6 @@ Edify uses Postgres, so you'll need to install it if you haven't already.
 1. `$ brew install postgres`
 2. `$ brew services start postgres`
 
-**Redis**
-
-Edify relies on Sidekiq for background jobs, and Sidekiq needs Redis. Install Redis using homebrew:
-
-1. `$ brew install redis`
-2. `$ brew services start redis`
-
 **VIPS**
 
 Edify defaults to the Rails 7 standard of using `vips` for image processing. If you want to be able to test image 
