@@ -38,8 +38,7 @@ gem "ransack"
 gem "responders"
 gem "sendgrid-ruby"
 gem "sentry-ruby"
-gem "sidekiq"
-gem "sidekiq-cron"
+gem "solid_queue"
 gem "strip_attributes"
 
 group :development, :test do
