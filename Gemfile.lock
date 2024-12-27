@@ -131,6 +131,7 @@ GEM
       unicode (>= 0.4.4.5)
     cssbundling-rails (1.4.1)
       railties (>= 6.0.0)
+    csv (3.2.8)
     date (3.4.1)
     devise (4.9.4)
       bcrypt (~> 3.0)
@@ -459,6 +460,7 @@ DEPENDENCIES
   bundler-audit
   capybara
   cssbundling-rails
+  csv
   devise
   devise-jwt
   ffaker

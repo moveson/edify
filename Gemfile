@@ -19,6 +19,7 @@ gem "acts_as_list"
 gem "american_date"
 gem "aws-sdk-s3", require: false
 gem "cssbundling-rails"
+gem "csv"
 gem "devise"
 gem "devise-jwt"
 gem "font_awesome5_rails"
