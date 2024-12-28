@@ -9,6 +9,9 @@
 #     priority: 2
 #     schedule: at 5am every day
 
+# To test natural language schedule strings run
+# Fugit.parse("my schedule string").original
+
 production:
   meeting_schedule_notify:
     class: "MeetingScheduleNotifyJob"

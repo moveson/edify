@@ -1,3 +1,7 @@
+<% if Rails.env.production? %>
+  <script src="<%= ::EdifyConfig.cloudflare_turnstile_js_url %>" async defer></script>
+<% end %>
+
 <div class="row">
   <div class="col-lg-4 offset-lg-4">
     <h1 class="text-center">Sign Up</h1>
@@ -23,6 +27,10 @@
 
       <div class="mb-3">
         <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: 'Confirm Password' %>
+      </div>
+
+      <div class="mb-3">
+        <div class="cf-turnstile" data-sitekey="<%= ::EdifyConfig.cloudflare_turnstile_site_key %>" data-theme="light"></div>
       </div>
 
       <div class="mb-3 d-grid">
