@@ -2,6 +2,8 @@
 
 module Users
   class RegistrationsController < Devise::RegistrationsController
+    before_action :turnstile_verify, only: [:create]
+
     def update
       self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
       prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
@@ -24,6 +26,18 @@ module Users
 
     def after_update_path_for(_resource)
       settings_password_path
+    end
+
+    private
+
+    def turnstile_verify
+      return unless Rails.env.production?
+      return if ::EdifyConfig.cloudflare_turnstile_secret_key.nil?
+
+      token = params[:cf_turnstile_response].to_s
+      return if ::Cloudflare::TurnstileVerifier.token_valid?(token)
+
+      redirect_to root_path, notice: I18n.t("controllers.registrations_controller.flash.turnstile_unauthorized")
     end
   end
 end

@@ -27,6 +27,9 @@ en:
       created: "Note was successfully created."
       updated: "Note was successfully updated."
       destroyed: "Note was successfully destroyed."
+    registrations_controller:
+      flash:
+        turnstile_unauthorized: "Unauthorized"
     songs_controller:
       created: "Song was successfully created."
       updated: "Song was successfully updated."
