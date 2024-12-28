@@ -34,7 +34,7 @@ module Users
       return unless Rails.env.production?
       return if ::EdifyConfig.cloudflare_turnstile_secret_key.nil?
 
-      token = params[:cf_turnstile_response].to_s
+      token = params["cf-turnstile-response"].to_s
       return if ::Cloudflare::TurnstileVerifier.token_valid?(token)
 
       redirect_to root_path, notice: I18n.t("controllers.registrations_controller.flash.turnstile_unauthorized")
