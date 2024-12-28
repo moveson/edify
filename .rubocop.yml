@@ -33,6 +33,9 @@ Rails/DynamicFindBy:
 Rails/InverseOf:
   Enabled: false
 
+Rails/LexicallyScopedActionFilter:
+  Enabled: false
+
 Rails/OutputSafety:
   Enabled: false
 
