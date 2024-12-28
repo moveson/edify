@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 class EdifyConfig
-  CLOUDFLARE_TURNSTILE_JS_URL = "https://challenges.cloudflare.com/turnstile/v0/api.js"
-  CLOUDFLARE_TURNSTILE_SITE_VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify"
-
   def self.app_url
     ::ENV["APP_URL"] || "localhost:3000"
   end
@@ -17,11 +14,11 @@ class EdifyConfig
   end
 
   def self.cloudflare_turnstile_site_verify_url
-    CLOUDFLARE_TURNSTILE_SITE_VERIFY_URL
+    "https://challenges.cloudflare.com/turnstile/v0/siteverify"
   end
 
   def self.cloudflare_turnstile_js_url
-    CLOUDFLARE_TURNSTILE_JS_URL
+    "https://challenges.cloudflare.com/turnstile/v0/api.js"
   end
 
   def self.email_sender_address
