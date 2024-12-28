@@ -1,3 +1,3 @@
 web: bin/rails server
-worker: bin/jobs -c config/queue.yml
+worker: bundle exec rake solid_queue:start
 release: bundle exec rails db:migrate
