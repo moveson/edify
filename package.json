@@ -14,7 +14,7 @@
     "esbuild": "^0.14.25",
     "esbuild-rails": "^1.0.3",
     "local-time": "^2.1.0",
-    "sass": "^1.49.9",
+    "sass": "1.77.6",
     "sortablejs": "^1.15.0",
     "trix": "^2.0.0-alpha.1"
   },
