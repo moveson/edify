@@ -5,7 +5,6 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
-  config.cache_classes = true
   config.enable_reloading = false
 
   # Eager load code on boot. This eager loads most of Rails and
@@ -53,6 +52,9 @@ Rails.application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
 
+  # Skip http-to-https redirect for the default health check endpoint.
+  # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
+
   # Log to STDOUT by default
   config.logger = ActiveSupport::Logger.new($stdout)
                                        .tap  { |logger| logger.formatter = ::Logger::Formatter.new }
@@ -72,6 +74,8 @@ Rails.application.configure do
   # Use a real queuing backend for Active Job.
   config.active_job.queue_adapter = :solid_queue
 
+  # Disable caching for Action Mailer templates even if Action Controller
+  # caching is enabled.
   config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { host: ::EdifyConfig.app_url, protocol: "http" }
@@ -112,6 +116,9 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Only use :id for inspections in production.
+  # config.active_record.attributes_for_inspect = [:id]
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
