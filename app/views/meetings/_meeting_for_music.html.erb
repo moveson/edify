@@ -1,3 +1,5 @@
+<%# locals: (meeting:) %>
+
 <tr>
   <td class="ps-2 pe-3 text-nowrap">
     <%= l(meeting.date, format: :rfc822) %>
@@ -9,4 +11,6 @@
   <td class="ps-2 pe-3 text-nowrap"><%= meeting.songs.find { |song| song.song_type == "sacrament_hymn" }&.title %></td>
   <td class="ps-2 pe-3 text-nowrap"><%= meeting.songs.find { |song| song.song_type == "closing_hymn" }&.title %></td>
   <td class="ps-2 pe-3 text-nowrap"><%= meeting.songs.find { |song| song.song_type == "musical_number" }&.title %></td>
+  <td class="ps-2 pe-3 text-nowrap"><%= meeting.opening_prayer_name %></td>
+  <td class="ps-2 pe-3 text-nowrap"><%= meeting.closing_prayer_name %></td>
 </tr>
