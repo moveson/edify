@@ -10,23 +10,19 @@
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="mb-3">
-        <%= f.text_field :name, autofocus: true, class: 'form-control', placeholder: "Full name" %>
+        <%= f.text_field :name, autofocus: true, class: "form-control", placeholder: "Full name" %>
       </div>
 
       <div class="mb-3">
-        <%= f.email_field :email, class: 'form-control', placeholder: "Email Address" %>
+        <%= f.email_field :email, class: "form-control", placeholder: "Email address" %>
       </div>
 
       <div class="mb-3">
-        <%= f.text_field :phone_number, class: 'form-control', placeholder: "Phone (to receive text messages)" %>
+        <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Password" %>
       </div>
 
       <div class="mb-3">
-        <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password' %>
-      </div>
-
-      <div class="mb-3">
-        <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: 'Confirm Password' %>
+        <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "Confirm password" %>
       </div>
 
       <div class="mb-3">
