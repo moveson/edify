@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module MembersHelper
   def link_to_pause(member, period)
     number, unit = period.split

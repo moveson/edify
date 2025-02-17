@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class CheckMeetingsAndNotify
   def self.perform!(unit)
     new(unit).perform!

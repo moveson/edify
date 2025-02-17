@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Cloudflare
   class TurnstileVerifier
     # @param [String] token

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module IconHelper
   def status_icon(status)
     case status

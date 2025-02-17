@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class UnitAccessRejectionNotification < ApplicationNotification
   deliver_by :database
   deliver_by :email, mailer: "UserMailer", format: :format_for_email, if: :notify_by_email?

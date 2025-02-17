@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class SendgridEvent < ApplicationRecord
   validates :email, :event, :timestamp, presence: true
 

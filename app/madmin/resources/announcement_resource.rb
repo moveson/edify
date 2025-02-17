@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class AnnouncementResource < Madmin::Resource
   # Attributes
   attribute :id, form: false

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class UnitAccessApprovalJob < ::ApplicationJob
   queue_as :default
 

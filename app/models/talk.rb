@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Talk < ApplicationRecord
   DEFAULT_PURPOSE_LIST = [
     "Calling Change",

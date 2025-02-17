@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Member < ApplicationRecord
   has_many :talks, dependent: :nullify
   has_many :notes, dependent: :destroy

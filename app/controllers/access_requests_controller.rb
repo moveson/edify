@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class AccessRequestsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_access_request, only: %i[review approve reject destroy]

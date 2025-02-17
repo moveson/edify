@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Madmin
   class ApplicationController < Madmin::BaseController
     before_action :authenticate_user!

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Unit < ApplicationRecord
   has_many :access_requests, dependent: nil
   has_many :import_jobs, dependent: :destroy

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Edify
   module Etl
     class ImportManager

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module FormatHelper
   # @param [Meeting] meeting
   # @return [String (frozen), nil]

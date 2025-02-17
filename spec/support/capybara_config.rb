@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # chrome_headless is the default driver for system tests
 Capybara.register_driver :chrome_headless do |app|
   download_path = Rails.root.join("tmp/downloads").to_s

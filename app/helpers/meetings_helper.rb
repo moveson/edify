@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module MeetingsHelper
   def badge_for_meeting_type(meeting_type)
     text = meeting_badge_attributes.dig(meeting_type, :text)
