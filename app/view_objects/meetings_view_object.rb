@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class MeetingsViewObject
   def initialize(meetings, view_context, pagy)
     @meetings = meetings

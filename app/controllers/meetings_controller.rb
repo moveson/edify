@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class MeetingsController < ApplicationController
   include ActionView::RecordIdentifier
 

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 namespace :notify do
   desc "Notifies users of missing and incomplete meetings"
   task :meetings => :environment do

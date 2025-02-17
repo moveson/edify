@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class UnitPolicy < ApplicationPolicy
   def new?
     user.needs_onboarding?

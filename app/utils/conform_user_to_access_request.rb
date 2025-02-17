@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ConformUserToAccessRequest
   # @param [::AccessRequest] access_request
   # @return [Boolean]
