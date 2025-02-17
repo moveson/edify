@@ -79,8 +79,7 @@ Style/EmptyMethod:
   EnforcedStyle: expanded
 
 Style/FrozenStringLiteralComment:
-  Exclude:
-    - "config/**/*"
+  Enabled: false
 
 Style/HashSyntax:
   Enabled: false
