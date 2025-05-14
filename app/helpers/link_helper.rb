@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module LinkHelper
   def link_to_access_request_reject(access_request, options = {})
     html_class = options[:class] || ""

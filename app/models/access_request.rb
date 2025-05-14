@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class AccessRequest < ApplicationRecord
   ASSIGNABLE_ROLES = Set[*::User.roles.keys].freeze
 

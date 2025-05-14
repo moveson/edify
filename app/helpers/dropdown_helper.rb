@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module DropdownHelper
   def build_dropdown_menu(title, items, options = {})
     container_tag = :div

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class NewUserNotification < ApplicationNotification
   deliver_by :database
   deliver_by :email, mailer: "UserMailer", format: :format_for_email

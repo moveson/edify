@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class SongPolicy < ApplicationPolicy
   def new?
     user.music_editor?

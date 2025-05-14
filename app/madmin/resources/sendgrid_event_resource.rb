@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class SendgridEventResource < Madmin::Resource
   # Attributes
   attribute :id, form: false

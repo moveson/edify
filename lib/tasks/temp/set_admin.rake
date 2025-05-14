@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 namespace :temp do
   desc "Sets user admin column"
   task set_admin: :environment do
