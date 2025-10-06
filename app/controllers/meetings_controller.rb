@@ -39,7 +39,7 @@ class MeetingsController < ApplicationController
         format.turbo_stream
       end
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -58,7 +58,7 @@ class MeetingsController < ApplicationController
         end
       end
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 
@@ -90,7 +90,7 @@ class MeetingsController < ApplicationController
                                                     partial: "meetings/contributors",
                                                     locals: { meeting: @meeting })
         else
-          render :edit_contributors, status: :unprocessable_entity
+          render :edit_contributors, status: :unprocessable_content
         end
       end
     end
@@ -118,7 +118,7 @@ class MeetingsController < ApplicationController
       end
     else
       respond_to do |format|
-        format.json { render json: @meeting.errors.full_messages.to_json, status: :unprocessable_entity }
+        format.json { render json: @meeting.errors.full_messages.to_json, status: :unprocessable_content }
       end
     end
   end

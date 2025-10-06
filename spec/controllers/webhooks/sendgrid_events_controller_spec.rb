@@ -52,7 +52,7 @@ RSpec.describe Webhooks::SendgridEventsController do
 
       it "returns a 422 response" do
         make_request
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
 
       it "does not create a new record" do
@@ -65,7 +65,7 @@ RSpec.describe Webhooks::SendgridEventsController do
 
       it "returns a 422 response" do
         make_request
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end

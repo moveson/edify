@@ -42,7 +42,7 @@ class TalksController < ApplicationController
         end
       end
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -60,7 +60,7 @@ class TalksController < ApplicationController
         end
       end
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 
@@ -95,7 +95,7 @@ class TalksController < ApplicationController
       end
     else
       respond_to do |format|
-        format.json { render json: @talk.errors.full_messages.to_json, status: :unprocessable_entity }
+        format.json { render json: @talk.errors.full_messages.to_json, status: :unprocessable_content }
       end
     end
   end
@@ -111,7 +111,7 @@ class TalksController < ApplicationController
         else
           @talk.errors.add(:position, "was not provided") if position.nil?
 
-          render json: @talk.errors.full_messages.to_json, status: :unprocessable_entity
+          render json: @talk.errors.full_messages.to_json, status: :unprocessable_content
         end
       end
     end
