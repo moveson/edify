@@ -10,7 +10,7 @@ Ruby on Rails
 This application requires:
 
 - Ruby 3.4
-- Rails 7.1
+- Rails 7.2
 
 Learn more about [Installing Rails](https://gorails.com/setup/osx/10.12-sierra).
 
@@ -149,4 +149,4 @@ License
 Copyright
 ---------
 
-Copyright (c) 2022-2024 by Mark Oveson. See license for details.
+Copyright (c) 2022-2025 by Mark Oveson. See license for details.
