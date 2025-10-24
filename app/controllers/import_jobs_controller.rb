@@ -45,7 +45,7 @@ class ImportJobsController < ApplicationController
   private
 
   def import_job_params
-    params.require(:import_job).permit(:data_string)
+    params.expect(import_job: [:data_string])
   end
 
   def set_import_job

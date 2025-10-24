@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Update a user role", :js do
+describe "Delete a user", :js do
   let(:unit) { units(:sunny_hills) }
   let(:bishopric_user) { users(:sunny_bishopric) }
   let(:music_user) { users(:sunny_music) }

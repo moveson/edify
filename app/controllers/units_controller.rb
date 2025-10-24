@@ -22,7 +22,7 @@ class UnitsController < ApplicationController
     if @unit.save
       redirect_to root_path
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -35,7 +35,7 @@ class UnitsController < ApplicationController
         end
       end
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 
@@ -74,7 +74,7 @@ class UnitsController < ApplicationController
   private
 
   def unit_params
-    params.require(:unit).permit(:name)
+    params.expect(unit: [:name])
   end
 
   def set_unit

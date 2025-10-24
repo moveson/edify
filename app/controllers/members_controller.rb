@@ -40,7 +40,7 @@ class MembersController < ApplicationController
         end
       end
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -57,7 +57,7 @@ class MembersController < ApplicationController
         end
       end
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 
@@ -101,7 +101,7 @@ class MembersController < ApplicationController
       end
     else
       respond_to do |format|
-        format.json { render json: @member.errors.full_messages.to_json, status: :unprocessable_entity }
+        format.json { render json: @member.errors.full_messages.to_json, status: :unprocessable_content }
       end
     end
   end
@@ -113,15 +113,15 @@ class MembersController < ApplicationController
   end
 
   def member_params
-    params.require(:member).permit(
-      :birthdate,
-      :email,
-      :gender,
-      :name,
-      :paused_on,
-      :paused_by,
-      :paused_until,
-      :phone_number,
+    params.expect(
+      member: [:birthdate,
+               :email,
+               :gender,
+               :name,
+               :paused_on,
+               :paused_by,
+               :paused_until,
+               :phone_number],
     )
   end
 end

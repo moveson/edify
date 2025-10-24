@@ -43,7 +43,7 @@ class AccessRequestsController < ApplicationController
       ::UnitAccessApprovalJob.perform_later(unit: @access_request.unit, user: @access_request.user)
       redirect_to users_path, notice: t("controllers.access_request_controller.approve_success")
     else
-      render :review, status: :unprocessable_entity
+      render :review, status: :unprocessable_content
     end
   end
 
@@ -53,7 +53,7 @@ class AccessRequestsController < ApplicationController
       ::UnitAccessRejectionJob.perform_later(unit: @access_request.unit, user: @access_request.user)
       redirect_to users_path, notice: t("controllers.access_request_controller.reject_success")
     else
-      render :review, status: :unprocessable_entity
+      render :review, status: :unprocessable_content
     end
   end
 
@@ -78,7 +78,7 @@ class AccessRequestsController < ApplicationController
   end
 
   def access_request_params
-    params.require(:access_request).permit(:unit_name)
+    params.expect(access_request: [:unit_name])
   end
 
   def approval_params
