@@ -38,7 +38,7 @@ class NotesController < ApplicationController
         end
       end
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -55,7 +55,7 @@ class NotesController < ApplicationController
         end
       end
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 
@@ -85,6 +85,6 @@ class NotesController < ApplicationController
   end
 
   def note_params
-    params.require(:note).permit(:member_id, :date, :content)
+    params.expect(note: [:member_id, :date, :content])
   end
 end

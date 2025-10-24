@@ -13,7 +13,7 @@ RSpec.describe MeetingScheduleNotifyJob, type: :job do
     before { allow(::CheckMeetingsAndNotify).to receive(:perform!) }
 
     it "sends a message to CheckMeetingsAndNotify for each unit" do
-      expect(Unit.count.positive?).to eq(true)
+      expect(Unit.any?).to eq(true)
       Unit.find_each { |unit| expect(::CheckMeetingsAndNotify).to receive(:perform!).with(unit) }
       perform_job
     end

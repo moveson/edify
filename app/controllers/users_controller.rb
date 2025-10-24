@@ -33,7 +33,7 @@ class UsersController < ApplicationController
         end
       end
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

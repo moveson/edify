@@ -14,14 +14,14 @@ module Webhooks
 
         Sentry.capture_message("Failed to save SendgridEvent",
                                extra: { sendgrid_event: sendgrid_event, errors: sendgrid_event.errors.full_messages })
-        status = :unprocessable_entity
+        status = :unprocessable_content
         break
       end
 
       head status
     rescue ActionController::ParameterMissing => e
       Sentry.capture_message("Sendgrid webhook parameter missing", extra: { error: e })
-      head :unprocessable_entity
+      head :unprocessable_content
     end
 
     private
