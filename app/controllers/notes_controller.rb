@@ -85,6 +85,6 @@ class NotesController < ApplicationController
   end
 
   def note_params
-    params.require(:note).permit(:member_id, :date, :content)
+    params.expect(note: [:member_id, :date, :content])
   end
 end

@@ -136,10 +136,10 @@ class MeetingsController < ApplicationController
   end
 
   def meeting_params
-    params.require(:meeting).permit(:date, :meeting_type, :scheduler_id)
+    params.expect(meeting: [:date, :meeting_type, :scheduler_id])
   end
 
   def meeting_program_member_params
-    params.require(:meeting).permit(*Meeting::CONTRIBUTOR_TITLES.keys)
+    params.expect(meeting: [*Meeting::CONTRIBUTOR_TITLES.keys])
   end
 end

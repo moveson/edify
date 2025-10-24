@@ -74,7 +74,7 @@ class UnitsController < ApplicationController
   private
 
   def unit_params
-    params.require(:unit).permit(:name)
+    params.expect(unit: [:name])
   end
 
   def set_unit

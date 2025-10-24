@@ -128,6 +128,6 @@ class TalksController < ApplicationController
   end
 
   def talk_params
-    params.require(:talk).permit(:speaker_name, :purpose, :topic)
+    params.expect(talk: [:speaker_name, :purpose, :topic])
   end
 end

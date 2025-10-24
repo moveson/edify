@@ -78,7 +78,7 @@ class AccessRequestsController < ApplicationController
   end
 
   def access_request_params
-    params.require(:access_request).permit(:unit_name)
+    params.expect(access_request: [:unit_name])
   end
 
   def approval_params

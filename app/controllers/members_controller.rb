@@ -113,15 +113,15 @@ class MembersController < ApplicationController
   end
 
   def member_params
-    params.require(:member).permit(
-      :birthdate,
-      :email,
-      :gender,
-      :name,
-      :paused_on,
-      :paused_by,
-      :paused_until,
-      :phone_number,
+    params.expect(
+      member: [:birthdate,
+               :email,
+               :gender,
+               :name,
+               :paused_on,
+               :paused_by,
+               :paused_until,
+               :phone_number],
     )
   end
 end

@@ -80,6 +80,6 @@ class SongsController < ApplicationController
   end
 
   def song_params
-    params.require(:song).permit(:song_type, :title)
+    params.expect(song: [:song_type, :title])
   end
 end
