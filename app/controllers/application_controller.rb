@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  include Pagy::Backend
+  include Pagy::Method
   include Pundit::Authorization
 
   impersonates :user
@@ -55,6 +55,6 @@ class ApplicationController < ActionController::Base
 
   def user_not_authorized
     flash[:alert] = t("controllers.application_controller.not_authorized")
-    redirect_back(fallback_location: root_path)
+    redirect_back_or_to(root_path)
   end
 end
