@@ -28,7 +28,7 @@ module PagyStubHelper
 
     last   = (count.to_f / limit).ceil
     last   = 1 if last.zero? # behave nicely with empty collections
-    page   = [[page, 1].max, last].min
+    page   = page.clamp(1, last)
     offset = (page - 1) * limit
 
     PagyStub.new(
