@@ -8,6 +8,8 @@ class Song < ApplicationRecord
     congregational_hymn: 2,
     musical_number: 3,
     closing_hymn: 4,
+    prelude: 5,
+    postlude: 6,
   }
 
   validates :song_type, :title, presence: true
