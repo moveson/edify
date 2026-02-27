@@ -38,6 +38,7 @@ class Unit < ApplicationRecord
 
     songs.where("songs.title ilike ?", title)
          .where(meetings: { date: ...date })
+         .where.not(song_type: [:prelude, :postlude])
          .order("meetings.date desc")
          .first
   end

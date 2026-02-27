@@ -55,7 +55,15 @@ describe ::Unit do
     let(:date) { "2022-04-10".to_date }
 
     context "when the song was sung previously" do
-      it { expect(result).to eq(songs(:song_1)) }
+      context "when sung as an opening song" do
+        it { expect(result).to eq(songs(:song_1)) }
+      end
+
+      context "when played as a prelude song" do
+        before { songs(:song_1).update(song_type: :prelude) }
+
+        it { expect(result).to be_nil }
+      end
     end
 
     context "when the song was sung after but not previously" do
