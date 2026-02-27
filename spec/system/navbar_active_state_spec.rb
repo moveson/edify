@@ -11,21 +11,21 @@ RSpec.describe "Navbar active state highlighting", type: :system do
     visit meetings_path
 
     within("nav.navbar") do
-      expect(page).to have_css('a.nav-link.active', text: "Meetings")
-      expect(page).not_to have_css('a.nav-link.active', text: "Talks")
+      expect(page).to have_css("a.nav-link.active", text: "Meetings")
+      expect(page).not_to have_css("a.nav-link.active", text: "Talks")
     end
   end
 
   it "updates highlighting when navigating to different pages" do
     visit meetings_path
     within("nav.navbar") do
-      expect(page).to have_css('a.nav-link.active', text: "Meetings")
+      expect(page).to have_css("a.nav-link.active", text: "Meetings")
     end
 
     visit talks_path
     within("nav.navbar") do
-      expect(page).to have_css('a.nav-link.active', text: "Talks")
-      expect(page).not_to have_css('a.nav-link.active', text: "Meetings")
+      expect(page).to have_css("a.nav-link.active", text: "Talks")
+      expect(page).not_to have_css("a.nav-link.active", text: "Meetings")
     end
   end
 
@@ -36,7 +36,7 @@ RSpec.describe "Navbar active state highlighting", type: :system do
       visit members_path
 
       within("nav.navbar") do
-        expect(page).to have_css('a.nav-link.active', text: "Members")
+        expect(page).to have_css("a.nav-link.active", text: "Members")
       end
     end
 
@@ -44,17 +44,17 @@ RSpec.describe "Navbar active state highlighting", type: :system do
       visit import_jobs_path
 
       within("nav.navbar") do
-        expect(page).to have_css('a.nav-link.active', text: "Imports")
+        expect(page).to have_css("a.nav-link.active", text: "Imports")
       end
     end
   end
 
-  context "What's New and Notifications" do
+  context "when viewing What's New and Notifications" do
     it "highlights What's New link when on announcements page" do
       visit announcements_path
 
       within("nav.navbar") do
-        expect(page).to have_css('a.nav-link.active', text: "What's New")
+        expect(page).to have_css("a.nav-link.active", text: "What's New")
       end
     end
 
@@ -63,12 +63,12 @@ RSpec.describe "Navbar active state highlighting", type: :system do
 
       within("nav.navbar") do
         # The notifications link contains an icon, so we check for the active class
-        expect(page).to have_css('a.nav-link.active i.fa-bell')
+        expect(page).to have_css("a.nav-link.active i.fa-bell")
       end
     end
   end
 
-  context "dropdown menu items" do
+  context "when using dropdown menu items" do
     it "highlights Settings link in dropdown when on settings page" do
       visit settings_preferences_path
 
@@ -77,7 +77,7 @@ RSpec.describe "Navbar active state highlighting", type: :system do
         find("#navbar-dropdown").click
 
         within("#nav-account-dropdown") do
-          expect(page).to have_css('a.dropdown-item.active', text: "Settings")
+          expect(page).to have_css("a.dropdown-item.active", text: "Settings")
         end
       end
     end
@@ -89,7 +89,7 @@ RSpec.describe "Navbar active state highlighting", type: :system do
         find("#navbar-dropdown").click
 
         within("#nav-account-dropdown") do
-          expect(page).to have_css('a.dropdown-item.active', text: "All Users")
+          expect(page).to have_css("a.dropdown-item.active", text: "All Users")
         end
       end
     end
