@@ -20,7 +20,7 @@ describe "User signs in" do
 
     within("form") { click_button "Log in" }
     expect(page).to have_current_path(new_user_session_path)
-    expect(page).to have_text("Invalid Email or password.")
+    expect(page).to have_text("Invalid email or password.")
   end
 
   scenario "with no password" do
@@ -32,7 +32,7 @@ describe "User signs in" do
     end
 
     expect(page).to have_current_path(new_user_session_path)
-    expect(page).to have_text("Invalid Email or password.")
+    expect(page).to have_text("Invalid email or password.")
   end
 
   scenario "with wrong password" do
@@ -45,7 +45,7 @@ describe "User signs in" do
     end
 
     expect(page).to have_current_path(new_user_session_path)
-    expect(page).to have_text("Invalid Email or password.")
+    expect(page).to have_text("Invalid email or password.")
   end
 
   scenario "with nonexistent email" do
@@ -58,7 +58,7 @@ describe "User signs in" do
     end
 
     expect(page).to have_current_path(new_user_session_path)
-    expect(page).to have_text("Invalid Email or password.")
+    expect(page).to have_text("Invalid email or password.")
   end
 
   def navigate_to_sign_in_page
