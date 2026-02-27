@@ -8,6 +8,8 @@ module CoreExt
   end
 end
 
+# rubocop:disable Style/OneClassPerFile
 class String
   include CoreExt::String
 end
+# rubocop:enable Style/OneClassPerFile

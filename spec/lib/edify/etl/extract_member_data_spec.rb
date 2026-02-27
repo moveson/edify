@@ -12,9 +12,11 @@ describe ::Edify::Etl::ExtractMemberData do
 
     context "when a raw_data file is attached" do
       before do
-        import_job.raw_data.attach(io: File.open(file_fixture(raw_data_file_name)),
-                                   filename: "raw_data.txt",
-                                   content_type: "text/plain")
+        import_job.raw_data.attach(
+          io: file_fixture(raw_data_file_name).open,
+          filename: "raw_data.txt",
+          content_type: "text/plain"
+        )
       end
 
       context "when all data is valid" do
