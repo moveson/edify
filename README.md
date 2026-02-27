@@ -71,6 +71,16 @@ Setup the app by running the setup script:
 2. `$ ./bin/dev` to start the servers in your dev environment
 3. Type `localhost:3000` in a browser
 
+**Loading Test Fixtures**
+
+To populate your development database with test data from fixtures (users, units, meetings, etc.):
+
+```bash
+$ bundle exec rails db:from_fixtures
+```
+
+This command loads all fixture data from `spec/fixtures/` into your development database, creating test users, units, and associated records.
+
 *Test Users*
 
 After you setup/seed your database, you should have several test users:
