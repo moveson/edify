@@ -1,12 +1,15 @@
 require "rails_helper"
 
 describe MeetingsViewObject do
+  include PagyStubHelper
+
   subject { described_class.new(meetings, view_context, pagy) }
 
   let(:unit) { units(:sunny_hills) }
   let(:meetings) { unit.meetings }
   let(:view_context) { MeetingsController.new.view_context }
-  let(:pagy) { Pagy.new(count: 1, page: 1) }
+  let(:pagy) { pagy_stub_for(current_meeting, page: 1, limit: 10) }
+  let(:current_meeting) { [meetings.first] }
 
   before do
     allow(view_context).to receive(:current_user).and_return(unit.users.first)
